@@ -181,27 +181,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 06f13f0374b36104a990c6fdf9b49f94, type: 3}
---- !u!1 &263010655 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6375815448298664128, guid: 753a089e8907261479a62f51b3ab75f9,
-    type: 3}
-  m_PrefabInstance: {fileID: 1495593254}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &263010660
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 263010655}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44d9b70ab1f1e36478885c4c0149965c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseSpeed: 0
-  jumpForce: 0
-  rb: {fileID: 0}
 --- !u!1001 &464215488
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -559,6 +538,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Floor
       objectReference: {fileID: 0}
+    - target: {fileID: 6949770403156216413, guid: 0c74418bb028b134683f142f1100b138,
+        type: 3}
+      propertyPath: m_TagString
+      value: Floor
+      objectReference: {fileID: 0}
     - target: {fileID: 7022169842691394570, guid: 0c74418bb028b134683f142f1100b138,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -682,6 +666,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933272141506673565, guid: 753a089e8907261479a62f51b3ab75f9,
+        type: 3}
+      propertyPath: m_Interpolate
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 753a089e8907261479a62f51b3ab75f9, type: 3}

@@ -40,7 +40,7 @@ public class CharacterController_Roger : MonoBehaviour
             direction = DirectionInputs.NONE;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && !jumping)
         {
             rb.AddForce(Vector2.up * jumpForce);
 
@@ -74,9 +74,9 @@ public class CharacterController_Roger : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag("Floor"))
+        if (collision.GetContact(collision.contactCount/2).point.y < transform.position.y)
         {
-
+            jumping = false;
         }
     }
 }
