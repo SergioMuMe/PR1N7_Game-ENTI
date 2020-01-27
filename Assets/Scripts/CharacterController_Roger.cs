@@ -65,5 +65,7 @@ public class CharacterController_Roger : MonoBehaviour
                 break;
         }
 
+        Debug.Log(rb.velocity);
+
     }
 }
