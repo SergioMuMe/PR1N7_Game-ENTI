@@ -12,6 +12,7 @@ public class CharacterController_Roger : MonoBehaviour
     }
 
     public float baseSpeed = 0.0f;
+    public float jumpForce = 0.0f;
 
     public Rigidbody2D rb;
 
@@ -27,15 +28,41 @@ public class CharacterController_Roger : MonoBehaviour
 
         if (Input.GetAxis("Horizontal") < 0)
         {
-
+            direction = DirectionInputs.LEFT;
         }
-        else if (Input.GetAxis("Horizontal") < 0)
+        else if (Input.GetAxis("Horizontal") > 0)
         {
-
+            direction = DirectionInputs.RIGHT;
         }
         else
         {
+            direction = DirectionInputs.NONE;
+        }
 
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            rb.AddForce(Vector2.up * jumpForce);
+        }
+
+    }
+
+    private void FixedUpdate()
+    {
+
+        float delta = Time.fixedDeltaTime * 1000;
+
+        switch (direction)
+        {
+            case DirectionInputs.NONE:
+                break;
+            case DirectionInputs.RIGHT:
+                rb.velocity = new Vector2(baseSpeed * Input.GetAxis("Horizontal"), rb.velocity.y);
+                break;
+            case DirectionInputs.LEFT:
+                rb.velocity = new Vector2(baseSpeed * Input.GetAxis("Horizontal"), rb.velocity.y);
+                break;
+            default:
+                break;
         }
 
     }
