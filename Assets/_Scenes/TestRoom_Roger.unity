@@ -112,6 +112,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+<<<<<<< Updated upstream
 --- !u!1 &108290368
 GameObject:
   m_ObjectHideFlags: 0
@@ -240,6 +241,8 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+=======
+>>>>>>> Stashed changes
 --- !u!1 &439258621
 GameObject:
   m_ObjectHideFlags: 0
@@ -451,6 +454,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< Updated upstream
 --- !u!114 &939339902
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -466,3 +470,74 @@ MonoBehaviour:
   baseSpeed: 5
   jumpForce: 700
   rb: {fileID: 0}
+=======
+--- !u!1001 &6860484055274072515
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6860484055237118083, guid: 0c74418bb028b134683f142f1100b138,
+        type: 3}
+      propertyPath: m_Name
+      value: Floor
+      objectReference: {fileID: 0}
+    - target: {fileID: 6860484055237118087, guid: 0c74418bb028b134683f142f1100b138,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6860484055237118087, guid: 0c74418bb028b134683f142f1100b138,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -4.53
+      objectReference: {fileID: 0}
+    - target: {fileID: 6860484055237118087, guid: 0c74418bb028b134683f142f1100b138,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6860484055237118087, guid: 0c74418bb028b134683f142f1100b138,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6860484055237118087, guid: 0c74418bb028b134683f142f1100b138,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6860484055237118087, guid: 0c74418bb028b134683f142f1100b138,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6860484055237118087, guid: 0c74418bb028b134683f142f1100b138,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6860484055237118087, guid: 0c74418bb028b134683f142f1100b138,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6860484055237118087, guid: 0c74418bb028b134683f142f1100b138,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6860484055237118087, guid: 0c74418bb028b134683f142f1100b138,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6860484055237118087, guid: 0c74418bb028b134683f142f1100b138,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0c74418bb028b134683f142f1100b138, type: 3}
+>>>>>>> Stashed changes
