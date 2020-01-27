@@ -18,6 +18,8 @@ public class CharacterController_Roger : MonoBehaviour
 
     private DirectionInputs direction = DirectionInputs.NONE;
     private bool jumping = false;
+    private bool rightCollider = false;
+    private bool leftCollider = false;
 
     void Start()
     {
@@ -27,11 +29,11 @@ public class CharacterController_Roger : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetAxis("Horizontal") < 0)
+        if (Input.GetAxis("Horizontal") < 0 && !leftCollider)
         {
             direction = DirectionInputs.LEFT;
         }
-        else if (Input.GetAxis("Horizontal") > 0)
+        else if (Input.GetAxis("Horizontal") > 0 && !rightCollider)
         {
             direction = DirectionInputs.RIGHT;
         }
@@ -68,15 +70,35 @@ public class CharacterController_Roger : MonoBehaviour
                 break;
         }
 
-        Debug.Log(rb.velocity);
+        //Debug.Log(rb.velocity);
 
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.GetContact(collision.contactCount/2).point.y < transform.position.y)
+        if (collision.GetContact(collision.contactCount/2).point.y < transform.position.y - 0.4f)
         {
             jumping = false;
+
+            rightCollider = false;
+            Debug.Log("rF");
+
+            leftCollider = false;
+            Debug.Log("lF");
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (jumping && collision.transform.position.x > transform.position.x)
+        {
+            rightCollider = true;
+            Debug.Log("rT");
+        }
+        else if (jumping && collision.transform.position.x < transform.position.x)
+        {
+            leftCollider = true;
+            Debug.Log("lT");
         }
     }
 }
