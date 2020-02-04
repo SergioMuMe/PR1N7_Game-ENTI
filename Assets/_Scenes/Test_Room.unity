@@ -761,6 +761,11 @@ PrefabInstance:
       propertyPath: m_LinearDrag
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4933272141506673565, guid: 753a089e8907261479a62f51b3ab75f9,
+        type: 3}
+      propertyPath: m_Mass
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1482628612765768817, guid: 753a089e8907261479a62f51b3ab75f9,
         type: 3}
       propertyPath: m_UsedByEffector
@@ -769,12 +774,12 @@ PrefabInstance:
     - target: {fileID: 9067614438752321015, guid: 753a089e8907261479a62f51b3ab75f9,
         type: 3}
       propertyPath: jumpForce
-      value: 700
+      value: 7000
       objectReference: {fileID: 0}
     - target: {fileID: 9067614438752321015, guid: 753a089e8907261479a62f51b3ab75f9,
         type: 3}
       propertyPath: baseSpeed
-      value: 20
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 9067614438752321015, guid: 753a089e8907261479a62f51b3ab75f9,
         type: 3}
@@ -784,12 +789,12 @@ PrefabInstance:
     - target: {fileID: 9067614438752321015, guid: 753a089e8907261479a62f51b3ab75f9,
         type: 3}
       propertyPath: jumpSpeed
-      value: 10
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 9067614438752321015, guid: 753a089e8907261479a62f51b3ab75f9,
         type: 3}
       propertyPath: maxVelocity
-      value: 4
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 753a089e8907261479a62f51b3ab75f9, type: 3}

@@ -28,7 +28,8 @@ public class CharacterController_Roger : MonoBehaviour
     private bool rightCollider = false;
     private bool leftCollider = false;
 
-    private bool isJumping = true;
+    public bool isJumping = true;
+    public bool isFalling = true;
 
     void Start()
     {
@@ -40,11 +41,11 @@ public class CharacterController_Roger : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
         {
             direction = DirectionInputs.LEFT;
         }
-        else if (Input.GetKey(KeyCode.RightArrow))
+        else if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
         {
             direction = DirectionInputs.RIGHT;
         }
@@ -71,13 +72,19 @@ public class CharacterController_Roger : MonoBehaviour
         {
             isJumping = false;
         }
+        else if (!hitGround && !isJumping)
+        {
+            isJumping = true;
+        }
 
         if (rb.velocity.x > maxVelocity)
         {
             rb.velocity = new Vector2(maxVelocity, rb.velocity.y);
         }
-
-        Debug.Log(rb.velocity);
+        else if (rb.velocity.x < -maxVelocity)
+        {
+            rb.velocity = new Vector2(-maxVelocity, rb.velocity.y);
+        }
 
         switch (direction)
         {
