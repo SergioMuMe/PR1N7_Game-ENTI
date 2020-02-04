@@ -10,6 +10,8 @@ public class Bounce : MonoBehaviour
         if(other.tag == "Player")
         {
             other.gameObject.GetComponent<CharacterController_Roger>().jumpForce *= 2;
+            other.gameObject.GetComponent<CharacterController_Roger>().maxHeight *= 2;
+            other.gameObject.GetComponent<CharacterController_Roger>().maxVelocity *= 2;
         }
     }
 
@@ -18,6 +20,9 @@ public class Bounce : MonoBehaviour
         if (other.tag == "Player")
         {
             other.gameObject.GetComponent<CharacterController_Roger>().jumpForce /= 2;
+            //TODO: buscar la manera de que tarde un tiempo en aplicarse
+            other.gameObject.GetComponent<CharacterController_Roger>().maxHeight /= 2;
+            other.gameObject.GetComponent<CharacterController_Roger>().maxVelocity /= 2;
         }
     }
 }

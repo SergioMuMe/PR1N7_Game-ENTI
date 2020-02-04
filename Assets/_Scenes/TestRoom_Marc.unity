@@ -192,12 +192,47 @@ PrefabInstance:
     - target: {fileID: 9067614438752321015, guid: 753a089e8907261479a62f51b3ab75f9,
         type: 3}
       propertyPath: baseSpeed
-      value: 20
+      value: 700
       objectReference: {fileID: 0}
     - target: {fileID: 9067614438752321015, guid: 753a089e8907261479a62f51b3ab75f9,
         type: 3}
       propertyPath: maxVelocity
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 9067614438752321015, guid: 753a089e8907261479a62f51b3ab75f9,
+        type: 3}
+      propertyPath: jumpSpeed
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 9067614438752321015, guid: 753a089e8907261479a62f51b3ab75f9,
+        type: 3}
+      propertyPath: jumpForce
+      value: 12000
+      objectReference: {fileID: 0}
+    - target: {fileID: 9067614438752321015, guid: 753a089e8907261479a62f51b3ab75f9,
+        type: 3}
+      propertyPath: maxHeight
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9067614438752321015, guid: 753a089e8907261479a62f51b3ab75f9,
+        type: 3}
+      propertyPath: saveJumpTime
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9067614438752321015, guid: 753a089e8907261479a62f51b3ab75f9,
+        type: 3}
+      propertyPath: groundedPrecision
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933272141506673565, guid: 753a089e8907261479a62f51b3ab75f9,
+        type: 3}
+      propertyPath: m_Mass
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4933272141506673565, guid: 753a089e8907261479a62f51b3ab75f9,
+        type: 3}
+      propertyPath: m_GravityScale
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 753a089e8907261479a62f51b3ab75f9, type: 3}
