@@ -102,3 +102,11 @@ public class CharacterController_Roger : MonoBehaviour
         }
     }
 }
+
+//void Plataforma()
+//{
+//    if (plataforma > max || plataforma < min)
+//    {
+//        speed = -seed;
+//    }
+//}
