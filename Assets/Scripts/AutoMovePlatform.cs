@@ -4,43 +4,63 @@ using UnityEngine;
 
 public class AutoMovePlatform : MonoBehaviour
 {
+    public Vector2[] pos;
+    public float speed;
+    private Rigidbody2D rb;
+    private bool going = true;
+    private float fixedDelta;
+    private float timePlatform;
 
-    public Transform[] Waypoints;
-    public float moveSpeed = 3;
-    public float rotateSpeed = 0.5f;
-    public float scaleSpeed = 0.5f;
-    public int CurrentPoint = 0;
-
-
-
-    // Start is called before the first frame update
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody2D>();
+        rb.isKinematic = true;
     }
 
-    // Update is called once per frame
+
+    void FixedUpdate()
+    {
+        fixedDelta = Time.fixedDeltaTime;
+        timePlatform += fixedDelta * speed;
+        if (going)
+        {
+            if (timePlatform <= 1)
+            {
+                movePlatform(pos[0], pos[1], timePlatform);
+            }
+            if(timePlatform >= 2)
+            {
+                going = false;
+                timePlatform = 0;
+            }
+        }
+
+        if (!going)
+        {
+
+            if (timePlatform <= 1)
+            {
+                movePlatform(pos[1], pos[0], timePlatform);
+            }
+            if (timePlatform >= 2)
+            {
+                going = true;
+                timePlatform = 0;
+            }
+        }
+
+    }
+
+
     void Update()
     {
         
+
     }
 
-    private void FixedUpdate()
+    public void movePlatform(Vector2 posA, Vector2 posB, float t)
     {
-        if (transform.position != Waypoints[CurrentPoint].transform.position)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, Waypoints[CurrentPoint].transform.position, moveSpeed * Time.deltaTime);
-            transform.rotation = Quaternion.Lerp(transform.rotation, Waypoints[CurrentPoint].transform.rotation, rotateSpeed * Time.deltaTime);
-            transform.localScale = Vector3.Lerp(transform.localScale, Waypoints[CurrentPoint].transform.localScale, scaleSpeed * Time.deltaTime);
-        }
-
-        if (transform.position == Waypoints[CurrentPoint].transform.position)
-        {
-            CurrentPoint += 1;
-        }
-        if (CurrentPoint >= Waypoints.Length)
-        {
-            CurrentPoint = 0;
-        }
+        Vector2 newPosition = Vector2.Lerp(posA, posB, t);
+        rb.MovePosition(newPosition);
     }
 }
