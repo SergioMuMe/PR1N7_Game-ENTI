@@ -2,15 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AutoMovePlatform : MonoBehaviour
+public class movePlatformV2 : MonoBehaviour
 {
-    public Vector2[] pos;
+    
     public float speed;
     private Rigidbody2D rb;
     private bool going = true;
     private float fixedDelta;
     private float timePlatform;
-    public int positions;
+    public int i = 0;
+    public Vector2[] pos;
+    public int posSize;
 
     void Start()
     {
@@ -23,40 +25,46 @@ public class AutoMovePlatform : MonoBehaviour
     {
         fixedDelta = Time.fixedDeltaTime;
         timePlatform += fixedDelta * speed;
-    
+
         if (going)
         {
             if (timePlatform <= 1)
             {
-                movePlatform(pos[0], pos[1], timePlatform);
+                movePlatform(pos[i], pos[i + 1], timePlatform);
             }
-            if(timePlatform >= 2)
+            else if (timePlatform >= 2)
+            {
+                timePlatform = 0;
+                i++;               
+            }
+            if (i >= posSize - 1)
             {
                 going = false;
-                timePlatform = 0;
             }
-        }
 
+        }
         if (!going)
         {
-
             if (timePlatform <= 1)
             {
-                movePlatform(pos[1], pos[0], timePlatform);
+                movePlatform(pos[i], pos[i-1], timePlatform);
             }
-            if (timePlatform >= 2)
+            else if (timePlatform >= 2)
+            {
+                timePlatform = 0;
+                i--;
+            }
+            if (i <= 0)
             {
                 going = true;
-                timePlatform = 0;
             }
         }
-
     }
 
 
     void Update()
     {
-        
+
 
     }
 
