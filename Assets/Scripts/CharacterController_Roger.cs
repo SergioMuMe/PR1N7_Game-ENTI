@@ -22,6 +22,8 @@ public class CharacterController_Roger : MonoBehaviour
     private float actualJumpTime = 0.0f;
 
     public Rigidbody2D rb;
+    public ParticleSystem part;
+    public ParticleSystemRenderer partRender;
 
     public float groundedPrecision = 0.0f;
     private float groundDistance = 0.0f;
@@ -76,6 +78,9 @@ public class CharacterController_Roger : MonoBehaviour
         {
             isJumping = false;
             isFalling = false;
+
+            partRender.material = GetComponent<MeshRenderer>().material;
+            part.Emit(50);
         }
         else if (!hitGround && actualJumpTime < Time.time && isFalling)
         {
