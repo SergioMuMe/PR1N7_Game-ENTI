@@ -153,19 +153,5 @@ public class DoorController : MonoBehaviour
                 moveDoor(posB, posA, backwardI);
             }
         }
-
-        
-        //else
-        //{
-        //    moveDoor(posB, posA, backwardI);
-        //    revertMovement();
-        //}
-
-
-        //void Update()
-        //{
-
-
-        //}
     }
 }
