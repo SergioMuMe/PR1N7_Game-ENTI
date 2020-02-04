@@ -16,6 +16,10 @@ public class CharacterController_Roger : MonoBehaviour
     public float jumpForce = 0.0f;
 
     public float maxVelocity = 0.0f;
+    public float maxHeight = 0.0f;
+
+    public float saveJumpTime = 0.0f;
+    private float actualJumpTime = 0.0f;
 
     public Rigidbody2D rb;
 
@@ -71,11 +75,19 @@ public class CharacterController_Roger : MonoBehaviour
         if (hitGround && isJumping)
         {
             isJumping = false;
+            isFalling = false;
         }
-        else if (!hitGround && !isJumping)
+        else if (!hitGround && actualJumpTime < Time.time && isFalling)
         {
             isJumping = true;
+            isFalling = false;
         }
+        else if (!hitGround && actualJumpTime < Time.time && !isJumping)
+        {
+            actualJumpTime = Time.time + saveJumpTime;
+            isFalling = true;
+        }
+        
 
         if (rb.velocity.x > maxVelocity)
         {
@@ -84,6 +96,15 @@ public class CharacterController_Roger : MonoBehaviour
         else if (rb.velocity.x < -maxVelocity)
         {
             rb.velocity = new Vector2(-maxVelocity, rb.velocity.y);
+        }
+
+        if (rb.velocity.y > maxHeight)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, maxHeight);
+        }
+        else if (rb.velocity.y < -maxHeight)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, -maxHeight);
         }
 
         switch (direction)
@@ -116,11 +137,3 @@ public class CharacterController_Roger : MonoBehaviour
 
     }
 }
-
-//void Plataforma()
-//{
-//    if (plataforma > max || plataforma < min)
-//    {
-//        speed = -seed;
-//    }
-//}
