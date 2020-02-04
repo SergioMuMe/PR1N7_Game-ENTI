@@ -12,28 +12,39 @@ public class CharacterController_Roger : MonoBehaviour
     }
 
     public float baseSpeed = 0.0f;
+    public float jumpSpeed = 0.0f;
     public float jumpForce = 0.0f;
+
+    public float maxVelocity = 0.0f;
 
     public Rigidbody2D rb;
 
+    public float groundedPrecision = 0.0f;
+    private float groundDistance = 0.0f;
+
     private DirectionInputs direction = DirectionInputs.NONE;
-    private bool jumping = false;
+    private RaycastHit2D hitGround;
+
     private bool rightCollider = false;
     private bool leftCollider = false;
+
+    private bool isJumping = true;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        groundDistance = GetComponent<Collider2D>().bounds.extents.y;
     }
 
     void Update()
     {
 
-        if (Input.GetAxis("Horizontal") < 0 && !leftCollider)
+        if (Input.GetKey(KeyCode.LeftArrow))
         {
             direction = DirectionInputs.LEFT;
         }
-        else if (Input.GetAxis("Horizontal") > 0 && !rightCollider)
+        else if (Input.GetKey(KeyCode.RightArrow))
         {
             direction = DirectionInputs.RIGHT;
         }
@@ -42,11 +53,9 @@ public class CharacterController_Roger : MonoBehaviour
             direction = DirectionInputs.NONE;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && !jumping)
+        if (Input.GetKeyDown(KeyCode.Space) && !isJumping)
         {
             rb.AddForce(Vector2.up * jumpForce);
-
-            jumping = true;
         }
 
     }
@@ -56,50 +65,48 @@ public class CharacterController_Roger : MonoBehaviour
 
         float delta = Time.fixedDeltaTime * 1000;
 
+        hitGround = Physics2D.Raycast(transform.position, -Vector2.up, groundDistance + groundDistance);
+
+        if (hitGround && isJumping)
+        {
+            isJumping = false;
+        }
+
+        if (rb.velocity.x > maxVelocity)
+        {
+            rb.velocity = new Vector2(maxVelocity, rb.velocity.y);
+        }
+
+        Debug.Log(rb.velocity);
+
         switch (direction)
         {
             case DirectionInputs.NONE:
                 break;
-            case DirectionInputs.RIGHT:
-                rb.velocity = new Vector2(baseSpeed * Input.GetAxis("Horizontal"), rb.velocity.y);
+            case DirectionInputs.RIGHT:                
+                if (!isJumping)
+                {
+                    rb.AddForce(Vector2.right * baseSpeed, ForceMode2D.Force);
+                }
+                else
+                {
+                    rb.AddForce(Vector2.right * jumpSpeed, ForceMode2D.Force);
+                }
                 break;
-            case DirectionInputs.LEFT:
-                rb.velocity = new Vector2(baseSpeed * Input.GetAxis("Horizontal"), rb.velocity.y);
+            case DirectionInputs.LEFT:                
+                if (!isJumping)
+                {
+                    rb.AddForce(Vector2.left * baseSpeed, ForceMode2D.Force);
+                }
+                else
+                {
+                    rb.AddForce(Vector2.left * jumpSpeed, ForceMode2D.Force);
+                }
                 break;
             default:
                 break;
         }
 
-        //Debug.Log(rb.velocity);
-
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.GetContact(collision.contactCount/2).point.y < transform.position.y - 0.4f)
-        {
-            jumping = false;
-
-            rightCollider = false;
-            Debug.Log("rF");
-
-            leftCollider = false;
-            Debug.Log("lF");
-        }
-    }
-
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        if (jumping && collision.transform.position.x > transform.position.x)
-        {
-            rightCollider = true;
-            Debug.Log("rT");
-        }
-        else if (jumping && collision.transform.position.x < transform.position.x)
-        {
-            leftCollider = true;
-            Debug.Log("lT");
-        }
     }
 }
 
