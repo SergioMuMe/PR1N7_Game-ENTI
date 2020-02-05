@@ -5,13 +5,23 @@ using UnityEngine;
 public class Bounce : MonoBehaviour
 {
 
+    public CharacterController_Roger player;
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.tag == "Player")
         {
-            other.gameObject.GetComponent<CharacterController_Roger>().jumpForce *= 2;
-            other.gameObject.GetComponent<CharacterController_Roger>().maxHeight *= 2;
-            other.gameObject.GetComponent<CharacterController_Roger>().maxVelocity *= 2;
+            player = other.GetComponent<CharacterController_Roger>();
+
+            player.jumpForce = player.jumpForceBouncer;
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (player.maxHeight < player.maxHeightBouncer)
+        {
+            player.maxHeight = player.maxHeightBouncer;
         }
     }
 
@@ -19,10 +29,7 @@ public class Bounce : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            other.gameObject.GetComponent<CharacterController_Roger>().jumpForce /= 2;
-            //TODO: buscar la manera de que tarde un tiempo en aplicarse
-            other.gameObject.GetComponent<CharacterController_Roger>().maxHeight /= 2;
-            other.gameObject.GetComponent<CharacterController_Roger>().maxVelocity /= 2;
+            player.jumpForce = player.jumpForceDefault;
         }
     }
 }

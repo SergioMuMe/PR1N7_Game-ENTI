@@ -15,8 +15,14 @@ public class CharacterController_Roger : MonoBehaviour
     public float jumpSpeed = 0.0f;
     public float jumpForce = 0.0f;
 
+    public float jumpForceDefault = 0.0f;
+    public float jumpForceBouncer = 0.0f;
+
     public float maxVelocity = 0.0f;
     public float maxHeight = 0.0f;
+
+    public float maxHeightDefault = 0.0f;
+    public float maxHeightBouncer = 0.0f;
 
     public float saveJumpTime = 0.0f;
     private float actualJumpTime = 0.0f;
@@ -42,6 +48,9 @@ public class CharacterController_Roger : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         groundDistance = GetComponent<Collider2D>().bounds.extents.y;
+
+        maxHeight = maxHeightDefault;
+        jumpForce = jumpForceDefault;
     }
 
     void Update()
@@ -63,6 +72,7 @@ public class CharacterController_Roger : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && !isJumping)
         {
             rb.AddForce(Vector2.up * jumpForce);
+            isJumping = true;
         }
 
     }
@@ -74,21 +84,28 @@ public class CharacterController_Roger : MonoBehaviour
 
         hitGround = Physics2D.Raycast(transform.position, -Vector2.up, groundDistance + groundDistance);
 
-        if (hitGround && isJumping)
+        if (hitGround && isJumping && isFalling)
         {
+            Debug.Log(1);
             isJumping = false;
             isFalling = false;
+
+            if (maxHeight > maxHeightDefault)
+            {
+                maxHeight = maxHeightDefault;
+            }
 
             partRender.material = GetComponent<MeshRenderer>().material;
             part.Emit(50);
         }
         else if (!hitGround && actualJumpTime < Time.time && isFalling)
         {
+            Debug.Log(2);
             isJumping = true;
-            isFalling = false;
         }
-        else if (!hitGround && actualJumpTime < Time.time && !isJumping)
+        else if (!hitGround && actualJumpTime < Time.time && !isFalling)
         {
+            Debug.Log(3);
             actualJumpTime = Time.time + saveJumpTime;
             isFalling = true;
         }
