@@ -5,7 +5,7 @@ using UnityEngine;
 public class DoorController : MonoBehaviour
 {
 
-    // tipo de puerta
+    // Tipo de puerta
     public enum DOORTYPE
     {
         BOOLEAN, // La puerta está abierta o cerrada
@@ -28,8 +28,8 @@ public class DoorController : MonoBehaviour
     public float waitUntilForward;
     public float waitUntilBackward;
 
-    public Vector2 posA;
-    public Vector2 posB;
+    public GameObject positionA;
+    public GameObject positionB;
 
     // #---------------------------#
     // | INTERNAL SCRIPT VARIABLES |
@@ -43,12 +43,17 @@ public class DoorController : MonoBehaviour
     private float forwardI;
     private float backwardI;
 
+    // Variables de control para definir la dirección de la puerta. FORWARD = Abrir BACKWARD = Cerrar
     private enum DIRECTION { FORWARD, BACKWARD };
     private DIRECTION direction;
 
+    // Booleanos de control para el funcionamiento de la puerta BOOLEANA
     private bool boolDoor;
     private bool finishedBoolAperture;
 
+    // De los GameObjects positionA y positionB, obtenemos el transform.position en la función Start()
+    public Vector2 posA;
+    public Vector2 posB;   
 
     public void moveDoor(Vector2 posA, Vector2 posB, float t)
     {
@@ -59,7 +64,7 @@ public class DoorController : MonoBehaviour
     void Start()
     {
         rb2D = gameObject.GetComponent<Rigidbody2D>();
-
+        
         //FAST TESTING VALUES
         waitUntilForward = 1.5f;
         waitUntilBackward = 1.5f;
@@ -69,7 +74,8 @@ public class DoorController : MonoBehaviour
         finishedBoolAperture = false;
 
         //TODO: Candidatos a ser cosas publicas para configurar via script desde otros sitios
-        posA = transform.position;
+        posA = positionA.transform.position;
+        posB = positionB.transform.position;
         direction = DIRECTION.FORWARD;
     }
 
