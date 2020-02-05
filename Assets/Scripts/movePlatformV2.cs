@@ -10,19 +10,29 @@ public class movePlatformV2 : MonoBehaviour
     private bool going = true;
     private float fixedDelta;
     private float timePlatform;
+    public GameObject[] point;
 
 
     //aun no entiendo 100% como va, pero con delay 1, las plataformas no dejan de moverse, con delay > 1 se paran durante un tiempo cada vez que llegan a un punto de la array
     public float delay = 2;
     //durante la ejecucion la I indica la ultima posicion de la array por el que se ha pasado
     public int i = 0;
-    public Vector2[] pos;
+    private Vector2[] pos;
 
     void Start()
     {
         //nos aseguramos de que el rigidbody sea kinematic
         rb = GetComponent<Rigidbody2D>();
         rb.isKinematic = true;
+
+        int size = point.Length;
+        pos = new Vector2[size];
+
+        for (int i = 0; i < size; i++)
+        {
+            pos[i] = point[i].transform.position; 
+        }
+
     }
 
 
@@ -52,7 +62,7 @@ public class movePlatformV2 : MonoBehaviour
         {
             if (timePlatform <= 1)
             {
-                movePlatform(pos[i], pos[i-1], timePlatform);
+                movePlatform(pos[i], pos[i - 1], timePlatform);
             }
             else if (timePlatform >= delay)
             {
