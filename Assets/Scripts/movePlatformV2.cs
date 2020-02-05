@@ -11,6 +11,7 @@ public class movePlatformV2 : MonoBehaviour
     private float fixedDelta;
     private float timePlatform;
 
+
     //aun no entiendo 100% como va, pero con delay 1, las plataformas no dejan de moverse, con delay > 1 se paran durante un tiempo cada vez que llegan a un punto de la array
     public float delay = 2;
     //durante la ejecucion la I indica la ultima posicion de la array por el que se ha pasado

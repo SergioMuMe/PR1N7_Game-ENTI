@@ -83,7 +83,6 @@ public class DoorController : MonoBehaviour
 
     void FixedUpdate()
     {
-
         if (activated)
         {
             fixedDelta = Time.fixedDeltaTime;
@@ -93,9 +92,9 @@ public class DoorController : MonoBehaviour
             boolDoor = true;
         }
 
+        // DOORTYPE = FREQUENCY
         if (activated && doorType == DOORTYPE.FREQUENCY)
         {
-
             if (direction == DIRECTION.FORWARD)
             {
                 if (forwardI <= 1) {
@@ -124,6 +123,7 @@ public class DoorController : MonoBehaviour
             }
         }
 
+        // DOORTYPE = BOOLEAN
         if (activated && doorType == DOORTYPE.BOOLEAN)
         {
             if (forwardI <= 1)
@@ -134,8 +134,6 @@ public class DoorController : MonoBehaviour
                 finishedBoolAperture = true;
             }
         } 
-
-        
 
         if (!activated && boolDoor)
         {
