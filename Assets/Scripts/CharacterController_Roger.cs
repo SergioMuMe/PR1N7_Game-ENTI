@@ -11,6 +11,21 @@ public class CharacterController_Roger : MonoBehaviour
         LEFT
     }
 
+    enum CommandsInputs
+    {
+        NONE,
+        RIGHT_UP,
+        RIGHT_DOWN,
+        LEFT_UP,
+        LEFT_DOWN,
+        JUMP,
+        INTERACT
+    }
+
+    private List<CommandsInputs> inputs;
+    
+    private List<float> inputTiming;
+
     public float baseSpeed = 0.0f;
     public float jumpSpeed = 0.0f;
     public float jumpForce = 0.0f;
@@ -42,6 +57,7 @@ public class CharacterController_Roger : MonoBehaviour
 
     public bool isJumping = true;
     public bool isFalling = true;
+    public bool isRecording = false;
 
     void Start()
     {
@@ -51,6 +67,7 @@ public class CharacterController_Roger : MonoBehaviour
 
         maxHeight = maxHeightDefault;
         jumpForce = jumpForceDefault;
+
     }
 
     void Update()
