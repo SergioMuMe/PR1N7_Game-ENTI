@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class CharacterController_Roger : MonoBehaviour
 {
-    enum DirectionInputs
+    private enum DirectionInputs
     {
         NONE,
         RIGHT,
         LEFT
     }
-
-    enum CommandsInputs
+    public enum CommandsInputs
     {
         NONE,
         RIGHT_UP,
@@ -19,12 +18,16 @@ public class CharacterController_Roger : MonoBehaviour
         LEFT_UP,
         LEFT_DOWN,
         JUMP,
-        INTERACT
+        INTERACT,
+        START,
+        END
     }
+    public GameObject clon;
 
-    private List<CommandsInputs> inputs;
-    
-    private List<float> inputTiming;
+    public List<CommandsInputs> inputs;
+    public List<float> inputTiming;
+    private float initInputTime = 0.0f;
+    public float limitRecordingTime = 0.0f;
 
     public float baseSpeed = 0.0f;
     public float jumpSpeed = 0.0f;
@@ -91,6 +94,57 @@ public class CharacterController_Roger : MonoBehaviour
             rb.AddForce(Vector2.up * jumpForce);
             isJumping = true;
         }
+
+        if (Input.GetKeyDown(KeyCode.R) && !isRecording)
+        {
+            transform.SetParent(Instantiate(clon, transform.position, transform.rotation).transform);
+            inputTiming = new List<float>();
+            inputs = new List<CommandsInputs>();
+
+            isRecording = true;
+            initInputTime = Time.time;
+            
+            inputs.Add(CommandsInputs.START);
+            inputTiming.Add(Time.time - initInputTime);
+
+        }
+        else if(isRecording && Input.GetKeyDown(KeyCode.R) || isRecording && Time.time >= initInputTime + limitRecordingTime)
+        {
+            inputs.Add(CommandsInputs.END);
+            inputTiming.Add(Time.time - initInputTime);
+            isRecording = false;
+            GetComponentInParent<CloneController>().getAlive();
+        }
+
+            //::::CLONACION::::
+            if (isRecording)
+        {
+            if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
+            {
+                inputs.Add(CommandsInputs.LEFT_DOWN);
+                inputTiming.Add(Time.time - initInputTime);
+            }
+            else if (Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.A))
+            {
+                inputs.Add(CommandsInputs.LEFT_UP);
+                inputTiming.Add(Time.time - initInputTime);
+            }
+            else if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
+            {
+                inputs.Add(CommandsInputs.RIGHT_DOWN);
+                inputTiming.Add(Time.time - initInputTime);
+            }
+            else if (Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.D))
+            {
+                inputs.Add(CommandsInputs.RIGHT_UP);
+                inputTiming.Add(Time.time - initInputTime);
+            }
+            if (Input.GetKeyDown(KeyCode.Space) && !isJumping)
+            {
+                inputs.Add(CommandsInputs.JUMP);
+                inputTiming.Add(Time.time - initInputTime);
+            }
+        }      
 
     }
 
