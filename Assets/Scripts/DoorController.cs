@@ -5,7 +5,14 @@ using UnityEngine;
 public class DoorController : MonoBehaviour
 {
 
-    // Tipo de puerta
+    // ###########################
+    // # CONFIGURATION VARIABLES #
+    // ###########################
+
+    //controlamos cuando se activa el movimiento de la puerta
+    public bool activated;
+
+    // Tipo de puerta: Define el comportamiento de la puerta en cuanto a su apertura y cierre.
     public enum DOORTYPE
     {
         BOOLEAN, // La puerta está abierta o cerrada
@@ -13,35 +20,58 @@ public class DoorController : MonoBehaviour
     };
     public DOORTYPE doorType;
 
-    public GameObject visagra;
+    // Tipo de movimiento: Define el comportamiento de la puerta en cuanto a su desplazamiento en el mundo.
+    public enum MOVEMENTTYPE
+    {
+        SLIDING, // La puerta se desliza en un eje
+        HINGED // La puerta pivota sobre un eje
+    };
+    public MOVEMENTTYPE movementType;
 
-    // controlamos cuando se activa el movimiento de la puerta
-    public bool activated;
+    // Puntos de navegación de GameObjects vacios para obtener la posición en el editor de niveles.
+    // Definen posición inicial y final de la puerta mediante su translate.
+    public GameObject navPointA;
+    public GameObject navPointB;
+
+    // O--------------------O
+    // |   FREQUENCY DOOR   |
+    // O--------------------O
 
     // Velocidad de movimiento.  0,X lento > 1 normal <  1,X 2,X 3,X rápido
     public float backwardSpeed;
     public float forwardSpeed;
 
-    // valor maximo en segundos cada cuanto se activa el movimiento de la puerta. 
-    // Del 0 al 1, se aplica movimiento, a partir de 1, es tiempo en espera hasta que se reinicia el cambio de sentido.
-    public float timeLapsed;
-    public float waitUntilForward;
-    public float waitUntilBackward;
+    // Valor maximo en segundos cada cuanto se activa el movimiento de la puerta. 
+    // Una vez la puerta ha llegado a uno de sus destinos, es tiempo en espera hasta que se reinicia el cambio de sentido.
+    public float waitToForward;
+    public float waitToBackward;
 
-    public GameObject positionA;
-    public GameObject positionB;
-
-    // #---------------------------#
-    // | INTERNAL SCRIPT VARIABLES |
-    // #---------------------------#
+    // #############################
+    // # INTERNAL SCRIPT VARIABLES #
+    // #############################
 
     private Rigidbody2D rb2D;
+
+    // deltaTime
     private float fixedDelta;
 
+    //Tiempo a partir de que la puerta haya alcanzado un punto final en su desplazamiento. Sirve para los contadores de waitToForward/Backward
+    public float timeLapsed;
+    
     // Indices de la función Lerp(Vector2, Vector2, I)....Donde I tiene un valor entre 0 y 1.
     // El Indice I le asignamos un valor Time para que vaya a una velocidad dependiente del tiempo(fixedDelta) * multiplicador(speed)
+    // A mayor speed, antes se alcanzará el valor 1.
     private float forwardI;
     private float backwardI;
+
+    //Reinicia variables para las puertas de tipo FREQUENCY
+    void revertMovement()
+    {
+        timeLapsed = 0;
+        forwardI = 0;
+        backwardI = 0;
+        direction = (direction == DIRECTION.FORWARD ? DIRECTION.BACKWARD : DIRECTION.FORWARD);
+    }
 
     // Variables de control para definir la dirección de la puerta. FORWARD = Abrir BACKWARD = Cerrar
     private enum DIRECTION { FORWARD, BACKWARD };
@@ -52,41 +82,41 @@ public class DoorController : MonoBehaviour
     private bool finishedBoolAperture;
 
     // De los GameObjects positionA y positionB, obtenemos el transform.position en la función Start()
-    public Vector2 posA;
-    public Vector2 posB;   
+    private Vector2 posA;
+    private Vector2 posB;   
 
+    //Función que realiza el desplazamiento de la puerta.
     public void moveDoor(Vector2 posA, Vector2 posB, float t)
     {
         Vector2 newPosition = Vector2.Lerp(posA, posB, t);
         rb2D.MovePosition(newPosition);
     }
 
+    //Pivote para el tipo de movimiento HINGED.
+    private HingeJoint2D hinge;
+
     void Start()
     {
         rb2D = gameObject.GetComponent<Rigidbody2D>();
+        hinge = gameObject.GetComponent<HingeJoint2D>();
         
         //FAST TESTING VALUES
-        waitUntilForward = 1.5f;
-        waitUntilBackward = 1.5f;
+        waitToForward = 1.5f;
+        waitToBackward = 1.5f;
         forwardSpeed = 1f;
         backwardSpeed = 1f;
         doorType = DOORTYPE.BOOLEAN;
-        finishedBoolAperture = false;
+        
 
-        //TODO: Candidatos a ser cosas publicas para configurar via script desde otros sitios
-        posA = positionA.transform.position;
-        posB = positionB.transform.position;
+        // Obtenemos los navPoints.
+        posA = navPointA.transform.position;
+        posB = navPointB.transform.position;
+
         direction = DIRECTION.FORWARD;
+        finishedBoolAperture = false;
     }
 
-    void revertMovement()
-    {
-        timeLapsed = 0;
-        forwardI = 0;
-        backwardI = 0;
-        direction = (direction == DIRECTION.FORWARD ? DIRECTION.BACKWARD : DIRECTION.FORWARD) ;
-    }
-
+    
     void FixedUpdate()
     {
         if (activated)
@@ -110,7 +140,7 @@ public class DoorController : MonoBehaviour
                     timeLapsed += fixedDelta;
                 }
                 
-                if (timeLapsed >= waitUntilBackward) {
+                if (timeLapsed >= waitToBackward) {
                     revertMovement();
                 }
             }
@@ -123,7 +153,7 @@ public class DoorController : MonoBehaviour
                     timeLapsed += fixedDelta;
                 }
 
-                if (timeLapsed >= waitUntilBackward) {
+                if (timeLapsed >= waitToForward) {
                     revertMovement();
                 }
             }
@@ -157,5 +187,10 @@ public class DoorController : MonoBehaviour
                 moveDoor(posB, posA, backwardI);
             }
         }
+
+        // MOVEMENTTYPE = HINGED
+        /* Tutorial Hinge Joint 2D https://www.youtube.com/watch?v=_zmzib4xSWc */
+
+        
     }
 }

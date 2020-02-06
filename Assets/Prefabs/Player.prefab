@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 1482628612765768817}
   - component: {fileID: 4933272141506673565}
   - component: {fileID: 9067614438752321015}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -120,7 +120,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 10
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 4
@@ -141,6 +141,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44d9b70ab1f1e36478885c4c0149965c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseSpeed: 5
-  jumpForce: 700
+  clon: {fileID: 0}
+  inputs: 
+  inputTiming: []
+  limitRecordingTime: 0
+  baseSpeed: 300
+  jumpSpeed: 100
+  jumpForce: 7000
+  jumpForceDefault: 0
+  jumpForceBouncer: 0
+  maxVelocity: 10
+  maxHeight: 0
+  maxHeightDefault: 0
+  maxHeightBouncer: 0
+  saveJumpTime: 0
   rb: {fileID: 0}
+  part: {fileID: 0}
+  partRender: {fileID: 0}
+  groundedPrecision: 0.1
+  isJumping: 0
+  isFalling: 0
+  isRecording: 0
