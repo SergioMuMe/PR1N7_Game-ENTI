@@ -56,7 +56,7 @@ public class DoorController : MonoBehaviour
     private float fixedDelta;
 
     //Tiempo a partir de que la puerta haya alcanzado un punto final en su desplazamiento. Sirve para los contadores de waitToForward/Backward
-    public float timeLapsed;
+    private float timeLapsed;
     
     // Indices de la función Lerp(Vector2, Vector2, I)....Donde I tiene un valor entre 0 y 1.
     // El Indice I le asignamos un valor Time para que vaya a una velocidad dependiente del tiempo(fixedDelta) * multiplicador(speed)
