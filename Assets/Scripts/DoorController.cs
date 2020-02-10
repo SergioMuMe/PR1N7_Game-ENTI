@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoorController : MonoBehaviour
+public class DoorController : InterfaceGame
 {
 
     // ###########################
@@ -192,5 +192,19 @@ public class DoorController : MonoBehaviour
         /* Tutorial Hinge Joint 2D https://www.youtube.com/watch?v=_zmzib4xSWc */
 
         
+    }
+
+    public override void Activate()
+    {
+
+        if (!activated)
+        {
+            activated = true;
+        }
+        else if (activated)
+        {
+            activated = false;
+        }
+    
     }
 }
