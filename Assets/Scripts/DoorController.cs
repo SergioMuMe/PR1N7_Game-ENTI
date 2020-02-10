@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoorController : MonoBehaviour
+public class DoorController : InterfaceGame
 {
 
     // ###########################
@@ -101,11 +101,11 @@ public class DoorController : MonoBehaviour
         hinge = gameObject.GetComponent<HingeJoint2D>();
         
         //FAST TESTING VALUES
-        waitToForward = 1.5f;
-        waitToBackward = 1.5f;
-        forwardSpeed = 1f;
-        backwardSpeed = 1f;
-        doorType = DOORTYPE.BOOLEAN;
+        //waitToForward = 1.5f;
+        //waitToBackward = 1.5f;
+        //forwardSpeed = 1f;
+        //backwardSpeed = 1f;
+        //doorType = DOORTYPE.BOOLEAN;
         
 
         // Obtenemos los navPoints.
@@ -122,9 +122,24 @@ public class DoorController : MonoBehaviour
         if (activated)
         {
             fixedDelta = Time.fixedDeltaTime;
+
+            if (forwardSpeed >= 0)
+            {
+                forwardI += fixedDelta * forwardSpeed;
+            } else
+            {
+                forwardI += fixedDelta;
+            }
+
+            if (backwardSpeed >= 0)
+            {
+                backwardI += fixedDelta * backwardSpeed;
+            }
+            else
+            {
+                backwardI += fixedDelta;
+            }
             
-            forwardI += fixedDelta * forwardSpeed;
-            backwardI += fixedDelta * backwardSpeed;
             boolDoor = true;
         }
 
@@ -140,7 +155,7 @@ public class DoorController : MonoBehaviour
                     timeLapsed += fixedDelta;
                 }
                 
-                if (timeLapsed >= waitToBackward) {
+                if (timeLapsed > waitToBackward) {
                     revertMovement();
                 }
             }
@@ -153,7 +168,7 @@ public class DoorController : MonoBehaviour
                     timeLapsed += fixedDelta;
                 }
 
-                if (timeLapsed >= waitToForward) {
+                if (timeLapsed > waitToForward) {
                     revertMovement();
                 }
             }
