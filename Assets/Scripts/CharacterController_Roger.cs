@@ -157,7 +157,6 @@ public class CharacterController_Roger : MonoBehaviour
 
         if (hitGround && isJumping && isFalling)
         {
-            Debug.Log(1);
             isJumping = false;
             isFalling = false;
 
@@ -171,12 +170,10 @@ public class CharacterController_Roger : MonoBehaviour
         }
         else if (!hitGround && actualJumpTime < Time.time && isFalling)
         {
-            Debug.Log(2);
             isJumping = true;
         }
         else if (!hitGround && actualJumpTime < Time.time && !isFalling)
         {
-            Debug.Log(3);
             actualJumpTime = Time.time + saveJumpTime;
             isFalling = true;
         }

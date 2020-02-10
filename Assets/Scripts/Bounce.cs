@@ -5,13 +5,13 @@ using UnityEngine;
 public class Bounce : MonoBehaviour
 {
 
-    public CharacterController_Roger player;
+    public CharacterBehav player;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.tag == "Player")
         {
-            player = other.GetComponent<CharacterController_Roger>();
+            player = other.GetComponent<CharacterBehav>();
 
             player.jumpForce = player.jumpForceBouncer;
         }
