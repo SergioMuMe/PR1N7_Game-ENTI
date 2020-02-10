@@ -56,7 +56,7 @@ public class DoorController : InterfaceGame
     private float fixedDelta;
 
     //Tiempo a partir de que la puerta haya alcanzado un punto final en su desplazamiento. Sirve para los contadores de waitToForward/Backward
-    public float timeLapsed;
+    private float timeLapsed;
     
     // Indices de la función Lerp(Vector2, Vector2, I)....Donde I tiene un valor entre 0 y 1.
     // El Indice I le asignamos un valor Time para que vaya a una velocidad dependiente del tiempo(fixedDelta) * multiplicador(speed)
@@ -101,11 +101,11 @@ public class DoorController : InterfaceGame
         hinge = gameObject.GetComponent<HingeJoint2D>();
         
         //FAST TESTING VALUES
-        waitToForward = 1.5f;
-        waitToBackward = 1.5f;
-        forwardSpeed = 1f;
-        backwardSpeed = 1f;
-        doorType = DOORTYPE.BOOLEAN;
+        //waitToForward = 1.5f;
+        //waitToBackward = 1.5f;
+        //forwardSpeed = 1f;
+        //backwardSpeed = 1f;
+        //doorType = DOORTYPE.BOOLEAN;
         
 
         // Obtenemos los navPoints.
@@ -122,9 +122,24 @@ public class DoorController : InterfaceGame
         if (activated)
         {
             fixedDelta = Time.fixedDeltaTime;
+
+            if (forwardSpeed >= 0)
+            {
+                forwardI += fixedDelta * forwardSpeed;
+            } else
+            {
+                forwardI += fixedDelta;
+            }
+
+            if (backwardSpeed >= 0)
+            {
+                backwardI += fixedDelta * backwardSpeed;
+            }
+            else
+            {
+                backwardI += fixedDelta;
+            }
             
-            forwardI += fixedDelta * forwardSpeed;
-            backwardI += fixedDelta * backwardSpeed;
             boolDoor = true;
         }
 
@@ -140,7 +155,7 @@ public class DoorController : InterfaceGame
                     timeLapsed += fixedDelta;
                 }
                 
-                if (timeLapsed >= waitToBackward) {
+                if (timeLapsed > waitToBackward) {
                     revertMovement();
                 }
             }
@@ -153,7 +168,7 @@ public class DoorController : InterfaceGame
                     timeLapsed += fixedDelta;
                 }
 
-                if (timeLapsed >= waitToForward) {
+                if (timeLapsed > waitToForward) {
                     revertMovement();
                 }
             }
