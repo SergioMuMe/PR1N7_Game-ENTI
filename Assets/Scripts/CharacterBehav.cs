@@ -87,32 +87,22 @@ public class CharacterBehav : MonoBehaviour
                 {
                     if (Input.GetKey(KeyCode.LeftArrow) && actualInput != CommandsInputsEnum.LEFT || Input.GetKey(KeyCode.A) && actualInput != CommandsInputsEnum.LEFT)
                     {
-                        inputs.Add(new CommandsInputs(actualInput, Time.time - initInputTime));
-
-                        initInputTime = Time.time;
-                        actualInput = CommandsInputsEnum.LEFT;
+                        inputs.Add(new CommandsInputs(CommandsInputsEnum.LEFT, Time.time - initInputTime));
                     }
                     else if (Input.GetKey(KeyCode.RightArrow) && actualInput != CommandsInputsEnum.RIGHT || Input.GetKey(KeyCode.D) && actualInput != CommandsInputsEnum.RIGHT)
                     {
-                        inputs.Add(new CommandsInputs(actualInput, Time.time - initInputTime));
-
-                        initInputTime = Time.time;
-                        actualInput = CommandsInputsEnum.RIGHT;
+                        inputs.Add(new CommandsInputs(CommandsInputsEnum.RIGHT, Time.time - initInputTime));
                     }
-                    else if (!Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow) && actualInput != CommandsInputsEnum.NONE)
+                    else if (!Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow) && inputs[inputs.Count - 1].ci != CommandsInputsEnum.NONE)
                     {
-                        inputs.Add(new CommandsInputs(actualInput, Time.time - initInputTime));
-
-                        initInputTime = Time.time;
-                        actualInput = CommandsInputsEnum.NONE;
+                        inputs.Add(new CommandsInputs(CommandsInputsEnum.NONE, Time.time - initInputTime));
                     }
                     if (Input.GetKeyDown(KeyCode.Space) && !isJumping)
                     {
-                        inputs.Add(new CommandsInputs(actualInput, Time.time - initInputTime));
-
-                        initInputTime = Time.time;
-                        actualInput = CommandsInputsEnum.JUMP;
+                        inputs.Add(new CommandsInputs(CommandsInputsEnum.JUMP, Time.time - initInputTime));
                     }
+
+                    Debug.Log(inputs[inputs.Count-1].ci);
 
                 }
 
@@ -149,17 +139,12 @@ public class CharacterBehav : MonoBehaviour
 
                     initInputTime = Time.time;
                     initCloningTime = Time.time;
-                    actualInput = CommandsInputsEnum.START;
+                    inputs.Add(new CommandsInputs(CommandsInputsEnum.START, Time.time - initInputTime));
 
                 }
                 else if (isRecording && Input.GetKeyDown(KeyCode.R) || isRecording && Time.time >= initCloningTime + limitRecordingTime)
                 {
-                    inputs.Add(new CommandsInputs(actualInput, Time.time - initInputTime));
-
-                    initInputTime = Time.time;
-                    actualInput = CommandsInputsEnum.END;
-
-                    inputs.Add(new CommandsInputs(actualInput, Time.time - initInputTime));
+                    inputs.Add(new CommandsInputs(CommandsInputsEnum.END, Time.time - initInputTime));
 
                     isRecording = false;
                     player.enabled = true;
@@ -172,44 +157,44 @@ public class CharacterBehav : MonoBehaviour
 
             case CharacterType.CLONE:
                 // Esperar a que la lista tenga "END"
-                if (inputs[iteration].time < Time.time - initInputTime)
+                if (inputs[iteration].time <= Time.time - initInputTime)
                 {
 
                     switch (inputs[iteration].ci)
                     {
                         case CommandsInputsEnum.NONE:
                             direction = DirectionInputs.NONE;
-                            initInputTime = Time.time;
+   
                             break;
                         case CommandsInputsEnum.RIGHT:
                             direction = DirectionInputs.RIGHT;
-                            initInputTime = Time.time;
+                            
                             break;
                         case CommandsInputsEnum.LEFT:
                             direction = DirectionInputs.LEFT;
-                            initInputTime = Time.time;
+                            
                             break;
                         case CommandsInputsEnum.JUMP:
+                            rb.AddForce(Vector2.up * jumpForce);
+
                             break;
                         case CommandsInputsEnum.INTERACT:
                             break;
                         case CommandsInputsEnum.START:
                             direction = DirectionInputs.NONE;
-                            initInputTime = Time.time;
+                           
                             break;
                         case CommandsInputsEnum.END:
                             direction = DirectionInputs.NONE;
                             initInputTime = Time.time;
                             iteration = -1;
-                            initInputTime = Time.time;
                             transform.position = initPos;
                             break;
                         default:
                             break;
                     }
                     iteration++;
-
-                    Debug.Log(direction);
+                    Debug.Log(-initInputTime + Time.time);
                 }
                 break;
 

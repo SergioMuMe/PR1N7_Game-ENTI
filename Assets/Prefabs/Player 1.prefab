@@ -141,7 +141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  limitRecordingTime: 5
+  limitRecordingTime: 10
   baseSpeed: 700
   jumpSpeed: 600
   jumpForce: 0
@@ -161,6 +161,8 @@ MonoBehaviour:
   isRecording: 0
   player: {fileID: 0}
   clon: {fileID: 1521158987248152590, guid: 76d17a9ebb28c894d9734e7be68e960f, type: 3}
+  iteration: 0
+  initPos: {x: 0, y: 0}
 --- !u!1 &8316069156955391089
 GameObject:
   m_ObjectHideFlags: 0
