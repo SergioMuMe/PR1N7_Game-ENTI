@@ -22,6 +22,7 @@ public class CharacterBehav : MonoBehaviour
     private CommandsInputsEnum actualInput;
     private float initInputTime = 0.0f;
     public float limitRecordingTime = 0.0f;
+    private float initCloningTime;
 
     public float baseSpeed = 0.0f;
     public float jumpSpeed = 0.0f;
@@ -49,18 +50,14 @@ public class CharacterBehav : MonoBehaviour
     private DirectionInputs direction = DirectionInputs.NONE;
     private RaycastHit2D hitGround;
 
-    private bool rightCollider = false;
-    private bool leftCollider = false;
-
     public bool isJumping = true;
     public bool isFalling = true;
     public bool isRecording = false;
 
     public CharacterBehav player;
     public GameObject clon;
-    //private float initTime;
-    private int iteration = 0;
-    private Vector2 initPos;
+    public int iteration = 0;
+    public Vector2 initPos;
 
 
     void Start()
@@ -102,7 +99,7 @@ public class CharacterBehav : MonoBehaviour
                         initInputTime = Time.time;
                         actualInput = CommandsInputsEnum.RIGHT;
                     }
-                    else if (!Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow))
+                    else if (!Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow) && actualInput != CommandsInputsEnum.NONE)
                     {
                         inputs.Add(new CommandsInputs(actualInput, Time.time - initInputTime));
 
@@ -117,7 +114,6 @@ public class CharacterBehav : MonoBehaviour
                         actualInput = CommandsInputsEnum.JUMP;
                     }
 
-                    Debug.Log(actualInput);
                 }
 
                 if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
@@ -152,10 +148,11 @@ public class CharacterBehav : MonoBehaviour
                     isRecording = true;
 
                     initInputTime = Time.time;
+                    initCloningTime = Time.time;
                     actualInput = CommandsInputsEnum.START;
 
                 }
-                else if (isRecording && Input.GetKeyDown(KeyCode.R) || isRecording && Time.time >= initInputTime + limitRecordingTime)
+                else if (isRecording && Input.GetKeyDown(KeyCode.R) || isRecording && Time.time >= initCloningTime + limitRecordingTime)
                 {
                     inputs.Add(new CommandsInputs(actualInput, Time.time - initInputTime));
 
@@ -165,7 +162,9 @@ public class CharacterBehav : MonoBehaviour
                     inputs.Add(new CommandsInputs(actualInput, Time.time - initInputTime));
 
                     isRecording = false;
-                    GetComponentInParent<CharacterBehav>().getAlive();
+                    player.enabled = true;
+                    player.inputs = inputs;
+                    player.getAlive();
                 }
 
                 
@@ -175,21 +174,32 @@ public class CharacterBehav : MonoBehaviour
                 // Esperar a que la lista tenga "END"
                 if (inputs[iteration].time < Time.time - initInputTime)
                 {
+
                     switch (inputs[iteration].ci)
                     {
                         case CommandsInputsEnum.NONE:
+                            direction = DirectionInputs.NONE;
+                            initInputTime = Time.time;
                             break;
                         case CommandsInputsEnum.RIGHT:
+                            direction = DirectionInputs.RIGHT;
+                            initInputTime = Time.time;
                             break;
                         case CommandsInputsEnum.LEFT:
+                            direction = DirectionInputs.LEFT;
+                            initInputTime = Time.time;
                             break;
                         case CommandsInputsEnum.JUMP:
                             break;
                         case CommandsInputsEnum.INTERACT:
                             break;
                         case CommandsInputsEnum.START:
+                            direction = DirectionInputs.NONE;
+                            initInputTime = Time.time;
                             break;
                         case CommandsInputsEnum.END:
+                            direction = DirectionInputs.NONE;
+                            initInputTime = Time.time;
                             iteration = -1;
                             initInputTime = Time.time;
                             transform.position = initPos;
@@ -198,6 +208,8 @@ public class CharacterBehav : MonoBehaviour
                             break;
                     }
                     iteration++;
+
+                    Debug.Log(direction);
                 }
                 break;
 
@@ -289,12 +301,17 @@ public class CharacterBehav : MonoBehaviour
 
     public void getAlive()
     {
-        //player = GetComponentInChildren<CharacterBehav>();
         initPos = transform.position;
 
-        inputs = player.inputs;
         initInputTime = Time.time;
+    }
 
-        //transform.DetachChildren();
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player" && type == CharacterType.CLONE)
+        {
+            GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+            GetComponent<BoxCollider2D>().isTrigger = false;
+        }
     }
 }

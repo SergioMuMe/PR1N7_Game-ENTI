@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 7382704755224317791}
   m_Layer: 2
   m_Name: ClonTest
-  m_TagString: Player
+  m_TagString: Clon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -141,8 +141,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
-  inputs: 
-  inputTiming: []
   limitRecordingTime: 5
   baseSpeed: 700
   jumpSpeed: 600
