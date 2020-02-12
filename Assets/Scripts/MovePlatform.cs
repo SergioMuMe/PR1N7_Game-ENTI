@@ -4,27 +4,13 @@ using UnityEngine;
 
 public class MovePlatform : InterfaceGame
 {
-    /*
-    public enum PLATFORMTYPE
-    {
-        PASSABLE, //plataforma atravessable desde abajo
-        SOLID //plataforma no atravessable
-    }
-    public enum PLATFORMMOVEMENT
-    {
-        MOBILE, //plataforma movil (indicar puntos)
-        STATIC //plataforma estatica
-    }
-    public PLATFORMTYPE platformType;
-    public PLATFORMMOVEMENT platformMovement;
-    */
-
+    
     //controla la velocidad a la que se mueve la plataforma entre punto y punto (si le damos un valores altos [por encima de 1] puede que de problemas)
     public float speed;
     private Rigidbody2D rb;
     private bool going = true;
     private float fixedDelta;
-    private float timePlatform;
+    private float deltaSpeed;
     public GameObject[] point;
     public bool activated;
 
@@ -57,34 +43,33 @@ public class MovePlatform : InterfaceGame
         if (activated)
         {
             fixedDelta = Time.fixedDeltaTime;
-            timePlatform += fixedDelta * speed;
+            deltaSpeed += fixedDelta * speed;
 
             if (going)
             {
-                if (timePlatform <= 1)
+                if (deltaSpeed <= 1)
                 {
-                    movePlatform(pos[i], pos[i + 1], timePlatform);
+                    movePlatform(pos[i], pos[i + 1], deltaSpeed);
                 }
-                else if (timePlatform >= delay)
+                else if (deltaSpeed >= delay)
                 {
-                    timePlatform = 0;
+                    deltaSpeed = 0;
                     i++;
                 }
                 if (i >= pos.Length - 1)
                 {
                     going = false;
                 }
-
             }
             else if (!going)
             {
-                if (timePlatform <= 1)
+                if (deltaSpeed <= 1)
                 {
-                    movePlatform(pos[i], pos[i - 1], timePlatform);
+                    movePlatform(pos[i], pos[i - 1], deltaSpeed);
                 }
-                else if (timePlatform >= delay)
+                else if (deltaSpeed >= delay)
                 {
-                    timePlatform = 0;
+                    deltaSpeed = 0;
                     i--;
                 }
                 if (i <= 0)
@@ -104,6 +89,11 @@ public class MovePlatform : InterfaceGame
 
     public void movePlatform(Vector2 posA, Vector2 posB, float t)
     {
+        /*
+        dir = posB - posA
+        dir.normalize();
+        rb2d.velocity = dir*speed
+        */
         Vector2 newPosition = Vector2.Lerp(posA, posB, t);
         rb.MovePosition(newPosition);
     }

@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 91963458596982850}
   - component: {fileID: 2075399381658535360}
   - component: {fileID: 7715616843674743382}
+  - component: {fileID: 7564337183143348499}
   - component: {fileID: 5810925334134857910}
   m_Layer: 0
-  m_Name: UpPlatform
+  m_Name: Platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -149,6 +150,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &7564337183143348499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2846562068075741615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ae01a86d2a817d42823a26c92eb7899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  platformType: 1
+  platformMovement: 1
 --- !u!114 &5810925334134857910
 MonoBehaviour:
   m_ObjectHideFlags: 0
