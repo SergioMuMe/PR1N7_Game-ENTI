@@ -4,22 +4,16 @@ using UnityEngine;
 
 public class Lever : MonoBehaviour
 {
-    public CharacterController_Roger player;
+    public CharacterBehav player;
 
     //objeto u objetos que queremos que se activen
     public InterfaceGame[] elements;
 
-    public bool activated = false;
-
-    // Update is called once per frame
-    void Update()
+    public void Switch()
     {
-        if(activated)
-        {        
-            for (int i = 0; i < elements.Length; i++)
-            {
-                elements[i].Activate();
-            }
+        for (int i = 0; i < elements.Length; i++)
+        {
+            elements[i].Activate();
         }
     }
 }

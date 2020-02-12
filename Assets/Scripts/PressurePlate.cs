@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class PressurePlate : MonoBehaviour
 {
-    public CharacterController_Roger player;
-
     //objeto u objetos que queremos que se activen
     public InterfaceGame[] elements;
 
