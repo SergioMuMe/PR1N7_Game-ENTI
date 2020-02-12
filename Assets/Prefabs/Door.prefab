@@ -150,4 +150,3 @@ MonoBehaviour:
   forwardSpeed: 1
   waitToForward: 0
   waitToBackward: 0
-  timeLapsed: 0
