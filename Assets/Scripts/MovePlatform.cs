@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MovePlatform : InterfaceGame
 {
+    /*
     public enum PLATFORMTYPE
     {
         PASSABLE, //plataforma atravessable desde abajo
@@ -15,6 +16,8 @@ public class MovePlatform : InterfaceGame
         STATIC //plataforma estatica
     }
     public PLATFORMTYPE platformType;
+    public PLATFORMMOVEMENT platformMovement;
+    */
 
     //controla la velocidad a la que se mueve la plataforma entre punto y punto (si le damos un valores altos [por encima de 1] puede que de problemas)
     public float speed;
