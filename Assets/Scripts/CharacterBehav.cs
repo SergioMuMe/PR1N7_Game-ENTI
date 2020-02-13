@@ -103,6 +103,10 @@ public class CharacterBehav : MonoBehaviour
                     {
                         inputs.Add(new CommandsInputs(CommandsInputsEnum.JUMP, (Time.time * 1000) - initInputTime));
                     }
+                    if (Input.GetKeyDown(KeyCode.F) && !isInteracting)
+                    {
+                        inputs.Add(new CommandsInputs(CommandsInputsEnum.INTERACT, (Time.time * 1000) - initInputTime));
+                    }
                 }
 
                 if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
@@ -166,6 +170,11 @@ public class CharacterBehav : MonoBehaviour
                 break;
 
             case CharacterType.CLONE:
+
+                if (isInteracting)
+                {
+                    isInteracting = false;
+                }
                 // Esperar a que la lista tenga "END"
                 if (inputs[iteration].time <= (Time.time * 1000) - initInputTime)
                 {
@@ -189,6 +198,7 @@ public class CharacterBehav : MonoBehaviour
 
                             break;
                         case CommandsInputsEnum.INTERACT:
+                            isInteracting = true;
                             break;
                         case CommandsInputsEnum.START:
                             direction = DirectionInputs.NONE;
@@ -203,6 +213,7 @@ public class CharacterBehav : MonoBehaviour
                         default:
                             break;
                     }
+
                     iteration++;
                 }
                 break;
@@ -306,6 +317,15 @@ public class CharacterBehav : MonoBehaviour
         {
             GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
             GetComponent<BoxCollider2D>().isTrigger = false;
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.tag == "Lever" && isInteracting)
+        {
+            collision.GetComponent<Lever>().Switch();
+            isInteracting = false;
         }
     }
 }
