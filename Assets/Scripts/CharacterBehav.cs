@@ -150,7 +150,7 @@ public class CharacterBehav : MonoBehaviour
                     player.getAlive();
                 }
 
-                
+
                 break;
 
             case CharacterType.CLONE:
@@ -294,6 +294,14 @@ public class CharacterBehav : MonoBehaviour
         {
             GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
             GetComponent<BoxCollider2D>().isTrigger = false;
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Lever" && Input.GetKeyDown(KeyCode.F))
+        {
+            other.GetComponent<Lever>().Switch();
         }
     }
 }

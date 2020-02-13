@@ -4,24 +4,28 @@ using UnityEngine;
 
 public class MovePlatform : InterfaceGame
 {
-    //controla la velocidad a la que se mueve la plataforma entre punto y punto (si le damos un valores altos [por encima de 1] puede que de problemas)
+    
+    //controla la velocidad a la que se mueve la plataforma entre punto y punto (100 es algo lento, ir provando valores a partir de ahi)
     public float speed;
     private Rigidbody2D rb;
     private bool going = true;
-    private float fixedDelta;
-    private float timePlatform;
+    private float deltaSpeed;
     public GameObject[] point;
     public bool activated;
+    private Vector2 direction;
+    private Vector2 tempPos;
+    private float magnitude1;
+    private float magnitude2;
+    public float delayRate;
+    private float actualDelay;
 
-
-    //aun no entiendo 100% como va, pero con delay 1, las plataformas no dejan de moverse, con delay > 1 se paran durante un tiempo cada vez que llegan a un punto de la array
-    public float delay = 2;
     //durante la ejecucion la I indica la ultima posicion de la array por el que se ha pasado
-    public int i = 0;
+    public int i;
     private Vector2[] pos;
 
     void Start()
     {
+        i = 0;
         //nos aseguramos de que el rigidbody sea kinematic
         rb = GetComponent<Rigidbody2D>();
         rb.isKinematic = true;
@@ -39,38 +43,53 @@ public class MovePlatform : InterfaceGame
 
     void FixedUpdate()
     {
+        if(!activated && rb.velocity != Vector2.zero)
+        {
+            rb.velocity = Vector2.zero;
+        }
         if (activated)
         {
-            fixedDelta = Time.fixedDeltaTime;
-            timePlatform += fixedDelta * speed;
+            deltaSpeed = Time.fixedDeltaTime * speed;
 
             if (going)
             {
-                if (timePlatform <= 1)
+                direction = pos[i + 1] - pos[i];
+                magnitude1 = direction.magnitude;
+                tempPos = transform.position;
+                direction = tempPos - pos[i];
+                magnitude2 = direction.magnitude;
+                if (magnitude1 <= magnitude2 && rb.velocity != Vector2.zero)
                 {
-                    movePlatform(pos[i], pos[i + 1], timePlatform);
-                }
-                else if (timePlatform >= delay)
-                {
-                    timePlatform = 0;
+                    rb.velocity = Vector2.zero;
+                    actualDelay = Time.time + delayRate;
                     i++;
+                }
+                else if (actualDelay<Time.time && rb.velocity == Vector2.zero)
+                {            
+                    movePlatform(pos[i], pos[i + 1], deltaSpeed);   
                 }
                 if (i >= pos.Length - 1)
                 {
                     going = false;
                 }
-
             }
             else if (!going)
             {
-                if (timePlatform <= 1)
+                direction = pos[i - 1] - pos[i];
+                magnitude1 = direction.magnitude;
+                tempPos = transform.position;
+                direction = tempPos - pos[i];
+                magnitude2 = direction.magnitude;
+
+                if (magnitude1 <= magnitude2 && rb.velocity != Vector2.zero)
                 {
-                    movePlatform(pos[i], pos[i - 1], timePlatform);
-                }
-                else if (timePlatform >= delay)
-                {
-                    timePlatform = 0;
+                    rb.velocity = Vector2.zero;
+                    actualDelay = Time.time + delayRate;
                     i--;
+                }
+                else if(actualDelay < Time.time && rb.velocity == Vector2.zero)
+                {
+                    movePlatform(pos[i], pos[i - 1], deltaSpeed);
                 }
                 if (i <= 0)
                 {
@@ -89,8 +108,9 @@ public class MovePlatform : InterfaceGame
 
     public void movePlatform(Vector2 posA, Vector2 posB, float t)
     {
-        Vector2 newPosition = Vector2.Lerp(posA, posB, t);
-        rb.MovePosition(newPosition);
+        direction = posB - posA;
+        direction.Normalize();
+        rb.velocity = direction * t;
     }
 
     public override void Activate()

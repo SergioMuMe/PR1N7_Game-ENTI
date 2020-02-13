@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 7382704755224317791}
   m_Layer: 2
   m_Name: ClonTest
-  m_TagString: Clon
+  m_TagString: Clone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -161,6 +161,8 @@ MonoBehaviour:
   isRecording: 0
   player: {fileID: 0}
   clon: {fileID: 0}
+  iteration: 0
+  initPos: {x: 0, y: 0}
 --- !u!1 &1521158987745694510
 GameObject:
   m_ObjectHideFlags: 0
