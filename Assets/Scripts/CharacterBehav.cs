@@ -23,6 +23,8 @@ public class CharacterBehav : MonoBehaviour
     private float initInputTime = 0.0f;
     public float limitRecordingTime = 0.0f;
     private float initCloningTime;
+    public List<GameObject> clones;
+    public int maxClones = 0;
 
     public float baseSpeed = 0.0f;
     public float jumpSpeed = 0.0f;
@@ -57,7 +59,7 @@ public class CharacterBehav : MonoBehaviour
     public bool isInteracting = false;
 
     public CharacterBehav player;
-    public GameObject clon;
+    public GameObject clone;
     public int iteration = 0;
     public Vector2 initPos;
 
@@ -135,7 +137,16 @@ public class CharacterBehav : MonoBehaviour
                 {
                     //transform.SetParent(Instantiate(clon, transform.position, transform.rotation).transform);
 
-                    player = Instantiate(clon, transform.position, transform.rotation).GetComponent<CharacterBehav>();
+                    player = Instantiate(clone, transform.position, transform.rotation).GetComponent<CharacterBehav>();
+
+                    if (clones.Count >= maxClones)
+                    {
+                        Destroy(clones[0]);
+                        clones.RemoveAt(0);
+                    }
+
+                    clones.Add(player.gameObject);
+                   
                     inputs = new List<CommandsInputs>();
 
                     isRecording = true;
@@ -159,11 +170,19 @@ public class CharacterBehav : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.F) && !isInteracting)
                 {
                     isInteracting = true;
-                    Debug.Log("j");
                 }
                 else if (isInteracting)
                 {
                     isInteracting = false;
+                }
+
+                if (Input.GetKeyDown(KeyCode.X) && !isRecording)
+                {
+                    if (clones.Count > 0)
+                    {
+                        Destroy(clones[0]);
+                        clones.RemoveAt(0);
+                    }
                 }
 
 
@@ -327,5 +346,10 @@ public class CharacterBehav : MonoBehaviour
             collision.GetComponent<Lever>().Switch();
             isInteracting = false;
         }
+    }
+
+    private void OnDestroy()
+    {
+        Destroy(part.gameObject);
     }
 }
