@@ -54,6 +54,8 @@ public class CharacterBehav : MonoBehaviour
     public bool isFalling = true;
     public bool isRecording = false;
 
+    public bool isInteracting = false;
+
     public CharacterBehav player;
     public GameObject clon;
     public int iteration = 0;
@@ -101,7 +103,10 @@ public class CharacterBehav : MonoBehaviour
                     {
                         inputs.Add(new CommandsInputs(CommandsInputsEnum.JUMP, (Time.time * 1000) - initInputTime));
                     }
-
+                    if (Input.GetKeyDown(KeyCode.F) && !isInteracting)
+                    {
+                        inputs.Add(new CommandsInputs(CommandsInputsEnum.INTERACT, (Time.time * 1000) - initInputTime));
+                    }
                 }
 
                 if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
@@ -151,9 +156,25 @@ public class CharacterBehav : MonoBehaviour
                 }
 
 
+                if (Input.GetKeyDown(KeyCode.F) && !isInteracting)
+                {
+                    isInteracting = true;
+                    Debug.Log("j");
+                }
+                else if (isInteracting)
+                {
+                    isInteracting = false;
+                }
+
+
                 break;
 
             case CharacterType.CLONE:
+
+                if (isInteracting)
+                {
+                    isInteracting = false;
+                }
                 // Esperar a que la lista tenga "END"
                 if (inputs[iteration].time <= (Time.time * 1000) - initInputTime)
                 {
@@ -177,6 +198,7 @@ public class CharacterBehav : MonoBehaviour
 
                             break;
                         case CommandsInputsEnum.INTERACT:
+                            isInteracting = true;
                             break;
                         case CommandsInputsEnum.START:
                             direction = DirectionInputs.NONE;
@@ -191,6 +213,7 @@ public class CharacterBehav : MonoBehaviour
                         default:
                             break;
                     }
+
                     iteration++;
                 }
                 break;
@@ -297,11 +320,12 @@ public class CharacterBehav : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay2D(Collider2D other)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if (other.gameObject.tag == "Lever" && Input.GetKeyDown(KeyCode.F))
+        if (collision.tag == "Lever" && isInteracting)
         {
-            other.GetComponent<Lever>().Switch();
+            collision.GetComponent<Lever>().Switch();
+            isInteracting = false;
         }
     }
 }

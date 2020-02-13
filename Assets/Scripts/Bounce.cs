@@ -17,11 +17,14 @@ public class Bounce : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D other)
     {
-        if (player.maxHeight < player.maxHeightBouncer)
+        if (other.tag == "Player" || other.tag == "Clone")
         {
-            player.maxHeight = player.maxHeightBouncer;
+            if (player.maxHeight < player.maxHeightBouncer)
+            {
+                player.maxHeight = player.maxHeightBouncer;
+            } 
         }
     }
 

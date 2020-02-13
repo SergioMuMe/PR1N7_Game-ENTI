@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1521158987248152587}
   - component: {fileID: 1521158987248152588}
   - component: {fileID: 7382704755224317791}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: ClonTest
   m_TagString: Clone
   m_Icon: {fileID: 0}
@@ -159,6 +159,7 @@ MonoBehaviour:
   isJumping: 0
   isFalling: 0
   isRecording: 0
+  isInteracting: 0
   player: {fileID: 0}
   clon: {fileID: 0}
   iteration: 0
@@ -174,7 +175,7 @@ GameObject:
   - component: {fileID: 1521158987745694509}
   - component: {fileID: 1521158987745694507}
   - component: {fileID: 1521158987745694508}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
