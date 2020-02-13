@@ -9,22 +9,11 @@ public class Lever : MonoBehaviour
     //objeto u objetos que queremos que se activen
     public InterfaceGame[] elements;
 
-    private void OnTriggerStay(Collider other)
+    public void Switch()
     {
-        Debug.Log("h");
-        if (other.tag == "Player" || other.tag == "Clone")
+        for (int i = 0; i < elements.Length; i++)
         {
-            Debug.Log("l");
-            player = other.GetComponent<CharacterBehav>();
-            if (player.isInteracting)
-            {
-                for (int i = 0; i < elements.Length; i++)
-                {
-                    elements[i].Activate();
-                }
-
-                player.isInteracting = false;
-            }
+            elements[i].Activate();
         }
     }
 }
