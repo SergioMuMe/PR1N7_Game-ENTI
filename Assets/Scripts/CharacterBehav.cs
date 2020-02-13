@@ -87,22 +87,20 @@ public class CharacterBehav : MonoBehaviour
                 {
                     if (Input.GetKey(KeyCode.LeftArrow) && actualInput != CommandsInputsEnum.LEFT || Input.GetKey(KeyCode.A) && actualInput != CommandsInputsEnum.LEFT)
                     {
-                        inputs.Add(new CommandsInputs(CommandsInputsEnum.LEFT, Time.time - initInputTime));
+                        inputs.Add(new CommandsInputs(CommandsInputsEnum.LEFT, (Time.time*1000) - initInputTime));
                     }
                     else if (Input.GetKey(KeyCode.RightArrow) && actualInput != CommandsInputsEnum.RIGHT || Input.GetKey(KeyCode.D) && actualInput != CommandsInputsEnum.RIGHT)
                     {
-                        inputs.Add(new CommandsInputs(CommandsInputsEnum.RIGHT, Time.time - initInputTime));
+                        inputs.Add(new CommandsInputs(CommandsInputsEnum.RIGHT, (Time.time * 1000) - initInputTime));
                     }
                     else if (!Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow) && inputs[inputs.Count - 1].ci != CommandsInputsEnum.NONE)
                     {
-                        inputs.Add(new CommandsInputs(CommandsInputsEnum.NONE, Time.time - initInputTime));
+                        inputs.Add(new CommandsInputs(CommandsInputsEnum.NONE, (Time.time * 1000) - initInputTime));
                     }
                     if (Input.GetKeyDown(KeyCode.Space) && !isJumping)
                     {
-                        inputs.Add(new CommandsInputs(CommandsInputsEnum.JUMP, Time.time - initInputTime));
+                        inputs.Add(new CommandsInputs(CommandsInputsEnum.JUMP, (Time.time * 1000) - initInputTime));
                     }
-
-                    Debug.Log(inputs[inputs.Count-1].ci);
 
                 }
 
@@ -137,14 +135,14 @@ public class CharacterBehav : MonoBehaviour
 
                     isRecording = true;
 
-                    initInputTime = Time.time;
+                    initInputTime = (Time.time * 1000);
                     initCloningTime = Time.time;
-                    inputs.Add(new CommandsInputs(CommandsInputsEnum.START, Time.time - initInputTime));
+                    inputs.Add(new CommandsInputs(CommandsInputsEnum.START, (Time.time * 1000) - initInputTime));
 
                 }
                 else if (isRecording && Input.GetKeyDown(KeyCode.R) || isRecording && Time.time >= initCloningTime + limitRecordingTime)
                 {
-                    inputs.Add(new CommandsInputs(CommandsInputsEnum.END, Time.time - initInputTime));
+                    inputs.Add(new CommandsInputs(CommandsInputsEnum.END, (Time.time * 1000) - initInputTime));
 
                     isRecording = false;
                     player.enabled = true;
@@ -157,7 +155,7 @@ public class CharacterBehav : MonoBehaviour
 
             case CharacterType.CLONE:
                 // Esperar a que la lista tenga "END"
-                if (inputs[iteration].time <= Time.time - initInputTime)
+                if (inputs[iteration].time <= (Time.time * 1000) - initInputTime)
                 {
 
                     switch (inputs[iteration].ci)
@@ -186,7 +184,7 @@ public class CharacterBehav : MonoBehaviour
                             break;
                         case CommandsInputsEnum.END:
                             direction = DirectionInputs.NONE;
-                            initInputTime = Time.time;
+                            initInputTime = (Time.time * 1000);
                             iteration = -1;
                             transform.position = initPos;
                             break;
@@ -194,7 +192,6 @@ public class CharacterBehav : MonoBehaviour
                             break;
                     }
                     iteration++;
-                    Debug.Log(-initInputTime + Time.time);
                 }
                 break;
 
