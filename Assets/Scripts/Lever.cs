@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Lever : MonoBehaviour
 {
+
     //objeto u objetos que queremos que se activen
     public InterfaceGame[] elements;
 

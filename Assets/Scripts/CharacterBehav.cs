@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class CharacterBehav : MonoBehaviour
 {
+    //Enum de tipos de personaje
     public enum CharacterType
     {
         PLAYER,
         CLONE
     }
+
+    //Enum para los inputs de moviminento
     private enum DirectionInputs
     {
         NONE,
@@ -16,52 +19,88 @@ public class CharacterBehav : MonoBehaviour
         LEFT
     }
 
+    //Almacena el tipo de personaje
     public CharacterType type;
 
-    public List<CommandsInputs> inputs;
+    //Almacena el ultimo input durante la grvacion
     private CommandsInputsEnum actualInput;
+    //Lista de inputs que le passamos al clon
+    public List<CommandsInputs> inputs;
+    //Almacena el tiempo en el que se ha usado un input
     private float initInputTime = 0.0f;
+    //Almacena el tiempo maximo durante en el que grabamos los inputs
     public float limitRecordingTime = 0.0f;
+    //Almacena el inicio de la fase de gravado
     private float initCloningTime;
+    //Lista de los gameObjects de los clones
     public List<GameObject> clones;
+    //Almacena la cantidad maxima de clones posibles
     public int maxClones = 0;
 
+    //Almacena la velocidad de movimiento
     public float baseSpeed = 0.0f;
+    //Almacena la velocidad de desplazamiento durante el salto
     public float jumpSpeed = 0.0f;
+    //Almacena la fuerza del salto
     public float jumpForce = 0.0f;
 
+    //Almacena la fuerza de salto por defecto
     public float jumpForceDefault = 0.0f;
+    //Almacena la fuerza de salto en un saltador
     public float jumpForceBouncer = 0.0f;
 
+    //Almacena la velocidad maxima de desplazamiento
     public float maxVelocity = 0.0f;
+    //Almacena la velocidad vertical maxima del salto
     public float maxHeight = 0.0f;
 
+    //Almacena la velocidad vertical maxima por defecto
     public float maxHeightDefault = 0.0f;
+    //Almacena la velocidad vertical maxima en un saltador
     public float maxHeightBouncer = 0.0f;
 
+    //Almacena el tiempo en el que puedes saltar sin tocar el suelo
     public float saveJumpTime = 0.0f;
+    //Almacena el tiempo en el que hemos saltado
     private float actualJumpTime = 0.0f;
 
+    //Rigidbody del personaje
     public Rigidbody2D rb;
+    //Particulas de aterrizaje
     public ParticleSystem part;
+    //Color de las particulas
     public ParticleSystemRenderer partRender;
 
+    //Almacena la distancia a la que detecta el suelo
     public float groundedPrecision = 0.0f;
+    //Almacena la distancia al suelo
     private float groundDistance = 0.0f;
 
+    //Almacena la direccion de movimiento
     private DirectionInputs direction = DirectionInputs.NONE;
+    //Almacena el impacto del rayo que detecta el suelo
     private RaycastHit2D hitGround;
 
+    //Almacena el estado si esta saltando
     public bool isJumping = true;
+    //Almacena el estado de si no detecta el suelo
     public bool isFalling = true;
+    //Almacena el estado si esta grabando
     public bool isRecording = false;
-
+    //Almacena el estado si ha interactuado
     public bool isInteracting = false;
 
+    //Almacena el script del clon que acaba de crear
     public CharacterBehav player;
+    //Almacena el Prefab del clon
     public GameObject clone;
+    //Amacena la iteracion de la lista de inputs en la reproduccion
     public int iteration = 0;
+    //Almacena la posicion inicial del clon
     public Vector2 initPos;
+
+    //Almacena el multiplicador que acelera el tiempo
+    public float timeAcceleration = 0.0f;
 
 
     void Start()
@@ -184,7 +223,6 @@ public class CharacterBehav : MonoBehaviour
                         clones.RemoveAt(0);
                     }
                 }
-
 
                 break;
 
