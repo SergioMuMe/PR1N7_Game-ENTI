@@ -368,6 +368,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Door 3D
       objectReference: {fileID: 0}
+    - target: {fileID: 308864865726794660, guid: 4271baf20b303664d913b86bd756c6f5,
+        type: 3}
+      propertyPath: navPointB
+      value: 
+      objectReference: {fileID: 975361024}
+    - target: {fileID: 308864865726794660, guid: 4271baf20b303664d913b86bd756c6f5,
+        type: 3}
+      propertyPath: navPointA
+      value: 
+      objectReference: {fileID: 912028285}
     - target: {fileID: 7269227911392955195, guid: 4271baf20b303664d913b86bd756c6f5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -438,16 +448,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 308864865726794660, guid: 4271baf20b303664d913b86bd756c6f5,
-        type: 3}
-      propertyPath: navPointB
-      value: 
-      objectReference: {fileID: 975361024}
-    - target: {fileID: 308864865726794660, guid: 4271baf20b303664d913b86bd756c6f5,
-        type: 3}
-      propertyPath: navPointA
-      value: 
-      objectReference: {fileID: 912028285}
     - target: {fileID: 307046132111912580, guid: 4271baf20b303664d913b86bd756c6f5,
         type: 3}
       propertyPath: m_BodyType
@@ -1011,9 +1011,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1765011221}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f38d8975865f7f342b57b84515b081ee, type: 3}
+  m_Script: {fileID: 11500000, guid: 6efc1fc8739e4fc4783f07034baf61ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneName: Level_TheBox
 --- !u!61 &1765011223
 BoxCollider2D:
   m_ObjectHideFlags: 0

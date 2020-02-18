@@ -6,9 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/_Scenes/GameLevel/Level_PushMeUp.unity
+    guid: 3c3cb04e03ac13f4cb827b0f25368c68
+  - enabled: 1
     path: Assets/_Scenes/GameLevel/Level_TheBox.unity
     guid: 0974a0df20c5adb42a34e2cb851b4c9e
   - enabled: 1
-    path: Assets/_Scenes/GameLevel/Level_PushMeUp.unity
-    guid: 3c3cb04e03ac13f4cb827b0f25368c68
+    path: Assets/_Scenes/DevelopRoom.unity
+    guid: ecd46a2bd1f7e724ea6c4112a7910363
   m_configObjects: {}

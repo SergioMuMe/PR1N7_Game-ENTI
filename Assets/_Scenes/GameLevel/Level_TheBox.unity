@@ -419,6 +419,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Door 3D
       objectReference: {fileID: 0}
+    - target: {fileID: 308864865726794660, guid: 4271baf20b303664d913b86bd756c6f5,
+        type: 3}
+      propertyPath: navPointA
+      value: 
+      objectReference: {fileID: 430823408}
+    - target: {fileID: 308864865726794660, guid: 4271baf20b303664d913b86bd756c6f5,
+        type: 3}
+      propertyPath: navPointB
+      value: 
+      objectReference: {fileID: 1931798077}
     - target: {fileID: 7269227911392955195, guid: 4271baf20b303664d913b86bd756c6f5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -474,16 +484,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 308864865726794660, guid: 4271baf20b303664d913b86bd756c6f5,
-        type: 3}
-      propertyPath: navPointA
-      value: 
-      objectReference: {fileID: 430823408}
-    - target: {fileID: 308864865726794660, guid: 4271baf20b303664d913b86bd756c6f5,
-        type: 3}
-      propertyPath: navPointB
-      value: 
-      objectReference: {fileID: 1931798077}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4271baf20b303664d913b86bd756c6f5, type: 3}
 --- !u!1001 &683059589
@@ -929,7 +929,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6efc1fc8739e4fc4783f07034baf61ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: Level_PushMeUp
+  sceneName: DevelopRoom
 --- !u!61 &808359518
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2138,6 +2138,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Door 3D
       objectReference: {fileID: 0}
+    - target: {fileID: 308864865726794660, guid: 4271baf20b303664d913b86bd756c6f5,
+        type: 3}
+      propertyPath: navPointA
+      value: 
+      objectReference: {fileID: 1039392182}
+    - target: {fileID: 308864865726794660, guid: 4271baf20b303664d913b86bd756c6f5,
+        type: 3}
+      propertyPath: navPointB
+      value: 
+      objectReference: {fileID: 792497574}
     - target: {fileID: 7269227911392955195, guid: 4271baf20b303664d913b86bd756c6f5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2193,15 +2203,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 308864865726794660, guid: 4271baf20b303664d913b86bd756c6f5,
-        type: 3}
-      propertyPath: navPointA
-      value: 
-      objectReference: {fileID: 1039392182}
-    - target: {fileID: 308864865726794660, guid: 4271baf20b303664d913b86bd756c6f5,
-        type: 3}
-      propertyPath: navPointB
-      value: 
-      objectReference: {fileID: 792497574}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4271baf20b303664d913b86bd756c6f5, type: 3}

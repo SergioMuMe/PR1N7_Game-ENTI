@@ -145,7 +145,7 @@ MonoBehaviour:
   clones: []
   maxClones: 1
   baseSpeed: 700
-  jumpSpeed: 600
+  jumpSpeed: 700
   jumpForce: 0
   jumpForceDefault: 12000
   jumpForceBouncer: 20000
@@ -155,8 +155,8 @@ MonoBehaviour:
   maxHeightBouncer: 30
   saveJumpTime: 0.1
   rb: {fileID: 0}
-  part: {fileID: 0}
-  partRender: {fileID: 0}
+  part: {fileID: 8316069156955391092}
+  partRender: {fileID: 8316069156955391091}
   groundedPrecision: 0.1
   isJumping: 0
   isFalling: 0
