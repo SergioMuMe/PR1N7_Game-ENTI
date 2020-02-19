@@ -32,12 +32,12 @@ public class MovePlatform : InterfaceGame
 
         int size = point.Length;
         pos = new Vector2[size];
+        point[0] = gameObject;
 
         for (int i = 0; i < size; i++)
         {
             pos[i] = point[i].transform.position;
-        }
-
+        }   
     }
 
 

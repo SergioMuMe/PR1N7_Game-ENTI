@@ -12,7 +12,8 @@ public class PlatformOptions : MonoBehaviour
     public enum PLATFORMMOVEMENT
     {
         MOBILE, //plataforma movil (indicar puntos)
-        STATIC //plataforma estatica
+        STATIC, //plataforma estatica
+        BOOL //se mueve hasta un punto y se para
     }
     public PLATFORMTYPE platformType;
     public PLATFORMMOVEMENT platformMovement;
@@ -21,6 +22,7 @@ public class PlatformOptions : MonoBehaviour
     private PlatformEffector2D pe;
     private BoxCollider2D bc;
     private MovePlatform mps;
+    private BoolPlatform bps;
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +31,7 @@ public class PlatformOptions : MonoBehaviour
         pe = GetComponent<PlatformEffector2D>();
         bc = GetComponent<BoxCollider2D>();
         mps = GetComponent<MovePlatform>();
+        bps = GetComponent<BoolPlatform>();
     }
 
     // Update is called once per frame
@@ -51,8 +54,13 @@ public class PlatformOptions : MonoBehaviour
             case PLATFORMMOVEMENT.STATIC:
                 rb.bodyType = RigidbodyType2D.Static;
                 mps.enabled = false;
+                bps.enabled
                 break;
             case PLATFORMMOVEMENT.MOBILE:
+                rb.bodyType = RigidbodyType2D.Kinematic;
+                mps.enabled = true;
+                break;
+            case PLATFORMMOVEMENT.BOOL:
                 rb.bodyType = RigidbodyType2D.Kinematic;
                 mps.enabled = true;
                 break;
