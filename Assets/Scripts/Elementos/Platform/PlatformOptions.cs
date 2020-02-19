@@ -54,15 +54,17 @@ public class PlatformOptions : MonoBehaviour
             case PLATFORMMOVEMENT.STATIC:
                 rb.bodyType = RigidbodyType2D.Static;
                 mps.enabled = false;
-                bps.enabled
+                bps.enabled = false;
                 break;
             case PLATFORMMOVEMENT.MOBILE:
                 rb.bodyType = RigidbodyType2D.Kinematic;
                 mps.enabled = true;
+                bps.enabled = false;
                 break;
             case PLATFORMMOVEMENT.BOOL:
                 rb.bodyType = RigidbodyType2D.Kinematic;
-                mps.enabled = true;
+                mps.enabled = false;
+                bps.enabled = true;
                 break;
         }
     }

@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 3297165606317237319}
   - component: {fileID: 7514505474828240443}
   - component: {fileID: 6029069159002408666}
-  - component: {fileID: 4857965704673709081}
-  - component: {fileID: 5858234788273246629}
-  - component: {fileID: 5468527826197717586}
+  - component: {fileID: 1616676715703711648}
+  - component: {fileID: 4459323094993890523}
+  - component: {fileID: 7164113760742040418}
   m_Layer: 0
   m_Name: Platform 3D
   m_TagString: Untagged
@@ -149,7 +149,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &4857965704673709081
+--- !u!114 &1616676715703711648
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -161,9 +161,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ae01a86d2a817d42823a26c92eb7899, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  platformType: 1
-  platformMovement: 1
---- !u!114 &5858234788273246629
+  platformType: 0
+  platformMovement: 0
+--- !u!114 &4459323094993890523
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -180,7 +180,7 @@ MonoBehaviour:
   activated: 0
   delayRate: 0
   i: 0
---- !u!114 &5468527826197717586
+--- !u!114 &7164113760742040418
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
