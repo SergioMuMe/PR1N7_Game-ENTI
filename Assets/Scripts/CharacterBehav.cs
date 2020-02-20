@@ -165,6 +165,11 @@ public class CharacterBehav : MonoBehaviour
 
                 if (Input.GetKeyDown(KeyCode.Space) && !isJumping)
                 {
+                    if (hitGround && hitGround.collider.tag == "Clone")
+                    {
+                        rb.velocity = Vector2.zero;
+                    }
+
                     rb.AddForce(Vector2.up * jumpForce);
                     direction = DirectionInputs.NONE;
                     actualJumpTime = Time.time + saveJumpTime;
@@ -223,7 +228,14 @@ public class CharacterBehav : MonoBehaviour
                         clones.RemoveAt(0);
                     }
                 }
-
+                if (Input.GetKeyDown(KeyCode.C) && !isRecording)
+                {
+                    if (clones.Count > 0)
+                    {
+                        Destroy(clones[clones.Count-1]);
+                        clones.RemoveAt(clones.Count-1);
+                    }
+                }
                 break;
 
             case CharacterType.CLONE:
@@ -284,7 +296,7 @@ public class CharacterBehav : MonoBehaviour
     {
         float delta = Time.fixedDeltaTime * 1000;
 
-        hitGround = Physics2D.Raycast(transform.position, -Vector2.up, groundDistance + groundDistance);
+        hitGround = Physics2D.Raycast(transform.position, -Vector2.up, groundDistance + groundedPrecision);
 
         if (hitGround && isJumping && isFalling)
         {
