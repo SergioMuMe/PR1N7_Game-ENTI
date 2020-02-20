@@ -8,7 +8,7 @@ public class MovePlatform : InterfaceGame
     //controla la velocidad a la que se mueve la plataforma entre punto y punto (100 es algo lento, ir provando valores a partir de ahi)
     public float speed;
     private Rigidbody2D rb;
-    private bool going = true;
+    private bool going;
     private float deltaSpeed;
     public GameObject[] point;
     public bool activated;
@@ -25,6 +25,7 @@ public class MovePlatform : InterfaceGame
 
     void Start()
     {
+        going = true;
         i = 0;
         //nos aseguramos de que el rigidbody sea kinematic
         rb = GetComponent<Rigidbody2D>();
