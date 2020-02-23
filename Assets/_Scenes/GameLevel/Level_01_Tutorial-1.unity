@@ -899,5 +899,10 @@ PrefabInstance:
       propertyPath: sceneName
       value: Level_PushMeUp
       objectReference: {fileID: 0}
+    - target: {fileID: 4754546773981360092, guid: 2bb841354d06dfe4ca1bd44c08319ffa,
+        type: 3}
+      propertyPath: sceneRestart
+      value: Level_01_Tutorial-1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2bb841354d06dfe4ca1bd44c08319ffa, type: 3}

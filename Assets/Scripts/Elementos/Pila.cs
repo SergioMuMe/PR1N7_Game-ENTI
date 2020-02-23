@@ -17,7 +17,7 @@ public class Pila : MonoBehaviour
         transform.Rotate(0.2f, 0.5f, 0f);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("Collision");
         if (collision.gameObject.tag == "Player")

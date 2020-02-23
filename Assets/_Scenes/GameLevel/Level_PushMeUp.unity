@@ -1015,6 +1015,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: Level_TheBox
+  sceneRestart: Level_PushMeUp
 --- !u!61 &1765011223
 BoxCollider2D:
   m_ObjectHideFlags: 0

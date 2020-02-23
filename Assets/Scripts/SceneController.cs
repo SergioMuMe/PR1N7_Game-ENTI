@@ -6,11 +6,27 @@ using UnityEngine.SceneManagement;
 public class SceneController : MonoBehaviour
 {
     public string sceneName;
+    public string sceneRestart;
+
+
+    private void loadScene(string scene)
+    {
+        SceneManager.LoadScene(scene);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.P))
+        {
+            loadScene(sceneRestart);
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player")
         {
-            SceneManager.LoadScene(sceneName);
+            loadScene(sceneName);
         }
     }
 }
