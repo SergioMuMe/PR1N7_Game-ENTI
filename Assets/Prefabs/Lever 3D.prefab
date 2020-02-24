@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5111519934573403332}
   - component: {fileID: 559450843776387474}
   - component: {fileID: 551194240304249639}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Lever 3D
   m_TagString: Lever
   m_Icon: {fileID: 0}
@@ -139,5 +139,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2721a0dd86568fc45b9605da62e8c9c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  elements: []
+  elements:
+  - {fileID: 0}

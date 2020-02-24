@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1857778695094943763}
   - component: {fileID: 4367950341768473833}
   - component: {fileID: 6739677057881381865}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: PressurePlate 3D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139,4 +139,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d2e297167b81214ba92ebf757c4e321, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elements: []
+  elements:
+  - {fileID: 0}

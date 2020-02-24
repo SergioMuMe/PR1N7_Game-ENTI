@@ -28,11 +28,10 @@ public class BoolPlatform : InterfaceGame
         rb = GetComponent<Rigidbody2D>();
         rb.isKinematic = true;
 
-        int size = point.Length;
-        pos = new Vector2[size];
+        pos = new Vector2[point.Length];
         point[0] = gameObject;
 
-        for (int i = 0; i < size; i++)
+        for (int i = 0; i < point.Length; i++)
         {
             pos[i] = point[i].transform.position;
         }

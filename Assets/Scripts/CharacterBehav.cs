@@ -75,11 +75,16 @@ public class CharacterBehav : MonoBehaviour
     public float groundedPrecision = 0.0f;
     //Almacena la distancia al suelo
     private float groundDistance = 0.0f;
+    private float frontDistance = 0.0f;
 
     //Almacena la direccion de movimiento
     private DirectionInputs direction = DirectionInputs.NONE;
     //Almacena el impacto del rayo que detecta el suelo
-    private RaycastHit2D hitGround;
+    private RaycastHit2D hitForward;
+    private RaycastHit2D hitBack;
+
+    private RaycastHit2D hitRight;
+    private RaycastHit2D hitLeft;
 
     //Almacena el estado si esta saltando
     public bool isJumping = true;
@@ -108,6 +113,7 @@ public class CharacterBehav : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         groundDistance = GetComponent<Collider2D>().bounds.extents.y;
+        frontDistance = GetComponent<Collider2D>().bounds.extents.x;
 
         part = GetComponentInChildren<ParticleSystem>();
         partRender = GetComponentInChildren<ParticleSystemRenderer>();
@@ -165,11 +171,6 @@ public class CharacterBehav : MonoBehaviour
 
                 if (Input.GetKeyDown(KeyCode.Space) && !isJumping)
                 {
-                    if (hitGround && hitGround.collider.tag == "Clone")
-                    {
-                        rb.velocity = Vector2.zero;
-                    }
-
                     rb.AddForce(Vector2.up * jumpForce);
                     direction = DirectionInputs.NONE;
                     actualJumpTime = Time.time + saveJumpTime;
@@ -296,9 +297,13 @@ public class CharacterBehav : MonoBehaviour
     {
         float delta = Time.fixedDeltaTime * 1000;
 
-        hitGround = Physics2D.Raycast(transform.position, -Vector2.up, groundDistance + groundedPrecision);
+        hitForward = Physics2D.Raycast(transform.position + (Vector3.down * groundDistance) + (Vector3.right *  (frontDistance - groundedPrecision)), -Vector2.up, groundedPrecision);
+        hitBack = Physics2D.Raycast(transform.position + (Vector3.down * groundDistance) + (Vector3.left * (frontDistance - groundedPrecision)), -Vector2.up, groundedPrecision);
 
-        if (hitGround && isJumping && isFalling)
+        hitRight = Physics2D.Raycast(transform.position + (Vector3.right * frontDistance) + (Vector3.down * groundDistance), Vector2.right, groundedPrecision);
+        hitLeft = Physics2D.Raycast(transform.position + (Vector3.left * frontDistance) + (Vector3.down * groundDistance), Vector2.left, groundedPrecision);
+
+        if (hitForward && isJumping && isFalling  || hitBack && isJumping && isFalling)
         {
             isJumping = false;
             isFalling = false;
@@ -311,11 +316,11 @@ public class CharacterBehav : MonoBehaviour
             partRender.material = GetComponent<MeshRenderer>().material;
             part.Emit(50);
         }
-        else if (!hitGround && actualJumpTime < Time.time && isFalling)
+        else if (!hitForward && !hitBack && actualJumpTime < Time.time && isFalling)
         {
             isJumping = true;
         }
-        else if (!hitGround && actualJumpTime < Time.time && !isFalling)
+        else if (!hitForward && !hitBack && actualJumpTime < Time.time && !isFalling)
         {
             actualJumpTime = Time.time + saveJumpTime;
             isFalling = true;
@@ -349,21 +354,21 @@ public class CharacterBehav : MonoBehaviour
             case DirectionInputs.NONE:
                 break;
             case DirectionInputs.RIGHT:
-                if (!isJumping)
+                if (!isJumping && !hitRight)
                 {
                     rb.AddForce(Vector2.right * baseSpeed, ForceMode2D.Force);
                 }
-                else
+                else if (!hitRight)
                 {
                     rb.AddForce(Vector2.right * jumpSpeed, ForceMode2D.Force);
                 }
                 break;
             case DirectionInputs.LEFT:
-                if (!isJumping)
+                if (!isJumping && !hitLeft)
                 {
                     rb.AddForce(Vector2.left * baseSpeed, ForceMode2D.Force);
                 }
-                else
+                else if (!hitLeft)
                 {
                     rb.AddForce(Vector2.left * jumpSpeed, ForceMode2D.Force);
                 }
