@@ -181,11 +181,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6739677057881381865, guid: 4a4475a759264af408dbb4bc5b8e93f3,
         type: 3}
-      propertyPath: elements.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6739677057881381865, guid: 4a4475a759264af408dbb4bc5b8e93f3,
-        type: 3}
       propertyPath: elements.Array.data[0]
       value: 
       objectReference: {fileID: 1426460365}
@@ -498,6 +493,11 @@ PrefabInstance:
       propertyPath: activated
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1616676715703711648, guid: 707a013df26168f4e9793416cecbb379,
+        type: 3}
+      propertyPath: platformMovement
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 707a013df26168f4e9793416cecbb379, type: 3}
 --- !u!1001 &498556319
@@ -635,11 +635,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 551194240304249639, guid: e3f76f5baba4b7a4b9b8bcfe91b221cf,
-        type: 3}
-      propertyPath: elements.Array.size
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 551194240304249639, guid: e3f76f5baba4b7a4b9b8bcfe91b221cf,
         type: 3}
@@ -1382,6 +1377,10 @@ PrefabInstance:
     - target: {fileID: 8316069156306855767, guid: a121c38765698d543a50b77fd10e047b,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1546295296, guid: a121c38765698d543a50b77fd10e047b, type: 3}
+      propertyPath: maxClones
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
