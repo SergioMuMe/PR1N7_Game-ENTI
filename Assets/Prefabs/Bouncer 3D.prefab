@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5783434023349402299}
   - component: {fileID: 4629683422909600228}
   - component: {fileID: 2079725688545585225}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Bouncer 3D
   m_TagString: Untagged
   m_Icon: {fileID: 0}

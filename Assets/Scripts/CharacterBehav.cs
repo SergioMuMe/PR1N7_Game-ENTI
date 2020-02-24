@@ -83,6 +83,9 @@ public class CharacterBehav : MonoBehaviour
     private RaycastHit2D hitForward;
     private RaycastHit2D hitBack;
 
+    private RaycastHit2D hitRight;
+    private RaycastHit2D hitLeft;
+
     //Almacena el estado si esta saltando
     public bool isJumping = true;
     //Almacena el estado de si no detecta el suelo
@@ -294,12 +297,13 @@ public class CharacterBehav : MonoBehaviour
     {
         float delta = Time.fixedDeltaTime * 1000;
 
-        hitForward = Physics2D.Raycast(transform.position + (Vector3.down*groundDistance) + (Vector3.right * frontDistance), -Vector2.up, groundedPrecision);
-        hitBack = Physics2D.Raycast(transform.position + (Vector3.down * groundDistance) + (Vector3.left * frontDistance), -Vector2.up, groundedPrecision);
+        hitForward = Physics2D.Raycast(transform.position + (Vector3.down * groundDistance) + (Vector3.right *  (frontDistance - groundedPrecision)), -Vector2.up, groundedPrecision);
+        hitBack = Physics2D.Raycast(transform.position + (Vector3.down * groundDistance) + (Vector3.left * (frontDistance - groundedPrecision)), -Vector2.up, groundedPrecision);
 
+        hitRight = Physics2D.Raycast(transform.position + (Vector3.right * frontDistance) + (Vector3.down * groundDistance), Vector2.right, groundedPrecision);
+        hitLeft = Physics2D.Raycast(transform.position + (Vector3.left * frontDistance) + (Vector3.down * groundDistance), Vector2.left, groundedPrecision);
 
-
-        if (hitForward && isJumping && isFalling || hitBack && isJumping && isFalling)
+        if (hitForward && isJumping && isFalling  || hitBack && isJumping && isFalling)
         {
             isJumping = false;
             isFalling = false;
@@ -312,7 +316,7 @@ public class CharacterBehav : MonoBehaviour
             partRender.material = GetComponent<MeshRenderer>().material;
             part.Emit(50);
         }
-        else if (!hitForward && hitBack && actualJumpTime < Time.time && isFalling)
+        else if (!hitForward && !hitBack && actualJumpTime < Time.time && isFalling)
         {
             isJumping = true;
         }
@@ -350,21 +354,21 @@ public class CharacterBehav : MonoBehaviour
             case DirectionInputs.NONE:
                 break;
             case DirectionInputs.RIGHT:
-                if (!isJumping)
+                if (!isJumping && !hitRight)
                 {
                     rb.AddForce(Vector2.right * baseSpeed, ForceMode2D.Force);
                 }
-                else
+                else if (!hitRight)
                 {
                     rb.AddForce(Vector2.right * jumpSpeed, ForceMode2D.Force);
                 }
                 break;
             case DirectionInputs.LEFT:
-                if (!isJumping)
+                if (!isJumping && !hitLeft)
                 {
                     rb.AddForce(Vector2.left * baseSpeed, ForceMode2D.Force);
                 }
-                else
+                else if (!hitLeft)
                 {
                     rb.AddForce(Vector2.left * jumpSpeed, ForceMode2D.Force);
                 }

@@ -153,11 +153,11 @@ MonoBehaviour:
   maxHeight: 0
   maxHeightDefault: 20
   maxHeightBouncer: 30
-  saveJumpTime: 0.1
+  saveJumpTime: 0.2
   rb: {fileID: 0}
   part: {fileID: 8316069156955391092}
   partRender: {fileID: 8316069156955391091}
-  groundedPrecision: 0.05
+  groundedPrecision: 0.1
   isJumping: 1
   isFalling: 1
   isRecording: 0
