@@ -121,7 +121,12 @@ public class CharacterBehav : MonoBehaviour
         maxHeight = maxHeightDefault;
         jumpForce = jumpForceDefault;
 
+        if (type == CharacterType.CLONE)
+        {
+            initPos = transform.position;
 
+            initInputTime = Time.time;
+        }
     }
 
 
@@ -208,7 +213,6 @@ public class CharacterBehav : MonoBehaviour
                     isRecording = false;
                     player.enabled = true;
                     player.inputs = inputs;
-                    player.getAlive();
                 }
 
 
@@ -354,21 +358,21 @@ public class CharacterBehav : MonoBehaviour
             case DirectionInputs.NONE:
                 break;
             case DirectionInputs.RIGHT:
-                if (!isJumping && !hitRight)
+                if (!isJumping && !hitRight || !isJumping && hitLeft.collider.tag == "Clone")
                 {
                     rb.AddForce(Vector2.right * baseSpeed, ForceMode2D.Force);
                 }
-                else if (!hitRight)
+                else if (!hitRight || !isJumping && hitLeft.collider.tag == "Clone")
                 {
                     rb.AddForce(Vector2.right * jumpSpeed, ForceMode2D.Force);
                 }
                 break;
             case DirectionInputs.LEFT:
-                if (!isJumping && !hitLeft)
+                if (!isJumping && !hitLeft || !isJumping && hitLeft.collider.tag == "Clone")
                 {
                     rb.AddForce(Vector2.left * baseSpeed, ForceMode2D.Force);
                 }
-                else if (!hitLeft)
+                else if (!hitLeft || !isJumping && hitLeft.collider.tag == "Clone")
                 {
                     rb.AddForce(Vector2.left * jumpSpeed, ForceMode2D.Force);
                 }
@@ -376,13 +380,6 @@ public class CharacterBehav : MonoBehaviour
             default:
                 break;
         }
-    }
-
-    public void getAlive()
-    {
-        initPos = transform.position;
-
-        initInputTime = Time.time;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
