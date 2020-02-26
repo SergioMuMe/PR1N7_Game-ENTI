@@ -71,6 +71,9 @@ public class CharacterBehav : MonoBehaviour
     //Color de las particulas
     public ParticleSystemRenderer partRender;
 
+    public ParticleSystem nanoStart;
+    public ParticleSystem nanoEnd;
+
     //Almacena la distancia a la que detecta el suelo
     public float groundedPrecision = 0.0f;
     //Almacena la distancia al suelo
@@ -107,21 +110,26 @@ public class CharacterBehav : MonoBehaviour
     //Almacena el multiplicador que acelera el tiempo
     public float timeAcceleration = 0.0f;
 
+    private Animator anim;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
 
+        anim = GetComponent<Animator>();
+
         groundDistance = GetComponent<Collider2D>().bounds.extents.y;
         frontDistance = GetComponent<Collider2D>().bounds.extents.x;
-
-        part = GetComponentInChildren<ParticleSystem>();
-        partRender = GetComponentInChildren<ParticleSystemRenderer>();
 
         maxHeight = maxHeightDefault;
         jumpForce = jumpForceDefault;
 
+        if (type == CharacterType.CLONE)
+        {
+            initPos = transform.position;
 
+            initInputTime = Time.time * 1000;
+        }
     }
 
 
@@ -208,7 +216,6 @@ public class CharacterBehav : MonoBehaviour
                     isRecording = false;
                     player.enabled = true;
                     player.inputs = inputs;
-                    player.getAlive();
                 }
 
 
@@ -246,7 +253,7 @@ public class CharacterBehav : MonoBehaviour
                     isInteracting = false;
                 }
                 // Esperar a que la lista tenga "END"
-                if (inputs[iteration].time <= (Time.time * 1000) - initInputTime)
+                if (iteration >= 0 && iteration < inputs.Capacity && inputs[iteration].time <= (Time.time * 1000) - initInputTime)
                 {
 
                     switch (inputs[iteration].ci)
@@ -276,9 +283,8 @@ public class CharacterBehav : MonoBehaviour
                             break;
                         case CommandsInputsEnum.END:
                             direction = DirectionInputs.NONE;
-                            initInputTime = (Time.time * 1000);
+                            anim.SetTrigger("End");
                             iteration = -1;
-                            transform.position = initPos;
                             break;
                         default:
                             break;
@@ -354,21 +360,21 @@ public class CharacterBehav : MonoBehaviour
             case DirectionInputs.NONE:
                 break;
             case DirectionInputs.RIGHT:
-                if (!isJumping && !hitRight)
+                if (!isJumping && !hitRight || !isJumping && hitRight.collider.tag == "Clone")
                 {
                     rb.AddForce(Vector2.right * baseSpeed, ForceMode2D.Force);
                 }
-                else if (!hitRight)
+                else if (!hitRight || !isJumping && hitLeft.collider.tag == "Clone")
                 {
                     rb.AddForce(Vector2.right * jumpSpeed, ForceMode2D.Force);
                 }
                 break;
             case DirectionInputs.LEFT:
-                if (!isJumping && !hitLeft)
+                if (!isJumping && !hitLeft || !isJumping && hitLeft.collider.tag == "Clone")
                 {
                     rb.AddForce(Vector2.left * baseSpeed, ForceMode2D.Force);
                 }
-                else if (!hitLeft)
+                else if (!hitLeft || !isJumping && hitLeft.collider.tag == "Clone")
                 {
                     rb.AddForce(Vector2.left * jumpSpeed, ForceMode2D.Force);
                 }
@@ -378,11 +384,17 @@ public class CharacterBehav : MonoBehaviour
         }
     }
 
-    public void getAlive()
+    public void EndIterationParticles()
     {
-        initPos = transform.position;
+        nanoEnd.Play();
+    }
 
-        initInputTime = Time.time;
+    public void StartIterationParticles()
+    {
+        initInputTime = (Time.time * 1000);
+        iteration = 0;
+        transform.position = initPos;
+        nanoStart.Play();
     }
 
     private void OnTriggerExit2D(Collider2D collision)
