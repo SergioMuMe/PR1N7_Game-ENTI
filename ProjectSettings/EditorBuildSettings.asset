@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/_Scenes/Menus/MainMenu.unity
     guid: 08b10ffefb7f13a41b97387c62d48e92
   - enabled: 1
-    path: Assets/_Scenes/GameLevel/Level_01_Tutorial-1.unity
+    path: Assets/_Scenes/00_Tutorial/00_01.unity
     guid: 5cfbe175f23b4e647b7b44cbc0f4a23b
   - enabled: 1
     path: Assets/_Scenes/GameLevel/Level_PushMeUp.unity
