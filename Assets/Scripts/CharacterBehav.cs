@@ -272,7 +272,7 @@ public class CharacterBehav : MonoBehaviour
                             break;
                         case CommandsInputsEnum.JUMP:
                             rb.AddForce(Vector2.up * jumpForce);
-
+                            isJumping = true;
                             break;
                         case CommandsInputsEnum.INTERACT:
                             isInteracting = true;
@@ -284,7 +284,7 @@ public class CharacterBehav : MonoBehaviour
                         case CommandsInputsEnum.END:
                             direction = DirectionInputs.NONE;
                             anim.SetTrigger("End");
-                            iteration = -1;
+                            iteration = -10;
                             break;
                         default:
                             break;

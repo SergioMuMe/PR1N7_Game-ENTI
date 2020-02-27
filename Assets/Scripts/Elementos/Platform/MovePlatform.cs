@@ -120,7 +120,11 @@ public class MovePlatform : InterfaceGame
         {
             activated = true;
         }
-        else if (activated)
+    }
+
+    public override void Deactivate()
+    {
+        if (activated)
         {
             activated = false;
         }

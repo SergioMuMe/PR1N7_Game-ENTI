@@ -6,20 +6,31 @@ public class PressurePlate : MonoBehaviour
 {
     //objeto u objetos que queremos que se activen
     public InterfaceGame[] elements;
+    public bool on = false;
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerStay2D(Collider2D other)
     {
-        for (int i = 0; i < elements.Length; i++)
+        if (!on)
         {
-            elements[i].Activate();
+            for (int i = 0; i < elements.Length; i++)
+            {
+                elements[i].Activate();
+            }
+
+            on = true;
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        for (int i = 0; i < elements.Length; i++)
+        if (on)
         {
-            elements[i].Activate();
+            for (int i = 0; i < elements.Length; i++)
+            {
+                elements[i].Deactivate();
+            }
+
+            on = false;
         }
     }
 }
