@@ -5,7 +5,10 @@ using UnityEngine;
 public class TestBombilla : InterfaceGame
 {
     public override void Activate()
+    { 
+    }
+
+    public override void Deactivate()
     {
-        Debug.Log("Soy una Bombilla");
     }
 }

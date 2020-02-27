@@ -8,11 +8,27 @@ public class Lever : MonoBehaviour
     //objeto u objetos que queremos que se activen
     public InterfaceGame[] elements;
 
+    private bool on = false;
+
     public void Switch()
     {
-        for (int i = 0; i < elements.Length; i++)
+        if (on)
         {
-            elements[i].Activate();
+            for (int i = 0; i < elements.Length; i++)
+            {
+                elements[i].Deactivate();
+            }
+
+            on = false;
         }
+        else
+        {
+            for (int i = 0; i < elements.Length; i++)
+            {
+                elements[i].Activate();
+            }
+
+            on = true;
+        }        
     }
 }
