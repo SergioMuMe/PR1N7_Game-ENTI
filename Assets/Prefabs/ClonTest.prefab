@@ -144,11 +144,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
-  limitRecordingTime: 5
+  limitRecordingTime: 10
   clones: []
-  maxClones: 0
+  maxClones: 1
   baseSpeed: 700
-  jumpSpeed: 600
+  jumpSpeed: 700
   jumpForce: 0
   jumpForceDefault: 12000
   jumpForceBouncer: 20000
@@ -163,8 +163,8 @@ MonoBehaviour:
   nanoStart: {fileID: 3090670771556596472}
   nanoEnd: {fileID: 5158242484798041460}
   groundedPrecision: 0.1
-  isJumping: 0
-  isFalling: 0
+  isJumping: 1
+  isFalling: 1
   isRecording: 0
   isInteracting: 0
   player: {fileID: 0}

@@ -211,15 +211,17 @@ public class DoorController : InterfaceGame
 
     public override void Activate()
     {
-
         if (!activated)
         {
             activated = true;
-        }
-        else if (activated)
+        }   
+    }
+
+    public override void Deactivate()
+    {
+        if (activated)
         {
             activated = false;
         }
-    
     }
 }

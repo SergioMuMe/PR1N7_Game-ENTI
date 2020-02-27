@@ -32,7 +32,7 @@ public class Bounce : MonoBehaviour
     {
         if (other.tag == "Player" || other.tag == "Clone")
         {
-            player.jumpForce = player.jumpForceDefault;
+            other.GetComponent<CharacterBehav>().jumpForce = player.jumpForceDefault;
         }
     }
 }
