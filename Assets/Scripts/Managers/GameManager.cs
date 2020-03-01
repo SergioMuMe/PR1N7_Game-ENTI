@@ -23,14 +23,16 @@ public class GameManager : MonoBehaviour
         public bool batteryCollected; // Recogidas pilas del nivel Si/No
     }
 
+    //PROFE: Porque is never asigned to...
     // Listado de profiles
     public struct Profiles
     {
         public bool profileUsed; // Indica si está en uso
         public string profileName; // Nombre profile
-        public List<LevelData> levelsData; // Listado de niveles y su estado
+        public LevelData[] levelsData; // Listado de niveles y su estado
     }
-    private List<Profiles> profiles;
+
+    private Profiles[] profiles = new Profiles[3];
 
     // Paths de los profiles
     private string[] path = { "bin/profile01.bin", "bin/profile02.bin", "bin/profile03.bin" };
@@ -60,8 +62,8 @@ public class GameManager : MonoBehaviour
         #                   #
         #####################
     */
-      
-    
+
+
     /* 
         ######################################
         #                                    #
@@ -70,20 +72,44 @@ public class GameManager : MonoBehaviour
         ######################################
     */
     // PROFE: Como crear carpetas o ficheros por defecto para las builds.
+    // PROFE: Repasar escribir/leer ficheros binarios structs. ¿Marshalling? ¿BinarySerialization?
 
     //Por defecto todos los profiles están creados pero vacios, el bool profileUsed determina si el usuario puede usarlo o no para crear su profile.    
     private void createEmptyProfiles()
     {
-        bool prfUsed = false;
-        string prfName = "New profile";
+
+        for (int i = 0; i < profiles.Length; i++)
+        {
+            profiles[i].profileUsed = false;
+            profiles[i].profileName = "New profile";
+            profiles[i].levelsData = new LevelData[2];
+            for (int j = 0; j < profiles[i].levelsData.Length; j++)
+            {
+                profiles[i].levelsData[j].finished = false;
+                profiles[i].levelsData[j].batteryCollected = false;
+                profiles[i].levelsData[j].timeBeated = false;
+                profiles[i].levelsData[j].timeRecord = 999f;
+            }
+        }
 
         for (int i = 0; i < path.Length; i++)
         {
+
             BinaryWriter writer = new BinaryWriter(File.Open(path[i], FileMode.Create));
-            writer.Write(prfUsed);
-            writer.Write(prfName);
-            writer.Close();     
-        }       
+
+            writer.Write(profiles[i].profileUsed);
+            writer.Write(profiles[i].profileName);
+
+            for (int j = 0; j < profiles[i].levelsData.Length; j++)
+            {
+                writer.Write(profiles[i].levelsData[j].finished);
+                writer.Write(profiles[i].levelsData[j].batteryCollected);
+                writer.Write(profiles[i].levelsData[j].timeBeated);
+                writer.Write(profiles[i].levelsData[j].timeRecord);
+            }
+
+            writer.Close();
+        }      
     }
 
     /*
@@ -102,9 +128,9 @@ public class GameManager : MonoBehaviour
             if (File.Exists(path[i])) {
                 reader = new BinaryReader(File.Open(path[i], FileMode.Open));
 
-                // PROFE Read struct y guardar en List<Profiles> profiles. ¿Marshalling?
-               
-            } else {
+                // TODO Read struct y guardar en List<Profiles> profiles. 
+            }
+            else {
                 Debug.Log("Fail to open " + path[i] + " file.");
             }
         }
@@ -122,13 +148,14 @@ public class GameManager : MonoBehaviour
         newLevelData.timeRecord = timeRecord;
         newLevelData.batteryCollected = batteryCollected;
 
-        //profiles[profileSelected].levelsData[idLevel] = newLevelData;
         Debug.Log(
             "Finished: " + newLevelData.finished +
             "\ntimeBeated: " + newLevelData.timeBeated +
             "\ntimeRecord: " + newLevelData.timeRecord +
             "\nbatteryCollected: " + newLevelData.batteryCollected
             );
+
+        profiles[profileSelected].levelsData[idLevel] = newLevelData;
     }
 
     /*
