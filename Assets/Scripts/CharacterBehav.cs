@@ -59,11 +59,6 @@ public class CharacterBehav : MonoBehaviour
     //Almacena la velocidad vertical maxima en un saltador
     public float maxHeightBouncer = 0.0f;
 
-    //Almacena el tiempo en el que puedes saltar sin tocar el suelo
-    public float saveJumpTime = 0.0f;
-    //Almacena el tiempo en el que hemos saltado
-    private float actualJumpTime = 0.0f;
-
     //Rigidbody del personaje
     public Rigidbody2D rb;
     //Particulas de aterrizaje
@@ -89,10 +84,12 @@ public class CharacterBehav : MonoBehaviour
     private RaycastHit2D hitRight;
     private RaycastHit2D hitLeft;
 
+    private bool colRight;
+    private bool colLeft;
+
+    public bool isGrounded = false;
     //Almacena el estado si esta saltando
     public bool isJumping = true;
-    //Almacena el estado de si no detecta el suelo
-    public bool isFalling = true;
     //Almacena el estado si esta grabando
     public bool isRecording = false;
     //Almacena el estado si ha interactuado
@@ -181,7 +178,6 @@ public class CharacterBehav : MonoBehaviour
                 {
                     rb.AddForce(Vector2.up * jumpForce);
                     direction = DirectionInputs.NONE;
-                    actualJumpTime = Time.time + saveJumpTime;
 
                     isJumping = true;
                 }
@@ -303,39 +299,39 @@ public class CharacterBehav : MonoBehaviour
     {
         float delta = Time.fixedDeltaTime * 1000;
 
-        hitForward = Physics2D.Raycast(transform.position + (Vector3.down * groundDistance) + (Vector3.right *  (frontDistance - groundedPrecision)), -Vector2.up, groundedPrecision);
-        hitBack = Physics2D.Raycast(transform.position + (Vector3.down * groundDistance) + (Vector3.left * (frontDistance - groundedPrecision)), -Vector2.up, groundedPrecision);
-
-        hitRight = Physics2D.Raycast(transform.position + (Vector3.right * frontDistance) + (Vector3.down * groundDistance), Vector2.right, groundedPrecision);
-        hitLeft = Physics2D.Raycast(transform.position + (Vector3.left * frontDistance) + (Vector3.down * groundDistance), Vector2.left, groundedPrecision);
-
-        if (hitForward && isJumping && isFalling  || hitBack && isJumping && isFalling)
+        if (isJumping)
         {
-            isJumping = false;
-            isFalling = false;
+            hitForward = Physics2D.Raycast(transform.position + (Vector3.down * groundDistance) + (Vector3.right * (frontDistance - groundedPrecision)), -Vector2.up, groundedPrecision);
+            hitBack = Physics2D.Raycast(transform.position + (Vector3.down * groundDistance) + (Vector3.left * (frontDistance - groundedPrecision)), -Vector2.up, groundedPrecision);
 
-            if (maxHeight > maxHeightDefault)
+            if (!hitForward && !hitBack)
             {
-                maxHeight = maxHeightDefault;
+                isGrounded = false;
             }
 
-            partRender.material = GetComponent<MeshRenderer>().material;
-            part.Emit(50);
-        }
-        else if (!hitForward && !hitBack && actualJumpTime < Time.time && isFalling)
-        {
-            isJumping = true;
-        }
-        else if (!hitForward && !hitBack && actualJumpTime < Time.time && !isFalling)
-        {
-            actualJumpTime = Time.time + saveJumpTime;
-            isFalling = true;
-        }
-        else if (!isFalling && isJumping && actualJumpTime < Time.time)
-        {
-            isFalling = true;
-        }
+            if (Physics2D.Raycast(transform.position + (Vector3.right * frontDistance) + (Vector3.down * groundDistance), Vector2.right, groundedPrecision))
+            {
+                colRight = true;
+            }
+            else
+            {
+                colRight = false;  
+            }
 
+            if (Physics2D.Raycast(transform.position + (Vector3.left * frontDistance) + (Vector3.down * groundDistance), Vector2.left, groundedPrecision))
+            {
+                colLeft = true;
+            }
+            else
+            {
+                colLeft = false; 
+            }
+        }
+        else
+        {
+            colRight = false;
+            colLeft = false;
+        }
 
         if (rb.velocity.x > maxVelocity)
         {
@@ -360,21 +356,21 @@ public class CharacterBehav : MonoBehaviour
             case DirectionInputs.NONE:
                 break;
             case DirectionInputs.RIGHT:
-                if (!isJumping && !hitRight || !isJumping && hitRight.collider.tag == "Clone")
+                if (!isJumping && !colRight || !isJumping && type == CharacterType.CLONE)
                 {
                     rb.AddForce(Vector2.right * baseSpeed, ForceMode2D.Force);
                 }
-                else if (!hitRight || !isJumping && hitLeft.collider.tag == "Clone")
+                else if (!colRight || type == CharacterType.CLONE)
                 {
                     rb.AddForce(Vector2.right * jumpSpeed, ForceMode2D.Force);
                 }
                 break;
             case DirectionInputs.LEFT:
-                if (!isJumping && !hitLeft || !isJumping && hitLeft.collider.tag == "Clone")
+                if (!isJumping && !colLeft || !isJumping && type == CharacterType.CLONE)
                 {
                     rb.AddForce(Vector2.left * baseSpeed, ForceMode2D.Force);
                 }
-                else if (!hitLeft || !isJumping && hitLeft.collider.tag == "Clone")
+                else if (!colLeft || type == CharacterType.CLONE)
                 {
                     rb.AddForce(Vector2.left * jumpSpeed, ForceMode2D.Force);
                 }
@@ -412,6 +408,29 @@ public class CharacterBehav : MonoBehaviour
         {
             collision.GetComponent<Lever>().Switch();
             isInteracting = false;
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        
+        if (hitForward && !isGrounded || hitBack && !isGrounded)
+        {
+
+            isJumping = false;
+            isGrounded = true;
+
+            if (maxHeight > maxHeightDefault)
+            {
+                maxHeight = maxHeightDefault;
+            }
+
+            partRender.material = GetComponent<MeshRenderer>().material;
+            part.Emit(50);
+        }
+        else if (!hitForward && !hitBack)
+        {
+            isJumping = true;
         }
     }
 
