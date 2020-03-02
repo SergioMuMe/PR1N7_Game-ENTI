@@ -14,6 +14,11 @@ public class SceneController : MonoBehaviour
         SceneManager.LoadScene(scene);
     }
 
+    private void Start()
+    {
+        sceneRestart = SceneManager.GetActiveScene().name;
+    }
+
     private void Update()
     {
         if (Input.GetKey(KeyCode.P))
