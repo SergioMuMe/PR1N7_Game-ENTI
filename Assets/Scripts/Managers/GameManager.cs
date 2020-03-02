@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    /*
+    /*index
         ################################
         #                              #
         #  DATOS DENTRO DE UN PROFILE  #
@@ -17,13 +17,15 @@ public class GameManager : MonoBehaviour
     // Un nivel y su estado.
     public struct LevelData
     {
+        public bool levelUnblockedFLAG; //FLAG usado en MainMenuController para displayar los niveles disponibles.
+        public bool firstTimeFLAG; //FLAG usado para setear el timeRecord por primera vez desde SceneController.
+
         public bool finished; // Nivel superado Si/No
         public bool timeBeated; // Superado en menos de X tiempo Si/No
-        public float timeRecord; // Marca personal de tiempo record
+        public float timeRecord; // Marca personal de tiempo record.
         public bool batteryCollected; // Recogidas pilas del nivel Si/No
     }
 
-    //PROFE: Porque is never asigned to...
     // Listado de profiles
     public struct Profiles
     {
@@ -32,12 +34,12 @@ public class GameManager : MonoBehaviour
         public LevelData[] levelsData; // Listado de niveles y su estado
     }
 
-    private Profiles[] profiles = new Profiles[3];
+    public Profiles[] profiles = new Profiles[3];
 
     // Paths de los profiles
     private string[] path = { "bin/profile01.bin", "bin/profile02.bin", "bin/profile03.bin" };
 
-    /*
+    /*index
         ########################
         #                      #
         #  DATOS DE LA SESIÓN  #
@@ -51,11 +53,11 @@ public class GameManager : MonoBehaviour
      * Para guardar de nuevo en fichero: path[profileSelected] y guardamos profiles[profileSelected] en el fichero.
      */
     public int profileSelected;
-    public int test;
+    
 
     // TODO: SetProfileSelected. Lo más seguro que desde UNITY inspector.
 
-    /*
+    /*index
         #####################
         #                   #
         #  DATOS DEL NIVEL  #
@@ -63,8 +65,17 @@ public class GameManager : MonoBehaviour
         #####################
     */
 
+    public bool getFirstTimeFLAG(int idLevel)
+    {
+        return profiles[profileSelected].levelsData[idLevel].firstTimeFLAG;
+    }
 
-    /* 
+    public float getTimeRecord(int idLevel)
+    {
+        return profiles[profileSelected].levelsData[idLevel].timeRecord;
+    }
+
+    /*index
         ######################################
         #                                    #
         #  FUNCIONES DURANTE LA INSTALACIÓN  #
@@ -72,7 +83,6 @@ public class GameManager : MonoBehaviour
         ######################################
     */
     // PROFE: Como crear carpetas o ficheros por defecto para las builds.
-    // PROFE: Repasar escribir/leer ficheros binarios structs. ¿Marshalling? ¿BinarySerialization?
 
     //Por defecto todos los profiles están creados pero vacios, el bool profileUsed determina si el usuario puede usarlo o no para crear su profile.    
     private void createEmptyProfiles()
@@ -85,12 +95,22 @@ public class GameManager : MonoBehaviour
             profiles[i].levelsData = new LevelData[2];
             for (int j = 0; j < profiles[i].levelsData.Length; j++)
             {
+                
+                //El primer nivel está desbloqueado para jugar
+                if (j == 0) { profiles[i].levelsData[j].levelUnblockedFLAG = true; }
+                else { profiles[i].levelsData[j].levelUnblockedFLAG = true; }
+
+                profiles[i].levelsData[j].firstTimeFLAG = true;
                 profiles[i].levelsData[j].finished = false;
                 profiles[i].levelsData[j].batteryCollected = false;
                 profiles[i].levelsData[j].timeBeated = false;
                 profiles[i].levelsData[j].timeRecord = 999f;
             }
         }
+
+        //TESTING ZONE BEGIN
+        profiles[0].levelsData[2].levelUnblockedFLAG = false;
+        //TESTING ZONE END
 
         for (int i = 0; i < path.Length; i++)
         {
@@ -102,6 +122,8 @@ public class GameManager : MonoBehaviour
 
             for (int j = 0; j < profiles[i].levelsData.Length; j++)
             {
+                writer.Write(profiles[i].levelsData[j].levelUnblockedFLAG);
+                writer.Write(profiles[i].levelsData[j].firstTimeFLAG);
                 writer.Write(profiles[i].levelsData[j].finished);
                 writer.Write(profiles[i].levelsData[j].batteryCollected);
                 writer.Write(profiles[i].levelsData[j].timeBeated);
@@ -112,7 +134,7 @@ public class GameManager : MonoBehaviour
         }      
     }
 
-    /*
+    /*index
         ##########################
         #                        #
         #  GUARDAR|CARGAR DATOS  #
@@ -129,6 +151,7 @@ public class GameManager : MonoBehaviour
                 reader = new BinaryReader(File.Open(path[i], FileMode.Open));
 
                 // TODO Read struct y guardar en List<Profiles> profiles. 
+                // SOLUCION: Hacerlo variable a variable por tipo de dato, como en c++
             }
             else {
                 Debug.Log("Fail to open " + path[i] + " file.");
@@ -141,8 +164,11 @@ public class GameManager : MonoBehaviour
     //Tras superar un nivel. Guarda en fichero el progreso del profile.
     public void saveData(int idLevel, bool finished, bool timeBeated, float timeRecord, bool batteryCollected)
     {
+        //SAVE CURRENT LEVEL DATA
         LevelData newLevelData;
-
+        
+        newLevelData.levelUnblockedFLAG = false;
+        newLevelData.firstTimeFLAG = false;
         newLevelData.finished = finished;
         newLevelData.timeBeated = timeBeated;
         newLevelData.timeRecord = timeRecord;
@@ -156,16 +182,24 @@ public class GameManager : MonoBehaviour
             );
 
         profiles[profileSelected].levelsData[idLevel] = newLevelData;
+
+        //SAVE NEXT LEVEL DATA
+        //TODO: Controlar cuando juegue el último nivel del juego. idLevel+1 !!!
+        LevelData unblockNextLevel;
+
+        unblockNextLevel.levelUnblockedFLAG = false;
+
+        profiles[profileSelected].levelsData[idLevel + 1].levelUnblockedFLAG = unblockNextLevel.levelUnblockedFLAG;
     }
 
-    /*
+    /*index
         ########################
         #                      #
         #  FUNCIONES DE UNITY  #
         #                      #
         ########################
     */
-    
+
     // Instanciar GameManager
     public static GameManager Instance { get; private set; }
 
@@ -184,7 +218,7 @@ public class GameManager : MonoBehaviour
     
     void Start()
     {
-        
+        createEmptyProfiles();
     }
 
     void Update()
