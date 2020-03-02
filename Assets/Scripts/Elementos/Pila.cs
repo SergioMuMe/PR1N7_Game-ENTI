@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class Pila : MonoBehaviour
 {
-    public float rotationSpeed;
-    // Start is called before the first frame update
+
+    private SceneController scriptSC;
+
+
     void Start()
     {
-        
+        scriptSC = GameObject.Find("NextLevel").GetComponent<SceneController>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         transform.Rotate(0.2f, 0.5f, 0f);
@@ -19,10 +20,10 @@ public class Pila : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Collision");
+        
         if (collision.gameObject.tag == "Player")
         {
-            Debug.Log("CollisionPlayer");
+            scriptSC.batteryLevelCount--;
             Destroy(gameObject);
         }
     }

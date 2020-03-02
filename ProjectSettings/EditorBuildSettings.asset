@@ -6,21 +6,18 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/_Scenes/Menus/MainMenu.unity
-    guid: 08b10ffefb7f13a41b97387c62d48e92
-  - enabled: 1
-    path: Assets/_Scenes/GameLevel/Level_01_Tutorial-1.unity
+    path: Assets/_Scenes/00_Tutorial/00_01-Jump.unity
     guid: 5cfbe175f23b4e647b7b44cbc0f4a23b
   - enabled: 1
-    path: Assets/_Scenes/GameLevel/Level_PushMeUp.unity
-    guid: 3c3cb04e03ac13f4cb827b0f25368c68
-  - enabled: 1
-    path: Assets/_Scenes/GameLevel/Level_TheBox.unity
+    path: Assets/_Scenes/01_GameLevel/Level_TheBox.unity
     guid: 0974a0df20c5adb42a34e2cb851b4c9e
-  - enabled: 1
-    path: Assets/_Scenes/GameLevel/Level_Bouncer.unity
-    guid: b6128e64b928dc346a60c53eb4ac863e
   - enabled: 1
     path: Assets/_Scenes/DevelopRoom.unity
     guid: ecd46a2bd1f7e724ea6c4112a7910363
+  - enabled: 1
+    path: Assets/_Scenes/00_Tutorial/00_03-Bouncer.unity
+    guid: b6128e64b928dc346a60c53eb4ac863e
+  - enabled: 1
+    path: Assets/_Scenes/00_Tutorial/00_04-PushMeUp.unity
+    guid: 3c3cb04e03ac13f4cb827b0f25368c68
   m_configObjects: {}
