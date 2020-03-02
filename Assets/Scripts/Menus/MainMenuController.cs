@@ -22,26 +22,17 @@ public class MainMenuController : MonoBehaviour
     private int profileSelected;
 
     //Obtenemos los botones de los niveles;
-    public Button[] levelButtons;
-    private TextMeshProUGUI[] textUI;
+    public GameObject[] levelButtons;
+    public TextMeshProUGUI[] textUI;
 
 
     //A continuación, todos los arrays corresponden a [0]-Bloqueado [1]-Desbloqueado
     public TMP_ColorGradient[] statusLevelColor = new TMP_ColorGradient[2];
-    public Image[] statusStar = new Image[2];
-    public Image[] statusTime = new Image[2];
-    public Image[] statusBattery = new Image[2];
-
-    public void LoadLevel(string _sceneName)
-    {
-        SceneManager.LoadScene(_sceneName);
-    }
+    public Sprite[] statusStar = new Sprite[2];
+    public Sprite[] statusTime = new Sprite[2];
+    public Sprite[] statusBattery = new Sprite[2];
 
 
-    public void LoadProfileInfo()
-    {
-
-    }
 
     /*index 
         ###################################
@@ -55,12 +46,17 @@ public class MainMenuController : MonoBehaviour
     {
         for (int j = 0; j < scriptGM.profiles[profileSelected].levelsData.Length; j++)
         {
-            levelButtons[j].interactable = scriptGM.profiles[profileSelected].levelsData[j].levelUnblockedFLAG;
-            if (levelButtons[j].IsInteractable())
+            Debug.LogWarning("Unbloqued Map [" + j + "]: " + scriptGM.profiles[profileSelected].levelsData[j].levelUnblockedFLAG);
+        }
+            for (int j = 0; j < scriptGM.profiles[profileSelected].levelsData.Length; j++)
+        {
+            
+            levelButtons[j].GetComponent<Button>().interactable = scriptGM.profiles[profileSelected].levelsData[j].levelUnblockedFLAG;
+
+            if (levelButtons[j].GetComponent<Button>().IsInteractable())
             {
                 textUI[j].colorGradientPreset = statusLevelColor[1];
             }
-
         }
     }
 
@@ -72,15 +68,47 @@ public class MainMenuController : MonoBehaviour
         ####################################
     */
 
+    public GameObject levelSelected;
+    private TextMeshProUGUI levelSelectedTitle;
+
     private SpriteRenderer starSymbol;
     private SpriteRenderer cronometerSymbol;
     private SpriteRenderer batterySymbol;
 
-    private TextMeshProUGUI levelRecord;
+    private TextMeshProUGUI playerRecord;
 
-    private void loadLevelSelected()
+    private int idLevel;
+
+    public void setIdLevel(int _idLevel)
     {
-        
+        idLevel = _idLevel;
+    }
+
+    public void loadLevelSelected()
+    {
+        levelSelectedTitle.text = "LEVEL " + idLevel;
+
+        if(scriptGM.profiles[profileSelected].levelsData[idLevel].finished)
+        {
+            starSymbol.sprite = statusStar[1];
+        }
+        if (scriptGM.profiles[profileSelected].levelsData[idLevel].timeBeated)
+        {
+            cronometerSymbol.sprite = statusTime[1];
+        }
+        if (scriptGM.profiles[profileSelected].levelsData[idLevel].batteryCollected)
+        {
+            batterySymbol.sprite = statusBattery[1];
+        }
+
+        if(scriptGM.profiles[profileSelected].levelsData[idLevel].firstTimeFLAG)
+        {
+            playerRecord.text = "Player record: -- sec";
+        } else
+        {
+            playerRecord.text = "Player record: " + scriptGM.profiles[profileSelected].levelsData[idLevel].timeRecord + " sec";
+        }
+
     }
 
     /*index
@@ -90,6 +118,12 @@ public class MainMenuController : MonoBehaviour
         #                  #
         ####################
     */
+
+
+    public void playLevel()
+    {
+        SceneManager.LoadScene(idLevel);
+    }
 
     public void QuitGame()
     {
@@ -107,19 +141,29 @@ public class MainMenuController : MonoBehaviour
 
     private void Start()
     {
+
         scriptGM = GameObject.Find("GameManager").GetComponent<GameManager>();
+
+
+        //Obtenemos referencias...
+        levelSelectedTitle = GameObject.Find("LevelSelectedTitle").GetComponent<TextMeshProUGUI>();
 
         starSymbol = GameObject.Find("starSymbol").GetComponent<SpriteRenderer>();
         cronometerSymbol = GameObject.Find("cronometerSymbol").GetComponent<SpriteRenderer>();
         batterySymbol = GameObject.Find("batterySymbol").GetComponent<SpriteRenderer>();
 
+        playerRecord = GameObject.Find("PlayerRecord").GetComponent<TextMeshProUGUI>();
+        //...Y desactivamos menu.
+        levelSelected.SetActive(false);
+
         for (int i = 0; i < levelButtons.Length; i++)
         {
-            textUI[i] = levelButtons[i].GetComponent<TextMeshProUGUI>();
+            textUI[i] = levelButtons[i].GetComponentInChildren<TextMeshProUGUI>();
         }
 
         //TESTING ZONE BEGIN
         profileSelected = 0;
+        getLevelsStatus();
         //TESTING ZONE END
     }
 

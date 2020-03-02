@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
     public Profiles[] profiles = new Profiles[3];
 
     // Paths de los profiles
-    private string[] path = { "bin/profile01.bin", "bin/profile02.bin", "bin/profile03.bin" };
+    private string[] path = { "bin/profile00.bin", "bin/profile01.bin", "bin/profile02.bin" };
 
     /*index
         ########################
@@ -92,13 +92,14 @@ public class GameManager : MonoBehaviour
         {
             profiles[i].profileUsed = false;
             profiles[i].profileName = "New profile";
-            profiles[i].levelsData = new LevelData[2];
+            //ALERTA: Siempre crear 1 level más de los jugables. El [0] es de testing purposes{GameDevRoom}. El resto de lvl corresponden su ID con el de la BUILD. ¡Todo lo que no sean niveles de juego deberán ir al final de la build order!
+            profiles[i].levelsData = new LevelData[6];
             for (int j = 0; j < profiles[i].levelsData.Length; j++)
             {
                 
-                //El primer nivel está desbloqueado para jugar
-                if (j == 0) { profiles[i].levelsData[j].levelUnblockedFLAG = true; }
-                else { profiles[i].levelsData[j].levelUnblockedFLAG = true; }
+                //El primer nivel y la DEV-Room está desbloqueado para jugar
+                if (j == 0 || j == 1) { profiles[i].levelsData[j].levelUnblockedFLAG = true; }
+                else { profiles[i].levelsData[j].levelUnblockedFLAG = false; }
 
                 profiles[i].levelsData[j].firstTimeFLAG = true;
                 profiles[i].levelsData[j].finished = false;
@@ -109,7 +110,7 @@ public class GameManager : MonoBehaviour
         }
 
         //TESTING ZONE BEGIN
-        profiles[0].levelsData[2].levelUnblockedFLAG = false;
+        
         //TESTING ZONE END
 
         for (int i = 0; i < path.Length; i++)
@@ -167,7 +168,7 @@ public class GameManager : MonoBehaviour
         //SAVE CURRENT LEVEL DATA
         LevelData newLevelData;
         
-        newLevelData.levelUnblockedFLAG = false;
+        newLevelData.levelUnblockedFLAG = true;
         newLevelData.firstTimeFLAG = false;
         newLevelData.finished = finished;
         newLevelData.timeBeated = timeBeated;
