@@ -19,6 +19,8 @@ public class CharacterBehav : MonoBehaviour
         LEFT
     }
 
+    public bool facingRight = true;
+
     //Almacena el tipo de personaje
     public CharacterType type;
 
@@ -364,6 +366,11 @@ public class CharacterBehav : MonoBehaviour
                 {
                     rb.AddForce(Vector2.right * jumpSpeed, ForceMode2D.Force);
                 }
+                if (!facingRight)
+                {
+                    facingRight = true;
+                    transform.Rotate(0, 180, 0);
+                }
                 break;
             case DirectionInputs.LEFT:
                 if (!isJumping && !colLeft || !isJumping && type == CharacterType.CLONE)
@@ -373,6 +380,11 @@ public class CharacterBehav : MonoBehaviour
                 else if (!colLeft || type == CharacterType.CLONE)
                 {
                     rb.AddForce(Vector2.left * jumpSpeed, ForceMode2D.Force);
+                }
+                if (facingRight)
+                {
+                    facingRight = false;
+                    transform.Rotate(0, 180, 0);
                 }
                 break;
             default:

@@ -12,10 +12,13 @@ ModelImporter:
     2100000: lambert1
     2300000: Impresora
     2300002: Orugas
+    2300004: //RootNode
     3300000: Impresora
     3300002: Orugas
+    3300004: //RootNode
     4300000: Impresora
     4300002: Orugas
+    4300004: Orugas1
   externalObjects: {}
   materials:
     importMaterials: 1

@@ -44,10 +44,10 @@ public class MainMenuController : MonoBehaviour
 
     private void getLevelsStatus()
     {
-        for (int j = 0; j < scriptGM.profiles[profileSelected].levelsData.Length; j++)
-        {
-            Debug.LogWarning("Unbloqued Map [" + j + "]: " + scriptGM.profiles[profileSelected].levelsData[j].levelUnblockedFLAG);
-        }
+        //for (int j = 0; j < scriptGM.profiles[profileSelected].levelsData.Length; j++)
+        //{
+        //    Debug.LogWarning("Unbloqued Map [" + j + "]: " + scriptGM.profiles[profileSelected].levelsData[j].levelUnblockedFLAG);
+        //}
             for (int j = 0; j < scriptGM.profiles[profileSelected].levelsData.Length; j++)
         {
             
