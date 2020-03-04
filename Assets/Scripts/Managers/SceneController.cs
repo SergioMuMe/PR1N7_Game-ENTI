@@ -14,6 +14,9 @@ public class SceneController : MonoBehaviour
     */
     public string nextScene;
     private string actualScene;
+    
+    //PROFE: ¿Porque entra dos veces en el trigger?
+    private bool waltrapa;
 
     private void restartScene(string scene)
     {
@@ -37,7 +40,7 @@ public class SceneController : MonoBehaviour
     public int idLevel; //Para informar al GameManager de que nivel és.
     public int batteryLevelCount; // Cantidad de pilas en el nivel
     private float playerTime; // En Segundos. Tiempo que tarda el jugador en superar el nivel
-    public float timeLevelLimit; // En Segundos. Tiempo objetivo del nivel para ganar la estrella del tiempo
+    private float timeLevelLimit; // En Segundos. Tiempo objetivo del nivel para ganar la estrella del tiempo
     private float timePlayerRecord; // En Segundos. Tiempo record del jugador. 
 
     private GameManager scriptGM; //Obtenemos el GameManager para ir almacenando los datos de la sesion de juego
@@ -82,9 +85,7 @@ public class SceneController : MonoBehaviour
             //Mantiene el record anterior
             timeRecord = timePlayerRecord;
         }
-        Debug.LogWarning("playerTime: " + playerTime);
-        Debug.LogWarning("timeRecord: " + timeRecord);
-        Debug.LogWarning("timePlayerRecord: " + timePlayerRecord);
+        
     }
     
     //Esta función es llamada justo antes de cambiar de nivel.
@@ -106,6 +107,9 @@ public class SceneController : MonoBehaviour
         scriptGM = GameObject.Find("GameManager").GetComponent<GameManager>();
         actualScene = SceneManager.GetActiveScene().name;
         getTimePlayerRecord();
+        timeLevelLimit = scriptGM.timeLevelLimit[idLevel];
+
+        waltrapa = true;
     }
 
     private void Update()
@@ -126,8 +130,11 @@ public class SceneController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Player")
+        if (collision.tag == "Player" && waltrapa)
         {
+            waltrapa = false;
+            Debug.LogError("Check exit");
+            collision.enabled = false;
             loadNextScene(nextScene);
         }
     }

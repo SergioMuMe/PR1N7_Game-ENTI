@@ -44,13 +44,9 @@ public class MainMenuController : MonoBehaviour
 
     private void getLevelsStatus()
     {
-        //for (int j = 0; j < scriptGM.profiles[profileSelected].levelsData.Length; j++)
-        //{
-        //    Debug.LogWarning("Unbloqued Map [" + j + "]: " + scriptGM.profiles[profileSelected].levelsData[j].levelUnblockedFLAG);
-        //}
-            for (int j = 0; j < scriptGM.profiles[profileSelected].levelsData.Length; j++)
+        
+        for (int j = 0; j < scriptGM.profiles[profileSelected].levelsData.Length; j++)
         {
-            
             levelButtons[j].GetComponent<Button>().interactable = scriptGM.profiles[profileSelected].levelsData[j].levelUnblockedFLAG;
 
             if (levelButtons[j].GetComponent<Button>().IsInteractable())
@@ -68,6 +64,7 @@ public class MainMenuController : MonoBehaviour
         ####################################
     */
 
+    
     public GameObject levelSelected;
     private TextMeshProUGUI levelSelectedTitle;
 
@@ -75,6 +72,7 @@ public class MainMenuController : MonoBehaviour
     private SpriteRenderer cronometerSymbol;
     private SpriteRenderer batterySymbol;
 
+    private TextMeshProUGUI timeLevelLimit;
     private TextMeshProUGUI playerRecord;
 
     private int idLevel;
@@ -91,22 +89,39 @@ public class MainMenuController : MonoBehaviour
         if(scriptGM.profiles[profileSelected].levelsData[idLevel].finished)
         {
             starSymbol.sprite = statusStar[1];
+        } else
+        {
+            starSymbol.sprite = statusStar[0];
         }
+
         if (scriptGM.profiles[profileSelected].levelsData[idLevel].timeBeated)
         {
             cronometerSymbol.sprite = statusTime[1];
+        } else
+        {
+            cronometerSymbol.sprite = statusTime[0];
         }
+
         if (scriptGM.profiles[profileSelected].levelsData[idLevel].batteryCollected)
         {
             batterySymbol.sprite = statusBattery[1];
+        } else
+        {
+            batterySymbol.sprite = statusBattery[0];
         }
-
-        if(scriptGM.profiles[profileSelected].levelsData[idLevel].firstTimeFLAG)
+        
+        timeLevelLimit.text = "Level record: " + scriptGM.timeLevelLimit[idLevel] + " sec";
+        
+        if (scriptGM.profiles[profileSelected].levelsData[idLevel].firstTimeFLAG)
         {
             playerRecord.text = "Player record: -- sec";
         } else
         {
-            playerRecord.text = "Player record: " + scriptGM.profiles[profileSelected].levelsData[idLevel].timeRecord + " sec";
+            
+            float mult = Mathf.Pow(10.0f, 2);
+            float playerRecordTime = Mathf.Round(scriptGM.profiles[profileSelected].levelsData[idLevel].timeRecord * mult) / mult;            
+
+            playerRecord.text = "Player record: " + playerRecordTime + " sec";
         }
 
     }
@@ -127,7 +142,6 @@ public class MainMenuController : MonoBehaviour
 
     public void QuitGame()
     {
-        Debug.Log("Quit");
         Application.Quit();
     }
 
@@ -152,7 +166,9 @@ public class MainMenuController : MonoBehaviour
         cronometerSymbol = GameObject.Find("cronometerSymbol").GetComponent<SpriteRenderer>();
         batterySymbol = GameObject.Find("batterySymbol").GetComponent<SpriteRenderer>();
 
+        timeLevelLimit = GameObject.Find("LevelRecord").GetComponent<TextMeshProUGUI>();
         playerRecord = GameObject.Find("PlayerRecord").GetComponent<TextMeshProUGUI>();
+
         //...Y desactivamos menu.
         levelSelected.SetActive(false);
 

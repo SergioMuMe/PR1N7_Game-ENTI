@@ -676,7 +676,7 @@ PrefabInstance:
         type: 3}
       propertyPath: elements.Array.data[0]
       value: 
-      objectReference: {fileID: 1709006088}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e3f76f5baba4b7a4b9b8bcfe91b221cf, type: 3}
 --- !u!1001 &672531465
@@ -1590,18 +1590,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 431244949}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1709006088 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7164113760742040418, guid: 707a013df26168f4e9793416cecbb379,
-    type: 3}
-  m_PrefabInstance: {fileID: 431244949}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1709006087}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a9799663a14eb643acb5680ecece4c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1867856841
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1833,6 +1821,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   profileSelected: 0
+  timeLevelLimit: []
 --- !u!4 &2031776105
 Transform:
   m_ObjectHideFlags: 0
