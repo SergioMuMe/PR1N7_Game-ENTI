@@ -66,8 +66,7 @@ public class SceneController : MonoBehaviour
     //Esta función es llamada justo antes de cambiar de nivel
     private void setLevelResults() {
         finished = true;
-        playerTime = Time.timeSinceLevelLoad;
-
+        
         if (batteryLevelCount == 0) { batteryCollected = true; }
         else { batteryCollected = false; }
 
@@ -83,6 +82,9 @@ public class SceneController : MonoBehaviour
             //Mantiene el record anterior
             timeRecord = timePlayerRecord;
         }
+        Debug.LogWarning("playerTime: " + playerTime);
+        Debug.LogWarning("timeRecord: " + timeRecord);
+        Debug.LogWarning("timePlayerRecord: " + timePlayerRecord);
     }
     
     //Esta función es llamada justo antes de cambiar de nivel.
@@ -103,13 +105,22 @@ public class SceneController : MonoBehaviour
     {
         scriptGM = GameObject.Find("GameManager").GetComponent<GameManager>();
         actualScene = SceneManager.GetActiveScene().name;
+        getTimePlayerRecord();
     }
 
     private void Update()
     {
+        //Cronometro, cuanto tarda el jugador en superar el nivel
+        playerTime += Time.deltaTime;
+
         if (Input.GetKey(KeyCode.P))
         {
             restartScene(actualScene);
+        }
+
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            restartScene("_Scenes/Menus/MainMenu");
         }
     }
 
