@@ -175,12 +175,12 @@ public class GameManager : MonoBehaviour
         newLevelData.timeRecord = timeRecord;
         newLevelData.batteryCollected = batteryCollected;
 
-        Debug.Log(
-            "Finished: " + newLevelData.finished +
-            "\ntimeBeated: " + newLevelData.timeBeated +
-            "\ntimeRecord: " + newLevelData.timeRecord +
-            "\nbatteryCollected: " + newLevelData.batteryCollected
-            );
+        //Debug.Log(
+        //    "Finished: " + newLevelData.finished +
+        //    "\ntimeBeated: " + newLevelData.timeBeated +
+        //    "\ntimeRecord: " + newLevelData.timeRecord +
+        //    "\nbatteryCollected: " + newLevelData.batteryCollected
+        //    );
 
         profiles[profileSelected].levelsData[idLevel] = newLevelData;
 
@@ -190,7 +190,9 @@ public class GameManager : MonoBehaviour
 
         unblockNextLevel.levelUnblockedFLAG = false;
 
-        profiles[profileSelected].levelsData[idLevel + 1].levelUnblockedFLAG = unblockNextLevel.levelUnblockedFLAG;
+        profiles[profileSelected].levelsData[idLevel + 1].levelUnblockedFLAG = true;
+        Debug.Log("newLevelData.timeRecord: " + newLevelData.timeRecord);
+        Debug.Log("timeRecord: " + timeRecord);
     }
 
     /*index
