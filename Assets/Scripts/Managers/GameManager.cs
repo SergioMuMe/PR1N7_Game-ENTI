@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
      * Para guardar de nuevo en fichero: path[profileSelected] y guardamos profiles[profileSelected] en el fichero.
      */
     public int profileSelected;
-    
+
 
     // TODO: SetProfileSelected. Lo más seguro que desde UNITY inspector.
 
@@ -64,6 +64,22 @@ public class GameManager : MonoBehaviour
         #                   #
         #####################
     */
+
+    public float[] timeLevelLimit;
+
+    private void setTimeLevelLimit()
+    {
+        //PROFE:¿porque no puedo hacer el new en la misma linea donde declaro timeLevelLimit?
+        timeLevelLimit = new float[7];
+
+        timeLevelLimit[0] = 10f;
+        timeLevelLimit[1] = 10f;
+        timeLevelLimit[2] = 15f;
+        timeLevelLimit[3] = 20f;
+        timeLevelLimit[4] = 25f;
+        timeLevelLimit[6] = 30f;
+    }
+
 
     public bool getFirstTimeFLAG(int idLevel)
     {
@@ -175,13 +191,6 @@ public class GameManager : MonoBehaviour
         newLevelData.timeRecord = timeRecord;
         newLevelData.batteryCollected = batteryCollected;
 
-        //Debug.Log(
-        //    "Finished: " + newLevelData.finished +
-        //    "\ntimeBeated: " + newLevelData.timeBeated +
-        //    "\ntimeRecord: " + newLevelData.timeRecord +
-        //    "\nbatteryCollected: " + newLevelData.batteryCollected
-        //    );
-
         profiles[profileSelected].levelsData[idLevel] = newLevelData;
 
         //SAVE NEXT LEVEL DATA
@@ -191,8 +200,8 @@ public class GameManager : MonoBehaviour
         unblockNextLevel.levelUnblockedFLAG = false;
 
         profiles[profileSelected].levelsData[idLevel + 1].levelUnblockedFLAG = true;
-        Debug.Log("newLevelData.timeRecord: " + newLevelData.timeRecord);
-        Debug.Log("timeRecord: " + timeRecord);
+
+        
     }
 
     /*index
@@ -206,8 +215,6 @@ public class GameManager : MonoBehaviour
     // Instanciar GameManager
     public static GameManager Instance { get; private set; }
 
-    int iterat = 0;
-
     private void Awake()
     {
         if (Instance == null) {
@@ -219,9 +226,13 @@ public class GameManager : MonoBehaviour
         
     }
     
-    void Start()
+    private void Start()
     {
         createEmptyProfiles();
+
+        //Inicializamos tiempos a batir en cada nivel
+        
+        setTimeLevelLimit();
     }
 
     void Update()
