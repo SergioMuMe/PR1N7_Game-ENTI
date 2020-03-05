@@ -111,6 +111,9 @@ public class CharacterBehav : MonoBehaviour
 
     private Animator anim;
 
+    public Material oruga;
+    public float orugaSpeed;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
