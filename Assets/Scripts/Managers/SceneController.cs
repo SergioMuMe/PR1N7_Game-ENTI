@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -31,6 +32,15 @@ public class SceneController : MonoBehaviour
     }
 
     /*index
+        ################
+        #              #
+        #  HUD ESCENA  #
+        #              #
+        ################
+    */
+    private TextMeshProUGUI timeHUD;
+
+    /*index
         ##########################
         #                        #
         #  CONFIGURACIÓN ESCENA  #
@@ -45,52 +55,83 @@ public class SceneController : MonoBehaviour
 
     private GameManager scriptGM; //Obtenemos el GameManager para ir almacenando los datos de la sesion de juego
 
+    //Info enviada al GameManager para guardar resultados del nivel. Previamente obtenemos la info actual.
+    Medals sceneMedals;
+   
+
     //Obtenemos el tiempo record del jugador en el mapa. Si es la primera vez que lo juega lo seteamos al máximo 999s.
-    private void getTimePlayerRecord()
+    private void getPlayerLevelInfo()
     {
         bool firstTimeFLAG;
         firstTimeFLAG = scriptGM.getFirstTimeFLAG(idLevel);
 
-        if (firstTimeFLAG)
+        int profileSelected;
+        profileSelected = scriptGM.profileSelected;
+
+
+        sceneMedals = getPlayerLevelMedalsInfo();
+
+        /*if (firstTimeFLAG)
         {
-            timePlayerRecord = 999f;
+            sceneMedals.timeRecord = 999f;
+            //timePlayerRecord = 999f;
         } else
         {
-            timePlayerRecord = scriptGM.getTimeRecord(idLevel);
-        }
+            sceneMedals.timeRecord = scriptGM.getTimeRecord(idLevel);
+            //timePlayerRecord = scriptGM.getTimeRecord(idLevel);
+        }*/
+
+    }
+    private Medals getPlayerLevelMedalsInfo()
+    {
+        return scriptGM.getLevelMedals(idLevel);
     }
 
-    //Info enviada al GameManager para guardar resultados del nivel
-    private bool finished; // Nivel superado Si/No
-    private bool timeBeated; // Superado en menos de X tiempo Si/No
-    private float timeRecord; // En segundos. Marca personal de tiempo record
-    private bool batteryCollected; // Recogidas pilas del nivel Si/No
+    
+    
 
     //Esta función es llamada justo antes de cambiar de nivel
     private void setLevelResults() {
-        finished = true;
         
-        if (batteryLevelCount == 0) { batteryCollected = true; }
-        else { batteryCollected = false; }
+        sceneMedals.finished = true;
+        
+        //Si jugador NO ha obtenido aun la medalla
+        if (!sceneMedals.batteryCollected)
+        {
+            if (batteryLevelCount == 0)
+            {
+                sceneMedals.batteryCollected = true;
+            }
+            else
+            {
+                sceneMedals.batteryCollected = false;
+            }
+        }
 
-        if (playerTime <= timeLevelLimit) { timeBeated = true; }
-        else { timeBeated = false; }
+        //Si jugador NO ha obtenido aun la medalla
+        if (!sceneMedals.timeBeated)
+        {
+            if (playerTime <= timeLevelLimit)
+            {
+                sceneMedals.timeBeated = true;
+            }
+            else
+            {
+                sceneMedals.timeBeated = false;
+            }
+        }
 
-        if(playerTime < timePlayerRecord)
+        if(playerTime < sceneMedals.timeRecord)
         {
             //Obtiene nuevo record
-            timeRecord = playerTime;
-        } else
-        {
-            //Mantiene el record anterior
-            timeRecord = timePlayerRecord;
-        }
-        
+            sceneMedals.timeRecord = playerTime;
+        } //ELSE Mantiene el record anterior
+          
     }
     
     //Esta función es llamada justo antes de cambiar de nivel.
     private void sendLevelResults() {
-        scriptGM.saveData(idLevel,finished,timeBeated,timeRecord,batteryCollected);
+        scriptGM.saveData(idLevel, sceneMedals);
     }
 
 
@@ -106,8 +147,10 @@ public class SceneController : MonoBehaviour
     {
         scriptGM = GameObject.Find("GameManager").GetComponent<GameManager>();
         actualScene = SceneManager.GetActiveScene().name;
-        getTimePlayerRecord();
+        getPlayerLevelInfo();
         timeLevelLimit = scriptGM.timeLevelLimit[idLevel];
+
+        timeHUD = GameObject.Find("TIME").GetComponent<TextMeshProUGUI>();
 
         waltrapa = true;
     }
@@ -116,6 +159,8 @@ public class SceneController : MonoBehaviour
     {
         //Cronometro, cuanto tarda el jugador en superar el nivel
         playerTime += Time.deltaTime;
+
+        timeHUD.text = "TIME: " + Utils.RoundFloat(playerTime, 2);
 
         if (Input.GetKey(KeyCode.P))
         {

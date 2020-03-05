@@ -86,7 +86,7 @@ public class MainMenuController : MonoBehaviour
     {
         levelSelectedTitle.text = "LEVEL " + idLevel;
 
-        if(scriptGM.profiles[profileSelected].levelsData[idLevel].finished)
+        if(scriptGM.profiles[profileSelected].levelsData[idLevel].levelMedals.finished)
         {
             starSymbol.sprite = statusStar[1];
         } else
@@ -94,7 +94,7 @@ public class MainMenuController : MonoBehaviour
             starSymbol.sprite = statusStar[0];
         }
 
-        if (scriptGM.profiles[profileSelected].levelsData[idLevel].timeBeated)
+        if (scriptGM.profiles[profileSelected].levelsData[idLevel].levelMedals.timeBeated)
         {
             cronometerSymbol.sprite = statusTime[1];
         } else
@@ -102,7 +102,7 @@ public class MainMenuController : MonoBehaviour
             cronometerSymbol.sprite = statusTime[0];
         }
 
-        if (scriptGM.profiles[profileSelected].levelsData[idLevel].batteryCollected)
+        if (scriptGM.profiles[profileSelected].levelsData[idLevel].levelMedals.batteryCollected)
         {
             batterySymbol.sprite = statusBattery[1];
         } else
@@ -117,11 +117,7 @@ public class MainMenuController : MonoBehaviour
             playerRecord.text = "Player record: -- sec";
         } else
         {
-            
-            float mult = Mathf.Pow(10.0f, 2);
-            float playerRecordTime = Mathf.Round(scriptGM.profiles[profileSelected].levelsData[idLevel].timeRecord * mult) / mult;            
-
-            playerRecord.text = "Player record: " + playerRecordTime + " sec";
+            playerRecord.text = "Player record: " + Utils.RoundFloat(scriptGM.profiles[profileSelected].levelsData[idLevel].levelMedals.timeRecord, 2) + " sec";
         }
 
     }
@@ -182,6 +178,5 @@ public class MainMenuController : MonoBehaviour
         getLevelsStatus();
         //TESTING ZONE END
     }
-
     
 }
