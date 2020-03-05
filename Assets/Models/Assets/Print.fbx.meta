@@ -10,6 +10,9 @@ ModelImporter:
     400002: Orugas
     400004: //RootNode
     2100000: lambert1
+    2100002: Oruga_Lat
+    2100004: Oruga_Mov
+    2100006: Chasis
     2300000: Impresora
     2300002: Orugas
     2300004: //RootNode
@@ -19,11 +22,12 @@ ModelImporter:
     4300000: Impresora
     4300002: Orugas
     4300004: Orugas1
+    2186277476908879412: ImportLogs
   externalObjects: {}
   materials:
     importMaterials: 1
-    materialName: 0
-    materialSearch: 1
+    materialName: 1
+    materialSearch: 2
     materialLocation: 1
   animations:
     legacyGenerateAnimations: 4
