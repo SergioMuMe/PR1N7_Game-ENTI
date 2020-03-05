@@ -20,10 +20,7 @@ public class GameManager : MonoBehaviour
         public bool levelUnblockedFLAG; //FLAG usado en MainMenuController para displayar los niveles disponibles.
         public bool firstTimeFLAG; //FLAG usado para setear el timeRecord por primera vez desde SceneController.
 
-        public bool finished; // Nivel superado Si/No
-        public bool timeBeated; // Superado en menos de X tiempo Si/No
-        public float timeRecord; // Marca personal de tiempo record.
-        public bool batteryCollected; // Recogidas pilas del nivel Si/No
+        public Medals levelMedals;
     }
 
     // Listado de profiles
@@ -58,11 +55,11 @@ public class GameManager : MonoBehaviour
     // TODO: SetProfileSelected. Lo más seguro que desde UNITY inspector.
 
     /*index
-        #####################
-        #                   #
-        #  DATOS DEL NIVEL  #
-        #                   #
-        #####################
+        #############################
+        #                           #
+        #  DATOS DEL NIVEL/USUARIO  #
+        #                           #
+        #############################
     */
 
     public float[] timeLevelLimit;
@@ -72,8 +69,8 @@ public class GameManager : MonoBehaviour
         //PROFE:¿porque no puedo hacer el new en la misma linea donde declaro timeLevelLimit?
         timeLevelLimit = new float[7];
 
-        timeLevelLimit[0] = 10f;
-        timeLevelLimit[1] = 10f;
+        timeLevelLimit[0] = 3f;
+        timeLevelLimit[1] = 3f;
         timeLevelLimit[2] = 15f;
         timeLevelLimit[3] = 20f;
         timeLevelLimit[4] = 25f;
@@ -86,9 +83,19 @@ public class GameManager : MonoBehaviour
         return profiles[profileSelected].levelsData[idLevel].firstTimeFLAG;
     }
 
+    public Medals getLevelMedals(int idLevel)
+    {
+        return profiles[profileSelected].levelsData[idLevel].levelMedals;
+    }
+
+    public bool getBatterySelected(int idLevel)
+    {
+        return profiles[profileSelected].levelsData[idLevel].levelMedals.batteryCollected;
+    }
+
     public float getTimeRecord(int idLevel)
     {
-        return profiles[profileSelected].levelsData[idLevel].timeRecord;
+        return profiles[profileSelected].levelsData[idLevel].levelMedals.timeRecord;
     }
 
     /*index
@@ -118,10 +125,10 @@ public class GameManager : MonoBehaviour
                 else { profiles[i].levelsData[j].levelUnblockedFLAG = false; }
 
                 profiles[i].levelsData[j].firstTimeFLAG = true;
-                profiles[i].levelsData[j].finished = false;
-                profiles[i].levelsData[j].batteryCollected = false;
-                profiles[i].levelsData[j].timeBeated = false;
-                profiles[i].levelsData[j].timeRecord = 999f;
+                profiles[i].levelsData[j].levelMedals.finished = false;
+                profiles[i].levelsData[j].levelMedals.batteryCollected = false;
+                profiles[i].levelsData[j].levelMedals.timeBeated = false;
+                profiles[i].levelsData[j].levelMedals.timeRecord = 999f;
             }
         }
 
@@ -141,10 +148,10 @@ public class GameManager : MonoBehaviour
             {
                 writer.Write(profiles[i].levelsData[j].levelUnblockedFLAG);
                 writer.Write(profiles[i].levelsData[j].firstTimeFLAG);
-                writer.Write(profiles[i].levelsData[j].finished);
-                writer.Write(profiles[i].levelsData[j].batteryCollected);
-                writer.Write(profiles[i].levelsData[j].timeBeated);
-                writer.Write(profiles[i].levelsData[j].timeRecord);
+                writer.Write(profiles[i].levelsData[j].levelMedals.finished);
+                writer.Write(profiles[i].levelsData[j].levelMedals.batteryCollected);
+                writer.Write(profiles[i].levelsData[j].levelMedals.timeBeated);
+                writer.Write(profiles[i].levelsData[j].levelMedals.timeRecord);
             }
 
             writer.Close();
@@ -174,22 +181,20 @@ public class GameManager : MonoBehaviour
                 Debug.Log("Fail to open " + path[i] + " file.");
             }
         }
-
     }
 
-    //PROFE: ¿Como cambiar esto para que ambos scripts puedan enviarse la info con structs?
     //Tras superar un nivel. Guarda en fichero el progreso del profile.
-    public void saveData(int idLevel, bool finished, bool timeBeated, float timeRecord, bool batteryCollected)
+    public void saveData(int idLevel, Medals recivedMedals)
     {
         //SAVE CURRENT LEVEL DATA
         LevelData newLevelData;
         
         newLevelData.levelUnblockedFLAG = true;
         newLevelData.firstTimeFLAG = false;
-        newLevelData.finished = finished;
-        newLevelData.timeBeated = timeBeated;
-        newLevelData.timeRecord = timeRecord;
-        newLevelData.batteryCollected = batteryCollected;
+        newLevelData.levelMedals.finished = recivedMedals.finished;
+        newLevelData.levelMedals.timeBeated = recivedMedals.timeBeated;
+        newLevelData.levelMedals.timeRecord = recivedMedals.timeRecord;
+        newLevelData.levelMedals.batteryCollected = recivedMedals.batteryCollected;
 
         profiles[profileSelected].levelsData[idLevel] = newLevelData;
 
@@ -200,8 +205,6 @@ public class GameManager : MonoBehaviour
         unblockNextLevel.levelUnblockedFLAG = false;
 
         profiles[profileSelected].levelsData[idLevel + 1].levelUnblockedFLAG = true;
-
-        
     }
 
     /*index
