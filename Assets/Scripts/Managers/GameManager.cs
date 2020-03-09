@@ -69,8 +69,8 @@ public class GameManager : MonoBehaviour
         //PROFE:¿porque no puedo hacer el new en la misma linea donde declaro timeLevelLimit?
         timeLevelLimit = new float[7];
 
-        timeLevelLimit[0] = 3f;
-        timeLevelLimit[1] = 3f;
+        timeLevelLimit[0] = 99f;
+        timeLevelLimit[1] = 10f;
         timeLevelLimit[2] = 15f;
         timeLevelLimit[3] = 20f;
         timeLevelLimit[4] = 25f;
