@@ -63,10 +63,13 @@ public class MainMenuController : MonoBehaviour
         #                                  #
         ####################################
     */
-
     
-    public GameObject levelSelected;
-    private TextMeshProUGUI levelSelectedTitle;
+    private GameObject options;
+    private GameObject credits;
+    private GameObject levelSelection;
+
+    private GameObject levelSelected;
+    private TextMeshProUGUI levelSelectedTitle; 
 
     private SpriteRenderer starSymbol;
     private SpriteRenderer cronometerSymbol;
@@ -156,6 +159,11 @@ public class MainMenuController : MonoBehaviour
 
 
         //Obtenemos referencias...
+        levelSelected = GameObject.Find("LevelSelected");
+        levelSelection = GameObject.Find("SelectLevel");
+        credits = GameObject.Find("Credits");
+        options = GameObject.Find("Options");
+
         levelSelectedTitle = GameObject.Find("LevelSelectedTitle").GetComponent<TextMeshProUGUI>();
 
         starSymbol = GameObject.Find("starSymbol").GetComponent<SpriteRenderer>();
@@ -164,9 +172,12 @@ public class MainMenuController : MonoBehaviour
 
         timeLevelLimit = GameObject.Find("LevelRecord").GetComponent<TextMeshProUGUI>();
         playerRecord = GameObject.Find("PlayerRecord").GetComponent<TextMeshProUGUI>();
-
-        //...Y desactivamos menu.
+        
+        //...Y desactivamos menus.
         levelSelected.SetActive(false);
+        levelSelection.SetActive(false);
+        credits.SetActive(false);
+        options.SetActive(false);
 
         for (int i = 0; i < levelButtons.Length; i++)
         {
