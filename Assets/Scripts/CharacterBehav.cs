@@ -65,8 +65,6 @@ public class CharacterBehav : MonoBehaviour
     public Rigidbody2D rb;
     //Particulas de aterrizaje
     public ParticleSystem part;
-    //Color de las particulas
-    public ParticleSystemRenderer partRender;
 
     public ParticleSystem nanoStart;
     public ParticleSystem nanoEnd;
@@ -110,10 +108,6 @@ public class CharacterBehav : MonoBehaviour
     public float timeAcceleration = 0.0f;
 
     private Animator anim;
-
-    public Material oruga;
-    public float orugaSpeed;
-
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -205,6 +199,8 @@ public class CharacterBehav : MonoBehaviour
 
                     isRecording = true;
 
+                    player.facingRight = facingRight;
+
                     initInputTime = (Time.time * 1000);
                     initCloningTime = Time.time;
                     inputs.Add(new CommandsInputs(CommandsInputsEnum.START, (Time.time * 1000) - initInputTime));
@@ -292,6 +288,7 @@ public class CharacterBehav : MonoBehaviour
                     }
 
                     iteration++;
+
                 }
                 break;
 
@@ -440,7 +437,6 @@ public class CharacterBehav : MonoBehaviour
                 maxHeight = maxHeightDefault;
             }
 
-            partRender.material = GetComponent<MeshRenderer>().material;
             part.Emit(50);
         }
         else if (!hitForward && !hitBack)
