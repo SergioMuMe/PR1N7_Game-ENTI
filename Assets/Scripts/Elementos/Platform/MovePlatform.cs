@@ -4,6 +4,20 @@ using UnityEngine;
 
 public class MovePlatform : InterfaceGame
 {
+    public enum PLATFORMTYPE
+    {
+        PASSABLE,
+        SOLID
+    }
+
+    public enum PLATFORMMOVEMENT
+    {
+        STATIC,
+        MOBILE
+    }
+
+    public PLATFORMTYPE plataformType;
+    public PLATFORMMOVEMENT plataformMovement;
     
     //controla la velocidad a la que se mueve la plataforma entre punto y punto (100 es algo lento, ir provando valores a partir de ahi)
     public float speed;

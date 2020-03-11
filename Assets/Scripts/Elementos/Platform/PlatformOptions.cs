@@ -20,7 +20,7 @@ public class PlatformOptions : MonoBehaviour
 
     private Rigidbody2D rb;
     private PlatformEffector2D pe;
-    private BoxCollider2D bc;
+    private Collider2D bc;
     private MovePlatform mps;
     private BoolPlatform bps;
 
@@ -29,7 +29,7 @@ public class PlatformOptions : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         pe = GetComponent<PlatformEffector2D>();
-        bc = GetComponent<BoxCollider2D>();
+        bc = GetComponent<Collider2D>();
         mps = GetComponent<MovePlatform>();
         bps = GetComponent<BoolPlatform>();
     }
