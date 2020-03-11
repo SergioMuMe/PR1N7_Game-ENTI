@@ -62,19 +62,28 @@ public class GameManager : MonoBehaviour
         #############################
     */
 
+    //Array con los tiempos record a batir para cada nivel.
     public float[] timeLevelLimit;
+
+    //Trasladamos timeLevelLimit.Length a nomberOfLevels para legibilidad en otras funciones.
+    public int numberOfLevels;
+
+    private void setNumberOfLevels()
+    {
+        numberOfLevels = timeLevelLimit.Length;
+    }
 
     private void setTimeLevelLimit()
     {
         //PROFE:¿porque no puedo hacer el new en la misma linea donde declaro timeLevelLimit?
-        timeLevelLimit = new float[7];
+        timeLevelLimit = new float[6];
 
         timeLevelLimit[0] = 99f;
         timeLevelLimit[1] = 10f;
         timeLevelLimit[2] = 15f;
         timeLevelLimit[3] = 20f;
         timeLevelLimit[4] = 25f;
-        timeLevelLimit[6] = 30f;
+        timeLevelLimit[5] = 30f;
     }
 
 
@@ -104,8 +113,13 @@ public class GameManager : MonoBehaviour
         #  FUNCIONES DURANTE LA INSTALACIÓN  #
         #                                    #
         ######################################
+        ATENCION: ESTAS FUNCIONES SON PARA DEBUG. 
+        EN LA BUILD FINAL NO INCLUIR EJECUCION PARA EVITAR SOBREESCRIBIR PROFILES DE JUGADOR.
     */
     // PROFE: Como crear carpetas o ficheros por defecto para las builds.
+
+    //Flag de control, desde el inspector habilitamos si debemos o no crear perfiles.
+    public bool createEmptyProfilesFLAG;
 
     //Por defecto todos los profiles están creados pero vacios, el bool profileUsed determina si el usuario puede usarlo o no para crear su profile.    
     private void createEmptyProfiles()
@@ -115,9 +129,10 @@ public class GameManager : MonoBehaviour
         {
             profiles[i].profileUsed = false;
             profiles[i].profileName = "New profile";
-            //ALERTA: Siempre crear 1 level más de los jugables. El [0] es de testing purposes{GameDevRoom}. El resto de lvl corresponden su ID con el de la BUILD. ¡Todo lo que no sean niveles de juego deberán ir al final de la build order!
-            profiles[i].levelsData = new LevelData[6];
-            for (int j = 0; j < profiles[i].levelsData.Length; j++)
+            //ALERTA: Siempre crear 1 level más de los jugables. El [0] es de testing purposes{GameDevRoom}. 
+            //El resto de lvl corresponden su ID con el de la BUILD. ¡Todo lo que no sean niveles de juego deberán ir al final de la build order!
+            profiles[i].levelsData = new LevelData[numberOfLevels];
+            for (int j = 0; j < numberOfLevels; j++)
             {
                 
                 //El primer nivel y la DEV-Room está desbloqueado para jugar
@@ -126,15 +141,11 @@ public class GameManager : MonoBehaviour
 
                 profiles[i].levelsData[j].firstTimeFLAG = true;
                 profiles[i].levelsData[j].levelMedals.finished = false;
-                profiles[i].levelsData[j].levelMedals.batteryCollected = false;
                 profiles[i].levelsData[j].levelMedals.timeBeated = false;
+                profiles[i].levelsData[j].levelMedals.batteryCollected = false;
                 profiles[i].levelsData[j].levelMedals.timeRecord = 999f;
             }
         }
-
-        //TESTING ZONE BEGIN
-        
-        //TESTING ZONE END
 
         for (int i = 0; i < path.Length; i++)
         {
@@ -144,13 +155,13 @@ public class GameManager : MonoBehaviour
             writer.Write(profiles[i].profileUsed);
             writer.Write(profiles[i].profileName);
 
-            for (int j = 0; j < profiles[i].levelsData.Length; j++)
+            for (int j = 0; j < numberOfLevels; j++)
             {
                 writer.Write(profiles[i].levelsData[j].levelUnblockedFLAG);
                 writer.Write(profiles[i].levelsData[j].firstTimeFLAG);
                 writer.Write(profiles[i].levelsData[j].levelMedals.finished);
-                writer.Write(profiles[i].levelsData[j].levelMedals.batteryCollected);
                 writer.Write(profiles[i].levelsData[j].levelMedals.timeBeated);
+                writer.Write(profiles[i].levelsData[j].levelMedals.batteryCollected);
                 writer.Write(profiles[i].levelsData[j].levelMedals.timeRecord);
             }
 
@@ -173,9 +184,36 @@ public class GameManager : MonoBehaviour
         {
             if (File.Exists(path[i])) {
                 reader = new BinaryReader(File.Open(path[i], FileMode.Open));
+                profiles[i].profileUsed = reader.ReadBoolean();
+                profiles[i].profileName = reader.ReadString();
+                //ALERTA: Siempre crear 1 level más de los jugables. El [0] es de testing purposes{GameDevRoom}. 
+                //El resto de lvl corresponden su ID con el de la BUILD. ¡Todo lo que no sean niveles de juego deberán ir al final de la build order!
+                profiles[i].levelsData = new LevelData[numberOfLevels];
+                for (int j = 0; j < numberOfLevels; j++)
+                {
+                    profiles[i].levelsData[j].levelUnblockedFLAG = reader.ReadBoolean();
+                    profiles[i].levelsData[j].firstTimeFLAG = reader.ReadBoolean();
+                    profiles[i].levelsData[j].levelMedals.finished = reader.ReadBoolean();
+                    profiles[i].levelsData[j].levelMedals.timeBeated = reader.ReadBoolean();
+                    profiles[i].levelsData[j].levelMedals.batteryCollected = reader.ReadBoolean();
+                    profiles[i].levelsData[j].levelMedals.timeRecord = reader.ReadSingle();
 
-                // TODO Read struct y guardar en List<Profiles> profiles. 
-                // SOLUCION: Hacerlo variable a variable por tipo de dato, como en c++
+                    //LOGS DE LA LECTURA
+                    if(i==0 && j==1)
+                    {
+                        Debug.LogWarning(Time.time + " LOADING PROFILE 0 - MAP 1 // DATA");
+                        Debug.Log(Time.time + " i: " + i + " |j: " + j + "-used: " + profiles[i].profileUsed);
+                        Debug.Log(Time.time + " i: " + i + " |j: " + j + "-name: " + profiles[i].profileName);
+                        Debug.Log(Time.time + " i: " + i + " |j: " + j + "-unblockedFLAG: " + profiles[i].levelsData[j].levelUnblockedFLAG);
+                        Debug.Log(Time.time + " i: " + i + " |j: " + j + "-firstTimeFLAG: " + profiles[i].levelsData[j].firstTimeFLAG);
+                        Debug.Log(Time.time + " i: " + i + " |j: " + j + "-M.Finished: " + profiles[i].levelsData[j].levelMedals.finished);
+                        Debug.Log(Time.time + " i: " + i + " |j: " + j + "-M.Tbeated: " + profiles[i].levelsData[j].levelMedals.timeBeated);
+                        Debug.Log(Time.time + " i: " + i + " |j: " + j + "-M.batteryCollected: " + profiles[i].levelsData[j].levelMedals.batteryCollected);
+                        Debug.Log(Time.time + " i: " + i + " |j: " + j + "-M.timeRecord: " + profiles[i].levelsData[j].levelMedals.timeRecord);
+                    }
+                }
+
+                reader.Close();
             }
             else {
                 Debug.Log("Fail to open " + path[i] + " file.");
@@ -193,8 +231,8 @@ public class GameManager : MonoBehaviour
         newLevelData.firstTimeFLAG = false;
         newLevelData.levelMedals.finished = recivedMedals.finished;
         newLevelData.levelMedals.timeBeated = recivedMedals.timeBeated;
-        newLevelData.levelMedals.timeRecord = recivedMedals.timeRecord;
         newLevelData.levelMedals.batteryCollected = recivedMedals.batteryCollected;
+        newLevelData.levelMedals.timeRecord = recivedMedals.timeRecord;
 
         profiles[profileSelected].levelsData[idLevel] = newLevelData;
 
@@ -205,6 +243,29 @@ public class GameManager : MonoBehaviour
         unblockNextLevel.levelUnblockedFLAG = false;
 
         profiles[profileSelected].levelsData[idLevel + 1].levelUnblockedFLAG = true;
+        saveDataInProfileBIN();
+    }
+
+
+    //PROFE:¿Se puede hacer algo para ir a la posicion concreta del profile y sobreescribir solo los datos que me interesan?
+    //Guarda estado actual del profile en su fichero bin. Se ejecuta al finalizar el saveData tras cada nivel.
+    private void saveDataInProfileBIN()
+    {
+        BinaryWriter writer = new BinaryWriter(File.Open(path[profileSelected], FileMode.Create));
+        writer.Write(profiles[profileSelected].profileUsed);
+        writer.Write(profiles[profileSelected].profileName);
+
+        for (int j = 0; j < numberOfLevels; j++)
+        {
+            writer.Write(profiles[profileSelected].levelsData[j].levelUnblockedFLAG);
+            writer.Write(profiles[profileSelected].levelsData[j].firstTimeFLAG);
+            writer.Write(profiles[profileSelected].levelsData[j].levelMedals.finished);
+            writer.Write(profiles[profileSelected].levelsData[j].levelMedals.timeBeated);
+            writer.Write(profiles[profileSelected].levelsData[j].levelMedals.batteryCollected);
+            writer.Write(profiles[profileSelected].levelsData[j].levelMedals.timeRecord);
+        }
+        Debug.LogWarning(Time.time + " SAVED PROFILE 0 DATA");
+        writer.Close();
     }
 
     /*index
@@ -231,11 +292,24 @@ public class GameManager : MonoBehaviour
     
     private void Start()
     {
-        createEmptyProfiles();
-
         //Inicializamos tiempos a batir en cada nivel
-        
         setTimeLevelLimit();
+        setNumberOfLevels();
+        Debug.LogError("OLA QUE ASE");
+
+        //DEBUG: Creamos perfiles vacios.
+        if (createEmptyProfilesFLAG)
+        {
+            createEmptyProfiles();
+        }
+
+        //Leemos los perfiles en la carpeta bin y los cargamos en la lista profiles
+        loadProfiles();
+
+        //TESTING ZONE
+        profileSelected = 0;
+        //END TESTING ZONE
+
     }
 
     void Update()

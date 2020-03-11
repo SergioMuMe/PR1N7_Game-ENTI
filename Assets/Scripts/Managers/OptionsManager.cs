@@ -13,9 +13,9 @@ public class OptionsManager : MonoBehaviour
      ########################
  */
 
-    private Slider masterVolumen;
-    private Slider musicVolumen;
-    private Slider effectsVolumen;
+    public Slider masterVolumen;
+    public Slider musicVolumen;
+    public Slider effectsVolumen;
 
     private float masterVolumenValue;
     private float musicVolumenValue;
@@ -36,12 +36,9 @@ public class OptionsManager : MonoBehaviour
     //Actualiza las variables de audio al aplicar cambios.
     public void updateVolumenValues()
     {
-        Debug.Log("Before: " + masterVolumenValue);
         masterVolumenValue = masterVolumen.value;
         musicVolumenValue = musicVolumen.value;
         effectsVolumenValue = effectsVolumen.value;
-        Debug.Log("Slide value: " + masterVolumen.value);
-        Debug.Log("After: " + masterVolumenValue);
     }
 
     //Guarda los valores previos
@@ -92,13 +89,14 @@ public class OptionsManager : MonoBehaviour
 
     void Start()
     {
-        masterVolumen = GameObject.Find("MasterVolumeSlider").GetComponent<Slider>();
+        /*masterVolumen = GameObject.Find("MasterVolumeSlider").GetComponent<Slider>();
         musicVolumen = GameObject.Find("MusicVolumeSlider").GetComponent<Slider>();
-        effectsVolumen = GameObject.Find("effectsVolumeSlider").GetComponent<Slider>();
+        effectsVolumen = GameObject.Find("effectsVolumeSlider").GetComponent<Slider>();*/
 
         changesApplied = 0;
 
         updateVolumenValues();
+        saveActualValues();
 
     }
 

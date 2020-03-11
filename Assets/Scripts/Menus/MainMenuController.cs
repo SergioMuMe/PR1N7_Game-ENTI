@@ -19,7 +19,7 @@ public class MainMenuController : MonoBehaviour
 
     private GameManager scriptGM;
 
-    private int profileSelected;
+    private int idProfileSelected;
 
     //Obtenemos los botones de los niveles;
     public GameObject[] levelButtons;
@@ -28,6 +28,10 @@ public class MainMenuController : MonoBehaviour
 
     //A continuación, todos los arrays corresponden a [0]-Bloqueado [1]-Desbloqueado
     public TMP_ColorGradient[] statusLevelColor = new TMP_ColorGradient[2];
+    private Image starMedal;
+    private Image timeMedal;
+    private Image batteryMedal;
+
     public Sprite[] statusStar = new Sprite[2];
     public Sprite[] statusTime = new Sprite[2];
     public Sprite[] statusBattery = new Sprite[2];
@@ -45,9 +49,9 @@ public class MainMenuController : MonoBehaviour
     private void getLevelsStatus()
     {
         
-        for (int j = 0; j < scriptGM.profiles[profileSelected].levelsData.Length; j++)
+        for (int j = 0; j < scriptGM.numberOfLevels; j++)
         {
-            levelButtons[j].GetComponent<Button>().interactable = scriptGM.profiles[profileSelected].levelsData[j].levelUnblockedFLAG;
+            levelButtons[j].GetComponent<Button>().interactable = scriptGM.profiles[idProfileSelected].levelsData[j].levelUnblockedFLAG;
 
             if (levelButtons[j].GetComponent<Button>().IsInteractable())
             {
@@ -71,10 +75,6 @@ public class MainMenuController : MonoBehaviour
     private GameObject levelSelected;
     private TextMeshProUGUI levelSelectedTitle; 
 
-    private SpriteRenderer starSymbol;
-    private SpriteRenderer cronometerSymbol;
-    private SpriteRenderer batterySymbol;
-
     private TextMeshProUGUI timeLevelLimit;
     private TextMeshProUGUI playerRecord;
 
@@ -89,38 +89,38 @@ public class MainMenuController : MonoBehaviour
     {
         levelSelectedTitle.text = "LEVEL " + idLevel;
 
-        if(scriptGM.profiles[profileSelected].levelsData[idLevel].levelMedals.finished)
+        if(scriptGM.profiles[idProfileSelected].levelsData[idLevel].levelMedals.finished)
         {
-            starSymbol.sprite = statusStar[1];
+            starMedal.sprite = statusStar[1];
         } else
         {
-            starSymbol.sprite = statusStar[0];
+            starMedal.sprite = statusStar[0];
         }
 
-        if (scriptGM.profiles[profileSelected].levelsData[idLevel].levelMedals.timeBeated)
+        if (scriptGM.profiles[idProfileSelected].levelsData[idLevel].levelMedals.timeBeated)
         {
-            cronometerSymbol.sprite = statusTime[1];
+            timeMedal.sprite = statusTime[1];
         } else
         {
-            cronometerSymbol.sprite = statusTime[0];
+            timeMedal.sprite = statusTime[0];
         }
 
-        if (scriptGM.profiles[profileSelected].levelsData[idLevel].levelMedals.batteryCollected)
+        if (scriptGM.profiles[idProfileSelected].levelsData[idLevel].levelMedals.batteryCollected)
         {
-            batterySymbol.sprite = statusBattery[1];
+            batteryMedal.sprite = statusBattery[1];
         } else
         {
-            batterySymbol.sprite = statusBattery[0];
+            batteryMedal.sprite = statusBattery[0];
         }
         
         timeLevelLimit.text = "Level record: " + scriptGM.timeLevelLimit[idLevel] + " sec";
         
-        if (scriptGM.profiles[profileSelected].levelsData[idLevel].firstTimeFLAG)
+        if (scriptGM.profiles[idProfileSelected].levelsData[idLevel].firstTimeFLAG)
         {
             playerRecord.text = "Player record: -- sec";
         } else
         {
-            playerRecord.text = "Player record: " + Utils.RoundFloat(scriptGM.profiles[profileSelected].levelsData[idLevel].levelMedals.timeRecord, 2) + " sec";
+            playerRecord.text = "Player record: " + Utils.RoundFloat(scriptGM.profiles[idProfileSelected].levelsData[idLevel].levelMedals.timeRecord, 2) + " sec";
         }
 
     }
@@ -166,9 +166,9 @@ public class MainMenuController : MonoBehaviour
 
         levelSelectedTitle = GameObject.Find("LevelSelectedTitle").GetComponent<TextMeshProUGUI>();
 
-        starSymbol = GameObject.Find("starSymbol").GetComponent<SpriteRenderer>();
-        cronometerSymbol = GameObject.Find("cronometerSymbol").GetComponent<SpriteRenderer>();
-        batterySymbol = GameObject.Find("batterySymbol").GetComponent<SpriteRenderer>();
+        starMedal = GameObject.Find("starMedal").GetComponent<Image>();
+        timeMedal = GameObject.Find("timeMedal").GetComponent<Image>();
+        batteryMedal = GameObject.Find("batteryMedal").GetComponent<Image>();
 
         timeLevelLimit = GameObject.Find("LevelRecord").GetComponent<TextMeshProUGUI>();
         playerRecord = GameObject.Find("PlayerRecord").GetComponent<TextMeshProUGUI>();
@@ -184,10 +184,10 @@ public class MainMenuController : MonoBehaviour
             textUI[i] = levelButtons[i].GetComponentInChildren<TextMeshProUGUI>();
         }
 
-        //TESTING ZONE BEGIN
-        profileSelected = 0;
+
+        idProfileSelected = scriptGM.profileSelected;
         getLevelsStatus();
-        //TESTING ZONE END
+        
     }
     
 }

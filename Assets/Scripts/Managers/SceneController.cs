@@ -177,8 +177,9 @@ public class SceneController : MonoBehaviour
     {
         if (collision.tag == "Player" && waltrapa)
         {
+            
             waltrapa = false;
-            Debug.LogError("Check exit");
+            Debug.LogWarning("TODO arreglar waltrapa");
             collision.enabled = false;
             loadNextScene(nextScene);
         }

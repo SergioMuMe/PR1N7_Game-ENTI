@@ -6,8 +6,8 @@ public struct Medals
 {
     public bool finished; // Nivel superado Si/No
     public bool timeBeated; // Superado en menos de X tiempo Si/No
-    public float timeRecord; // Marca personal de tiempo record.
     public bool batteryCollected; // Recogidas pilas del nivel Si/No
+    public float timeRecord; // Marca personal de tiempo record.
 }
 
 
