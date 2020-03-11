@@ -78,7 +78,7 @@ public class DoorController : InterfaceGame
     private DIRECTION direction;
 
     // Booleanos de control para el funcionamiento de la puerta BOOLEANA
-    private bool boolDoor;
+    private bool previousActivation;
     private bool finishedBoolAperture;
 
     // De los GameObjects positionA y positionB, obtenemos el transform.position en la función Start()
@@ -114,6 +114,9 @@ public class DoorController : InterfaceGame
 
         direction = DIRECTION.FORWARD;
         finishedBoolAperture = false;
+
+        forwardI = 0;
+        backwardI = 1;
     }
 
     
@@ -123,24 +126,9 @@ public class DoorController : InterfaceGame
         {
             fixedDelta = Time.fixedDeltaTime;
 
-            if (forwardSpeed >= 0)
-            {
-                forwardI += fixedDelta * forwardSpeed;
-            } else
-            {
-                forwardI += fixedDelta;
-            }
-
-            if (backwardSpeed >= 0)
-            {
-                backwardI += fixedDelta * backwardSpeed;
-            }
-            else
-            {
-                backwardI += fixedDelta;
-            }
-            
-            boolDoor = true;
+            forwardI += fixedDelta * Mathf.Abs(forwardSpeed);
+           
+            backwardI += fixedDelta * Mathf.Abs(backwardSpeed);            
         }
 
         // DOORTYPE = FREQUENCY
@@ -175,32 +163,52 @@ public class DoorController : InterfaceGame
         }
 
         // DOORTYPE = BOOLEAN
-        if (activated && doorType == DOORTYPE.BOOLEAN)
+        if (activated && doorType == DOORTYPE.BOOLEAN && backwardI >= 1)
         {
+            if (!previousActivation)
+            {
+                previousActivation = true;
+                forwardI = 0;
+            }
+
             if (forwardI <= 1)
             {
                 moveDoor(posA, posB, forwardI);
-            } else
+            } else if (!finishedBoolAperture)
             {
                 finishedBoolAperture = true;
             }
         } 
-
-        if (!activated && boolDoor)
+        else if (!activated && doorType == DOORTYPE.BOOLEAN)
         {
-            if (finishedBoolAperture)
+
+            if (!finishedBoolAperture && previousActivation)
+            {
+                backwardI = 1 - forwardI;                
+            }
+            else if (previousActivation)
             {
                 finishedBoolAperture = false;
-                revertMovement();
+                backwardI = 0;
             }
 
-            fixedDelta = Time.fixedDeltaTime;
-            backwardI += fixedDelta * backwardSpeed;
+            if (previousActivation)
+            {
+                previousActivation = false;
+            }
 
             if (backwardI <= 1)
             {
+                fixedDelta = Time.fixedDeltaTime;
+
+                backwardI += fixedDelta * Mathf.Abs(backwardSpeed);
+
                 moveDoor(posB, posA, backwardI);
             }
+        }
+        else if (doorType == DOORTYPE.BOOLEAN)
+        {
+            moveDoor(posB, posA, backwardI);
         }
 
         // MOVEMENTTYPE = HINGED
