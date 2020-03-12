@@ -77,12 +77,38 @@ public class GameManager : MonoBehaviour
 
     public int getTotalMedals(int id)
     {
-        return 1;
+        int num = 0;
+
+        for (int j = 0; j < numberOfLevels; j++)
+        {
+            if (profiles[id].levelsData[j].levelMedals.finished)
+            {
+                num += 1;
+            }
+            if (profiles[id].levelsData[j].levelMedals.batteryCollected)
+            {
+                num += 1;
+            }
+            if (profiles[id].levelsData[j].levelMedals.timeBeated)
+            {
+                num += 1;
+            }
+        }
+        return num;
     }
 
     public int getTotalMaps(int id)
     {
-        return 1;
+        int num = 0;
+
+        for (int j = 0; j < numberOfLevels; j++)
+        {
+            if(profiles[id].levelsData[j].levelMedals.finished)
+            {
+                num += 1;
+            }
+        }
+        return num;
     }
 
     //Funcion interna de los DEV, seteamos el tiempo record base de cada nivel

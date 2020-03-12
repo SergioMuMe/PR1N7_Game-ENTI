@@ -89,7 +89,6 @@ public class MainMenuController : MonoBehaviour
     //Detecta los niveles desbloqueados por el profile actual, y los desbloquea en la seleccion de niveles.
     private void getLevelsStatus()
     {
-        
         for (int j = 0; j < scriptGM.numberOfLevels; j++)
         {
             levelButtons[j].GetComponent<Button>().interactable = scriptGM.profiles[idProfileSelected].levelsData[j].levelUnblockedFLAG;
