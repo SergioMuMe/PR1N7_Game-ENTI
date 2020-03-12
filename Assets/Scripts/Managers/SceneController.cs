@@ -169,7 +169,7 @@ public class SceneController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Escape))
         {
-            restartScene("_Scenes/Menus/MainMenu");
+            restartScene("MainMenu");
         }
     }
 

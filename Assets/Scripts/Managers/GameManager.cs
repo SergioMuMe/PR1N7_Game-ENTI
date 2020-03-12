@@ -199,18 +199,18 @@ public class GameManager : MonoBehaviour
                     profiles[i].levelsData[j].levelMedals.timeRecord = reader.ReadSingle();
 
                     //LOGS DE LA LECTURA
-                    if(i==0 && j==1)
-                    {
-                        Debug.LogWarning(Time.time + " LOADING PROFILE 0 - MAP 1 // DATA");
-                        Debug.Log(Time.time + " i: " + i + " |j: " + j + "-used: " + profiles[i].profileUsed);
-                        Debug.Log(Time.time + " i: " + i + " |j: " + j + "-name: " + profiles[i].profileName);
-                        Debug.Log(Time.time + " i: " + i + " |j: " + j + "-unblockedFLAG: " + profiles[i].levelsData[j].levelUnblockedFLAG);
-                        Debug.Log(Time.time + " i: " + i + " |j: " + j + "-firstTimeFLAG: " + profiles[i].levelsData[j].firstTimeFLAG);
-                        Debug.Log(Time.time + " i: " + i + " |j: " + j + "-M.Finished: " + profiles[i].levelsData[j].levelMedals.finished);
-                        Debug.Log(Time.time + " i: " + i + " |j: " + j + "-M.Tbeated: " + profiles[i].levelsData[j].levelMedals.timeBeated);
-                        Debug.Log(Time.time + " i: " + i + " |j: " + j + "-M.batteryCollected: " + profiles[i].levelsData[j].levelMedals.batteryCollected);
-                        Debug.Log(Time.time + " i: " + i + " |j: " + j + "-M.timeRecord: " + profiles[i].levelsData[j].levelMedals.timeRecord);
-                    }
+                    //if(i==0 && j==1)
+                    //{
+                    //    Debug.LogWarning(Time.time + " LOADING PROFILE 0 - MAP 1 // DATA");
+                    //    Debug.Log(Time.time + " i: " + i + " |j: " + j + "-used: " + profiles[i].profileUsed);
+                    //    Debug.Log(Time.time + " i: " + i + " |j: " + j + "-name: " + profiles[i].profileName);
+                    //    Debug.Log(Time.time + " i: " + i + " |j: " + j + "-unblockedFLAG: " + profiles[i].levelsData[j].levelUnblockedFLAG);
+                    //    Debug.Log(Time.time + " i: " + i + " |j: " + j + "-firstTimeFLAG: " + profiles[i].levelsData[j].firstTimeFLAG);
+                    //    Debug.Log(Time.time + " i: " + i + " |j: " + j + "-M.Finished: " + profiles[i].levelsData[j].levelMedals.finished);
+                    //    Debug.Log(Time.time + " i: " + i + " |j: " + j + "-M.Tbeated: " + profiles[i].levelsData[j].levelMedals.timeBeated);
+                    //    Debug.Log(Time.time + " i: " + i + " |j: " + j + "-M.batteryCollected: " + profiles[i].levelsData[j].levelMedals.batteryCollected);
+                    //    Debug.Log(Time.time + " i: " + i + " |j: " + j + "-M.timeRecord: " + profiles[i].levelsData[j].levelMedals.timeRecord);
+                    //}
                 }
 
                 reader.Close();
@@ -295,7 +295,6 @@ public class GameManager : MonoBehaviour
         //Inicializamos tiempos a batir en cada nivel
         setTimeLevelLimit();
         setNumberOfLevels();
-        Debug.LogError("OLA QUE ASE");
 
         //DEBUG: Creamos perfiles vacios.
         if (createEmptyProfilesFLAG)
