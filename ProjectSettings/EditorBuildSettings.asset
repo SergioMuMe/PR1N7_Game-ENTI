@@ -21,8 +21,8 @@ EditorBuildSettings:
     path: Assets/_Scenes/Final/00_Tutorial/00_04-Clonation.unity
     guid: 9fc2f3c4e35e6c548a4270ca13e270de
   - enabled: 1
-    path: Assets/_Scenes/00_Tutorial/00_05-PLACEHOLDER.unity
-    guid: a65f70ea18d7875499b03b59b13a2b6a
+    path: Assets/_Scenes/Final/00_Tutorial/00_05-FreqDoor.unity
+    guid: 2e69a9c80bb38e640928c8a17169a3de
   - enabled: 1
     path: Assets/_Scenes/01_GameLevel/Level_TheBox.unity
     guid: 0974a0df20c5adb42a34e2cb851b4c9e

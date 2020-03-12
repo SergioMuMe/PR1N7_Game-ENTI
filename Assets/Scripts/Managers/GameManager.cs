@@ -36,6 +36,8 @@ public class GameManager : MonoBehaviour
     // Paths de los profiles
     private string[] path = { "bin/profile00.bin", "bin/profile01.bin", "bin/profile02.bin" };
 
+
+
     /*index
         ########################
         #                      #
@@ -73,6 +75,17 @@ public class GameManager : MonoBehaviour
         numberOfLevels = timeLevelLimit.Length;
     }
 
+    public int getTotalMedals(int id)
+    {
+        return 1;
+    }
+
+    public int getTotalMaps(int id)
+    {
+        return 1;
+    }
+
+    //Funcion interna de los DEV, seteamos el tiempo record base de cada nivel
     private void setTimeLevelLimit()
     {
         //PROFE:¿porque no puedo hacer el new en la misma linea donde declaro timeLevelLimit?

@@ -17,26 +17,66 @@ public class MainMenuController : MonoBehaviour
         #############
     */
 
+    private GameObject profileSelection;
+    private GameObject mainMenu;
+    private GameObject levelSelection;
+    private GameObject levelSelected;
+    private GameObject options;
+    private GameObject credits;
+
     private GameManager scriptGM;
 
     private int idProfileSelected;
 
-    //Obtenemos los botones de los niveles;
-    public GameObject[] levelButtons;
-    public TextMeshProUGUI[] textUI;
 
 
-    //A continuación, todos los arrays corresponden a [0]-Bloqueado [1]-Desbloqueado
-    public TMP_ColorGradient[] statusLevelColor = new TMP_ColorGradient[2];
-    private Image starMedal;
-    private Image timeMedal;
-    private Image batteryMedal;
-
-    public Sprite[] statusStar = new Sprite[2];
-    public Sprite[] statusTime = new Sprite[2];
-    public Sprite[] statusBattery = new Sprite[2];
+    /*index 
+         ##############
+         #            #
+         #  PROFILES  #
+         #            #
+         ##############
+     */
 
 
+    /*
+    1- Guardar info de los profiles en nombres[]
+    2- A cada profile darle su nombre: profile0texto = profile.name
+    3- BETA: Displayar contador de estrellas desbloqueadas
+    4- Cuando se pulse sobre un profile = modificar el scriptGM.profileSelected;
+    */
+
+    private TextMeshProUGUI[] profileName;
+    private void setProfileNames()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            profileName[i].text = scriptGM.profiles[i].profileName;
+        }
+        
+    }
+
+    private TextMeshProUGUI[] totalMaps;
+    private void setTotalMaps()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            totalMaps[i].text = scriptGM.getTotalMaps(i).ToString();
+            totalMaps[i].text = totalMaps[i].text + " / " + scriptGM.numberOfLevels.ToString();
+        }
+    }
+
+    private TextMeshProUGUI[] totalMedals;
+    private void setTotalMedals()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            totalMedals[i].text = scriptGM.getTotalMedals(i).ToString();
+            totalMedals[i].text = totalMedals[i].text + " / " + (scriptGM.numberOfLevels*3).ToString();
+        }
+    }
+
+    
 
     /*index 
         ###################################
@@ -46,6 +86,7 @@ public class MainMenuController : MonoBehaviour
         ###################################
     */
 
+    //Detecta los niveles desbloqueados por el profile actual, y los desbloquea en la seleccion de niveles.
     private void getLevelsStatus()
     {
         
@@ -68,11 +109,22 @@ public class MainMenuController : MonoBehaviour
         ####################################
     */
     
-    private GameObject options;
-    private GameObject credits;
-    private GameObject levelSelection;
+    //GameObject IMAGEN de la medalla de cada nivel
+    private Image starMedal;
+    private Image timeMedal;
+    private Image batteryMedal;
 
-    private GameObject levelSelected;
+    //A continuación, todos los arrays corresponden a [0]-Bloqueado [1]-Desbloqueado
+    public TMP_ColorGradient[] statusLevelColor = new TMP_ColorGradient[2];
+
+    public Sprite[] statusStar = new Sprite[2];
+    public Sprite[] statusTime = new Sprite[2];
+    public Sprite[] statusBattery = new Sprite[2];
+
+    //Para modificar color (bloqueado/desbloqueado): Obtenemos los botones de los niveles + textos
+    public GameObject[] levelButtons;
+    public TextMeshProUGUI[] textUI;
+
     private TextMeshProUGUI levelSelectedTitle; 
 
     private TextMeshProUGUI timeLevelLimit;
@@ -165,10 +217,11 @@ public class MainMenuController : MonoBehaviour
 
         scriptGM = GameObject.Find("GameManager").GetComponent<GameManager>();
 
-
         //Obtenemos referencias...
-        levelSelected = GameObject.Find("LevelSelected");
+        profileSelection = GameObject.Find("ProfileSelection");
+        mainMenu = GameObject.Find("MainMenu");
         levelSelection = GameObject.Find("SelectLevel");
+        levelSelected = GameObject.Find("LevelSelected");
         credits = GameObject.Find("Credits");
         options = GameObject.Find("Options");
 
@@ -180,22 +233,52 @@ public class MainMenuController : MonoBehaviour
 
         timeLevelLimit = GameObject.Find("LevelRecord").GetComponent<TextMeshProUGUI>();
         playerRecord = GameObject.Find("PlayerRecord").GetComponent<TextMeshProUGUI>();
-        
-        //...Y desactivamos menus.
-        levelSelected.SetActive(false);
-        levelSelection.SetActive(false);
-        credits.SetActive(false);
-        options.SetActive(false);
 
+
+        idProfileSelected = scriptGM.profileSelected;
+
+        //Referencias de los profiles
+        profileName = new TextMeshProUGUI[3];
+        profileName[0] = GameObject.Find("NombreProfile0").GetComponent<TextMeshProUGUI>();
+        profileName[1] = GameObject.Find("NombreProfile1").GetComponent<TextMeshProUGUI>();
+        profileName[2] = GameObject.Find("NombreProfile2").GetComponent<TextMeshProUGUI>();
+
+        totalMedals = new TextMeshProUGUI[3];
+        totalMedals[0] = GameObject.Find("MedalsProfile0").GetComponent<TextMeshProUGUI>();
+        totalMedals[1] = GameObject.Find("MedalsProfile1").GetComponent<TextMeshProUGUI>();
+        totalMedals[2] = GameObject.Find("MedalsProfile2").GetComponent<TextMeshProUGUI>();
+
+        totalMaps = new TextMeshProUGUI[3];
+        totalMaps[0] = GameObject.Find("LevelsProfile0").GetComponent<TextMeshProUGUI>();
+        totalMaps[1] = GameObject.Find("LevelsProfile1").GetComponent<TextMeshProUGUI>();
+        totalMaps[2] = GameObject.Find("LevelsProfile2").GetComponent<TextMeshProUGUI>();
+
+        //Cargamos datos a displayar de los profiles
+        setProfileNames();
+        setTotalMedals();
+        setTotalMaps();
+
+        //Habilitamos los niveles desbloqueados
+        getLevelsStatus();
+        
+
+        //Otras referencias
         for (int i = 0; i < levelButtons.Length; i++)
         {
             textUI[i] = levelButtons[i].GetComponentInChildren<TextMeshProUGUI>();
         }
 
 
-        idProfileSelected = scriptGM.profileSelected;
-        getLevelsStatus();
-        
+        //...Y desactivamos menus.
+        //profileSelection.SetActive(false);
+        mainMenu.SetActive(false);
+        levelSelected.SetActive(false);
+        levelSelected.SetActive(false);
+        levelSelection.SetActive(false);
+        credits.SetActive(false);
+        options.SetActive(false);
+
+
     }
     
 }
