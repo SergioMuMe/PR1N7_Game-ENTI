@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2709117940566420887}
   - component: {fileID: 1855943128198890961}
   - component: {fileID: 9161708933189751325}
+  - component: {fileID: 2361729079584241254}
   m_Layer: 0
   m_Name: PlataformP
   m_TagString: Untagged
@@ -28,9 +29,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 140724439852337766}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -10, y: 3, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -146,3 +147,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.5, y: 0.25}
   m_EdgeRadius: 0
+--- !u!114 &2361729079584241254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 140724439852337766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7519d0b325b93de4180f19ba3225e824, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plataformType: 0
+  plataformMovement: 1
+  speed: 150
+  positions:
+  - {fileID: 0}
+  - {fileID: 0}
+  activated: 0
+  delayRate: 1

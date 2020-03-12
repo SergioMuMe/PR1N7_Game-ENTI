@@ -136,7 +136,15 @@ public class MainMenuController : MonoBehaviour
 
     public void playLevel()
     {
-        SceneManager.LoadScene(idLevel);
+        if(idLevel == 999)
+        {
+            string devRoom = "DevelopRoom";
+            SceneManager.LoadScene(devRoom);
+        } else
+        {
+            SceneManager.LoadScene(idLevel);
+        }
+        
     }
 
     public void QuitGame()

@@ -89,9 +89,9 @@ public class OptionsManager : MonoBehaviour
 
     void Start()
     {
-        /*masterVolumen = GameObject.Find("MasterVolumeSlider").GetComponent<Slider>();
-        musicVolumen = GameObject.Find("MusicVolumeSlider").GetComponent<Slider>();
-        effectsVolumen = GameObject.Find("effectsVolumeSlider").GetComponent<Slider>();*/
+        //masterVolumen = GameObject.Find("MasterVolumeSlider").GetComponent<Slider>();
+        //musicVolumen = GameObject.Find("MusicVolumeSlider").GetComponent<Slider>();
+        //effectsVolumen = GameObject.Find("effectsVolumeSlider").GetComponent<Slider>();
 
         changesApplied = 0;
 
