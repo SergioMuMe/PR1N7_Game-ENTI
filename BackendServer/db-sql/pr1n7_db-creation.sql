@@ -61,51 +61,63 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `scores`;
 CREATE TABLE `scores` (
-  `id_score` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `id_profile` INT(10) UNSIGNED NOT NULL,
-  `id_level` INT(10) UNSIGNED NOT NULL,
-  PRIMARY KEY (`id_score`),
-  KEY `id_profile` (`id_profile`),
-  KEY `id_level` (`id_level`),
+  `id_score` INT(10) UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `finished` TINYINT(1) NOT NULL,
   `timeBeated` TINYINT(1) NOT NULL,
   `batteryCollected` TINYINT(1) NOT NULL,
   `playerRecord` FLOAT UNSIGNED NOT NULL,
   `allAtOnce` TINYINT(1) NOT NULL,
-  `timestamp` TIMESTAMP NOT NULL,
-  CONSTRAINT `scores_ibfk_1` FOREIGN KEY (`id_profile`) REFERENCES `profiles` (`id_profile`),
-  CONSTRAINT `scores_ibfk_2` FOREIGN KEY (`id_level`) REFERENCES `levels` (`id_level`)
+  `timestamp` INT(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-DROP TABLE IF EXISTS `progress`;
-CREATE TABLE `progress` (
-  `id_progress` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `id_profile` INT(10) UNSIGNED NOT NULL,
-  `id_level` INT(10) UNSIGNED NOT NULL,
-  PRIMARY KEY (`id_progress`),
-  KEY `id_profile` (`id_profile`),
-  KEY `id_level` (`id_level`),
-  `levelUnblockedFLAG` TINYINT(1) NOT NULL,
-  `firstTimeFLAG` TINYINT(1) NOT NULL,
-  `finished` TINYINT(1) NOT NULL,
-  `timeBeated` TINYINT(1) NOT NULL,
-  `batteryCollected` TINYINT(1) NOT NULL,
-  `playerRecord` FLOAT UNSIGNED NOT NULL,
-  `allAtOnce` TINYINT(1) NOT NULL,
-  CONSTRAINT `progress_ibfk_1` FOREIGN KEY (`id_profile`) REFERENCES `profiles` (`id_profile`),
-  CONSTRAINT `progress_ibfk_2` FOREIGN KEY (`id_level`) REFERENCES `levels` (`id_level`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-DROP TABLE IF EXISTS `game_versions`;
-CREATE TABLE `game_versions` (
+DROP TABLE IF EXISTS `gameversions`;
+CREATE TABLE `gameversions` (
   `id_gameversion` INT(10) UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `version` VARCHAR(32) NOT NULL,
   `numberOfLevels` INT(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-LOCK TABLES `game_versions` WRITE;
-INSERT INTO `game_versions` VALUES (1,'alpha',5);
+LOCK TABLES `gameversions` WRITE;
+INSERT INTO `gameversions` VALUES (1,'alpha',5);
 UNLOCK TABLES;
+
+DROP TABLE IF EXISTS `scores_history`;
+CREATE TABLE `scores_history` (
+  `id_score_history` INT(10) UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  `id_score` INT(10) UNSIGNED NOT NULL,
+  `id_profile` INT(10) UNSIGNED NOT NULL,
+  `id_level` INT(10) UNSIGNED NOT NULL,
+  `level_timeDev` FLOAT UNSIGNED NOT NULL,
+  `id_gameversion` INT(10) UNSIGNED NOT NULL,
+  KEY `id_score` (`id_score`),
+  KEY `id_profile` (`id_profile`),
+  KEY `id_level` (`id_level`),
+  KEY `id_gameversion` (`id_gameversion`),
+  CONSTRAINT `scores_history_ibfk_1` FOREIGN KEY (`id_score`) REFERENCES `scores` (`id_score`),
+  CONSTRAINT `scores_history_ibfk_2` FOREIGN KEY (`id_profile`) REFERENCES `profiles` (`id_profile`),
+  CONSTRAINT `scores_history_ibfk_3` FOREIGN KEY (`id_level`) REFERENCES `levels` (`id_level`),
+  CONSTRAINT `scores_history_ibfk_4` FOREIGN KEY (`id_gameversion`) REFERENCES `gameversions` (`id_gameversion`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+DROP TABLE IF EXISTS `progress`;
+CREATE TABLE `progress` (
+  `id_progress` INT(10) UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  `id_profile` INT(10) UNSIGNED NOT NULL,
+  `id_level` INT(10) UNSIGNED NOT NULL,
+  `levelUnblockedFLAG` TINYINT(1) NOT NULL,
+  `firstTimeFLAG` TINYINT(1) NOT NULL,
+  `id_score` INT(10) UNSIGNED NOT NULL,
+  `id_gameversion` INT(10) UNSIGNED NOT NULL,
+  KEY `id_profile` (`id_profile`),
+  KEY `id_level` (`id_level`),
+  KEY `id_score` (`id_score`),
+  KEY `id_gameversion` (`id_gameversion`),
+  CONSTRAINT `progress_ibfk_1` FOREIGN KEY (`id_score`) REFERENCES `scores` (`id_score`),
+  CONSTRAINT `progress_ibfk_2` FOREIGN KEY (`id_profile`) REFERENCES `profiles` (`id_profile`),
+  CONSTRAINT `progress_ibfk_3` FOREIGN KEY (`id_level`) REFERENCES `levels` (`id_level`),
+  CONSTRAINT `progress_ibfk_4` FOREIGN KEY (`id_gameversion`) REFERENCES `gameversions` (`id_gameversion`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 /*index
 ############################## 
@@ -189,23 +201,25 @@ DELIMITER ;
 DROP FUNCTION IF EXISTS addScore;
 DELIMITER $$
 CREATE FUNCTION addScore (
+    _idGameversion INT(10) UNSIGNED,
     _idProfile INT(10) UNSIGNED,
     _idLevel INT(10) UNSIGNED,
     _finished TINYINT(1),
     _timeBeated TINYINT(1),
     _batteryCollected TINYINT(1),
-    _allAtOnce TINYINT(1),
     _playerRecord FLOAT UNSIGNED,
-    _timestamp TIMESTAMP
+    _allAtOnce TINYINT(1),
+    _timestamp INT(11),
+    addHistory TINYINT(1)
     ) 
     RETURNS INT (10) UNSIGNED
 BEGIN
     
     DECLARE returnState INT(10) UNSIGNED; 
+    DECLARE scoreID INT(10) UNSIGNED; 
+    DECLARE actualTimeDev INT(10) UNSIGNED; 
 
     INSERT INTO `scores` (
-        `id_profile`, 
-        `id_level`,
         `finished`,
         `timeBeated`,
         `batteryCollected`,
@@ -214,16 +228,46 @@ BEGIN
         `timestamp`
         ) 
     VALUES (
-        _idProfile,
-        _idLevel,
         _finished,
         _timeBeated,
         _batteryCollected,
-        _allAtOnce,
         _playerRecord,
+        _allAtOnce,
         _timestamp
         );
+
+    /*Guardamos ID Score insertado*/
+    SET scoreID = (
+        SELECT last_insert_id()
+        );
+
+    IF addHistory=false THEN
+        RETURN scoreID;
+    END IF;
+
+    /*Guardamos el tiempo record actual definido por DEV*/
+    SELECT timeDev INTO actualTimeDev
+    FROM levels
+    WHERE id_level = _idLevel
+    LIMIT 1;
     
+    
+    /*Guardamos registro de la partida para metricas internas*/
+    INSERT INTO `scores_history` (
+        `id_score`,
+        `id_profile`,
+        `id_level`,
+        `level_timeDev`,
+        `id_gameversion`
+        )
+    VALUES (
+        scoreID,
+        _idProfile,
+        _idLevel,
+        actualTimeDev,
+        _idGameversion
+    );
+
     SET returnState = 0;
     
 RETURN returnState;
@@ -239,14 +283,28 @@ DROP PROCEDURE IF EXISTS getHighScore;
 DELIMITER $$
 CREATE PROCEDURE getHighScore (
     _idLevel INT(10) UNSIGNED,
-    _limit INT(10) UNSIGNED
+    _limit INT(10) UNSIGNED,
+    _idGameversion INT(10) UNSIGNED
     ) 
 BEGIN
     
-    SELECT *
-    FROM `scores`
-    WHERE id_level = _idLevel
-    ORDER BY playerRecord ASC
+    SELECT 
+        scores.playerRecord AS playerRecord, 
+        scores.finished AS finished, 
+        scores.timeBeated AS timeBeated, 
+        scores.batteryCollected AS batteryCollected, 
+        scores.allAtOnce AS allAtOnce 
+    FROM scores_history
+    LEFT JOIN scores
+        ON scores_history.id_score = scores.id_score
+    LEFT JOIN levels
+        ON scores_history.id_level = levels.id_level
+    LEFT JOIN gameversions
+        ON scores_history.id_gameversion = gameversions.id_gameversion
+    WHERE 
+        scores_history.id_level = _idLevel 
+        AND gameversions.id_gameversion = _idGameversion
+    ORDER BY scores.playerRecord ASC
     LIMIT _limit;
 
 END $$
@@ -264,7 +322,7 @@ BEGIN
 DECLARE returnNum INT (10) UNSIGNED;
 
     SELECT numberOfLevels INTO @maxLevels
-    FROM game_versions
+    FROM gameversions
     ORDER BY id_gameversion DESC 
     LIMIT 1;
 
@@ -279,57 +337,64 @@ DELIMITER ;
 */
 DROP FUNCTION IF EXISTS createProgress;
 DELIMITER $$
-CREATE FUNCTION createProgress (_idProfile INT(10) UNSIGNED)
+CREATE FUNCTION createProgress (
+    _idProfile INT(10) UNSIGNED,
+    _idGameversion INT(10) UNSIGNED,
+    addHistory TINYINT(1),
+    unixTimestamp INT(11)
+    )
 RETURNS INT (10) UNSIGNED
 BEGIN
 
     DECLARE returnState INT(10) UNSIGNED; 
     DECLARE i INT(10) UNSIGNED DEFAULT 2; 
+    DECLARE scoreID INT(10) UNSIGNED; 
     DECLARE maxLevels INT (10) UNSIGNED;
+    
     SET maxLevels = (SELECT setMaxLevels());
 
-    /*LVL 0 - DEV ROOM*/
-    INSERT INTO `progress` (
-        `id_profile`, 
-        `id_level`, `levelUnblockedFLAG`, `firstTimeFLAG`,
-        `finished`, `timeBeated`, `batteryCollected`,
-        `playerRecord`, `allAtOnce`
-        ) 
-    VALUES (
-        _idProfile,
-        0, 0, 1,
-        0, 0, 0,
-        999, 0
-        );
-    
     /*LVL 1 - FIRST LEVEL*/
+    SET scoreID = (
+        SELECT addScore(
+            _idGameversion,
+            _idProfile,
+            1, 0, 0, 0, 999, 0, unixTimestamp, addHistory
+            )
+    );
+
     INSERT INTO `progress` (
         `id_profile`, 
         `id_level`, `levelUnblockedFLAG`, `firstTimeFLAG`,
-        `finished`, `timeBeated`, `batteryCollected`,
-        `playerRecord`, `allAtOnce`
+        `id_score`, `id_gameversion`
         ) 
     VALUES (
         _idProfile,
         1, 1, 1,
-        0, 0, 0,
-        999, 0
-        );
+        scoreID, _idGameversion        
+    );
 
     /*LVL I - OTHER LEVELS*/
     WHILE i <= maxLevels DO 
+        
+        SET scoreID = (
+            SELECT addScore(
+                _idGameversion,
+                _idProfile,
+                i, 0, 0, 0, 999, 0, unixTimestamp, addHistory
+                )
+        );
+
         INSERT INTO `progress` (
             `id_profile`, 
             `id_level`, `levelUnblockedFLAG`, `firstTimeFLAG`,
-            `finished`, `timeBeated`, `batteryCollected`,
-            `playerRecord`, `allAtOnce`
+            `id_score`, `id_gameversion`
             ) 
         VALUES (
             _idProfile,
             i, 0, 1,
-            0, 0, 0,
-            999, 0
-            );
+            scoreID, _idGameversion
+        );
+
         SET i=i+1;
     END WHILE;
     
@@ -338,8 +403,10 @@ BEGIN
 RETURN returnState;
 END $$
 DELIMITER ;
+
 /*Creamos progreso de la cuenta DEV*/
-SELECT createProgress(1);
+SELECT unix_timestamp() INTO @time ;
+SELECT createProgress(1,1,0, @time ) ;
 
 /* 
 ::: ACTUALIZA EL PROGRESO DEL JUGADOR ::: 
@@ -353,31 +420,44 @@ CREATE FUNCTION updateProgress (
     _timeBeated TINYINT(1),
     _batteryCollected TINYINT(1),
     _playerRecord FLOAT UNSIGNED,
-    _allAtOnce TINYINT(1)
+    _allAtOnce TINYINT(1),
+    _idGameversion INT(10) UNSIGNED,
+    _unixTimestamp INT(10) UNSIGNED
     ) 
 RETURNS INT (10) UNSIGNED
 BEGIN
     
     DECLARE returnState INT(10) UNSIGNED; 
     DECLARE maxLevels INT (10) UNSIGNED;
+    DECLARE scoreID INT(10) UNSIGNED;
     SET maxLevels = (SELECT setMaxLevels());
 
+    SET scoreID = (
+            SELECT addScore(
+                _idGameversion,
+                _idProfile,
+                _idLevel, 
+                _finished, 
+                _timeBeated, 
+                _batteryCollected, 
+                _playerRecord, 
+                _allAtOnce,
+                _unixTimestamp, 1
+                )
+        );
+
     /*UPDATE LEVEL JUGADO*/
-    UPDATE `progress`
+    UPDATE `progress`   
     SET
-        `levelUnblockedFLAG` = true,
         `firstTimeFLAG` = false,
-        `finished` = _finished,
-        `timeBeated` = _timeBeated,
-        `batteryCollected` = _batteryCollected,
-        `playerRecord` = _playerRecord,
-        `allAtOnce` = _allAtOnce
+        `id_score` = scoreID,
+        `id_gameversion` = _idGameversion
     WHERE 
         id_profile = _idProfile 
         AND
         id_level = _idLevel;
 
-    /*UPDATE NEXT LEVEL JUGADO*/
+    /*UPDATE NEXT LEVEL*/
     IF _idLevel = maxLevels THEN
         SET returnState = 0;
         RETURN returnState;    
