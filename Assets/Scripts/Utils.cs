@@ -8,6 +8,7 @@ public struct Medals
     public bool timeBeated; // Superado en menos de X tiempo Si/No
     public bool batteryCollected; // Recogidas pilas del nivel Si/No
     public float timeRecord; // Marca personal de tiempo record.
+    public bool allAtOnce; // Marca si las medallas han sido ganadas todas a la vez
 }
 
 

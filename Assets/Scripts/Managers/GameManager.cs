@@ -183,6 +183,7 @@ public class GameManager : MonoBehaviour
                 profiles[i].levelsData[j].levelMedals.timeBeated = false;
                 profiles[i].levelsData[j].levelMedals.batteryCollected = false;
                 profiles[i].levelsData[j].levelMedals.timeRecord = 999f;
+                profiles[i].levelsData[j].levelMedals.allAtOnce = false;
             }
         }
 
@@ -202,6 +203,7 @@ public class GameManager : MonoBehaviour
                 writer.Write(profiles[i].levelsData[j].levelMedals.timeBeated);
                 writer.Write(profiles[i].levelsData[j].levelMedals.batteryCollected);
                 writer.Write(profiles[i].levelsData[j].levelMedals.timeRecord);
+                writer.Write(profiles[i].levelsData[j].levelMedals.allAtOnce);
             }
 
             writer.Close();
