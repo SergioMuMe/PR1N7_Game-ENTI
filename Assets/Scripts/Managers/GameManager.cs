@@ -53,8 +53,16 @@ public class GameManager : MonoBehaviour
      */
     public int profileSelected;
 
-
-    // TODO: SetProfileSelected. Lo más seguro que desde UNITY inspector.
+    
+    // BAD NAMING :(
+    //TODO: Lo suyo seria profileSelected> idProfileSelected. Y este bool mantener a profileSelected
+    
+    /* Nos permite saber si un profile ha sido seleccionado, 
+     * de esta manera cuando cargamos la escena de menu principal 
+     * al salir desde dentro de un nivel, no forzamos al jugador a realizar 
+     * seleccion de profile (again) 
+     */
+    public bool profilePicked;
 
     /*index
         #############################
@@ -218,48 +226,99 @@ public class GameManager : MonoBehaviour
         ##########################
     */
     //Carga los ficheros de profiles al iniciar el juego.
-    private void loadProfiles()
+    public void loadProfiles(int _id)
     {
         BinaryReader reader;
-        for (int i = 0; i < path.Length; i++)
+        
+        //load todos los perfiles
+        if (_id == -1)
         {
-            if (File.Exists(path[i])) {
-                reader = new BinaryReader(File.Open(path[i], FileMode.Open));
-                profiles[i].profileUsed = reader.ReadBoolean();
-                profiles[i].profileName = reader.ReadString();
-                //ALERTA: Siempre crear 1 level más de los jugables. El [0] es de testing purposes{GameDevRoom}. 
-                //El resto de lvl corresponden su ID con el de la BUILD. ¡Todo lo que no sean niveles de juego deberán ir al final de la build order!
-                profiles[i].levelsData = new LevelData[numberOfLevels];
-                for (int j = 0; j < numberOfLevels; j++)
+            for (int i=0; i < path.Length; i++)
+            {
+                if (File.Exists(path[i]))
                 {
-                    profiles[i].levelsData[j].levelUnblockedFLAG = reader.ReadBoolean();
-                    profiles[i].levelsData[j].firstTimeFLAG = reader.ReadBoolean();
-                    profiles[i].levelsData[j].levelMedals.finished = reader.ReadBoolean();
-                    profiles[i].levelsData[j].levelMedals.timeBeated = reader.ReadBoolean();
-                    profiles[i].levelsData[j].levelMedals.batteryCollected = reader.ReadBoolean();
-                    profiles[i].levelsData[j].levelMedals.timeRecord = reader.ReadSingle();
-                    profiles[i].levelsData[j].levelMedals.allAtOnce = reader.ReadBoolean();
+                    reader = new BinaryReader(File.Open(path[i], FileMode.Open));
+                    profiles[i].profileUsed = reader.ReadBoolean();
+                    profiles[i].profileName = reader.ReadString();
+                    //ALERTA: Siempre crear 1 level más de los jugables. El [0] es de testing purposes{GameDevRoom}. 
+                    //El resto de lvl corresponden su ID con el de la BUILD. ¡Todo lo que no sean niveles de juego deberán ir al final de la build order!
+                    profiles[i].levelsData = new LevelData[numberOfLevels];
+                    for (int j = 0; j < numberOfLevels; j++)
+                    {
+                        profiles[i].levelsData[j].levelUnblockedFLAG = reader.ReadBoolean();
+                        profiles[i].levelsData[j].firstTimeFLAG = reader.ReadBoolean();
+                        profiles[i].levelsData[j].levelMedals.finished = reader.ReadBoolean();
+                        profiles[i].levelsData[j].levelMedals.timeBeated = reader.ReadBoolean();
+                        profiles[i].levelsData[j].levelMedals.batteryCollected = reader.ReadBoolean();
+                        profiles[i].levelsData[j].levelMedals.timeRecord = reader.ReadSingle();
+                        profiles[i].levelsData[j].levelMedals.allAtOnce = reader.ReadBoolean();
 
-                    //LOGS DE LA LECTURA
-                    //if(i==0 && j==1)
-                    //{
-                    //    Debug.LogWarning(Time.time + " LOADING PROFILE 0 - MAP 1 // DATA");
-                    //    Debug.Log(Time.time + " i: " + i + " |j: " + j + "-used: " + profiles[i].profileUsed);
-                    //    Debug.Log(Time.time + " i: " + i + " |j: " + j + "-name: " + profiles[i].profileName);
-                    //    Debug.Log(Time.time + " i: " + i + " |j: " + j + "-unblockedFLAG: " + profiles[i].levelsData[j].levelUnblockedFLAG);
-                    //    Debug.Log(Time.time + " i: " + i + " |j: " + j + "-firstTimeFLAG: " + profiles[i].levelsData[j].firstTimeFLAG);
-                    //    Debug.Log(Time.time + " i: " + i + " |j: " + j + "-M.Finished: " + profiles[i].levelsData[j].levelMedals.finished);
-                    //    Debug.Log(Time.time + " i: " + i + " |j: " + j + "-M.Tbeated: " + profiles[i].levelsData[j].levelMedals.timeBeated);
-                    //    Debug.Log(Time.time + " i: " + i + " |j: " + j + "-M.batteryCollected: " + profiles[i].levelsData[j].levelMedals.batteryCollected);
-                    //    Debug.Log(Time.time + " i: " + i + " |j: " + j + "-M.timeRecord: " + profiles[i].levelsData[j].levelMedals.timeRecord);
-                    //}
+                        //LOGS DE LA LECTURA
+                        //if(i==0 && j==1)
+                        //{
+                        //    Debug.LogWarning(Time.time + " LOADING PROFILE 0 - MAP 1 // DATA");
+                        //    Debug.Log(Time.time + " i: " + i + " |j: " + j + "-used: " + profiles[i].profileUsed);
+                        //    Debug.Log(Time.time + " i: " + i + " |j: " + j + "-name: " + profiles[i].profileName);
+                        //    Debug.Log(Time.time + " i: " + i + " |j: " + j + "-unblockedFLAG: " + profiles[i].levelsData[j].levelUnblockedFLAG);
+                        //    Debug.Log(Time.time + " i: " + i + " |j: " + j + "-firstTimeFLAG: " + profiles[i].levelsData[j].firstTimeFLAG);
+                        //    Debug.Log(Time.time + " i: " + i + " |j: " + j + "-M.Finished: " + profiles[i].levelsData[j].levelMedals.finished);
+                        //    Debug.Log(Time.time + " i: " + i + " |j: " + j + "-M.Tbeated: " + profiles[i].levelsData[j].levelMedals.timeBeated);
+                        //    Debug.Log(Time.time + " i: " + i + " |j: " + j + "-M.batteryCollected: " + profiles[i].levelsData[j].levelMedals.batteryCollected);
+                        //    Debug.Log(Time.time + " i: " + i + " |j: " + j + "-M.timeRecord: " + profiles[i].levelsData[j].levelMedals.timeRecord);
+                        //}
+                    }
+                    Debug.LogWarning(Time.time + " LOADED PROFILE " + i + " DATA");
+                    reader.Close();
                 }
+                else
+                {
+                    Debug.Log("Fail to open " + path[i] + " file.");
+                }
+            }
 
-                reader.Close();
+            return;
+        }
+
+        //load perfil concreto
+
+        if (File.Exists(path[_id]))
+        {
+            reader = new BinaryReader(File.Open(path[_id], FileMode.Open));
+            profiles[_id].profileUsed = reader.ReadBoolean();
+            profiles[_id].profileName = reader.ReadString();
+            //ALERTA: Siempre crear 1 level más de los jugables. El [0] es de testing purposes{GameDevRoom}. 
+            //El resto de lvl corresponden su ID con el de la BUILD. ¡Todo lo que no sean niveles de juego deberán ir al final de la build order!
+            profiles[_id].levelsData = new LevelData[numberOfLevels];
+            for (int j = 0; j < numberOfLevels; j++)
+            {
+                profiles[_id].levelsData[j].levelUnblockedFLAG = reader.ReadBoolean();
+                profiles[_id].levelsData[j].firstTimeFLAG = reader.ReadBoolean();
+                profiles[_id].levelsData[j].levelMedals.finished = reader.ReadBoolean();
+                profiles[_id].levelsData[j].levelMedals.timeBeated = reader.ReadBoolean();
+                profiles[_id].levelsData[j].levelMedals.batteryCollected = reader.ReadBoolean();
+                profiles[_id].levelsData[j].levelMedals.timeRecord = reader.ReadSingle();
+                profiles[_id].levelsData[j].levelMedals.allAtOnce = reader.ReadBoolean();
+
+                //LOGS DE LA LECTURA
+                //if(i==0 && j==1)
+                //{
+                //    Debug.LogWarning(Time.time + " LOADING PROFILE 0 - MAP 1 // DATA");
+                //    Debug.Log(Time.time + " _id: " + i + " |j: " + j + "-used: " + profiles[_id].profileUsed);
+                //    Debug.Log(Time.time + " _id: " + i + " |j: " + j + "-name: " + profiles[_id].profileName);
+                //    Debug.Log(Time.time + " _id: " + i + " |j: " + j + "-unblockedFLAG: " + profiles[_id].levelsData[j].levelUnblockedFLAG);
+                //    Debug.Log(Time.time + " _id: " + i + " |j: " + j + "-firstTimeFLAG: " + profiles[_id].levelsData[j].firstTimeFLAG);
+                //    Debug.Log(Time.time + " _id: " + i + " |j: " + j + "-M.Finished: " + profiles[_id].levelsData[j].levelMedals.finished);
+                //    Debug.Log(Time.time + " _id: " + i + " |j: " + j + "-M.Tbeated: " + profiles[_id].levelsData[j].levelMedals.timeBeated);
+                //    Debug.Log(Time.time + " _id: " + i + " |j: " + j + "-M.batteryCollected: " + profiles[_id].levelsData[j].levelMedals.batteryCollected);
+                //    Debug.Log(Time.time + " _id: " + i + " |j: " + j + "-M.timeRecord: " + profiles[_id].levelsData[j].levelMedals.timeRecord);
+                //}
             }
-            else {
-                Debug.Log("Fail to open " + path[i] + " file.");
-            }
+            Debug.LogWarning(Time.time + " LOADED PROFILE " + _id + " DATA");
+            reader.Close();
+        }
+        else
+        {
+            Debug.Log("Fail to open " + path[_id] + " file.");
         }
     }
 
@@ -299,7 +358,7 @@ public class GameManager : MonoBehaviour
 
     //PROFE:¿Se puede hacer algo para ir a la posicion concreta del profile y sobreescribir solo los datos que me interesan?
     //Guarda estado actual del profile en su fichero bin. Se ejecuta al finalizar el saveData tras cada nivel.
-    private void saveDataInProfileBIN()
+    public void saveDataInProfileBIN()
     {
         BinaryWriter writer = new BinaryWriter(File.Open(path[profileSelected], FileMode.Create));
         writer.Write(profiles[profileSelected].profileUsed);
@@ -315,7 +374,7 @@ public class GameManager : MonoBehaviour
             writer.Write(profiles[profileSelected].levelsData[j].levelMedals.timeRecord);
             writer.Write(profiles[profileSelected].levelsData[j].levelMedals.allAtOnce);
         }
-        Debug.LogWarning(Time.time + " SAVED PROFILE 0 DATA");
+        Debug.LogWarning(Time.time + " SAVED PROFILE " + profileSelected + " DATA");
         writer.Close();
     }
 
@@ -354,16 +413,12 @@ public class GameManager : MonoBehaviour
         }
 
         //Leemos los perfiles en la carpeta bin y los cargamos en la lista profiles
-        loadProfiles();
+        loadProfiles(-1);
 
-        //TESTING ZONE
-        profileSelected = 0;
-        //END TESTING ZONE
-
-    }
-
-    void Update()
-    {
+        //Init a FALSE
+        profilePicked = false;
         
+        //TESTING ZONE
+        //END TESTING ZONE
     }
 }

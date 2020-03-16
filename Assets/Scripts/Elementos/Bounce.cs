@@ -6,6 +6,8 @@ public class Bounce : MonoBehaviour
 {
 
     public CharacterBehav player;
+    public ParticleSystem particle;
+    public int morePart;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -24,7 +26,12 @@ public class Bounce : MonoBehaviour
             if (player.maxHeight < player.maxHeightBouncer)
             {
                 player.maxHeight = player.maxHeightBouncer;
-            } 
+            }
+
+            if (player.isJumping && player.isGrounded)
+            {
+                particle.Emit(morePart);
+            }
         }
     }
 
