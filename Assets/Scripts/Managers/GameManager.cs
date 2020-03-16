@@ -238,6 +238,7 @@ public class GameManager : MonoBehaviour
                     profiles[i].levelsData[j].levelMedals.timeBeated = reader.ReadBoolean();
                     profiles[i].levelsData[j].levelMedals.batteryCollected = reader.ReadBoolean();
                     profiles[i].levelsData[j].levelMedals.timeRecord = reader.ReadSingle();
+                    profiles[i].levelsData[j].levelMedals.allAtOnce = reader.ReadBoolean();
 
                     //LOGS DE LA LECTURA
                     //if(i==0 && j==1)
@@ -275,6 +276,14 @@ public class GameManager : MonoBehaviour
         newLevelData.levelMedals.batteryCollected = recivedMedals.batteryCollected;
         newLevelData.levelMedals.timeRecord = recivedMedals.timeRecord;
 
+        if(recivedMedals.finished && recivedMedals.timeBeated && recivedMedals.batteryCollected)
+        {
+            newLevelData.levelMedals.allAtOnce = true;
+        } else
+        {
+            newLevelData.levelMedals.allAtOnce = false;
+        }
+
         profiles[profileSelected].levelsData[idLevel] = newLevelData;
 
         //SAVE NEXT LEVEL DATA
@@ -304,6 +313,7 @@ public class GameManager : MonoBehaviour
             writer.Write(profiles[profileSelected].levelsData[j].levelMedals.timeBeated);
             writer.Write(profiles[profileSelected].levelsData[j].levelMedals.batteryCollected);
             writer.Write(profiles[profileSelected].levelsData[j].levelMedals.timeRecord);
+            writer.Write(profiles[profileSelected].levelsData[j].levelMedals.allAtOnce);
         }
         Debug.LogWarning(Time.time + " SAVED PROFILE 0 DATA");
         writer.Close();
