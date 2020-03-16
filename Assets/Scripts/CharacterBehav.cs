@@ -181,7 +181,7 @@ public class CharacterBehav : MonoBehaviour
                     isJumping = true;
                 }
 
-                if (Input.GetKeyDown(KeyCode.R) && !isRecording)
+                if (Input.GetKeyDown(KeyCode.R) && !isRecording && maxClones > 0)
                 {
                     //transform.SetParent(Instantiate(clon, transform.position, transform.rotation).transform);
 
