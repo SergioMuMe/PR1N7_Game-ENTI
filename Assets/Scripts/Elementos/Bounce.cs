@@ -30,7 +30,6 @@ public class Bounce : MonoBehaviour
 
             if (player.isJumping && player.isGrounded)
             {
-                Debug.Log("Salto");
                 particle.Emit(morePart);
             }
         }
