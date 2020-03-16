@@ -291,7 +291,7 @@ PrefabInstance:
     - target: {fileID: 4754546773981360092, guid: 2bb841354d06dfe4ca1bd44c08319ffa,
         type: 3}
       propertyPath: nextScene
-      value: _Scenes/Final/00_Tutorial/00_02-PreassurePlate
+      value: 00_02-PreassurePlate
       objectReference: {fileID: 0}
     - target: {fileID: 4754546773981360092, guid: 2bb841354d06dfe4ca1bd44c08319ffa,
         type: 3}
@@ -1038,7 +1038,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 679746620}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.97, y: 4.35, z: 0}
+  m_LocalPosition: {x: -8.97, y: 4.35, z: 0.75}
   m_LocalScale: {x: 0.32248, y: 0.32248, z: 0.32248}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2329,7 +2329,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1623460257}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.02, y: 2.96, z: 0}
+  m_LocalPosition: {x: -0.02, y: 2.96, z: 0.75}
   m_LocalScale: {x: 0.30609, y: 0.30609, z: 0.30609}
   m_Children: []
   m_Father: {fileID: 0}

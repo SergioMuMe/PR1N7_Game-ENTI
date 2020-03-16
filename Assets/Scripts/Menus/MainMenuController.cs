@@ -92,16 +92,24 @@ public class MainMenuController : MonoBehaviour
     {
         GameManager.Instance.profileSelected = idSelected;
         GameManager.Instance.profilePicked = true;
+        getProfileSelected();
 
         if (GameManager.Instance.profiles[idSelected].profileUsed)
         {
             profileSelection.SetActive(false);
+            getLevelsStatus();
             mainMenu.SetActive(true);
         } else
         {
             profileSelection.SetActive(false);
             createProfile.SetActive(true);
         }
+    }
+
+    //Parche para código antiguo. Usamos alguna variable local que obtenemos del gameManager.
+    public void getProfileSelected()
+    {
+        idProfileSelected = GameManager.Instance.profileSelected;
     }
 
     //Creación de nuevo profile binario local
@@ -117,6 +125,10 @@ public class MainMenuController : MonoBehaviour
         //Actualizamos perfil
         GameManager.Instance.saveDataInProfileBIN();
 
+        //Cargamos datos del jugador
+        GameManager.Instance.loadProfiles(idProfile);
+        getLevelsStatus();
+
         //Avanzamos al mainmenu
         createProfile.SetActive(false);
         mainMenu.SetActive(true);
@@ -125,12 +137,17 @@ public class MainMenuController : MonoBehaviour
 
 
     /*index 
-        ###################################
-        #                                 #
-        #  OBTENER NIVELES DESBLOQUEADOS  #
-        #                                 #
-        ###################################
+        ########################
+        #                      #
+        #  GESTIÓN DE NIVELES  #
+        #                      #
+        ########################
     */
+
+
+    //Para modificar color (bloqueado/desbloqueado): Obtenemos los botones de los niveles + textos
+    public GameObject[] levelButtons;
+    public TextMeshProUGUI[] textUI;
 
     //Detecta los niveles desbloqueados por el profile actual, y los desbloquea en la seleccion de niveles.
     private void getLevelsStatus()
@@ -144,6 +161,21 @@ public class MainMenuController : MonoBehaviour
                 textUI[j].colorGradientPreset = statusLevelColor[1];
             }
         }
+        Debug.Log("getLevelsStatus for player id: " + idProfileSelected);
+    }
+
+    //Al cambiar de perfil, resetea el render de los niveles.
+    public void resetLevelsStatus()
+    {
+        for (int j = 0; j < scriptGM.numberOfLevels; j++)
+        {
+            levelButtons[j].GetComponent<Button>().interactable = false;
+
+            if (!levelButtons[j].GetComponent<Button>().IsInteractable())
+            {
+                textUI[j].colorGradientPreset = statusLevelColor[0];
+            }
+        }
     }
 
     /*index 
@@ -153,7 +185,7 @@ public class MainMenuController : MonoBehaviour
         #                                  #
         ####################################
     */
-    
+
     //GameObject IMAGEN de la medalla de cada nivel
     private Image starMedal;
     private Image timeMedal;
@@ -165,10 +197,6 @@ public class MainMenuController : MonoBehaviour
     public Sprite[] statusStar = new Sprite[2];
     public Sprite[] statusTime = new Sprite[2];
     public Sprite[] statusBattery = new Sprite[2];
-
-    //Para modificar color (bloqueado/desbloqueado): Obtenemos los botones de los niveles + textos
-    public GameObject[] levelButtons;
-    public TextMeshProUGUI[] textUI;
 
     private TextMeshProUGUI levelSelectedTitle; 
 
@@ -210,14 +238,14 @@ public class MainMenuController : MonoBehaviour
             batteryMedal.sprite = statusBattery[0];
         }
         
-        timeLevelLimit.text = "Level record: " + scriptGM.timeLevelLimit[idLevel] + " sec";
+        timeLevelLimit.text = "Level record:  " + Utils.GetTimeFormat(scriptGM.timeLevelLimit[idLevel]);
         
         if (scriptGM.profiles[idProfileSelected].levelsData[idLevel].firstTimeFLAG)
         {
-            playerRecord.text = "Player record: -- sec";
+            playerRecord.text = "Player record: --:--:--- ";
         } else
         {
-            playerRecord.text = "Player record: " + Utils.RoundFloat(scriptGM.profiles[idProfileSelected].levelsData[idLevel].levelMedals.timeRecord, 2) + " sec";
+            playerRecord.text = "Player record: " + Utils.GetTimeFormat(Utils.RoundFloat(scriptGM.profiles[idProfileSelected].levelsData[idLevel].levelMedals.timeRecord, 3));
         }
 
     }
