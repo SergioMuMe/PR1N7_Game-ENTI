@@ -163,12 +163,12 @@ public class DoorController : InterfaceGame
         }
 
         // DOORTYPE = BOOLEAN
-        if (activated && doorType == DOORTYPE.BOOLEAN && backwardI >= 1)
+        if (activated && doorType == DOORTYPE.BOOLEAN)
         {
             if (!previousActivation)
             {
                 previousActivation = true;
-                forwardI = 0;
+                forwardI = 1 - backwardI;
             }
 
             if (forwardI <= 1)
@@ -205,10 +205,6 @@ public class DoorController : InterfaceGame
 
                 moveDoor(posB, posA, backwardI);
             }
-        }
-        else if (doorType == DOORTYPE.BOOLEAN)
-        {
-            moveDoor(posB, posA, backwardI);
         }
 
         // MOVEMENTTYPE = HINGED
