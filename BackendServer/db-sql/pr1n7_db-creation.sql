@@ -131,6 +131,8 @@ CREATE TABLE `progress` (
 
 /*
 ::: VERIFICAR CREDENCIALES DE USUARIO ::: 
+
+TODO: Crear y tener en cuenta la función de generar MD5(username+password).
 */
 DROP FUNCTION IF EXISTS verifyCredentials;
 DELIMITER $$
