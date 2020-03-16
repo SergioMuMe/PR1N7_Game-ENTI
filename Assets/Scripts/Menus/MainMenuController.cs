@@ -18,6 +18,7 @@ public class MainMenuController : MonoBehaviour
     */
 
     private GameObject profileSelection;
+    private GameObject createProfile;
     private GameObject mainMenu;
     private GameObject levelSelection;
     private GameObject levelSelected;
@@ -38,14 +39,7 @@ public class MainMenuController : MonoBehaviour
          ##############
      */
 
-
-    /*
-    1- Guardar info de los profiles en nombres[]
-    2- A cada profile darle su nombre: profile0texto = profile.name
-    3- BETA: Displayar contador de estrellas desbloqueadas
-    4- Cuando se pulse sobre un profile = modificar el scriptGM.profileSelected;
-    */
-
+    //Obtenemos nombres de perfiles
     private TextMeshProUGUI[] profileName;
     private void setProfileNames()
     {
@@ -53,9 +47,10 @@ public class MainMenuController : MonoBehaviour
         {
             profileName[i].text = scriptGM.profiles[i].profileName;
         }
-        
+
     }
 
+    //Obtenemos total mapas superados
     private TextMeshProUGUI[] totalMaps;
     private void setTotalMaps()
     {
@@ -65,18 +60,69 @@ public class MainMenuController : MonoBehaviour
             totalMaps[i].text = totalMaps[i].text + " / " + scriptGM.numberOfLevels.ToString();
         }
     }
-
+    //Obtenemos total medallas conseguidas
     private TextMeshProUGUI[] totalMedals;
     private void setTotalMedals()
     {
         for (int i = 0; i < 3; i++)
         {
             totalMedals[i].text = scriptGM.getTotalMedals(i).ToString();
-            totalMedals[i].text = totalMedals[i].text + " / " + (scriptGM.numberOfLevels*3).ToString();
+            totalMedals[i].text = totalMedals[i].text + " / " + (scriptGM.numberOfLevels * 3).ToString();
         }
     }
 
-    
+    //Cargamos en pantalla la informacion de los profiles locales
+    public void loadProfileSelectionData()
+    {
+        setProfileNames();
+        setTotalMedals();
+        setTotalMaps();
+    }
+
+
+    //Seteamos profile seleccionado, en caso de no existir creamos profile nuevo
+    public void resetGMProfileVariables()
+    {
+        GameManager.Instance.profileSelected = 999;
+        GameManager.Instance.profilePicked = false;
+    }
+
+    //Seteamos profile seleccionado, en caso de no existir creamos profile nuevo
+    public void setProfileSelected(int idSelected)
+    {
+        GameManager.Instance.profileSelected = idSelected;
+        GameManager.Instance.profilePicked = true;
+
+        if (GameManager.Instance.profiles[idSelected].profileUsed)
+        {
+            profileSelection.SetActive(false);
+            mainMenu.SetActive(true);
+        } else
+        {
+            profileSelection.SetActive(false);
+            createProfile.SetActive(true);
+        }
+    }
+
+    //Creación de nuevo profile binario local
+    public void createNewProfileBIN ()
+    {
+        int idProfile = GameManager.Instance.profileSelected;
+        string name = GameObject.Find("NameValue").GetComponent<TMP_InputField>().text;
+        
+        //Definimos datos del nuevo perfil
+        GameManager.Instance.profiles[idProfile].profileUsed = true;
+        GameManager.Instance.profiles[idProfile].profileName = name;
+
+        //Actualizamos perfil
+        GameManager.Instance.saveDataInProfileBIN();
+
+        //Avanzamos al mainmenu
+        createProfile.SetActive(false);
+        mainMenu.SetActive(true);
+    }
+
+
 
     /*index 
         ###################################
@@ -218,6 +264,7 @@ public class MainMenuController : MonoBehaviour
 
         //Obtenemos referencias...
         profileSelection = GameObject.Find("ProfileSelection");
+        createProfile = GameObject.Find("CreateProfile");
         mainMenu = GameObject.Find("MainMenu");
         levelSelection = GameObject.Find("SelectLevel");
         levelSelected = GameObject.Find("LevelSelected");
@@ -253,9 +300,7 @@ public class MainMenuController : MonoBehaviour
         totalMaps[2] = GameObject.Find("LevelsProfile2").GetComponent<TextMeshProUGUI>();
 
         //Cargamos datos a displayar de los profiles
-        setProfileNames();
-        setTotalMedals();
-        setTotalMaps();
+        loadProfileSelectionData();
 
         //Habilitamos los niveles desbloqueados
         getLevelsStatus();
@@ -269,15 +314,31 @@ public class MainMenuController : MonoBehaviour
 
 
         //...Y desactivamos menus.
-        //profileSelection.SetActive(false);
-        mainMenu.SetActive(false);
-        levelSelected.SetActive(false);
-        levelSelected.SetActive(false);
-        levelSelection.SetActive(false);
-        credits.SetActive(false);
-        options.SetActive(false);
+        if(GameManager.Instance.profilePicked)
+        {
+            // El jugador ya habia seleccionado un perfil, venimos de pulsar ESC ingame
+            mainMenu.SetActive(true);
 
+            profileSelection.SetActive(false);
+            createProfile.SetActive(false);
+            levelSelected.SetActive(false);
+            levelSelected.SetActive(false);
+            levelSelection.SetActive(false);
+            credits.SetActive(false);
+            options.SetActive(false);
+        } else
+        {
+            // Entramos por primera vez al juego, venimos de la SplashScreen
+            profileSelection.SetActive(true);
 
+            mainMenu.SetActive(false);
+            createProfile.SetActive(false);
+            levelSelected.SetActive(false);
+            levelSelected.SetActive(false);
+            levelSelection.SetActive(false);
+            credits.SetActive(false);
+            options.SetActive(false);
+        }
     }
     
 }

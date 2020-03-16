@@ -53,8 +53,16 @@ public class GameManager : MonoBehaviour
      */
     public int profileSelected;
 
-
-    // TODO: SetProfileSelected. Lo más seguro que desde UNITY inspector.
+    
+    // BAD NAMING :(
+    //TODO: Lo suyo seria profileSelected> idProfileSelected. Y este bool mantener a profileSelected
+    
+    /* Nos permite saber si un profile ha sido seleccionado, 
+     * de esta manera cuando cargamos la escena de menu principal 
+     * al salir desde dentro de un nivel, no forzamos al jugador a realizar 
+     * seleccion de profile (again) 
+     */
+    public bool profilePicked;
 
     /*index
         #############################
@@ -299,7 +307,7 @@ public class GameManager : MonoBehaviour
 
     //PROFE:¿Se puede hacer algo para ir a la posicion concreta del profile y sobreescribir solo los datos que me interesan?
     //Guarda estado actual del profile en su fichero bin. Se ejecuta al finalizar el saveData tras cada nivel.
-    private void saveDataInProfileBIN()
+    public void saveDataInProfileBIN()
     {
         BinaryWriter writer = new BinaryWriter(File.Open(path[profileSelected], FileMode.Create));
         writer.Write(profiles[profileSelected].profileUsed);
@@ -356,14 +364,10 @@ public class GameManager : MonoBehaviour
         //Leemos los perfiles en la carpeta bin y los cargamos en la lista profiles
         loadProfiles();
 
-        //TESTING ZONE
-        profileSelected = 0;
-        //END TESTING ZONE
-
-    }
-
-    void Update()
-    {
+        //Init a FALSE
+        profilePicked = false;
         
+        //TESTING ZONE
+        //END TESTING ZONE
     }
 }

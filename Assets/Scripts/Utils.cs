@@ -22,7 +22,4 @@ public static class Utils
         float rounded = Mathf.Round(number * mult) / mult;
         return rounded;
     }
-
-
-
 }
