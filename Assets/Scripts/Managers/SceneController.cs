@@ -160,7 +160,7 @@ public class SceneController : MonoBehaviour
         //Cronometro, cuanto tarda el jugador en superar el nivel
         playerTime += Time.deltaTime;
 
-        timeHUD.text = "TIME: " + Utils.RoundFloat(playerTime, 2);
+        timeHUD.text = "TIME: " + Utils.GetTimeFormat(Utils.RoundFloat(playerTime, 3));
 
         if (Input.GetKey(KeyCode.P))
         {

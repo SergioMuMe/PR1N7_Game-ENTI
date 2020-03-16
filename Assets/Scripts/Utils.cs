@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+
 
 public struct Medals
 {
@@ -21,5 +23,16 @@ public static class Utils
         float mult = Mathf.Pow(10.0f, decimals);
         float rounded = Mathf.Round(number * mult) / mult;
         return rounded;
+    }
+
+
+    public static string GetTimeFormat (float _number)
+    {
+        TimeSpan time;
+
+        time = TimeSpan.FromSeconds(_number);
+
+        return time.ToString("mm':'ss':'fff");
+
     }
 }
