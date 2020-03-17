@@ -143,6 +143,8 @@ public class SceneController : MonoBehaviour
         getPlayerLevelInfo();
         timeLevelLimit = scriptGM.timeLevelLimit[idLevel];
 
+        GameManager.Instance.idActualLevel = idLevel;
+
         waltrapa = true;
     }
 

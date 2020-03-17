@@ -8647,6 +8647,7 @@ MonoBehaviour:
   statusBattery:
   - {fileID: 21300000, guid: 1dad046e06ed04147b9df1a6269e83ea, type: 3}
   - {fileID: 21300000, guid: cc3e2fe0d658247408b3330258f850fc, type: 3}
+  idLevel: 0
 --- !u!4 &1304313560
 Transform:
   m_ObjectHideFlags: 0

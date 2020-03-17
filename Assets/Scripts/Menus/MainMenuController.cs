@@ -207,6 +207,7 @@ public class MainMenuController : MonoBehaviour
 
     public void setIdLevel(int _idLevel)
     {
+        GameManager.Instance.idActualLevel = _idLevel;
         idLevel = _idLevel;
     }
 

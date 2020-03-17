@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-
+using UnityEngine.SceneManagement;
 
 public struct Medals
 {
@@ -25,7 +25,12 @@ public static class Utils
         return rounded;
     }
 
-    //Retorna un float en formato TimeSpan. mode1> mm:ss:fff | mode2> ss:fff
+    public static void GoMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    //Retorna un float en formato TimeSpan. mode1> mm:ss:fff | mode2> mm:ss:ff
     public static string GetTimeFormat (float _number, int mode)
     {
         TimeSpan time;
@@ -37,7 +42,7 @@ public static class Utils
             return time.ToString("mm':'ss':'fff");
             
             case 2:
-            return time.ToString("ss':'fff");
+            return time.ToString("mm':'ss':'ff");
 
             default:
             return time.ToString("mm':'ss':'fff");
