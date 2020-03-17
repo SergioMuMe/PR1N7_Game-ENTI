@@ -29,9 +29,34 @@ while($ROW = $RESULT->fetch_assoc()){
 }
 
 $DATA=json_encode($LIST);
+/* TODO: REVISAR LO DE LOS [ ] */
 $DATA = trim($DATA,'[]');
 mysqli_close($LINK);
 
 echo($DATA);
 
+/*
+CONTROL DE SEGURIDAD
+Cuando funcione todo, 
+- poner HTTPS-certificado
+- securizar código (lo miraremos en acceso de datos)
+- securizar MV
+
+Tabla de IDs, para el HASH
+Hago SELECT Random de un num no asignado.
+ID_number (1000 al 9999), ID_usuario (default 0)
+Tabla de control.
+
+
+scores: arreglar camelcase
+
+
+Dreamhost: low price, pero puta mierda
+Bluehost:
+
+
+
+*/
+
 ?>
+

@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour
         public bool profileUsed; // Indica si está en uso
         public string profileName; // Nombre profile
         public LevelData[] levelsData; // Listado de niveles y su estado
+        /*TODO hacer el idGameVersion, sirve para realizar metricas*/
+        //public int idGameVersion;
     }
 
     public Profiles[] profiles = new Profiles[3];
