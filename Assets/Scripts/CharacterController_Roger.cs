@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class CharacterController_Roger : MonoBehaviour
 {
+
+    /*
+     * !!!!!!!!!!!!!!!!!!!!!!!!!!!!
+     * CODIGO OBSOLETO, PENDIENTE ARCHIVAR
+     * !!!!!!!!!!!!!!!!!!!!!!!!!!!!
+     */
     private enum DirectionInputs
     {
         NONE,

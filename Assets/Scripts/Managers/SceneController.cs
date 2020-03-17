@@ -30,15 +30,7 @@ public class SceneController : MonoBehaviour
         sendLevelResults();
         SceneManager.LoadScene(scene);
     }
-
-    /*index
-        ################
-        #              #
-        #  HUD ESCENA  #
-        #              #
-        ################
-    */
-    private TextMeshProUGUI timeHUD;
+   
 
     /*index
         ##########################
@@ -94,7 +86,8 @@ public class SceneController : MonoBehaviour
     private void setLevelResults() {
         
         sceneMedals.finished = true;
-        
+        playerTime = GameObject.Find("CanvasHUD").GetComponent<HUDController>().playerTime;
+
         //Si jugador NO ha obtenido aun la medalla
         if (!sceneMedals.batteryCollected)
         {
@@ -150,8 +143,6 @@ public class SceneController : MonoBehaviour
         getPlayerLevelInfo();
         timeLevelLimit = scriptGM.timeLevelLimit[idLevel];
 
-        timeHUD = GameObject.Find("TIME").GetComponent<TextMeshProUGUI>();
-
         waltrapa = true;
     }
 
@@ -160,7 +151,7 @@ public class SceneController : MonoBehaviour
         //Cronometro, cuanto tarda el jugador en superar el nivel
         playerTime += Time.deltaTime;
 
-        timeHUD.text = "TIME: " + Utils.GetTimeFormat(Utils.RoundFloat(playerTime, 3));
+        
 
         if (Input.GetKey(KeyCode.P))
         {
@@ -171,13 +162,17 @@ public class SceneController : MonoBehaviour
         {
             restartScene("MainMenu");
         }
+
+        if(Input.GetKey(KeyCode.O))
+        {
+            loadNextScene(nextScene);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player" && waltrapa)
         {
-            
             waltrapa = false;
             Debug.LogWarning("TODO arreglar waltrapa");
             collision.enabled = false;

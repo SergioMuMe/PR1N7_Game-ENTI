@@ -29,7 +29,7 @@ public class CharacterBehav : MonoBehaviour
     //Lista de inputs que le passamos al clon
     public List<CommandsInputs> inputs;
     //Almacena el tiempo en el que se ha usado un input
-    private float initInputTime = 0.0f;
+    public float initInputTime = 0.0f;
     //Almacena el tiempo maximo durante en el que grabamos los inputs
     public float limitRecordingTime = 0.0f;
     //Almacena el inicio de la fase de gravado

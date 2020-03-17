@@ -25,14 +25,22 @@ public static class Utils
         return rounded;
     }
 
-
-    public static string GetTimeFormat (float _number)
+    //Retorna un float en formato TimeSpan. mode1> mm:ss:fff | mode2> ss:fff
+    public static string GetTimeFormat (float _number, int mode)
     {
         TimeSpan time;
-
         time = TimeSpan.FromSeconds(_number);
 
-        return time.ToString("mm':'ss':'fff");
+        switch (mode)
+        {
+            case 1:
+            return time.ToString("mm':'ss':'fff");
+            
+            case 2:
+            return time.ToString("ss':'fff");
 
+            default:
+            return time.ToString("mm':'ss':'fff");
+        }      
     }
 }
