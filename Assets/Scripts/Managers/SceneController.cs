@@ -162,7 +162,7 @@ public class SceneController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Escape))
         {
-            restartScene("MainMenu");
+            Utils.GoMainMenu();
         }
 
         if(Input.GetKey(KeyCode.O))
