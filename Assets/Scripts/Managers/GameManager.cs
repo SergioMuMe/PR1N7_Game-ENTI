@@ -66,6 +66,18 @@ public class GameManager : MonoBehaviour
      */
     public bool profilePicked;
 
+
+    /*index
+        ####################
+        #                  #
+        #  DATOS DEL MAPA  #
+        #                  #
+        ####################
+    */
+
+    //idLevel del nivel actual que está siendo jugado.
+    public int idActualLevel;
+
     /*index
         #############################
         #                           #

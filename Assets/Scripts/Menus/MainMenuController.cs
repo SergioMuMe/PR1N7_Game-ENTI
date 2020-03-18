@@ -203,10 +203,11 @@ public class MainMenuController : MonoBehaviour
     private TextMeshProUGUI timeLevelLimit;
     private TextMeshProUGUI playerRecord;
 
-    private int idLevel;
+    public int idLevel;
 
     public void setIdLevel(int _idLevel)
     {
+        GameManager.Instance.idActualLevel = _idLevel;
         idLevel = _idLevel;
     }
 
@@ -238,14 +239,14 @@ public class MainMenuController : MonoBehaviour
             batteryMedal.sprite = statusBattery[0];
         }
         
-        timeLevelLimit.text = "Level record:  " + Utils.GetTimeFormat(scriptGM.timeLevelLimit[idLevel]);
+        timeLevelLimit.text = "Level record:  " + Utils.GetTimeFormat(scriptGM.timeLevelLimit[idLevel],1);
         
         if (scriptGM.profiles[idProfileSelected].levelsData[idLevel].firstTimeFLAG)
         {
             playerRecord.text = "Player record: --:--:--- ";
         } else
         {
-            playerRecord.text = "Player record: " + Utils.GetTimeFormat(Utils.RoundFloat(scriptGM.profiles[idProfileSelected].levelsData[idLevel].levelMedals.timeRecord, 3));
+            playerRecord.text = "Player record: " + Utils.GetTimeFormat(Utils.RoundFloat(scriptGM.profiles[idProfileSelected].levelsData[idLevel].levelMedals.timeRecord, 3),1);
         }
 
     }

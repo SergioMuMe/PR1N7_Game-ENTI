@@ -225,6 +225,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   profileSelected: 0
   profilePicked: 0
+  idActualLevel: 0
   timeLevelLimit: []
   numberOfLevels: 0
   createEmptyProfilesFLAG: 1
