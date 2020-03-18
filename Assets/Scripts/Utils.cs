@@ -17,6 +17,8 @@ public struct Medals
 
 public static class Utils
 {
+    
+
     // Returns the float number with X decimals.
     public static float RoundFloat(float number, int decimals)
     {
@@ -25,12 +27,32 @@ public static class Utils
         return rounded;
     }
 
+    // Define la musica actual que está sonando
+    public enum PlayingNow
+    {
+        NONE,
+        MAINTHEME
+    };
+
+    public static float GetPercentage(float _num, int _decimals)
+    {
+        float number;
+
+        number = RoundFloat(_num * 100, _decimals);
+
+        return number;
+    }
+
     public static void GoMainMenu()
     {
         SceneManager.LoadScene("MainMenu");
     }
 
-    //Retorna un float en formato TimeSpan. mode1> mm:ss:fff | mode2> mm:ss:ff
+    //Retorna un float en formato TimeSpan. 
+    /*
+     * mode (1) > mm:ss:fff
+     * mode (2) > mm:ss:ff
+     */
     public static string GetTimeFormat (float _number, int mode)
     {
         TimeSpan time;
