@@ -27,7 +27,33 @@ public class MainMenuController : MonoBehaviour
 
     private GameManager scriptGM;
 
-    private int idProfileSelected;
+    /*index 
+        ##############
+        #            #
+        #  OPCIONES  #
+        #            #
+        ##############
+    */
+
+
+    public Slider masterVolumen;
+    public Slider musicVolumen;
+    public Slider effectsVolumen;
+
+    private TextMeshProUGUI masterValueDisplay;
+    private TextMeshProUGUI musicValueDisplay;
+    private TextMeshProUGUI effectsValueDisplay;
+
+    //Descripción de las funciones en OptionsManager.Instance
+    public void saveActualValues()
+    {
+        OptionsManager.Instance.saveActualValues(masterVolumen.value, musicVolumen.value, effectsVolumen.value);
+    }
+
+    public void checkExitOptions()
+    {
+        OptionsManager.Instance.checkExitOptions();
+    }
 
 
 
@@ -38,6 +64,8 @@ public class MainMenuController : MonoBehaviour
          #            #
          ##############
      */
+
+    private int idProfileSelected;
 
     //Obtenemos nombres de perfiles
     private TextMeshProUGUI[] profileName;
@@ -113,11 +141,11 @@ public class MainMenuController : MonoBehaviour
     }
 
     //Creación de nuevo profile binario local
-    public void createNewProfileBIN ()
+    public void createNewProfileBIN()
     {
         int idProfile = GameManager.Instance.profileSelected;
         string name = GameObject.Find("NameValue").GetComponent<TMP_InputField>().text;
-        
+
         //Definimos datos del nuevo perfil
         GameManager.Instance.profiles[idProfile].profileUsed = true;
         GameManager.Instance.profiles[idProfile].profileName = name;
@@ -198,7 +226,7 @@ public class MainMenuController : MonoBehaviour
     public Sprite[] statusTime = new Sprite[2];
     public Sprite[] statusBattery = new Sprite[2];
 
-    private TextMeshProUGUI levelSelectedTitle; 
+    private TextMeshProUGUI levelSelectedTitle;
 
     private TextMeshProUGUI timeLevelLimit;
     private TextMeshProUGUI playerRecord;
@@ -215,7 +243,7 @@ public class MainMenuController : MonoBehaviour
     {
         levelSelectedTitle.text = "LEVEL " + idLevel;
 
-        if(scriptGM.profiles[idProfileSelected].levelsData[idLevel].levelMedals.finished)
+        if (scriptGM.profiles[idProfileSelected].levelsData[idLevel].levelMedals.finished)
         {
             starMedal.sprite = statusStar[1];
         } else
@@ -238,15 +266,15 @@ public class MainMenuController : MonoBehaviour
         {
             batteryMedal.sprite = statusBattery[0];
         }
-        
-        timeLevelLimit.text = "Level record:  " + Utils.GetTimeFormat(scriptGM.timeLevelLimit[idLevel],1);
-        
+
+        timeLevelLimit.text = "Level record:  " + Utils.GetTimeFormat(scriptGM.timeLevelLimit[idLevel], 1);
+
         if (scriptGM.profiles[idProfileSelected].levelsData[idLevel].firstTimeFLAG)
         {
             playerRecord.text = "Player record: --:--:--- ";
         } else
         {
-            playerRecord.text = "Player record: " + Utils.GetTimeFormat(Utils.RoundFloat(scriptGM.profiles[idProfileSelected].levelsData[idLevel].levelMedals.timeRecord, 3),1);
+            playerRecord.text = "Player record: " + Utils.GetTimeFormat(Utils.RoundFloat(scriptGM.profiles[idProfileSelected].levelsData[idLevel].levelMedals.timeRecord, 3), 1);
         }
 
     }
@@ -262,7 +290,7 @@ public class MainMenuController : MonoBehaviour
 
     public void playLevel()
     {
-        if(idLevel == 999)
+        if (idLevel == 999)
         {
             string devRoom = "DevelopRoom";
             SceneManager.LoadScene(devRoom);
@@ -270,7 +298,7 @@ public class MainMenuController : MonoBehaviour
         {
             SceneManager.LoadScene(idLevel);
         }
-        
+
     }
 
     public void QuitGame()
@@ -310,9 +338,19 @@ public class MainMenuController : MonoBehaviour
         playerRecord = GameObject.Find("PlayerRecord").GetComponent<TextMeshProUGUI>();
 
 
-        idProfileSelected = scriptGM.profileSelected;
+        //Referencias y seteos de opciones
+
+        masterVolumen = GameObject.Find("MasterVolumeSlider").GetComponent<Slider>();
+        musicVolumen = GameObject.Find("MusicVolumeSlider").GetComponent<Slider>();
+        effectsVolumen = GameObject.Find("EffectsVolumeSlider").GetComponent<Slider>();
+        OptionsManager.Instance.masterVolumenValueSaved = masterVolumen.value;
+        OptionsManager.Instance.musicVolumenValueSaved = musicVolumen.value;
+        OptionsManager.Instance.effectsVolumenValueSaved = effectsVolumen.value;
 
         //Referencias de los profiles
+
+        idProfileSelected = scriptGM.profileSelected;
+
         profileName = new TextMeshProUGUI[3];
         profileName[0] = GameObject.Find("NombreProfile0").GetComponent<TextMeshProUGUI>();
         profileName[1] = GameObject.Find("NombreProfile1").GetComponent<TextMeshProUGUI>();
@@ -333,7 +371,7 @@ public class MainMenuController : MonoBehaviour
 
         //Habilitamos los niveles desbloqueados
         getLevelsStatus();
-        
+
 
         //Otras referencias
         for (int i = 0; i < levelButtons.Length; i++)
@@ -343,7 +381,7 @@ public class MainMenuController : MonoBehaviour
 
 
         //...Y desactivamos menus.
-        if(GameManager.Instance.profilePicked)
+        if (GameManager.Instance.profilePicked)
         {
             // El jugador ya habia seleccionado un perfil, venimos de pulsar ESC ingame
             mainMenu.SetActive(true);
@@ -368,6 +406,18 @@ public class MainMenuController : MonoBehaviour
             credits.SetActive(false);
             options.SetActive(false);
         }
+
+        //Actualizamos valores iniciales de OptionsManager
+        saveActualValues();
+
+        //Play main menu music
+        SoundManager.Instance.playingNow = Utils.PlayingNow.MAINTHEME;
     }
-    
+
+    private void Update()
+    {
+        masterValueDisplay.text = GetPercentage
+        musicValueDisplay.text = 
+        effectsValueDisplay.text = 
+    }  
 }

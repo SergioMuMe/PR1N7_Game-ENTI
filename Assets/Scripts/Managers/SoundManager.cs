@@ -15,9 +15,28 @@ public class SoundManager : MonoBehaviour
 
     private AudioSource musicSource;
 
-    public AudioClip mainTheme;
-    public AudioClip tutorialTheme;
+    public AudioClip[] musics;
 
+    public Utils.PlayingNow playingNow;
+
+    public void setVolume()
+    {
+        musicSource.volume = OptionsManager.Instance.masterVolumenValueSaved;
+        musicSource.volume *= OptionsManager.Instance.musicVolumenValueSaved;
+    }
+
+    public void playMainMenu()
+    {
+
+        if(musicSource.clip == musics[0]) {
+            musicSource.clip = musics[1];
+        } else if (musicSource.clip == null || musicSource.clip == musics[1]) {
+            musicSource.clip = musics[0];
+        }
+
+        musicSource.Play();
+
+    }
 
     /*index
       ########################
@@ -46,5 +65,19 @@ public class SoundManager : MonoBehaviour
     private void Start()
     {
         musicSource = GameObject.Find("SoundManager").GetComponent<AudioSource>();
+        playingNow = Utils.PlayingNow.NONE;
+    }
+
+    private void Update()
+    {
+        if (musicSource.isPlaying==false)
+        {
+            switch (playingNow)
+            {
+                case Utils.PlayingNow.MAINTHEME:
+                playMainMenu();
+                break;
+            }
+        }  
     }
 }

@@ -2,64 +2,42 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class OptionsManager : MonoBehaviour
 {
     /*index
-     ########################
-     #                      #
-     #  AUDIO OPTIONS       #
-     #                      #
-     ########################
- */
+     ####################
+     #                  #
+     #  AUDIO OPTIONS   #
+     #                  #
+     ####################
+    */
 
-    public Slider masterVolumen;
-    public Slider musicVolumen;
-    public Slider effectsVolumen;
+    private MainMenuController scriptMMC;
+    
+    public float masterVolumenValueSaved;
+    public float musicVolumenValueSaved;
+    public float effectsVolumenValueSaved;
 
-    private float masterVolumenValue;
-    private float musicVolumenValue;
-    private float effectsVolumenValue;
-
-    private float masterVolumenValueSaved;
-    private float musicVolumenValueSaved;
-    private float effectsVolumenValueSaved;
-
-    public int changesApplied;
-
-    public void changeChangesApplied()
+    //Al aplicar cambios: Valores guardados de las opciones
+    public void saveActualValues(float _masterV, float _musicV, float _effectsV)
     {
-        changesApplied++;
-        saveActualValues();
+        masterVolumenValueSaved = _masterV;
+        musicVolumenValueSaved = _musicV;
+        effectsVolumenValueSaved = _effectsV;
+        SoundManager.Instance.setVolume();
     }
-
-    //Actualiza las variables de audio al aplicar cambios.
-    public void updateVolumenValues()
-    {
-        masterVolumenValue = masterVolumen.value;
-        musicVolumenValue = musicVolumen.value;
-        effectsVolumenValue = effectsVolumen.value;
-    }
-
-    //Guarda los valores previos
-    public void saveActualValues()
-    {
-        masterVolumenValueSaved = masterVolumen.value;
-        musicVolumenValueSaved = musicVolumen.value;
-        effectsVolumenValueSaved = effectsVolumen.value;
-        changesApplied = 0;
-    }
-
+    
+    //Al salir: Si el jugador ha realizado cambios y no los ha guardado, se restauran los valores.
+    //TODO: Poner un popup de ¿Salir sin guardar cambios? [Aplicar cambios], [Salir]. Para conseguir el popup, comparar SavedValues con ActualValues del slider
     public void checkExitOptions()
-    {
-        if(changesApplied >=1)
-        {
-            return;
-        }
+    {    
+        scriptMMC = GameObject.Find("MainMenuManager").GetComponent<MainMenuController>();
 
-        masterVolumen.value = masterVolumenValueSaved;
-        musicVolumen.value = musicVolumenValueSaved;
-        effectsVolumen.value = effectsVolumenValueSaved;
+        scriptMMC.masterVolumen.value = masterVolumenValueSaved;
+        scriptMMC.musicVolumen.value = musicVolumenValueSaved;
+        scriptMMC.effectsVolumen.value = effectsVolumenValueSaved;
     }
 
     /*index
@@ -84,21 +62,5 @@ public class OptionsManager : MonoBehaviour
         {
             Debug.Log("Warning: multiple " + this + " in scene!");
         }
-
     }
-
-    void Start()
-    {
-        //masterVolumen = GameObject.Find("MasterVolumeSlider").GetComponent<Slider>();
-        //musicVolumen = GameObject.Find("MusicVolumeSlider").GetComponent<Slider>();
-        //effectsVolumen = GameObject.Find("effectsVolumeSlider").GetComponent<Slider>();
-
-        changesApplied = 0;
-
-        updateVolumenValues();
-        saveActualValues();
-
-    }
-
-    
 }
