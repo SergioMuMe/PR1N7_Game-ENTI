@@ -416,8 +416,8 @@ public class MainMenuController : MonoBehaviour
 
     private void Update()
     {
-        masterValueDisplay.text = GetPercentage
-        musicValueDisplay.text = 
-        effectsValueDisplay.text = 
+        //masterValueDisplay.text = GetPercentage
+        //musicValueDisplay.text = 
+        //effectsValueDisplay.text = 
     }  
 }

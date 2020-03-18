@@ -18,7 +18,6 @@ public struct Medals
 public static class Utils
 {
     
-
     // Returns the float number with X decimals.
     public static float RoundFloat(float number, int decimals)
     {
