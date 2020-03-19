@@ -94,7 +94,7 @@ public class HUDController : MonoBehaviour
         LTTime = GameObject.Find("LT-Time").GetComponent<TextMeshProUGUI>();
         LTRecordTime = GameObject.Find("LT-RecordTime").GetComponent<TextMeshProUGUI>();
 
-        goMenuButton = GameObject.Find("EG-goMenuButton").GetComponent<Button>();
+        //goMenuButton = GameObject.Find("EG-goMenuButton").GetComponent<Button>();
 
         //Setup record time of level
         int idPlayer = GameManager.Instance.profileSelected;
