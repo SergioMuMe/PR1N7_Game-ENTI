@@ -46,7 +46,7 @@ public class OptionsManager : MonoBehaviour
     #  FUNCIONES DE UNITY  #
     #                      #
     ########################
-*/
+    */
 
     // Instanciar OptionsManager
     public static OptionsManager Instance { get; private set; }

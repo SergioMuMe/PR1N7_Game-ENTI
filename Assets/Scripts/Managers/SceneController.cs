@@ -173,7 +173,7 @@ public class SceneController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Player" && waltrapa)
+        if (waltrapa && collision.tag == "Player")
         {
             waltrapa = false;
             Debug.LogWarning("TODO arreglar waltrapa");
