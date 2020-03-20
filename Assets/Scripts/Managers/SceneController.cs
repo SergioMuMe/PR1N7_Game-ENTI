@@ -24,6 +24,28 @@ public class SceneController : MonoBehaviour
         SceneManager.LoadScene(scene);
     }
 
+    //Al terminar un nivel, podemos reiniciar escena pero conservamos el progreso
+    public void restartSceneEndGame()
+    {
+        setLevelResults();
+        sendLevelResults();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    //Al terminar un nivel, podemos ir al main menu pero conservamos el progreso
+    public void goHomeEndGame()
+    {
+        setLevelResults();
+        sendLevelResults();
+        Utils.GoMainMenu();
+    }
+
+    //Al terminar un nivel, cargamos next level y conservamos el progreso
+    public void loadNextSceneEndGame()
+    {
+        loadNextScene(nextScene);
+    }
+
     private void loadNextScene(string scene)
     {
         setLevelResults();
@@ -143,6 +165,8 @@ public class SceneController : MonoBehaviour
         getPlayerLevelInfo();
         timeLevelLimit = scriptGM.timeLevelLimit[idLevel];
 
+        GameObject.Find("CanvasEndGame").SetActive(false);
+
         GameManager.Instance.idActualLevel = idLevel;
 
         waltrapa = true;
@@ -178,7 +202,11 @@ public class SceneController : MonoBehaviour
             waltrapa = false;
             Debug.LogWarning("TODO arreglar waltrapa");
             collision.enabled = false;
-            loadNextScene(nextScene);
+
+            //TODO: Pillar referencia, bloquear Inputs de jugador
+            //BUG es necesario referencia para hacer un set active.... que sino no encuentra con el FIND!!!
+            //lo arreglo luego, no time. COMMIT!!!!
+            GameObject.Find("CanvasEndGame").SetActive(true);
         }
     }
 }

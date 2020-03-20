@@ -25,6 +25,12 @@ public class SoundManager : MonoBehaviour
         musicSource.volume *= OptionsManager.Instance.musicVolumenValueSaved;
     }
 
+    public void setVolumeTesting(float _master, float _music)
+    {
+        musicSource.volume = _master;
+        musicSource.volume *= _music;
+    }
+
     public void playMainMenu()
     {
 

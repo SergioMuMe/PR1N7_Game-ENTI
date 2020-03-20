@@ -35,7 +35,6 @@ public class MainMenuController : MonoBehaviour
         ##############
     */
 
-
     public Slider masterVolumen;
     public Slider musicVolumen;
     public Slider effectsVolumen;
@@ -298,7 +297,6 @@ public class MainMenuController : MonoBehaviour
         {
             SceneManager.LoadScene(idLevel);
         }
-
     }
 
     public void QuitGame()
@@ -343,6 +341,11 @@ public class MainMenuController : MonoBehaviour
         masterVolumen = GameObject.Find("MasterVolumeSlider").GetComponent<Slider>();
         musicVolumen = GameObject.Find("MusicVolumeSlider").GetComponent<Slider>();
         effectsVolumen = GameObject.Find("EffectsVolumeSlider").GetComponent<Slider>();
+
+        masterValueDisplay = GameObject.Find("masterValueDisplay").GetComponent<TextMeshProUGUI>();
+        musicValueDisplay = GameObject.Find("musicValueDisplay").GetComponent<TextMeshProUGUI>();
+        effectsValueDisplay = GameObject.Find("effectsValueDisplay").GetComponent<TextMeshProUGUI>();
+
         OptionsManager.Instance.masterVolumenValueSaved = masterVolumen.value;
         OptionsManager.Instance.musicVolumenValueSaved = musicVolumen.value;
         OptionsManager.Instance.effectsVolumenValueSaved = effectsVolumen.value;
@@ -416,8 +419,10 @@ public class MainMenuController : MonoBehaviour
 
     private void Update()
     {
-        //masterValueDisplay.text = GetPercentage
-        //musicValueDisplay.text = 
-        //effectsValueDisplay.text = 
-    }  
+        masterValueDisplay.text = Utils.GetPercentage(masterVolumen.value, 0).ToString() + "%";
+        musicValueDisplay.text = Utils.GetPercentage(musicVolumen.value, 0).ToString() + "%";
+        effectsValueDisplay.text = Utils.GetPercentage(effectsVolumen.value, 0).ToString() + "%";
+
+        SoundManager.Instance.setVolumeTesting(masterVolumen.value, musicVolumen.value);
+    }
 }
