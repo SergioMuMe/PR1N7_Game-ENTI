@@ -15,7 +15,7 @@ public class SceneController : MonoBehaviour
     */
     public string nextScene;
     private string actualScene;
-    
+
     //PROFE: ¿Porque entra dos veces en el trigger?
     private bool waltrapa;
 
@@ -23,6 +23,28 @@ public class SceneController : MonoBehaviour
     {
         SceneManager.LoadScene(scene);
     }
+
+    private void loadNextScene(string scene)
+    {
+        setLevelResults();
+        sendLevelResults();
+        SceneManager.LoadScene(scene);
+    }
+
+    /*index
+        ############################
+        #                          #
+        #  END GAME SPLASH SCREEN  #
+        #                          #
+        ############################
+    */
+
+    bool levelEnded;
+
+    TextMeshProUGUI recordTimeEG;
+    TextMeshProUGUI playerTimeEG;
+
+    GameObject canvasEndGame;
 
     //Al terminar un nivel, podemos reiniciar escena pero conservamos el progreso
     public void restartSceneEndGame()
@@ -46,13 +68,16 @@ public class SceneController : MonoBehaviour
         loadNextScene(nextScene);
     }
 
-    private void loadNextScene(string scene)
+    private void endGameAnimations()
     {
-        setLevelResults();
-        sendLevelResults();
-        SceneManager.LoadScene(scene);
+        playerTime = GameObject.Find("CanvasHUD").GetComponent<HUDController>().playerTime;
+
+        Debug.Log(playerTime);
+        Debug.Log(Utils.GetTimeFormat(Utils.RoundFloat(playerTime, 3), 1));
+        
+        playerTimeEG.text = Utils.GetTimeFormat(Utils.RoundFloat(playerTime, 3), 1);
     }
-   
+
 
     /*index
         ##########################
@@ -61,6 +86,10 @@ public class SceneController : MonoBehaviour
         #                        #
         ##########################
     */
+
+#region CONFIGURACION ESCENA
+
+    
     public int idLevel; //Para informar al GameManager de que nivel és.
     public int batteryLevelCount; // Cantidad de pilas en el nivel
     private float playerTime; // En Segundos. Tiempo que tarda el jugador en superar el nivel
@@ -148,7 +177,7 @@ public class SceneController : MonoBehaviour
     private void sendLevelResults() {
         scriptGM.saveData(idLevel, sceneMedals);
     }
-
+    #endregion
 
     /*index
         ########################
@@ -157,28 +186,30 @@ public class SceneController : MonoBehaviour
         #                      #
         ########################
     */
-
+    
     private void Start()
     {
         scriptGM = GameObject.Find("GameManager").GetComponent<GameManager>();
         actualScene = SceneManager.GetActiveScene().name;
         getPlayerLevelInfo();
-        timeLevelLimit = scriptGM.timeLevelLimit[idLevel];
+        timeLevelLimit = scriptGM.timeLevelLimit[idLevel];        
 
-        GameObject.Find("CanvasEndGame").SetActive(false);
+        recordTimeEG = GameObject.Find("T-RecordTime").GetComponent<TextMeshProUGUI>();
+        recordTimeEG.text = Utils.GetTimeFormat(Utils.RoundFloat(timeLevelLimit, 3), 1);
+        playerTimeEG = GameObject.Find("T-Time").GetComponent<TextMeshProUGUI>();
 
         GameManager.Instance.idActualLevel = idLevel;
 
         waltrapa = true;
+        levelEnded = false;
+
+        canvasEndGame = GameObject.Find("CanvasEndGame");
+        canvasEndGame.SetActive(false);
     }
 
     private void Update()
-    {
-        //Cronometro, cuanto tarda el jugador en superar el nivel
-        playerTime += Time.deltaTime;
-
+    {      
         
-
         if (Input.GetKey(KeyCode.P))
         {
             restartScene(actualScene);
@@ -200,13 +231,20 @@ public class SceneController : MonoBehaviour
         if (waltrapa && collision.tag == "Player")
         {
             waltrapa = false;
-            Debug.LogWarning("TODO arreglar waltrapa");
+            levelEnded = true;
+
+            Debug.LogWarning("TODO: arreglar waltrapa");
             collision.enabled = false;
 
-            //TODO: Pillar referencia, bloquear Inputs de jugador
-            //BUG es necesario referencia para hacer un set active.... que sino no encuentra con el FIND!!!
-            //lo arreglo luego, no time. COMMIT!!!!
-            GameObject.Find("CanvasEndGame").SetActive(true);
+            //TODO: bloquear Inputs de jugador
+            Debug.LogWarning("TODO: bloquear Inputs de jugador.");
+
+
+            //TODO: Arreglar que el HUD se desactive y el tiempo enviado como record sea el correcto
+            canvasEndGame.SetActive(true);
+            endGameAnimations();
+            GameObject.Find("CanvasHUD").GetComponent<HUDController>().levelEnded = true;
+            
         }
     }
 }

@@ -6,15 +6,7 @@ using UnityEngine.UI;
 
 public class HUDController : MonoBehaviour
 {
-    /*index
-        #####################
-        #                   #
-        #  ENG GAME CANVAS  #
-        #                   #
-        #####################
-    */
-
-    private Button goMenuButton;
+    public bool levelEnded;
 
     /*index
         ################
@@ -115,29 +107,12 @@ public class HUDController : MonoBehaviour
             LTRecordTime.text += Utils.GetTimeFormat(levelRecordDEV, 1).ToString();
             recordSelected = levelRecordDEV;
         }
+
+        levelEnded = false;
     }
 
     private void Update()
     {
-        /*index
-        !!!!!!!!!!
-        ENDGAME CANVAS 
-        !!!!!!!!!!
-        */
-        /*TODO:
-         * Printar record time
-         * 
-         * Printar tiempo actual
-         * -- Superado, en amarillo con animación parpadeando, añadir palabra NEW RECORD
-         * -- No superado, en rojo parpadeando
-         * 
-         * Añadir funcionalidad a los 3 botones de abajo.
-         * 
-         * Añadir animación básica:
-         * 1- Poco a poco se marcan las estrellas, se reproduce un sonido al cambiar.
-         * 2- Aparece el texto de los tiempos.
-         */
-
 
         /*index
         !!!!!!!!!!
@@ -148,7 +123,10 @@ public class HUDController : MonoBehaviour
         playerTime += Time.deltaTime;
 
         //Cronometro level
-        LTTime.text = Utils.GetTimeFormat(Utils.RoundFloat(playerTime, 3), 1);
+        if(!levelEnded)
+        {
+            LTTime.text = Utils.GetTimeFormat(Utils.RoundFloat(playerTime, 3), 1);
+        }
 
         //Gradient de color para marcar tiempo restante
         gradientProgression = Mathf.Lerp(0f, 1f, gradientTime);
