@@ -31,13 +31,8 @@ public class HUDController : MonoBehaviour
     private GameObject CanvasLT;
     public float playerTime;
     private TextMeshProUGUI LTRecordTime;
-    private TextMeshProUGUI LTTime;
-    private float recordSelected;
-
-    // Hacemos flash del numero para indicar que se aproxima al tiempo record
-    public float secondsToFlash;
-    public float timeFlashing;
-    public float doFlashAt;
+    public TextMeshProUGUI LTTime;
+    public float recordSelected;
 
     // Modificamos color según se aproxima al tiempo record
     public Gradient gradientPlayerTime;
@@ -98,123 +93,103 @@ public class HUDController : MonoBehaviour
         LTRecordTime.text = "Record: ";
 
         //...verificamos si el record más bajo es el del player o el del DEV.
-        if (levelRecordPlayer < levelRecordDEV)
-        {
-            LTRecordTime.text += Utils.GetTimeFormat(levelRecordPlayer,1).ToString();
-            recordSelected = levelRecordPlayer;
-        } else
-        {
-            LTRecordTime.text += Utils.GetTimeFormat(levelRecordDEV, 1).ToString();
-            recordSelected = levelRecordDEV;
-        }
+        recordSelected = Utils.GetActualRecord(levelRecordPlayer, levelRecordDEV);
+        LTRecordTime.text += Utils.GetTimeFormat(recordSelected, 1).ToString();
 
         levelEnded = false;
     }
 
     private void Update()
     {
-
-        /*index
-        !!!!!!!!!!
-        CRONOMETRO 
-        !!!!!!!!!!
-        */
-        //deltaTime
-        playerTime += Time.deltaTime;
-
-        //Cronometro level
-        if(!levelEnded)
+        if (!levelEnded)
         {
+
+            /*index
+            !!!!!!!!!!
+            CRONOMETRO 
+            !!!!!!!!!!
+            */
+            //deltaTime
+            playerTime += Time.deltaTime;
+
+            //Cronometro level
             LTTime.text = Utils.GetTimeFormat(Utils.RoundFloat(playerTime, 3), 1);
-        }
+            
 
-        //Gradient de color para marcar tiempo restante
-        gradientProgression = Mathf.Lerp(0f, 1f, gradientTime);
-        gradientTime += Time.deltaTime / recordSelected;
-        colorPlayerTime = gradientPlayerTime.Evaluate(gradientProgression);
-        LTTime.color = colorPlayerTime;
+            //Gradient de color para marcar tiempo restante
+            gradientProgression = Mathf.Lerp(0f, 1f, gradientTime);
+            gradientTime += Time.deltaTime / recordSelected;
+            colorPlayerTime = gradientPlayerTime.Evaluate(gradientProgression);
+            LTTime.color = colorPlayerTime;
 
-        //Parpadeo de tiempo para indicar que se aproxima al record
-        //Evitamos flash si el tiempo record es más bajo que el tiempo de flasheo.
-        if(recordSelected>secondsToFlash)
-        {
-            if (recordSelected < playerTime + secondsToFlash && playerTime<recordSelected)
+            /*index
+            !!!!!!!!!!!!!!!!!!!!!!!!!
+            CANVAS CONTADOR DE CLONES 
+            !!!!!!!!!!!!!!!!!!!!!!!!!
+            */
+
+            if (characterBehav.maxClones == 0)
             {
-                timeFlashing += Time.deltaTime * 1000;
+                CanvasContadorClones.SetActive(false);
+            }
+            else
+            {
+                CCTexto.text = characterBehav.clones.Count + " / " + characterBehav.maxClones.ToString();
+            }
 
-                if(timeFlashing > doFlashAt)
+            /*index
+            !!!!!!!!!!
+            CANVAS REC 
+            !!!!!!!!!!
+            */
+
+            //Activamos Canvas si player isRecording
+            if (characterBehav.isRecording)
+            {
+                time += Time.deltaTime;
+                if (characterBehav.maxClones != 0)
                 {
-                    LTTime.enabled = true;
-                    if (timeFlashing > doFlashAt * 2)
-                    {
-                        timeFlashing = 0;
-                    }
+                    CanvasContadorClones.SetActive(false);
+                }
+                CanvasLT.SetActive(false);
+                CanvasREC.SetActive(true);
+
+
+                //Parpadeo del REC-Circle
+                if (Mathf.Round(time) % 2 == 0)
+                {
+                    RECCircle.SetActive(true);
                 }
                 else
                 {
-                    LTTime.enabled = false;
+                    RECCircle.SetActive(false);
                 }
-            }
 
-            if(!LTTime.enabled && playerTime > recordSelected)
+                //REC-CountDown, displayamos tiempo restante de grabación.
+                recordingTime.text = Utils.GetTimeFormat(characterBehav.limitRecordingTime - time, 2);
+
+            }
+            else
             {
-                LTTime.enabled = true;
-            }
+                // !isRecording > Desactivamos CanvasREC
+                time = 0;
+                CanvasREC.SetActive(false);
+                if (characterBehav.maxClones != 0)
+                {
+                    CanvasContadorClones.SetActive(true);
+                }
+                CanvasLT.SetActive(true);
+            } 
         }
-
-        /*index
-        !!!!!!!!!!!!!!!!!!!!!!!!!
-        CANVAS CONTADOR DE CLONES 
-        !!!!!!!!!!!!!!!!!!!!!!!!!
-        */
-
-        if(characterBehav.maxClones == 0)
+        else
         {
-            CanvasContadorClones.SetActive(false);
-        } else
-        {
-            CCTexto.text = characterBehav.clones.Count +" / " + characterBehav.maxClones.ToString();
-        }
-
-        /*index
-        !!!!!!!!!!
-        CANVAS REC 
-        !!!!!!!!!!
-        */
-
-        //Activamos Canvas si player isRecording
-        if (characterBehav.isRecording)
-        {
-            time += Time.deltaTime;
+            //Partida finalizada, desactivamos HUD de juego:
+            CanvasREC.SetActive(false);
             if (characterBehav.maxClones != 0)
             {
                 CanvasContadorClones.SetActive(false);
             }
             CanvasLT.SetActive(false);
-            CanvasREC.SetActive(true);
-            
-
-            //Parpadeo del REC-Circle
-            if (Mathf.Round(time) % 2 == 0) {
-                RECCircle.SetActive(true);
-            }
-            else {
-                RECCircle.SetActive(false);
-            }
-
-            //REC-CountDown, displayamos tiempo restante de grabación.
-            recordingTime.text = Utils.GetTimeFormat(characterBehav.limitRecordingTime - time,2);
-
-        } else
-        {
-            // !isRecording > Desactivamos CanvasREC
-            time = 0;
-            CanvasREC.SetActive(false);
-            if (characterBehav.maxClones != 0)
-            {
-                CanvasContadorClones.SetActive(true);
-            }
-            CanvasLT.SetActive(true);
         }
     }
 }

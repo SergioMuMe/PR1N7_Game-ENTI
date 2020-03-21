@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
@@ -16,6 +17,8 @@ public class SceneController : MonoBehaviour
     public string nextScene;
     private string actualScene;
 
+    HUDController canvasHUD;
+
     //PROFE: ¿Porque entra dos veces en el trigger?
     private bool waltrapa;
 
@@ -26,6 +29,7 @@ public class SceneController : MonoBehaviour
 
     private void loadNextScene(string scene)
     {
+        GameManager.Instance.idActualLevel++;
         setLevelResults();
         sendLevelResults();
         SceneManager.LoadScene(scene);
@@ -39,12 +43,21 @@ public class SceneController : MonoBehaviour
         ############################
     */
 
-    bool levelEnded;
+    #region END_GAME_SPLASH_SCREEN
 
     TextMeshProUGUI recordTimeEG;
     TextMeshProUGUI playerTimeEG;
 
+    Button goMenuButton;
+    Button restartButton;
+    Button nextLevelButton;
+
     GameObject canvasEndGame;
+
+    // Hacemos flash del numero para indicar que se aproxima al tiempo record
+    private float timeFlashing;
+    private float doFlashAt;
+    private TextMeshProUGUI newRecordText;
 
     //Al terminar un nivel, podemos reiniciar escena pero conservamos el progreso
     public void restartSceneEndGame()
@@ -68,16 +81,14 @@ public class SceneController : MonoBehaviour
         loadNextScene(nextScene);
     }
 
+    //Aquí seteamos el inicio de la logica de las animaciones
     private void endGameAnimations()
     {
-        playerTime = GameObject.Find("CanvasHUD").GetComponent<HUDController>().playerTime;
-
-        Debug.Log(playerTime);
-        Debug.Log(Utils.GetTimeFormat(Utils.RoundFloat(playerTime, 3), 1));
+        playerTime = canvasHUD.playerTime;
         
         playerTimeEG.text = Utils.GetTimeFormat(Utils.RoundFloat(playerTime, 3), 1);
     }
-
+    #endregion
 
     /*index
         ##########################
@@ -87,9 +98,10 @@ public class SceneController : MonoBehaviour
         ##########################
     */
 
-#region CONFIGURACION ESCENA
+    #region CONFIGURACION_ESCENA
 
-    
+    int profileSelected; //Para acceder a datos del perfil.
+
     public int idLevel; //Para informar al GameManager de que nivel és.
     public int batteryLevelCount; // Cantidad de pilas en el nivel
     private float playerTime; // En Segundos. Tiempo que tarda el jugador en superar el nivel
@@ -102,27 +114,15 @@ public class SceneController : MonoBehaviour
     Medals sceneMedals;
    
 
-    //Obtenemos el tiempo record del jugador en el mapa. Si es la primera vez que lo juega lo seteamos al máximo 999s.
+    //Obtenemos datos del jugador relacionados con este mapa
     private void getPlayerLevelInfo()
     {
         bool firstTimeFLAG;
         firstTimeFLAG = scriptGM.getFirstTimeFLAG(idLevel);
 
-        int profileSelected;
         profileSelected = scriptGM.profileSelected;
 
-
         sceneMedals = getPlayerLevelMedalsInfo();
-
-        /*if (firstTimeFLAG)
-        {
-            sceneMedals.timeRecord = 999f;
-            //timePlayerRecord = 999f;
-        } else
-        {
-            sceneMedals.timeRecord = scriptGM.getTimeRecord(idLevel);
-            //timePlayerRecord = scriptGM.getTimeRecord(idLevel);
-        }*/
 
     }
     private Medals getPlayerLevelMedalsInfo()
@@ -137,7 +137,6 @@ public class SceneController : MonoBehaviour
     private void setLevelResults() {
         
         sceneMedals.finished = true;
-        playerTime = GameObject.Find("CanvasHUD").GetComponent<HUDController>().playerTime;
 
         //Si jugador NO ha obtenido aun la medalla
         if (!sceneMedals.batteryCollected)
@@ -189,27 +188,70 @@ public class SceneController : MonoBehaviour
     
     private void Start()
     {
+
+        doFlashAt = 650f;
+
+        //Play main menu music
+        //TODO: Mejorar la gestion del enum, ¿musica por mundos?
+        if (SoundManager.Instance.playingNow != Utils.PlayingNow.TUTORIAL)
+        {
+            SoundManager.Instance.musicSource.clip = null;
+            SoundManager.Instance.playingNow = Utils.PlayingNow.TUTORIAL;
+        }
+
+        //Obtenemos referencias e información
         scriptGM = GameObject.Find("GameManager").GetComponent<GameManager>();
         actualScene = SceneManager.GetActiveScene().name;
         getPlayerLevelInfo();
-        timeLevelLimit = scriptGM.timeLevelLimit[idLevel];        
+        timeLevelLimit = Utils.GetActualRecord(sceneMedals.timeRecord,scriptGM.timeLevelLimit[idLevel]);
+
+        //Datos para el end game splash screen
 
         recordTimeEG = GameObject.Find("T-RecordTime").GetComponent<TextMeshProUGUI>();
         recordTimeEG.text = Utils.GetTimeFormat(Utils.RoundFloat(timeLevelLimit, 3), 1);
         playerTimeEG = GameObject.Find("T-Time").GetComponent<TextMeshProUGUI>();
 
-        GameManager.Instance.idActualLevel = idLevel;
+        newRecordText = GameObject.Find("T-NewRecord").GetComponent<TextMeshProUGUI>();
 
+        //TODO: Primer level, funciona OK. Segundo level, los bottones no hacen nada.
+        // con delegate en AddListener tambien falla. Revisar esta url:
+        // https://answers.unity.com/questions/862526/addlistener-function-not-working.html
+        // ¿Tal vez se trata de algún problema con el estar configurado AddListener en una instancia de un prefab?
+        /*
+        goMenuButton = GameObject.Find("B-goMenuButton").GetComponent<Button>();
+        goMenuButton.onClick.AddListener(goHomeEndGame);
+
+        restartButton = GameObject.Find("B-restartButton").GetComponent<Button>();
+        restartButton.onClick.AddListener(restartSceneEndGame);
+
+        nextLevelButton = GameObject.Find("B-nextLevelButton").GetComponent<Button>();
+        nextLevelButton.onClick.AddListener(loadNextSceneEndGame);
+        */
+
+        //referencia del hud
+        canvasHUD = GameObject.Find("CanvasHUD").GetComponent<HUDController>();
+
+        //Nos aseguramos de que el idLevel se ha seteado correctamente
+        //PROFE: Este valor lo usa HUDController.cs, al cambiar de nivel, se ejecuta antes ese script y por lo tanto no llega a actualizar a tiempo el idLevel ¿solucion?
+        //GameManager.Instance.idActualLevel = idLevel;
+
+        //controles de fin del mapa.
+        //TODO: Revisar waltrapa, ¿porque entra dos veces en el trigger de NextLevel?
         waltrapa = true;
-        levelEnded = false;
 
+        //Cogemos referencia del end game splashscreen y lo ocultamos
         canvasEndGame = GameObject.Find("CanvasEndGame");
         canvasEndGame.SetActive(false);
     }
 
+    //TODO: Esto lo estmaos usando para debugar. Terminar de implementar para jugador o quitar.
     private void Update()
-    {      
-        
+    {
+        /*index
+        !!!!!!!!!!!!!!!!
+        DEV TESTING KEYS
+        !!!!!!!!!!!!!!!!
+        */
         if (Input.GetKey(KeyCode.P))
         {
             restartScene(actualScene);
@@ -224,6 +266,39 @@ public class SceneController : MonoBehaviour
         {
             loadNextScene(nextScene);
         }
+
+        /*index
+        !!!!!!!!!!!!!!!!!!
+        END GAME ANIMATION
+        !!!!!!!!!!!!!!!!!!
+        */
+
+        //Parpadeo de NEW RECORD ! en caso de superar tiempo record
+        if (canvasHUD.levelEnded)
+        {
+            if (playerTime < timeLevelLimit)
+            {
+                timeFlashing += Time.deltaTime * 1000;
+
+                if (timeFlashing > doFlashAt)
+                {
+                    newRecordText.enabled = true;
+                    if (timeFlashing > doFlashAt * 2)
+                    {
+                        timeFlashing = 0;
+                    }
+                }
+                else
+                {
+                    newRecordText.enabled = false;
+                }
+            }
+            else //NO ha superado el record
+            {
+                newRecordText.enabled = false;
+            }
+
+        } 
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -231,7 +306,6 @@ public class SceneController : MonoBehaviour
         if (waltrapa && collision.tag == "Player")
         {
             waltrapa = false;
-            levelEnded = true;
 
             Debug.LogWarning("TODO: arreglar waltrapa");
             collision.enabled = false;
@@ -239,11 +313,9 @@ public class SceneController : MonoBehaviour
             //TODO: bloquear Inputs de jugador
             Debug.LogWarning("TODO: bloquear Inputs de jugador.");
 
-
-            //TODO: Arreglar que el HUD se desactive y el tiempo enviado como record sea el correcto
             canvasEndGame.SetActive(true);
             endGameAnimations();
-            GameObject.Find("CanvasHUD").GetComponent<HUDController>().levelEnded = true;
+            canvasHUD.levelEnded = true;
             
         }
     }

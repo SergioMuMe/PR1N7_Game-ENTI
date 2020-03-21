@@ -188,7 +188,6 @@ public class MainMenuController : MonoBehaviour
                 textUI[j].colorGradientPreset = statusLevelColor[1];
             }
         }
-        Debug.Log("getLevelsStatus for player id: " + idProfileSelected);
     }
 
     //Al cambiar de perfil, resetea el render de los niveles.
@@ -414,6 +413,7 @@ public class MainMenuController : MonoBehaviour
         saveActualValues();
 
         //Play main menu music
+        SoundManager.Instance.musicSource.clip = null;
         SoundManager.Instance.playingNow = Utils.PlayingNow.MAINTHEME;
     }
 
@@ -423,6 +423,6 @@ public class MainMenuController : MonoBehaviour
         musicValueDisplay.text = Utils.GetPercentage(musicVolumen.value, 0).ToString() + "%";
         effectsValueDisplay.text = Utils.GetPercentage(effectsVolumen.value, 0).ToString() + "%";
 
-        SoundManager.Instance.setVolumeTesting(masterVolumen.value, musicVolumen.value);
+        SoundManager.Instance.setVolumeTesting(masterVolumen.value, musicVolumen.value, effectsVolumen.value);
     }
 }

@@ -30,8 +30,21 @@ public static class Utils
     public enum PlayingNow
     {
         NONE,
-        MAINTHEME
+        MAINTHEME,
+        TUTORIAL
     };
+
+    public static float GetActualRecord(float _playerTime, float _levelTimeDEV)
+    {
+        if (_playerTime <= _levelTimeDEV)
+        {
+            return _playerTime;
+        }
+        else //if (_playerTime > _levelTimeDEV)
+        {
+            return _levelTimeDEV;
+        }
+    }
 
     public static float GetPercentage(float _num, int _decimals)
     {

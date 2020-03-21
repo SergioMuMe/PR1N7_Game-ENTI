@@ -281,12 +281,12 @@ public class GameManager : MonoBehaviour
                         //    Debug.Log(Time.time + " i: " + i + " |j: " + j + "-M.timeRecord: " + profiles[i].levelsData[j].levelMedals.timeRecord);
                         //}
                     }
-                    Debug.LogWarning(Time.time + " LOADED PROFILE " + i + " DATA");
+                    Debug.Log(Time.time + " LOADED PROFILE " + i + " DATA");
                     reader.Close();
                 }
                 else
                 {
-                    Debug.Log("Fail to open " + path[i] + " file.");
+                    Debug.LogError("Fail to open " + path[i] + " file.");
                 }
             }
 
@@ -316,7 +316,7 @@ public class GameManager : MonoBehaviour
                 //LOGS DE LA LECTURA
                 //if(i==0 && j==1)
                 //{
-                //    Debug.LogWarning(Time.time + " LOADING PROFILE 0 - MAP 1 // DATA");
+                //    Debug.Log(Time.time + " LOADING PROFILE 0 - MAP 1 // DATA");
                 //    Debug.Log(Time.time + " _id: " + i + " |j: " + j + "-used: " + profiles[_id].profileUsed);
                 //    Debug.Log(Time.time + " _id: " + i + " |j: " + j + "-name: " + profiles[_id].profileName);
                 //    Debug.Log(Time.time + " _id: " + i + " |j: " + j + "-unblockedFLAG: " + profiles[_id].levelsData[j].levelUnblockedFLAG);
@@ -327,7 +327,6 @@ public class GameManager : MonoBehaviour
                 //    Debug.Log(Time.time + " _id: " + i + " |j: " + j + "-M.timeRecord: " + profiles[_id].levelsData[j].levelMedals.timeRecord);
                 //}
             }
-            Debug.LogWarning(Time.time + " LOADED PROFILE " + _id + " DATA");
             reader.Close();
         }
         else
@@ -388,7 +387,7 @@ public class GameManager : MonoBehaviour
             writer.Write(profiles[profileSelected].levelsData[j].levelMedals.timeRecord);
             writer.Write(profiles[profileSelected].levelsData[j].levelMedals.allAtOnce);
         }
-        Debug.LogWarning(Time.time + " SAVED PROFILE " + profileSelected + " DATA");
+        Debug.Log(Time.time + " SAVED PROFILE " + profileSelected + " DATA");
         writer.Close();
     }
 
