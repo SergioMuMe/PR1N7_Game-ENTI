@@ -213,11 +213,7 @@ public class SceneController : MonoBehaviour
 
         newRecordText = GameObject.Find("T-NewRecord").GetComponent<TextMeshProUGUI>();
 
-        //TODO: Primer level, funciona OK. Segundo level, los bottones no hacen nada.
-        // con delegate en AddListener tambien falla. Revisar esta url:
-        // https://answers.unity.com/questions/862526/addlistener-function-not-working.html
-        // ¿Tal vez se trata de algún problema con el estar configurado AddListener en una instancia de un prefab?
-        
+        //Configuramos los botones de la splashscreen        
         goMenuButton = GameObject.Find("B-goMenuButton").GetComponent<Button>();
         goMenuButton.onClick.AddListener(goHomeEndGame);
 
