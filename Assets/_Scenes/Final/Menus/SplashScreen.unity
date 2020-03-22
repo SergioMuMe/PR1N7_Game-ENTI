@@ -527,12 +527,16 @@ MonoBehaviour:
     randomPitch: 0
   - name: jump
     clip: {fileID: 8300000, guid: bea1559961c1ee845acd4c1ecf5e079e, type: 3}
-    pitch: 1
+    pitch: 0.8
     randomPitch: 0
   - name: land
     clip: {fileID: 8300000, guid: 17c65948d65580e49a910e1e2be15001, type: 3}
     pitch: 0.7
     randomPitch: 0.5
+  - name: medal
+    clip: {fileID: 8300000, guid: 39ecd7b3eba928e459c28e80f1395f23, type: 3}
+    pitch: 0.85
+    randomPitch: 0
   musicsMainMenu:
   - {fileID: 8300000, guid: 345fb51144faa7340947abb9a3789076, type: 3}
   - {fileID: 8300000, guid: 56642ba23b3ab844eb3d3e6236cc477f, type: 3}

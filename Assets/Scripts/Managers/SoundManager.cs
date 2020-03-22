@@ -88,6 +88,14 @@ public class SoundManager : MonoBehaviour
         sounds[1].PlayTest();
     }
 
+    public void StopAllSounds()
+    {
+        for (int i = 0; i < sounds.Length; i++)
+        {
+            sounds[i].Stop();
+        }
+    }
+
     public void StopSound(string _name)
     {
         for (int i = 0; i < sounds.Length; i++)

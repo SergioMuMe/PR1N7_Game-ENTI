@@ -30,8 +30,7 @@ public class SceneController : MonoBehaviour
     private void loadNextScene(string scene)
     {
         GameManager.Instance.idActualLevel++;
-        setLevelResults();
-        sendLevelResults();
+        SoundManager.Instance.StopAllSounds();
         SceneManager.LoadScene(scene);
     }
 
@@ -54,7 +53,23 @@ public class SceneController : MonoBehaviour
 
     GameObject canvasEndGame;
 
-    // Hacemos flash del numero para indicar que se aproxima al tiempo record
+
+    // Display de medallas
+    private float timeDisplayMedals;
+    private float doDisplayMedal;
+    private int[] sprNum;
+    private int nextSprite;
+
+    private Image starMedal;
+    private Image timeMedal;
+    private Image batteryMedal;
+
+    public Sprite[] statusStar = new Sprite[3];
+    public Sprite[] statusTime = new Sprite[3];
+    public Sprite[] statusBattery = new Sprite[3];
+
+
+    // Flash de NEW RECORD !
     private float timeFlashing;
     private float doFlashAt;
     private TextMeshProUGUI newRecordText;
@@ -62,16 +77,12 @@ public class SceneController : MonoBehaviour
     //Al terminar un nivel, podemos reiniciar escena pero conservamos el progreso
     public void restartSceneEndGame()
     {
-        setLevelResults();
-        sendLevelResults();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     //Al terminar un nivel, podemos ir al main menu pero conservamos el progreso
     public void goHomeEndGame()
     {
-        setLevelResults();
-        sendLevelResults();
         Utils.GoMainMenu();
     }
 
@@ -81,11 +92,9 @@ public class SceneController : MonoBehaviour
         loadNextScene(nextScene);
     }
 
-    //Aquí seteamos el inicio de la logica de las animaciones
-    private void endGameAnimations()
+    private void endGamePreparations()
     {
         playerTime = canvasHUD.playerTime;
-        
         playerTimeEG.text = Utils.GetTimeFormat(Utils.RoundFloat(playerTime, 3), 1);
     }
     #endregion
@@ -133,22 +142,21 @@ public class SceneController : MonoBehaviour
     
     
 
-    //Esta función es llamada justo antes de cambiar de nivel
+    /*
+     * Esta función es llamada justo antes de cambiar de nivel.
+     * Guardamos datos de las medallas obtenidas como resultado, 
+     * y preparamos los sprites de end game splash screen.
+     */
     private void setLevelResults() {
-        
-        sceneMedals.finished = true;
 
+        int check = 0;
+
+        sprNum[0] = 1;
         //Si jugador NO ha obtenido aun la medalla
-        if (!sceneMedals.batteryCollected)
+        if (!sceneMedals.finished)
         {
-            if (batteryLevelCount == 0)
-            {
-                sceneMedals.batteryCollected = true;
-            }
-            else
-            {
-                sceneMedals.batteryCollected = false;
-            }
+            sceneMedals.finished = true;
+            check++;
         }
 
         //Si jugador NO ha obtenido aun la medalla
@@ -156,20 +164,51 @@ public class SceneController : MonoBehaviour
         {
             if (playerTime <= timeLevelLimit)
             {
+                sprNum[1] = 1;
                 sceneMedals.timeBeated = true;
+                check++;
             }
             else
             {
+                sprNum[1] = 0;
                 sceneMedals.timeBeated = false;
             }
         }
 
-        if(playerTime < sceneMedals.timeRecord)
+        //Si jugador NO ha obtenido aun la medalla
+        if (!sceneMedals.batteryCollected)
+        {
+            if (batteryLevelCount == 0)
+            {
+                sprNum[2] = 1;
+                sceneMedals.batteryCollected = true;
+                check++;
+            }
+            else
+            {
+                sprNum[2] = 0;
+                sceneMedals.batteryCollected = false;
+            }
+        }
+
+        
+
+        if (check==3)
+        {
+            sceneMedals.allAtOnce = true;
+
+            //Sprites para end game splash screen
+            sprNum[0] = 2;
+            sprNum[1] = 2;
+            sprNum[2] = 2;
+        }
+
+        if (playerTime < sceneMedals.timeRecord)
         {
             //Obtiene nuevo record
             sceneMedals.timeRecord = playerTime;
         } //ELSE Mantiene el record anterior
-          
+    
     }
     
     //Esta función es llamada justo antes de cambiar de nivel.
@@ -188,8 +227,18 @@ public class SceneController : MonoBehaviour
     
     private void Start()
     {
-
+        //Varaibles de end game splash screen
         doFlashAt = 650f;
+        doDisplayMedal = 520f;
+        sprNum = new int[3];
+        sprNum[0] = -1;
+        sprNum[1] = -1;
+        sprNum[2] = -1;
+        nextSprite = 0;
+
+        starMedal = GameObject.Find("M-starMedal").GetComponent<Image>();
+        timeMedal = GameObject.Find("M-timeMedal").GetComponent<Image>();
+        batteryMedal = GameObject.Find("M-batteryMedal").GetComponent<Image>();
 
         //Play main menu music
         //TODO: Mejorar la gestion del enum, ¿musica por mundos?
@@ -260,6 +309,8 @@ public class SceneController : MonoBehaviour
 
         if(Input.GetKey(KeyCode.O))
         {
+            setLevelResults();
+            sendLevelResults();
             loadNextScene(nextScene);
         }
 
@@ -268,10 +319,42 @@ public class SceneController : MonoBehaviour
         END GAME ANIMATION
         !!!!!!!!!!!!!!!!!!
         */
-
-        //Parpadeo de NEW RECORD ! en caso de superar tiempo record
         if (canvasHUD.levelEnded)
         {
+
+            //Display de medallas
+            timeDisplayMedals += Time.deltaTime * 1000;
+
+            if(timeDisplayMedals > doDisplayMedal)
+            {
+
+                if(nextSprite == 0)
+                {
+                    starMedal.sprite = statusStar[sprNum[0]];
+                    SoundManager.Instance.PlaySound("medal");
+                    timeDisplayMedals = 0;
+                }
+
+                if (nextSprite == 1)
+                {
+                    timeMedal.sprite = statusTime[sprNum[1]];
+                    SoundManager.Instance.PlaySound("medal");
+                    timeDisplayMedals = 0;
+                }
+
+                if(nextSprite == 2)
+                {
+                    batteryMedal.sprite = statusBattery[sprNum[2]];
+                    SoundManager.Instance.PlaySound("medal");
+                    timeDisplayMedals = 0;
+                }
+
+                nextSprite++;
+
+            }
+            
+
+            //Parpadeo de NEW RECORD ! en caso de superar tiempo record
             if (playerTime < timeLevelLimit)
             {
                 timeFlashing += Time.deltaTime * 1000;
@@ -309,10 +392,18 @@ public class SceneController : MonoBehaviour
             //TODO: bloquear Inputs de jugador
             Debug.LogWarning("TODO: bloquear Inputs de jugador.");
 
-            canvasEndGame.SetActive(true);
-            endGameAnimations();
-            canvasHUD.levelEnded = true;
             
+            SoundManager.Instance.StopAllSounds();
+
+            endGamePreparations();
+
+            setLevelResults();
+            sendLevelResults();          
+
+            canvasHUD.levelEnded = true;
+
+            canvasEndGame.SetActive(true);
+
         }
     }
 }

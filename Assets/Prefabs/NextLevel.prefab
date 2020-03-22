@@ -94,10 +94,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextScene: 
-  actualScene: 
+  statusStar:
+  - {fileID: 21300000, guid: 2ebfc1435fdfe9d44b9dba1136e4753a, type: 3}
+  - {fileID: 21300000, guid: 20b28d1c14b4c4042903c6ce79331333, type: 3}
+  - {fileID: 21300000, guid: 6f31755f81774fe4497de6eaf5e735ba, type: 3}
+  statusTime:
+  - {fileID: 21300000, guid: 27ffc3b83aae1ee4c88aed584868f1ca, type: 3}
+  - {fileID: 21300000, guid: 6696602de3bd7874fb7e533c93e9605d, type: 3}
+  - {fileID: 21300000, guid: 5f3ee3d2eef07a7489fae0b8764395da, type: 3}
+  statusBattery:
+  - {fileID: 21300000, guid: 913c3a30d02d8c245ab384e561992121, type: 3}
+  - {fileID: 21300000, guid: 3d1466ad90a2a1e4ea71e5c7a4d05629, type: 3}
+  - {fileID: 21300000, guid: cc3e2fe0d658247408b3330258f850fc, type: 3}
+  idLevel: 0
   batteryLevelCount: 0
-  playerTime: 0
-  timeLevelLimit: 0
 --- !u!61 &7951134793956540221
 BoxCollider2D:
   m_ObjectHideFlags: 0
