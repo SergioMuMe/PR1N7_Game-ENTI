@@ -195,7 +195,7 @@ public class SceneController : MonoBehaviour
         //TODO: Mejorar la gestion del enum, ¿musica por mundos?
         if (SoundManager.Instance.playingNow != Utils.PlayingNow.TUTORIAL)
         {
-            SoundManager.Instance.musicSource.clip = null;
+            SoundManager.Instance.setMusicNull();
             SoundManager.Instance.playingNow = Utils.PlayingNow.TUTORIAL;
         }
 

@@ -4,6 +4,37 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
+    /*index
+      ######################
+      #                    #
+      #  SOUND EFFECTS     #
+      #                    #
+      ######################
+    */
+
+ 
+    //Referencia del personaje para obtener estados
+    
+
+    public AudioClip recording;
+
+    public AudioClip jump;
+    private bool controlJump;
+
+    public AudioClip land;
+
+    private AudioSource effectsSource;
+
+    public void playRecordingFX()
+    {
+        effectsSource.clip = recording;
+        effectsSource.Play();
+    }
+
+    public void stopRecordingFX()
+    {
+        effectsSource.Stop();
+    }
 
     /*index
       ########################
@@ -12,10 +43,11 @@ public class SoundManager : MonoBehaviour
       #                      #
       ########################
     */
+    #region MUSICA
 
-    public AudioSource musicSource;
-    private AudioSource effectsSource;
-
+    
+    private AudioSource musicSource;
+    
     public AudioClip[] musicsMainMenu;
     public AudioClip[] musicsTutorial;
 
@@ -78,6 +110,18 @@ public class SoundManager : MonoBehaviour
         musicSource.Play();
     }
 
+
+    public void stopMusic()
+    {
+        musicSource.Stop();
+    }
+
+    public void setMusicNull()
+    {
+        musicSource.clip = null;
+    }
+    #endregion
+
     /*index
       ########################
       #                      #
@@ -107,11 +151,19 @@ public class SoundManager : MonoBehaviour
         musicSource = GameObject.Find("MusicAudioSource").GetComponent<AudioSource>();
         effectsSource = GameObject.Find("EffectsAudioSource").GetComponent<AudioSource>();
         playingNow = Utils.PlayingNow.NONE;
+
+        controlJump = true;
     }
 
     private void Update()
     {
-        if (musicSource.isPlaying==false)
+        /*index
+        !!!!!!
+        MUSICA
+        !!!!!!
+        */
+
+        if (musicSource.isPlaying == false)
         {
             switch (playingNow)
             {
@@ -123,6 +175,28 @@ public class SoundManager : MonoBehaviour
                 playTutorial();
                 break;
             }
-        }  
+        }
+
+
+        /*index
+        !!!!!!!!!!!!!
+        SOUND EFFECTS
+        !!!!!!!!!!!!!
+        */
+
+        if (InputManager.Instance.actualInputs.recording)
+        {
+            if(!effectsSource.isPlaying)
+            {
+                playRecordingFX();
+            }
+        } else
+        {
+            if (effectsSource.isPlaying)
+            {
+                stopRecordingFX();
+            }
+        }
+
     }
 }

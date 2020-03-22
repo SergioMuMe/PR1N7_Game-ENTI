@@ -413,7 +413,7 @@ public class MainMenuController : MonoBehaviour
         saveActualValues();
 
         //Play main menu music
-        SoundManager.Instance.musicSource.clip = null;
+        SoundManager.Instance.setMusicNull();
         SoundManager.Instance.playingNow = Utils.PlayingNow.MAINTHEME;
     }
 

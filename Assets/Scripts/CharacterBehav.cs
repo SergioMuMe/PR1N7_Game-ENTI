@@ -179,6 +179,8 @@ public class CharacterBehav : MonoBehaviour
                     direction = DirectionInputs.NONE;
 
                     isJumping = true;
+                    //Necesario para gestionar tema de effectos audio 
+                    GameManager.Instance.isJumping = true;
                 }
 
                 if (Input.GetKeyDown(KeyCode.R) && !isRecording && maxClones > 0)
@@ -197,6 +199,7 @@ public class CharacterBehav : MonoBehaviour
                    
                     inputs = new List<CommandsInputs>();
 
+                    InputManager.Instance.actualInputs.recording = true; //Lo necesito para los fx
                     isRecording = true;
 
                     player.facingRight = facingRight;
@@ -209,7 +212,7 @@ public class CharacterBehav : MonoBehaviour
                 else if (isRecording && Input.GetKeyDown(KeyCode.R) || isRecording && Time.time >= initCloningTime + limitRecordingTime)
                 {
                     inputs.Add(new CommandsInputs(CommandsInputsEnum.END, (Time.time * 1000) - initInputTime));
-
+                    InputManager.Instance.actualInputs.recording = false; //Lo necesito para los fx
                     isRecording = false;
                     player.enabled = true;
                     player.inputs = inputs;
@@ -270,6 +273,8 @@ public class CharacterBehav : MonoBehaviour
                         case CommandsInputsEnum.JUMP:
                             rb.AddForce(Vector2.up * jumpForce);
                             isJumping = true;
+                            //Necesario para gestionar tema de effectos audio 
+                            GameManager.Instance.isJumping = true;
                             break;
                         case CommandsInputsEnum.INTERACT:
                             isInteracting = true;
@@ -309,6 +314,7 @@ public class CharacterBehav : MonoBehaviour
             if (!hitForward && !hitBack)
             {
                 isGrounded = false;
+                GameManager.Instance.isGrounded = false; //Necesario para gestionar tema de effectos audio 
             }
 
             if (Physics2D.Raycast(transform.position + (Vector3.right * frontDistance) + (Vector3.down * groundDistance), Vector2.right, groundedPrecision))
@@ -431,6 +437,9 @@ public class CharacterBehav : MonoBehaviour
 
             isJumping = false;
             isGrounded = true;
+            //Necesario para gestionar tema de effectos audio 
+            GameManager.Instance.isJumping = false; 
+            GameManager.Instance.isGrounded = true; 
 
             if (maxHeight > maxHeightDefault)
             {
@@ -442,6 +451,9 @@ public class CharacterBehav : MonoBehaviour
         else if (!hitForward && !hitBack)
         {
             isJumping = true;
+
+            //Necesario para gestionar tema de effectos audio 
+            GameManager.Instance.isJumping = true;
         }
     }
 

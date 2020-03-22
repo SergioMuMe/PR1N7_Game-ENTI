@@ -6,6 +6,18 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+
+    /*index
+        #########################
+        #                       #
+        #  CHARACTER BEHAVIOUR  #
+        #                       #
+        #########################
+    */
+    public bool isGrounded;
+    public bool isJumping;
+
+
     /*index
         ################################
         #                              #
