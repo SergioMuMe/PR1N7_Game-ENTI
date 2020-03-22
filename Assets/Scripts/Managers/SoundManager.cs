@@ -2,6 +2,56 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public class SoundEffects
+{
+    public string name;
+    public AudioClip clip;
+
+    private AudioSource source;
+
+    [Range(0.5f, 1.5f)]
+    public float pitch = 1f;
+    [Range(0f, 0.5f)]
+    public float randomPitch = 0.1f;
+
+    public void setSource(AudioSource _source)
+    {
+        source = _source;
+        source.clip = clip;
+    }
+
+    public void Play()
+    {
+        //Seteamos volumen del efecto
+        source.volume = OptionsManager.Instance.masterVolumenValueSaved;
+        source.volume *= OptionsManager.Instance.effectsVolumenValueSaved;
+
+        //Si randomPitch=0, pitch queda sin modificar
+        source.pitch = pitch * (1 + Random.Range(-randomPitch / 2f, randomPitch /2f));
+
+        //Al ser distintos AudioSource se pueden ejecutar a la vez, no es necesario PlayAtOnce()
+        source.Play();
+    }
+
+    public void SetTest(float _master, float _effect)
+    {
+        source.volume = _master;
+        source.volume *= _effect;
+    }
+
+    public void PlayTest()
+    {
+        source.Play();
+    }
+
+    public void Stop()
+    {
+        source.Stop();
+    }
+    
+}
+
 public class SoundManager : MonoBehaviour
 {
     /*index
@@ -12,28 +62,44 @@ public class SoundManager : MonoBehaviour
       ######################
     */
 
- 
+
     //Referencia del personaje para obtener estados
-    
 
-    public AudioClip recording;
+    [SerializeField]
+    public SoundEffects[] sounds;
 
-    public AudioClip jump;
-    private bool controlJump;
-
-    public AudioClip land;
-
-    private AudioSource effectsSource;
-
-    public void playRecordingFX()
+    public void PlaySound(string _name)
     {
-        effectsSource.clip = recording;
-        effectsSource.Play();
+        for (int i = 0; i < sounds.Length; i++)
+        {
+            if (sounds[i].name == _name)
+            {
+                sounds[i].Play();
+                return;
+            }
+        }
+        Debug.LogWarning("AudioManager> Sound not found: " + _name);
+        return;
     }
 
-    public void stopRecordingFX()
+    public void TestEffect(float _m, float _e)
     {
-        effectsSource.Stop();
+        sounds[1].SetTest(_m,_e);
+        sounds[1].PlayTest();
+    }
+
+    public void StopSound(string _name)
+    {
+        for (int i = 0; i < sounds.Length; i++)
+        {
+            if (sounds[i].name == _name)
+            {
+                sounds[i].Stop();
+                return;
+            }
+        }
+        Debug.LogWarning("AudioManager> Sound not found: " + _name);
+        return;
     }
 
     /*index
@@ -45,7 +111,7 @@ public class SoundManager : MonoBehaviour
     */
     #region MUSICA
 
-    
+
     private AudioSource musicSource;
     
     public AudioClip[] musicsMainMenu;
@@ -53,29 +119,28 @@ public class SoundManager : MonoBehaviour
 
     public Utils.PlayingNow playingNow;   
 
+
+    //NOTA: Los SoundEffects se ha seguido otra logica de programación, el volumen se consulta antes de realizar Play del soundeffect.
+
     //Configura los audiosource con el volumen aplicado por el usuario en opciones
     public void setVolume()
     {
-        //Conseguimos el volumen master para ambos audiosource
+        //Conseguimos el volumen master
         musicSource.volume = OptionsManager.Instance.masterVolumenValueSaved;
-        effectsSource.volume = OptionsManager.Instance.masterVolumenValueSaved;
 
-        //Seteamos volumen para cada audiosource. Este volumen es el último que se haya guardado.
+        //Seteamos volumen para el audiosource. Este volumen es el último que se haya guardado.
         musicSource.volume *= OptionsManager.Instance.musicVolumenValueSaved;
-        effectsSource.volume *= OptionsManager.Instance.effectsVolumenValueSaved;
     }
 
     //Modifica en tiempo real el volumen para que el usuario experimente los cambios antes de guardar configuración
     public void setVolumeTesting(float _master, float _music, float _effect)
     {
-        //Conseguimos el volumen master para ambos audiosource
+        //Conseguimos el volumen master
         musicSource.volume = _master;
-        effectsSource.volume = _master;
-
+        
         //Seteamos volumen para cada audiosource. Este volumen corresponde al slide de configuración.
         //si el usuario lo sube o baja, se verá reflejado sin tener que dar a guardar.
         musicSource.volume *= _music;
-        effectsSource.volume *= _effect;
         
     }
 
@@ -148,12 +213,21 @@ public class SoundManager : MonoBehaviour
 
     private void Start()
     {
+        //Preparamos el AudioSource de la música
         musicSource = GameObject.Find("MusicAudioSource").GetComponent<AudioSource>();
-        effectsSource = GameObject.Find("EffectsAudioSource").GetComponent<AudioSource>();
         playingNow = Utils.PlayingNow.NONE;
 
-        controlJump = true;
+        //Instanciamos los efectos de sonido
+        for (int i = 0; i < sounds.Length; i++)
+        {
+            GameObject _go = new GameObject("SoundEffect_" + i + "_" + sounds[i].name);
+            _go.transform.SetParent(this.transform);
+            sounds[i].setSource(_go.AddComponent<AudioSource>());
+        }
     }
+
+
+    
 
     private void Update()
     {
@@ -163,6 +237,8 @@ public class SoundManager : MonoBehaviour
         !!!!!!
         */
 
+        //Loop de música
+        //TODO: Mejorable, evitar uso de switch y enum? investigar statemachine.
         if (musicSource.isPlaying == false)
         {
             switch (playingNow)
@@ -175,28 +251,7 @@ public class SoundManager : MonoBehaviour
                 playTutorial();
                 break;
             }
-        }
-
-
-        /*index
-        !!!!!!!!!!!!!
-        SOUND EFFECTS
-        !!!!!!!!!!!!!
-        */
-
-        if (InputManager.Instance.actualInputs.recording)
-        {
-            if(!effectsSource.isPlaying)
-            {
-                playRecordingFX();
-            }
-        } else
-        {
-            if (effectsSource.isPlaying)
-            {
-                stopRecordingFX();
-            }
-        }
+        }       
 
     }
 }

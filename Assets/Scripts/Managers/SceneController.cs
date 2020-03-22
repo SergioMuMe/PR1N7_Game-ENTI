@@ -217,7 +217,7 @@ public class SceneController : MonoBehaviour
         // con delegate en AddListener tambien falla. Revisar esta url:
         // https://answers.unity.com/questions/862526/addlistener-function-not-working.html
         // ¿Tal vez se trata de algún problema con el estar configurado AddListener en una instancia de un prefab?
-        /*
+        
         goMenuButton = GameObject.Find("B-goMenuButton").GetComponent<Button>();
         goMenuButton.onClick.AddListener(goHomeEndGame);
 
@@ -226,7 +226,7 @@ public class SceneController : MonoBehaviour
 
         nextLevelButton = GameObject.Find("B-nextLevelButton").GetComponent<Button>();
         nextLevelButton.onClick.AddListener(loadNextSceneEndGame);
-        */
+        
 
         //referencia del hud
         canvasHUD = GameObject.Find("CanvasHUD").GetComponent<HUDController>();

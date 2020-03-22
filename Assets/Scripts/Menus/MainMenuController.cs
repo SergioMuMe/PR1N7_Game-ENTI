@@ -54,6 +54,10 @@ public class MainMenuController : MonoBehaviour
         OptionsManager.Instance.checkExitOptions();
     }
 
+    public void testSoundEffect()
+    {
+        SoundManager.Instance.TestEffect(masterVolumen.value, effectsVolumen.value);
+    }
 
 
     /*index 
@@ -63,7 +67,9 @@ public class MainMenuController : MonoBehaviour
          #            #
          ##############
      */
+    #region PROFILES
 
+    
     private int idProfileSelected;
 
     //Obtenemos nombres de perfiles
@@ -161,7 +167,7 @@ public class MainMenuController : MonoBehaviour
         mainMenu.SetActive(true);
     }
 
-
+    #endregion
 
     /*index 
         ########################
@@ -170,7 +176,7 @@ public class MainMenuController : MonoBehaviour
         #                      #
         ########################
     */
-
+    
 
     //Para modificar color (bloqueado/desbloqueado): Obtenemos los botones de los niveles + textos
     public GameObject[] levelButtons;
@@ -211,7 +217,9 @@ public class MainMenuController : MonoBehaviour
         #                                  #
         ####################################
     */
+    #region LEVEL_SELECTED_INFO
 
+    
     //GameObject IMAGEN de la medalla de cada nivel
     private Image starMedal;
     private Image timeMedal;
@@ -276,7 +284,7 @@ public class MainMenuController : MonoBehaviour
         }
 
     }
-
+    #endregion
     /*index
         ####################
         #                  #
@@ -336,7 +344,6 @@ public class MainMenuController : MonoBehaviour
 
 
         //Referencias y seteos de opciones
-
         masterVolumen = GameObject.Find("MasterVolumeSlider").GetComponent<Slider>();
         musicVolumen = GameObject.Find("MusicVolumeSlider").GetComponent<Slider>();
         effectsVolumen = GameObject.Find("EffectsVolumeSlider").GetComponent<Slider>();
