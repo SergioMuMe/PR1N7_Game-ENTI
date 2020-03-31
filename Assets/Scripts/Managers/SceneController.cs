@@ -70,12 +70,18 @@ public class SceneController : MonoBehaviour
     private int nextSprite;
 
     private Image starMedal;
-    private Image timeMedal;
+    //private Image timeMedal;
     private Image batteryMedal;
 
+    //private MeshRenderer starMedal;
+    private MeshRenderer timeMedal;
+    //private MeshRenderer batteryMedal;
+
+    //public Material[] statusStar = new Material[3];
     public Sprite[] statusStar = new Sprite[3];
-    public Sprite[] statusTime = new Sprite[3];
+    public Material[] statusTime = new Material[3];
     public Sprite[] statusBattery = new Sprite[3];
+    //public Material[] statusBattery = new Material[3];
 
 
     // Flash de NEW RECORD !
@@ -233,7 +239,6 @@ public class SceneController : MonoBehaviour
 
 
         //sceneMedals.batteryCollected
-
         if (batteryLevelCount == 0)
         {
             sprNum[2] = 1;
@@ -322,9 +327,11 @@ public class SceneController : MonoBehaviour
         sprNum[2] = -1;
         nextSprite = 0;
 
+        //starMedal = GameObject.Find("M-starMedal").GetComponent<MeshRenderer>();
         starMedal = GameObject.Find("M-starMedal").GetComponent<Image>();
-        timeMedal = GameObject.Find("M-timeMedal").GetComponent<Image>();
+        timeMedal = GameObject.Find("M-timeMedal").GetComponent<MeshRenderer>();
         batteryMedal = GameObject.Find("M-batteryMedal").GetComponent<Image>();
+        //batteryMedal = GameObject.Find("M-batteryMedal").GetComponent<MeshRenderer>();
 
         //Play main menu music
         //TODO: Mejorar la gestion del enum, ¿musica por mundos?
@@ -436,13 +443,14 @@ public class SceneController : MonoBehaviour
                 if(nextSprite == 0)
                 {
                     starMedal.sprite = statusStar[sprNum[0]];
+                    //starMedal.material = statusStar[sprNum[0]];
                     SoundManager.Instance.PlaySound("medal");
                     timeDisplayMedals = 0;
                 }
 
                 if (nextSprite == 1)
                 {
-                    timeMedal.sprite = statusTime[sprNum[1]];
+                    timeMedal.material = statusTime[sprNum[1]];
                     SoundManager.Instance.PlaySound("medal");
                     timeDisplayMedals = 0;
                 }
@@ -450,6 +458,7 @@ public class SceneController : MonoBehaviour
                 if(nextSprite == 2)
                 {
                     batteryMedal.sprite = statusBattery[sprNum[2]];
+                    //batteryMedal.material = statusBattery[sprNum[2]];
                     SoundManager.Instance.PlaySound("medal");
                     timeDisplayMedals = 0;
                 }

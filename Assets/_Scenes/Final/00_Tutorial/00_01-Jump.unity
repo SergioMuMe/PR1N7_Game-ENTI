@@ -51982,6 +51982,21 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 2747536464001728665, guid: 75ec373b7cfdd3c4fbc0e23a0ae28db3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2747536464001728665, guid: 75ec373b7cfdd3c4fbc0e23a0ae28db3,
+        type: 3}
+      propertyPath: m_Name
+      value: M-timeMedal
+      objectReference: {fileID: 0}
+    - target: {fileID: 2747536464001728667, guid: 75ec373b7cfdd3c4fbc0e23a0ae28db3,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75ec373b7cfdd3c4fbc0e23a0ae28db3, type: 3}
 --- !u!1001 &2000275957
