@@ -113,7 +113,7 @@ public class HUDController : MonoBehaviour
             playerTime += Time.deltaTime;
 
             //Cronometro level
-            LTTime.text = Utils.GetTimeFormat(Utils.RoundFloat(playerTime, 3), 1);
+            LTTime.text = Utils.GetTimeFormat(Utils.RoundFloat(playerTime, 3), 3);
             
 
             //Gradient de color para marcar tiempo restante
