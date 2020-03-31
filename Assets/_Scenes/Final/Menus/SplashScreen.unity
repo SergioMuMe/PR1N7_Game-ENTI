@@ -350,6 +350,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7f965cdb7d0eae41b42d3ebfabeedc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isGamePaused: 0
   profileSelected: 0
   profilePicked: 0
   idActualLevel: 0
@@ -424,7 +425,7 @@ VideoPlayer:
   m_TargetAudioSources:
   - {fileID: 0}
   m_DirectAudioVolumes:
-  - 1
+  - 0.25
   m_Url: 
   m_EnabledAudioTracks: 01
   m_DirectAudioMutes: 00

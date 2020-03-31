@@ -48,6 +48,9 @@ public class GameManager : MonoBehaviour
         ########################
     */
 
+
+    public bool isGamePaused;
+
     /*
      * Cuando el jugador escoge profile. Nos guardamos el id. 
      * Durante la sesión de juego, vamos actualizando los datos de profiles[profileSelected].levelsData[i] con los datos que pertoquen.
@@ -430,7 +433,8 @@ public class GameManager : MonoBehaviour
 
         //Init a FALSE
         profilePicked = false;
-        
+        isGamePaused = false;
+
         //TESTING ZONE
         //END TESTING ZONE
     }
