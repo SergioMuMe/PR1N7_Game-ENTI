@@ -137,6 +137,7 @@ public class MainMenuController : MonoBehaviour
         {
             profileSelection.SetActive(false);
             createProfile.SetActive(true);
+            nameAlert.SetActive(false);
         }
     }
 
@@ -290,7 +291,7 @@ public class MainMenuController : MonoBehaviour
             playerRecord.text = "Player record: --:--:--- ";
         } else
         {
-            playerRecord.text = "Player record: " + Utils.GetTimeFormat(Utils.RoundFloat(scriptGM.profiles[idProfileSelected].levelsData[idLevel].levelMedals.timeRecord, 3), 1);
+            playerRecord.text = "Player record: " + Utils.GetTimeFormat(Utils.RoundFloat(scriptGM.profiles[idProfileSelected].levelsData[idLevel].levelMedals.timeRecord, 3), 3);
         }
 
     }
@@ -365,9 +366,9 @@ public class MainMenuController : MonoBehaviour
         musicValueDisplay = GameObject.Find("musicValueDisplay").GetComponent<TextMeshProUGUI>();
         effectsValueDisplay = GameObject.Find("effectsValueDisplay").GetComponent<TextMeshProUGUI>();
 
-        OptionsManager.Instance.masterVolumenValueSaved = masterVolumen.value;
-        OptionsManager.Instance.musicVolumenValueSaved = musicVolumen.value;
-        OptionsManager.Instance.effectsVolumenValueSaved = effectsVolumen.value;
+        masterVolumen.value = OptionsManager.Instance.masterVolumenValueSaved;
+        musicVolumen.value = OptionsManager.Instance.musicVolumenValueSaved;
+        effectsVolumen.value = OptionsManager.Instance.effectsVolumenValueSaved;
 
         //Referencias de los profiles
 

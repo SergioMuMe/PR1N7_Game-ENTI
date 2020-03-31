@@ -63,4 +63,11 @@ public class OptionsManager : MonoBehaviour
             Debug.Log("Warning: multiple " + this + " in scene!");
         }
     }
+
+    private void Start()
+    {
+        masterVolumenValueSaved = 0.5f;
+        musicVolumenValueSaved = 0.5f;
+        effectsVolumenValueSaved = 0.5f;
+    }
 }

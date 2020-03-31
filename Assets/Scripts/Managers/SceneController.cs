@@ -129,7 +129,8 @@ public class SceneController : MonoBehaviour
 
     //Info enviada al GameManager para guardar resultados del nivel. Previamente obtenemos la info actual.
     Medals sceneMedals;
-   
+    Medals sceneMedalsBeforeAlter;
+
 
     //Obtenemos datos del jugador relacionados con este mapa
     private void getPlayerLevelInfo()
@@ -159,48 +160,43 @@ public class SceneController : MonoBehaviour
 
         int check = 0;
 
+        sceneMedalsBeforeAlter = sceneMedals;
+
         sprNum[0] = 1;
-        //Si jugador NO ha obtenido aun la medalla
-        if (!sceneMedals.finished)
+        // FIRST TIME RUN
+        //Si o si, el jugador ha superado el nivel al llegar a aquí
+        sceneMedals.finished = true;
+        check++;
+
+        //sceneMedals.timeBeated
+        if (playerTime <= timeLevelLimit)
         {
-            sceneMedals.finished = true;
+            sprNum[1] = 1;
+            sceneMedals.timeBeated = true;
             check++;
         }
-
-        //Si jugador NO ha obtenido aun la medalla
-        if (!sceneMedals.timeBeated)
+        else
         {
-            if (playerTime <= timeLevelLimit)
-            {
-                sprNum[1] = 1;
-                sceneMedals.timeBeated = true;
-                check++;
-            }
-            else
-            {
-                sprNum[1] = 0;
-                sceneMedals.timeBeated = false;
-            }
+            sprNum[1] = 0;
+            sceneMedals.timeBeated = false;
         }
 
-        //Si jugador NO ha obtenido aun la medalla
-        if (!sceneMedals.batteryCollected)
-        {
-            if (batteryLevelCount == 0)
-            {
-                sprNum[2] = 1;
-                sceneMedals.batteryCollected = true;
-                check++;
-            }
-            else
-            {
-                sprNum[2] = 0;
-                sceneMedals.batteryCollected = false;
-            }
-        }
 
+        //sceneMedals.batteryCollected
+
+        if (batteryLevelCount == 0)
+        {
+            sprNum[2] = 1;
+            sceneMedals.batteryCollected = true;
+            check++;
+        }
+        else
+        {
+            sprNum[2] = 0;
+            sceneMedals.batteryCollected = false;
+        }
         
-
+        //Si el jugador ha conseguido las tres a la vez, consigue las medallas de ORO
         if (check==3)
         {
             sceneMedals.allAtOnce = true;
@@ -221,6 +217,34 @@ public class SceneController : MonoBehaviour
     
     //Esta función es llamada justo antes de cambiar de nivel.
     private void sendLevelResults() {
+
+        //Revisamos los records anteriores a jugar el nivel, el jugador conservará siempre la mejor puntuación.
+        
+        //public bool timeBeated; // Superado en menos de X tiempo Si/No
+        //public bool batteryCollected; // Recogidas pilas del nivel Si/No
+        //public float timeRecord; // Marca personal de tiempo record.
+        //public bool allAtOnce; // Marca si las medallas han sido ganadas todas a la vez
+
+        if (sceneMedalsBeforeAlter.timeBeated && !sceneMedals.timeBeated)
+        {
+            sceneMedals.timeBeated = true;
+        }
+
+        if (sceneMedalsBeforeAlter.batteryCollected && !sceneMedals.batteryCollected)
+        {
+            sceneMedals.batteryCollected = true;
+        }
+
+        if (sceneMedalsBeforeAlter.timeRecord < sceneMedals.timeRecord)
+        {
+            sceneMedals.timeRecord = sceneMedalsBeforeAlter.timeRecord;
+        }
+
+        if (sceneMedalsBeforeAlter.allAtOnce && !sceneMedals.allAtOnce)
+        {
+            sceneMedals.allAtOnce = true;
+        }
+
         scriptGM.saveData(idLevel, sceneMedals);
     }
     #endregion
