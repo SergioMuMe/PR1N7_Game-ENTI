@@ -1821,7 +1821,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   profileSelected: 0
+  profilePicked: 0
+  idActualLevel: 0
   timeLevelLimit: []
+  numberOfLevels: 0
+  createEmptyProfilesFLAG: 0
 --- !u!4 &2031776105
 Transform:
   m_ObjectHideFlags: 0
