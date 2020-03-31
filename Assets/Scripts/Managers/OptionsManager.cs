@@ -66,7 +66,7 @@ public class OptionsManager : MonoBehaviour
 
     private void Start()
     {
-        masterVolumenValueSaved = 0.5f;
+        masterVolumenValueSaved = 0.25f;
         musicVolumenValueSaved = 0.5f;
         effectsVolumenValueSaved = 0.5f;
     }

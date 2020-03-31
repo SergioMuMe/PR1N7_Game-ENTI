@@ -52,12 +52,13 @@ public class SceneController : MonoBehaviour
 
     #region END_GAME_SPLASH_SCREEN
 
+    TextMeshProUGUI levelNameEG;
     TextMeshProUGUI recordTimeEG;
     TextMeshProUGUI playerTimeEG;
 
-    Button goMenuButton;
-    Button restartButton;
-    Button nextLevelButton;
+    Button goMenuButtonEG;
+    Button restartButtonEG;
+    Button nextLevelButtonEG;
 
     GameObject canvasEndGame;
 
@@ -85,6 +86,10 @@ public class SceneController : MonoBehaviour
     //Al terminar un nivel, podemos reiniciar escena pero conservamos el progreso
     public void restartSceneEndGame()
     {
+        if(GameManager.Instance.isGamePaused)
+        {
+            resumeGame();
+        }
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
@@ -105,6 +110,51 @@ public class SceneController : MonoBehaviour
         playerTime = canvasHUD.playerTime;
         playerTimeEG.text = Utils.GetTimeFormat(Utils.RoundFloat(playerTime, 3), 3);
     }
+    #endregion
+
+    /*index
+        #######################
+        #                     #
+        #  MENU INGAME/PAUSE  #
+        #                     #
+        #######################
+    */
+    #region MENU_INGAME
+
+    Button resumeButtonMI;
+    Button restartButtonMI;
+    Button goMenuButtonMI;
+
+    GameObject pauseMenuMI;
+
+    public static bool isGamePaused;
+
+    void resumeGame()
+    {
+        pauseMenuMI.SetActive(false);
+        Time.timeScale = 1f;
+        GameManager.Instance.isGamePaused = false;
+
+        if (canvasHUD.levelEnded && !canvasEndGame.activeInHierarchy)
+        {
+            canvasEndGame.SetActive(true);
+        }
+
+    }
+
+    void pauseGame()
+    {
+        pauseMenuMI.SetActive(true);
+        Time.timeScale = 0f;
+        GameManager.Instance.isGamePaused = true;
+
+        if(canvasHUD.levelEnded && canvasEndGame.activeInHierarchy)
+        {            
+            canvasEndGame.SetActive(false);
+        }
+         
+    }
+
     #endregion
 
     /*index
@@ -259,6 +309,10 @@ public class SceneController : MonoBehaviour
     
     private void Start()
     {
+        //Varaibles de MenuIngame
+        pauseMenuMI = GameObject.Find("CanvasMenuIngame");
+        
+
         //Varaibles de end game splash screen
         doFlashAt = 650f;
         doDisplayMedal = 520f;
@@ -287,6 +341,8 @@ public class SceneController : MonoBehaviour
         timeLevelLimit = Utils.GetActualRecord(sceneMedals.timeRecord,scriptGM.timeLevelLimit[idLevel]);
 
         //Datos para el end game splash screen
+        levelNameEG = GameObject.Find("EG-Title").GetComponent<TextMeshProUGUI>();
+        levelNameEG.text = "Level " + GameManager.Instance.idActualLevel.ToString();
         recordTimeEG = GameObject.Find("T-RecordTime").GetComponent<TextMeshProUGUI>();
         recordTimeEG.text = Utils.GetTimeFormat(Utils.RoundFloat(timeLevelLimit, 3), 3);
         playerTimeEG = GameObject.Find("T-Time").GetComponent<TextMeshProUGUI>();
@@ -294,15 +350,24 @@ public class SceneController : MonoBehaviour
         newRecordText = GameObject.Find("T-NewRecord").GetComponent<TextMeshProUGUI>();
 
         //Configuramos los botones de la splashscreen        
-        goMenuButton = GameObject.Find("B-goMenuButton").GetComponent<Button>();
-        goMenuButton.onClick.AddListener(goHomeEndGame);
+        goMenuButtonEG = GameObject.Find("B-goMenuButton").GetComponent<Button>();
+        goMenuButtonEG.onClick.AddListener(goHomeEndGame);
 
-        restartButton = GameObject.Find("B-restartButton").GetComponent<Button>();
-        restartButton.onClick.AddListener(restartSceneEndGame);
+        restartButtonEG = GameObject.Find("B-restartButton").GetComponent<Button>();
+        restartButtonEG.onClick.AddListener(restartSceneEndGame);
 
-        nextLevelButton = GameObject.Find("B-nextLevelButton").GetComponent<Button>();
-        nextLevelButton.onClick.AddListener(loadNextSceneEndGame);
-        
+        nextLevelButtonEG = GameObject.Find("B-nextLevelButton").GetComponent<Button>();
+        nextLevelButtonEG.onClick.AddListener(loadNextSceneEndGame);
+
+        //Configuramos los botones del Menu Ingame
+        resumeButtonMI = GameObject.Find("MI-Resume").GetComponent<Button>();
+        resumeButtonMI.onClick.AddListener(resumeGame);
+
+        restartButtonMI = GameObject.Find("MI-Restart").GetComponent<Button>();
+        restartButtonMI.onClick.AddListener(restartSceneEndGame);
+
+        goMenuButtonMI = GameObject.Find("MI-Exit").GetComponent<Button>();
+        goMenuButtonMI.onClick.AddListener(goHomeEndGame);
 
         //referencia del hud
         canvasHUD = GameObject.Find("CanvasHUD").GetComponent<HUDController>();
@@ -319,9 +384,10 @@ public class SceneController : MonoBehaviour
         //TODO: Revisar waltrapa, ¿porque entra dos veces en la función?
         waltrapa2 = true;
 
-        //Cogemos referencia del end game splashscreen y lo ocultamos
+        //Cogemos referencia del end game splashscreen y lo ocultamos, junto con el menu de pausa
         canvasEndGame = GameObject.Find("CanvasEndGame");
         canvasEndGame.SetActive(false);
+        pauseMenuMI.SetActive(false);
     }
 
     //TODO: Esto lo estmaos usando para debugar. Terminar de implementar para jugador o quitar.
@@ -332,14 +398,20 @@ public class SceneController : MonoBehaviour
         DEV TESTING KEYS
         !!!!!!!!!!!!!!!!
         */
-        if (Input.GetKey(KeyCode.P))
+        if (Input.GetKey(KeyCode.L))
         {
-            restartScene(actualScene);
+            restartSceneEndGame();
         }
 
-        if (Input.GetKey(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Utils.GoMainMenu();
+            if (GameManager.Instance.isGamePaused)
+            {
+                resumeGame();
+            } else
+            {
+                pauseGame();
+            }
         }
 
         if(Input.GetKey(KeyCode.O))
@@ -356,13 +428,11 @@ public class SceneController : MonoBehaviour
         */
         if (canvasHUD.levelEnded)
         {
-
             //Display de medallas
             timeDisplayMedals += Time.deltaTime * 1000;
 
             if(timeDisplayMedals > doDisplayMedal)
             {
-
                 if(nextSprite == 0)
                 {
                     starMedal.sprite = statusStar[sprNum[0]];
@@ -385,9 +455,7 @@ public class SceneController : MonoBehaviour
                 }
 
                 nextSprite++;
-
             }
-            
 
             //Parpadeo de NEW RECORD ! en caso de superar tiempo record
             if (playerTime < timeLevelLimit)
