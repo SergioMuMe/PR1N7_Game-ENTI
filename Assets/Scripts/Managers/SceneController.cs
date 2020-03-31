@@ -22,6 +22,9 @@ public class SceneController : MonoBehaviour
     //PROFE: ¿Porque entra dos veces en el trigger?
     private bool waltrapa;
 
+    //PROFE: En el level 2, si le das al boton de next level llama a la funcion loadnextscene 2 veces! wtf
+    private bool waltrapa2;
+
     private void restartScene(string scene)
     {
         SceneManager.LoadScene(scene);
@@ -29,7 +32,12 @@ public class SceneController : MonoBehaviour
 
     private void loadNextScene(string scene)
     {
-        GameManager.Instance.idActualLevel++;
+        if(waltrapa2)
+        {
+            GameManager.Instance.idActualLevel++;
+            waltrapa2 = false;
+        }
+        
         SoundManager.Instance.StopAllSounds();
         SceneManager.LoadScene(scene);
     }
@@ -95,7 +103,7 @@ public class SceneController : MonoBehaviour
     private void endGamePreparations()
     {
         playerTime = canvasHUD.playerTime;
-        playerTimeEG.text = Utils.GetTimeFormat(Utils.RoundFloat(playerTime, 3), 1);
+        playerTimeEG.text = Utils.GetTimeFormat(Utils.RoundFloat(playerTime, 3), 3);
     }
     #endregion
 
@@ -255,9 +263,8 @@ public class SceneController : MonoBehaviour
         timeLevelLimit = Utils.GetActualRecord(sceneMedals.timeRecord,scriptGM.timeLevelLimit[idLevel]);
 
         //Datos para el end game splash screen
-
         recordTimeEG = GameObject.Find("T-RecordTime").GetComponent<TextMeshProUGUI>();
-        recordTimeEG.text = Utils.GetTimeFormat(Utils.RoundFloat(timeLevelLimit, 3), 1);
+        recordTimeEG.text = Utils.GetTimeFormat(Utils.RoundFloat(timeLevelLimit, 3), 3);
         playerTimeEG = GameObject.Find("T-Time").GetComponent<TextMeshProUGUI>();
 
         newRecordText = GameObject.Find("T-NewRecord").GetComponent<TextMeshProUGUI>();
@@ -283,6 +290,10 @@ public class SceneController : MonoBehaviour
         //controles de fin del mapa.
         //TODO: Revisar waltrapa, ¿porque entra dos veces en el trigger de NextLevel?
         waltrapa = true;
+
+        //controles de cambio de escena, sólo reproduce en escenario2 ?!.
+        //TODO: Revisar waltrapa, ¿porque entra dos veces en la función?
+        waltrapa2 = true;
 
         //Cogemos referencia del end game splashscreen y lo ocultamos
         canvasEndGame = GameObject.Find("CanvasEndGame");
