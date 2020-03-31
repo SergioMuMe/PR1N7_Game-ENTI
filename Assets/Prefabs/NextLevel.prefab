@@ -99,9 +99,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 20b28d1c14b4c4042903c6ce79331333, type: 3}
   - {fileID: 21300000, guid: 6f31755f81774fe4497de6eaf5e735ba, type: 3}
   statusTime:
-  - {fileID: 21300000, guid: 27ffc3b83aae1ee4c88aed584868f1ca, type: 3}
-  - {fileID: 21300000, guid: 6696602de3bd7874fb7e533c93e9605d, type: 3}
-  - {fileID: 21300000, guid: 5f3ee3d2eef07a7489fae0b8764395da, type: 3}
+  - {fileID: 2100000, guid: fd7ae984c4ed1d5429c6833ae06e0503, type: 2}
+  - {fileID: 2100000, guid: 96b166d1911ad994891ab0f44e4dbb66, type: 2}
+  - {fileID: 2100000, guid: a9225cb1dd3223f45a65642173ec7078, type: 2}
   statusBattery:
   - {fileID: 21300000, guid: 913c3a30d02d8c245ab384e561992121, type: 3}
   - {fileID: 21300000, guid: 3d1466ad90a2a1e4ea71e5c7a4d05629, type: 3}
