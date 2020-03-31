@@ -94,7 +94,7 @@ public class HUDController : MonoBehaviour
 
         //...verificamos si el record más bajo es el del player o el del DEV.
         recordSelected = Utils.GetActualRecord(levelRecordPlayer, levelRecordDEV);
-        LTRecordTime.text += Utils.GetTimeFormat(recordSelected, 3).ToString();
+        LTRecordTime.text += Utils.GetTimeFormat(recordSelected, 1).ToString();
 
         levelEnded = false;
     }
@@ -166,7 +166,7 @@ public class HUDController : MonoBehaviour
                 }
 
                 //REC-CountDown, displayamos tiempo restante de grabación.
-                recordingTime.text = Utils.GetTimeFormat(characterBehav.limitRecordingTime - time, 3);
+                recordingTime.text = Utils.GetTimeFormat(characterBehav.limitRecordingTime - time, 2);
 
             }
             else

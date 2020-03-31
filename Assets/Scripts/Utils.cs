@@ -60,19 +60,26 @@ public static class Utils
         SceneManager.LoadScene("MainMenu");
     }
 
-    //Recibe un float de tiempo, retorna una string en formato mm:ss:f donde f es la cantidad de digitos _miliseconds especificada
-    public static string GetTimeFormat (float _number, int _miliseconds)
+    //Retorna un float en formato TimeSpan. 
+    /*
+     * mode (1) > mm:ss:fff
+     * mode (2) > mm:ss:ff
+     */
+    public static string GetTimeFormat (float _number, int mode)
     {
         TimeSpan time;
         time = TimeSpan.FromSeconds(_number);
-        string format = "";
 
-        for (int i = 0; i < _miliseconds; i++)
+        switch (mode)
         {
-            format += "f";
-        }
-        format = "mm':'ss':'" + format;
+            case 1:
+            return time.ToString("mm':'ss':'fff");
+            
+            case 2:
+            return time.ToString("mm':'ss':'ff");
 
-        return time.ToString(format);
+            default:
+            return time.ToString("mm':'ss':'fff");
+        }      
     }
 }

@@ -260,24 +260,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4b6a6f01b88d914ebd34f253a7881c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  masterVolumen: {fileID: 0}
-  musicVolumen: {fileID: 0}
-  effectsVolumen: {fileID: 0}
+  levelsGenerated: 
+  levelsLoaded: 
   levelButtons: []
-  textUI: []
-  statusLevelColor:
+  statusColor:
   - {fileID: 0}
   - {fileID: 0}
-  statusStar:
-  - {fileID: 0}
-  - {fileID: 0}
-  statusTime:
-  - {fileID: 0}
-  - {fileID: 0}
-  statusBattery:
-  - {fileID: 0}
-  - {fileID: 0}
-  idLevel: 0
 --- !u!1 &97799844
 GameObject:
   m_ObjectHideFlags: 0
@@ -2324,24 +2312,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4b6a6f01b88d914ebd34f253a7881c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  masterVolumen: {fileID: 0}
-  musicVolumen: {fileID: 0}
-  effectsVolumen: {fileID: 0}
+  levelsGenerated: 
+  levelsLoaded: 
   levelButtons: []
-  textUI: []
-  statusLevelColor:
+  statusColor:
   - {fileID: 0}
   - {fileID: 0}
-  statusStar:
-  - {fileID: 0}
-  - {fileID: 0}
-  statusTime:
-  - {fileID: 0}
-  - {fileID: 0}
-  statusBattery:
-  - {fileID: 0}
-  - {fileID: 0}
-  idLevel: 0
 --- !u!1 &560285813
 GameObject:
   m_ObjectHideFlags: 0
@@ -6008,27 +5984,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4b6a6f01b88d914ebd34f253a7881c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  masterVolumen: {fileID: 0}
-  musicVolumen: {fileID: 0}
-  effectsVolumen: {fileID: 0}
+  levelsGenerated: 
+  levelsLoaded: 
   levelButtons:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  textUI: []
-  statusLevelColor:
-  - {fileID: 0}
-  - {fileID: 0}
-  statusStar:
-  - {fileID: 0}
-  - {fileID: 0}
-  statusTime:
-  - {fileID: 0}
-  - {fileID: 0}
-  statusBattery:
-  - {fileID: 0}
-  - {fileID: 0}
-  idLevel: 0
+  - {fileID: 547213377}
+  - {fileID: 751946212}
+  - {fileID: 546673128}
+  statusColor:
+  - {fileID: 11400000, guid: 1495b2f67741c7641ac588fce672d488, type: 2}
+  - {fileID: 11400000, guid: 2209e62107bf55a4f948adcc657b5af7, type: 2}
 --- !u!1 &1439024427
 GameObject:
   m_ObjectHideFlags: 0

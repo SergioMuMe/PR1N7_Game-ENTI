@@ -288,7 +288,7 @@ public class SceneController : MonoBehaviour
 
         //Datos para el end game splash screen
         recordTimeEG = GameObject.Find("T-RecordTime").GetComponent<TextMeshProUGUI>();
-        recordTimeEG.text = Utils.GetTimeFormat(Utils.RoundFloat(timeLevelLimit, 3), 3);
+        recordTimeEG.text = Utils.GetTimeFormat(Utils.RoundFloat(timeLevelLimit, 3), 1);
         playerTimeEG = GameObject.Find("T-Time").GetComponent<TextMeshProUGUI>();
 
         newRecordText = GameObject.Find("T-NewRecord").GetComponent<TextMeshProUGUI>();
