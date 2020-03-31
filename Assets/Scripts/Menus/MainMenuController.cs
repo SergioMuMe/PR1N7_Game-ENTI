@@ -34,7 +34,7 @@ public class MainMenuController : MonoBehaviour
         #            #
         ##############
     */
-
+    #region OPCIONES
     public Slider masterVolumen;
     public Slider musicVolumen;
     public Slider effectsVolumen;
@@ -59,7 +59,7 @@ public class MainMenuController : MonoBehaviour
         SoundManager.Instance.TestEffect(masterVolumen.value, effectsVolumen.value);
     }
 
-
+    #endregion
     /*index 
          ##############
          #            #
@@ -69,7 +69,8 @@ public class MainMenuController : MonoBehaviour
      */
     #region PROFILES
 
-    
+    private GameObject nameAlert;
+    private TMP_InputField nameTextBox;
     private int idProfileSelected;
 
     //Obtenemos nombres de perfiles
@@ -149,7 +150,16 @@ public class MainMenuController : MonoBehaviour
     public void createNewProfileBIN()
     {
         int idProfile = GameManager.Instance.profileSelected;
-        string name = GameObject.Find("NameValue").GetComponent<TMP_InputField>().text;
+
+        
+        string name = nameTextBox.text;
+
+        if (name.Length <= 1 || name.Length >= 16)
+        {
+            nameAlert.SetActive(true);
+            nameTextBox.text = "";
+            return;
+        }
 
         //Definimos datos del nuevo perfil
         GameManager.Instance.profiles[idProfile].profileUsed = true;
@@ -176,8 +186,8 @@ public class MainMenuController : MonoBehaviour
         #                      #
         ########################
     */
-    
 
+    #region GESTION_DE_NIVELES
     //Para modificar color (bloqueado/desbloqueado): Obtenemos los botones de los niveles + textos
     public GameObject[] levelButtons;
     public TextMeshProUGUI[] textUI;
@@ -209,7 +219,7 @@ public class MainMenuController : MonoBehaviour
             }
         }
     }
-
+    #endregion
     /*index 
         ####################################
         #                                  #
@@ -219,7 +229,7 @@ public class MainMenuController : MonoBehaviour
     */
     #region LEVEL_SELECTED_INFO
 
-    
+
     //GameObject IMAGEN de la medalla de cada nivel
     private Image starMedal;
     private Image timeMedal;
@@ -273,7 +283,7 @@ public class MainMenuController : MonoBehaviour
             batteryMedal.sprite = statusBattery[0];
         }
 
-        timeLevelLimit.text = "Level record:  " + Utils.GetTimeFormat(scriptGM.timeLevelLimit[idLevel], 1);
+        timeLevelLimit.text = "Level record:  " + Utils.GetTimeFormat(scriptGM.timeLevelLimit[idLevel], 3);
 
         if (scriptGM.profiles[idProfileSelected].levelsData[idLevel].firstTimeFLAG)
         {
@@ -327,6 +337,9 @@ public class MainMenuController : MonoBehaviour
         //Obtenemos referencias...
         profileSelection = GameObject.Find("ProfileSelection");
         createProfile = GameObject.Find("CreateProfile");
+        nameAlert = GameObject.Find("NameTextAlert");
+        nameTextBox = GameObject.Find("NameValue").GetComponent<TMP_InputField>();
+
         mainMenu = GameObject.Find("MainMenu");
         levelSelection = GameObject.Find("SelectLevel");
         levelSelected = GameObject.Find("LevelSelected");
@@ -402,6 +415,7 @@ public class MainMenuController : MonoBehaviour
             levelSelection.SetActive(false);
             credits.SetActive(false);
             options.SetActive(false);
+            nameAlert.SetActive(false);
         } else
         {
             // Entramos por primera vez al juego, venimos de la SplashScreen
