@@ -444,14 +444,14 @@ public class SceneController : MonoBehaviour
                 {
                     starMedal.sprite = statusStar[sprNum[0]];
                     //starMedal.material = statusStar[sprNum[0]];
-                    SoundManager.Instance.PlaySound("medal");
+                    SoundManager.Instance.PlaySound("EG-medal");
                     timeDisplayMedals = 0;
                 }
 
                 if (nextSprite == 1)
                 {
                     timeMedal.material = statusTime[sprNum[1]];
-                    SoundManager.Instance.PlaySound("medal");
+                    SoundManager.Instance.PlaySound("EG-medal");
                     timeDisplayMedals = 0;
                 }
 
@@ -459,7 +459,7 @@ public class SceneController : MonoBehaviour
                 {
                     batteryMedal.sprite = statusBattery[sprNum[2]];
                     //batteryMedal.material = statusBattery[sprNum[2]];
-                    SoundManager.Instance.PlaySound("medal");
+                    SoundManager.Instance.PlaySound("EG-medal");
                     timeDisplayMedals = 0;
                 }
 
