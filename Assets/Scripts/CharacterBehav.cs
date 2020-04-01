@@ -179,7 +179,7 @@ public class CharacterBehav : MonoBehaviour
                     direction = DirectionInputs.NONE;
 
                     isJumping = true;
-                    SoundManager.Instance.PlaySound("jump");
+                    SoundManager.Instance.PlaySound("PLAYER-jump");
                 }
 
                 if (Input.GetKeyDown(KeyCode.R) && !isRecording && maxClones > 0)
@@ -207,7 +207,7 @@ public class CharacterBehav : MonoBehaviour
                     initCloningTime = Time.time;
                     inputs.Add(new CommandsInputs(CommandsInputsEnum.START, (Time.time * 1000) - initInputTime));
 
-                    SoundManager.Instance.PlaySound("recording");
+                    SoundManager.Instance.PlaySound("PLAYER-recording");
 
                 }
                 else if (isRecording && Input.GetKeyDown(KeyCode.R) || isRecording && Time.time >= initCloningTime + limitRecordingTime)
@@ -437,7 +437,7 @@ public class CharacterBehav : MonoBehaviour
 
             isJumping = false;
             isGrounded = true;
-            SoundManager.Instance.PlaySound("land");
+            SoundManager.Instance.PlaySound("PLAYER-land");
 
             if (maxHeight > maxHeightDefault)
             {

@@ -522,21 +522,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - name: recording
+  - name: PLAYER-recording
     clip: {fileID: 8300000, guid: a3292ecc4d80ac5409b6dc4dfd8b3938, type: 3}
     pitch: 1
     randomPitch: 0
-  - name: jump
+  - name: PLAYER-jump
     clip: {fileID: 8300000, guid: bea1559961c1ee845acd4c1ecf5e079e, type: 3}
     pitch: 0.8
     randomPitch: 0
-  - name: land
-    clip: {fileID: 8300000, guid: 17c65948d65580e49a910e1e2be15001, type: 3}
-    pitch: 0.7
-    randomPitch: 0.5
-  - name: medal
+  - name: PLAYER-land
+    clip: {fileID: 8300000, guid: 8ae30f7e3fc8b214d85fd649b8b91cba, type: 3}
+    pitch: 1.25
+    randomPitch: 0
+  - name: EG-medal
     clip: {fileID: 8300000, guid: 39ecd7b3eba928e459c28e80f1395f23, type: 3}
     pitch: 0.85
+    randomPitch: 0
+  - name: MENU-MouseOver
+    clip: {fileID: 8300000, guid: 53639a81a7957cd44b24acf12e8ca68f, type: 3}
+    pitch: 0.5
+    randomPitch: 0
+  - name: MENU-ProfileSelected
+    clip: {fileID: 8300000, guid: 7393b0a06941dbc438bce2ca5b578dea, type: 3}
+    pitch: 1.2
+    randomPitch: 0
+  - name: MENU-ImportantButton
+    clip: {fileID: 8300000, guid: 2f70f24f042b56c4e963f633f7c22cf3, type: 3}
+    pitch: 1.2
     randomPitch: 0
   musicsMainMenu:
   - {fileID: 8300000, guid: 345fb51144faa7340947abb9a3789076, type: 3}

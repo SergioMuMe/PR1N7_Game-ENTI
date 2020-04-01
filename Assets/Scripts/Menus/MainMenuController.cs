@@ -5,6 +5,7 @@ using System.IO;
 using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class MainMenuController : MonoBehaviour
 {
@@ -26,6 +27,8 @@ public class MainMenuController : MonoBehaviour
     private GameObject credits;
 
     private GameManager scriptGM;
+
+    private EventTrigger[] vectorButtons;
 
     /*index 
         ##############
@@ -78,6 +81,9 @@ public class MainMenuController : MonoBehaviour
     private int idProfileSelected;
     private GameObject nameAlert;
     private TMP_InputField nameTextBox;
+
+    private EventTrigger backButtonCP;
+    private EventTrigger createuttonCP;
 
     //Obtenemos nombres de perfiles
     private TextMeshProUGUI[] profileName;
@@ -322,6 +328,32 @@ public class MainMenuController : MonoBehaviour
 
     }
     #endregion
+
+
+    /*index
+        #############
+        #           #
+        #  SONIDOS  #
+        #           #
+        #############
+    */
+    #region SONIDOS
+    public void PlayButton()
+    {
+        SoundManager.Instance.PlaySound("MENU-MouseOver");
+    }
+
+    public void PlayImportantButton()
+    {
+        SoundManager.Instance.PlaySound("MENU-ImportantButton");
+    }
+
+    public void PlayProfileSelected()
+    {
+        SoundManager.Instance.PlaySound("MENU-ProfileSelected");
+    }
+    #endregion
+
     /*index
         ####################
         #                  #
@@ -356,9 +388,10 @@ public class MainMenuController : MonoBehaviour
         ########################
     */
 
-    private void Start()
-    {
+    
 
+    private void Start()
+    {      
         scriptGM = GameObject.Find("GameManager").GetComponent<GameManager>();
 
         //Obtenemos referencias...
