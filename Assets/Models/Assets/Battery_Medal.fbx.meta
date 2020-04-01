@@ -15,7 +15,9 @@ ModelImporter:
     400008: group2
     2100000: lambert1
     2300000: Battery_Medal
+    2300002: //RootNode
     3300000: Battery_Medal
+    3300002: //RootNode
     4300000: Battery_Medal
   externalObjects: {}
   materials:

@@ -11,7 +11,9 @@ ModelImporter:
     400004: Level_Medal
     2100000: lambert1
     2300000: Level_Medal
+    2300002: //RootNode
     3300000: Level_Medal
+    3300002: //RootNode
     4300000: Level_Medal
   externalObjects: {}
   materials:
