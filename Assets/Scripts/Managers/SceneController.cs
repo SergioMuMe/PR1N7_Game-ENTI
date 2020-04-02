@@ -367,7 +367,7 @@ public class SceneController : MonoBehaviour
         rgControl = false;
         rgAnimationsControl = true;
         rgTimerControl = 0f;
-        rgTimerLimit = 310f;
+        rgTimerLimit = 0.310f;
 
     //Varaibles de end game splash screen
     doFlashAt = 650f;
@@ -489,6 +489,8 @@ public class SceneController : MonoBehaviour
             {
                 resumeGameLogic();
                 rgControl = false;
+                rgAnimationsControl = true;
+                rgTimerControl = 0;
             }
         }
 
