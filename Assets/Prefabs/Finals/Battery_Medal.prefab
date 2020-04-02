@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4043989134215715780}
   - component: {fileID: 6277809520517873191}
   - component: {fileID: 8887806164224794050}
+  - component: {fileID: 668994226363107281}
   m_Layer: 0
   m_Name: Battery_Medal
   m_TagString: Untagged
@@ -25,9 +26,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 202843885210724262}
-  m_LocalRotation: {x: -0.0673875, y: 0.7038885, z: -0.7038885, w: -0.0673875}
+  m_LocalRotation: {x: -0.06738632, y: 0.7038886, z: -0.70388854, w: -0.067386314}
   m_LocalPosition: {x: 510.5, y: 154, z: -84.7}
-  m_LocalScale: {x: 50, y: 50, z: 50}
+  m_LocalScale: {x: 138, y: 138, z: 138}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -77,3 +78,22 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!95 &668994226363107281
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 202843885210724262}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 43fc6f19ee84e3545ad59b5339f6a31f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
