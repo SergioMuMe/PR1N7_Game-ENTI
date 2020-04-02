@@ -555,7 +555,11 @@ MonoBehaviour:
     pitch: 1.2
     randomPitch: 0
   - name: EG-Fanfarria
-    clip: {fileID: 8300000, guid: 1e49df79d8a3ed64f8118bb24ed7e546, type: 3}
+    clip: {fileID: 8300000, guid: c43130f71d65d8f419502e134f27424d, type: 3}
+    pitch: 0.85
+    randomPitch: 0
+  - name: EG-showScore
+    clip: {fileID: 8300000, guid: a8d2721f4c3e8ce4e83f74f57d977c42, type: 3}
     pitch: 0.85
     randomPitch: 0
   musicsMainMenu:

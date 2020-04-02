@@ -63,6 +63,8 @@ public class SceneController : MonoBehaviour
     GameObject canvasEndGame;
 
 
+    bool controlAllMedalsSound;
+
     // Display de medallas
     private float timeDisplayMedals;
     private float doDisplayMedal;
@@ -275,7 +277,7 @@ public class SceneController : MonoBehaviour
         }
 
         // Suena la fanfarria
-        SoundManager.Instance.PlaySound("EG-Fanfarria");
+        SoundManager.Instance.PlaySound("EG-showScore");
 
         if (playerTime < sceneMedals.timeRecord)
         {
@@ -399,8 +401,8 @@ public class SceneController : MonoBehaviour
 
         //referencia del hud
         canvasHUD = GameObject.Find("CanvasHUD").GetComponent<HUDController>();
-        
 
+        controlAllMedalsSound = true;
 
         //Nos aseguramos de que el idLevel se ha seteado correctamente
         //PROFE: Este valor lo usa HUDController.cs, al cambiar de nivel, se ejecuta antes ese script y por lo tanto no llega a actualizar a tiempo el idLevel ¿solucion?
@@ -447,7 +449,7 @@ public class SceneController : MonoBehaviour
             }
         }
 
-        if(Input.GetKey(KeyCode.O))
+        if (Input.GetKey(KeyCode.O))
         {
             setLevelResults();
             sendLevelResults();
@@ -464,17 +466,21 @@ public class SceneController : MonoBehaviour
             //Display de medallas
             timeDisplayMedals += Time.deltaTime * 1000;
 
-            if(timeDisplayMedals > doDisplayMedal)
+            //TODO: Lo de aqui dentro se puede factorizar en una función
+            if (timeDisplayMedals > doDisplayMedal)
             {
-                if(nextSprite == 0)
+                if (nextSprite == 0)
                 {
                     //3D: 
                     starMedal.material = statusStar[sprNum[0]];
-                    
+
                     //2D: 
                     //starMedal.sprite = statusStar[sprNum[0]];
 
-                    SoundManager.Instance.PlaySound("EG-medal");
+                    if (sprNum[0] != 0)
+                    {
+                        SoundManager.Instance.PlaySound("EG-medal");
+                    }
                     timeDisplayMedals = 0;
                 }
 
@@ -485,23 +491,40 @@ public class SceneController : MonoBehaviour
                     //2D:
                     //timeMedal.sprite = statusStar[sprNum[1]];
 
-                    SoundManager.Instance.PlaySound("EG-medal");
+                    if (sprNum[1] != 0)
+                    {
+                        SoundManager.Instance.PlaySound("EG-medal");
+                    }
                     timeDisplayMedals = 0;
                 }
 
-                if(nextSprite == 2)
+                if (nextSprite == 2)
                 {
                     //3D: 
                     batteryMedal.material = statusBattery[sprNum[2]];
                     //2D:
                     //batteryMedal.sprite = statusBattery[sprNum[2]];
 
-                    SoundManager.Instance.PlaySound("EG-medal");
+                    if (sprNum[2] != 0)
+                    {
+                        SoundManager.Instance.PlaySound("EG-medal");
+                    }
                     timeDisplayMedals = 0;
                 }
 
                 nextSprite++;
             }
+
+            //Fanfarria si todo estrellas
+            if (controlAllMedalsSound)
+            {
+                int count = 0;
+                for (int i = 0; i < sprNum.Length; i++) { if (sprNum[i] == 2) count++; }
+                if (count == 3) { SoundManager.Instance.PlaySound("EG-Fanfarria"); controlAllMedalsSound = false; }
+            }
+            
+                                 
+
 
             //Parpadeo de NEW RECORD ! en caso de superar tiempo record
             if (playerTime < timeLevelLimit)
@@ -541,7 +564,6 @@ public class SceneController : MonoBehaviour
             //TODO: bloquear Inputs de jugador
             Debug.LogWarning("TODO: bloquear Inputs de jugador.");
 
-            
             SoundManager.Instance.StopAllSounds();
 
             endGamePreparations();
