@@ -1619,7 +1619,7 @@ GameObject:
   m_Component:
   - component: {fileID: 87336612}
   m_Layer: 0
-  m_Name: PlaceHolderMedals
+  m_Name: 2D_Medals
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1637,8 +1637,8 @@ Transform:
   m_LocalScale: {x: 0.49991202, y: 0.49991202, z: 0.49991202}
   m_Children:
   - {fileID: 1903802011}
-  - {fileID: 1397255546}
   - {fileID: 1644869811}
+  - {fileID: 1397255546}
   m_Father: {fileID: 1956168506}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11810,17 +11810,17 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2209e62107bf55a4f948adcc657b5af7, type: 2}
   - {fileID: 11400000, guid: 1495b2f67741c7641ac588fce672d488, type: 2}
   statusStar:
-  - {fileID: 21300000, guid: bb575eae47d5b2341941d362b228f269, type: 3}
-  - {fileID: 21300000, guid: 20b28d1c14b4c4042903c6ce79331333, type: 3}
-  - {fileID: 21300000, guid: 6f31755f81774fe4497de6eaf5e735ba, type: 3}
+  - {fileID: 21300000, guid: c152c85f814eb5742bf78501665a4f0f, type: 3}
+  - {fileID: 21300000, guid: f7b31d55a42c0e944b79bdedc45bcd5d, type: 3}
+  - {fileID: 21300000, guid: 7d44e62aa1ad9364abe860ad6e145e7e, type: 3}
   statusTime:
-  - {fileID: 21300000, guid: 42f86e115536cfb45a6efdd8e462783d, type: 3}
-  - {fileID: 21300000, guid: 6696602de3bd7874fb7e533c93e9605d, type: 3}
-  - {fileID: 21300000, guid: 5f3ee3d2eef07a7489fae0b8764395da, type: 3}
+  - {fileID: 21300000, guid: b97476f897f0d1f4b8ef09b443e2baa8, type: 3}
+  - {fileID: 21300000, guid: 2948744ec03169249a2bc65cb9eac993, type: 3}
+  - {fileID: 21300000, guid: e8d03ba8bc322b6468a878454aae1b1c, type: 3}
   statusBattery:
-  - {fileID: 21300000, guid: 1dad046e06ed04147b9df1a6269e83ea, type: 3}
-  - {fileID: 21300000, guid: 3d1466ad90a2a1e4ea71e5c7a4d05629, type: 3}
-  - {fileID: 21300000, guid: cc3e2fe0d658247408b3330258f850fc, type: 3}
+  - {fileID: 21300000, guid: 7a8daf97a2f5d4b40b154b5efc1415c9, type: 3}
+  - {fileID: 21300000, guid: fb419056374508d4d8a3374811dea352, type: 3}
+  - {fileID: 21300000, guid: 684724deaa6dd8e4ab9b220d85261ffc, type: 3}
   idLevel: 0
 --- !u!4 &1304313560
 Transform:
@@ -12085,10 +12085,10 @@ RectTransform:
   m_GameObject: {fileID: 1397255545}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.8004923, y: 2.8004923, z: 0}
+  m_LocalScale: {x: 3, y: 3, z: 0}
   m_Children: []
   m_Father: {fileID: 87336612}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -12115,7 +12115,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 1dad046e06ed04147b9df1a6269e83ea, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 684724deaa6dd8e4ab9b220d85261ffc, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -14341,10 +14341,10 @@ RectTransform:
   m_GameObject: {fileID: 1644869810}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.8004863, y: 2.8004863, z: 0}
+  m_LocalScale: {x: 3, y: 3, z: 0}
   m_Children: []
   m_Father: {fileID: 87336612}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -14371,7 +14371,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 42f86e115536cfb45a6efdd8e462783d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2948744ec03169249a2bc65cb9eac993, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -16892,7 +16892,7 @@ RectTransform:
   m_GameObject: {fileID: 1903802010}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3.200563, y: 3.200563, z: 0}
+  m_LocalScale: {x: 3, y: 3, z: 0}
   m_Children: []
   m_Father: {fileID: 87336612}
   m_RootOrder: 0
@@ -16922,7 +16922,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: bb575eae47d5b2341941d362b228f269, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c152c85f814eb5742bf78501665a4f0f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

@@ -301,6 +301,26 @@ public class MainMenuController : MonoBehaviour
     {
         levelSelectedTitle.text = "LEVEL " + idLevel;
 
+        timeLevelLimit.text = "Level record:  " + Utils.GetTimeFormat(scriptGM.timeLevelLimit[idLevel], 3);
+
+        if (scriptGM.profiles[idProfileSelected].levelsData[idLevel].firstTimeFLAG)
+        {
+            playerRecord.text = "Player record: --:--:--- ";
+        }
+        else
+        {
+            playerRecord.text = "Player record: " + Utils.GetTimeFormat(Utils.RoundFloat(scriptGM.profiles[idProfileSelected].levelsData[idLevel].levelMedals.timeRecord, 3), 3);
+        }
+
+        if (scriptGM.profiles[idProfileSelected].levelsData[idLevel].levelMedals.allAtOnce)
+        {
+            starMedal.sprite = statusStar[2];
+            timeMedal.sprite = statusTime[2];
+            batteryMedal.sprite = statusBattery[2];
+            return; //El resto de código es para obtener medallas negras/plateadas. No lo necesitamos si ya tenemos la de oro!
+        }
+
+
         //CÓDIGO PARA USAR MEDALLAS 3D
         //loadMedalMaterial(scriptGM.profiles[idProfileSelected].levelsData[idLevel].levelMedals.finished, timeMedal, statusTime);
         //loadMedalMaterial(scriptGM.profiles[idProfileSelected].levelsData[idLevel].levelMedals.timeBeated, timeMedal, statusTime);
@@ -317,11 +337,11 @@ public class MainMenuController : MonoBehaviour
 
         if (scriptGM.profiles[idProfileSelected].levelsData[idLevel].levelMedals.timeBeated)
         {
-            starMedal.sprite = statusTime[1];
+            timeMedal.sprite = statusTime[1];
         }
         else
         {
-            starMedal.sprite = statusTime[0];
+            timeMedal.sprite = statusTime[0];
         }
 
         if (scriptGM.profiles[idProfileSelected].levelsData[idLevel].levelMedals.batteryCollected)
@@ -332,15 +352,7 @@ public class MainMenuController : MonoBehaviour
             batteryMedal.sprite = statusBattery[0];
         }
 
-        timeLevelLimit.text = "Level record:  " + Utils.GetTimeFormat(scriptGM.timeLevelLimit[idLevel], 3);
-
-        if (scriptGM.profiles[idProfileSelected].levelsData[idLevel].firstTimeFLAG)
-        {
-            playerRecord.text = "Player record: --:--:--- ";
-        } else
-        {
-            playerRecord.text = "Player record: " + Utils.GetTimeFormat(Utils.RoundFloat(scriptGM.profiles[idProfileSelected].levelsData[idLevel].levelMedals.timeRecord, 3), 3);
-        }
+        
 
     }
     #endregion
