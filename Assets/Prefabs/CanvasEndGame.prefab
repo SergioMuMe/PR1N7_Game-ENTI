@@ -2128,7 +2128,7 @@ Canvas:
   m_GameObject: {fileID: 3782138749754917777}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -2439,9 +2439,9 @@ Transform:
   m_LocalPosition: {x: 66.2, y: -36.6, z: -4.3687353}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
-  - {fileID: 429874151492173006}
-  - {fileID: 5365188323185441949}
   - {fileID: 5318366284555737557}
+  - {fileID: 5365188323185441949}
+  - {fileID: 429874151492173006}
   m_Father: {fileID: 3782138748117261198}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2488,7 +2488,7 @@ PrefabInstance:
     - target: {fileID: 5687372830810964850, guid: 63a0d171339a0844ab63f6de2d976cbc,
         type: 3}
       propertyPath: m_Name
-      value: Level_Medal
+      value: M-satarMedal3D
       objectReference: {fileID: 0}
     - target: {fileID: 5494157293151251242, guid: 63a0d171339a0844ab63f6de2d976cbc,
         type: 3}
@@ -2528,7 +2528,7 @@ PrefabInstance:
     - target: {fileID: 5494157293151251242, guid: 63a0d171339a0844ab63f6de2d976cbc,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5494157293151251242, guid: 63a0d171339a0844ab63f6de2d976cbc,
         type: 3}
@@ -2578,7 +2578,7 @@ PrefabInstance:
     - target: {fileID: 202843885210724262, guid: eb1c4dd27ba9bc447a46c88a51f2a2e6,
         type: 3}
       propertyPath: m_Name
-      value: Battery_Medal
+      value: M-batteryMedal3D
       objectReference: {fileID: 0}
     - target: {fileID: 4043989134215715780, guid: eb1c4dd27ba9bc447a46c88a51f2a2e6,
         type: 3}
@@ -2618,7 +2618,7 @@ PrefabInstance:
     - target: {fileID: 4043989134215715780, guid: eb1c4dd27ba9bc447a46c88a51f2a2e6,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4043989134215715780, guid: eb1c4dd27ba9bc447a46c88a51f2a2e6,
         type: 3}
@@ -2668,7 +2668,7 @@ PrefabInstance:
     - target: {fileID: 8198477648825981549, guid: fff8858ec48f962469f01486358d20f0,
         type: 3}
       propertyPath: m_Name
-      value: Chronno_Medal
+      value: M-timeMedal3D
       objectReference: {fileID: 0}
     - target: {fileID: 2427309837904771530, guid: fff8858ec48f962469f01486358d20f0,
         type: 3}

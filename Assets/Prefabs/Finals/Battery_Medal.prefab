@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6277809520517873191}
   - component: {fileID: 8887806164224794050}
   m_Layer: 0
-  m_Name: Battery_Medal (1)
+  m_Name: Battery_Medal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25,13 +25,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 202843885210724262}
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0.7071068, w: 0}
-  m_LocalPosition: {x: -661, y: 618, z: 126.7}
-  m_LocalScale: {x: 69, y: 69, z: 69}
+  m_LocalRotation: {x: -0.0673875, y: 0.7038885, z: -0.7038885, w: -0.0673875}
+  m_LocalPosition: {x: 510.5, y: 154, z: -84.7}
+  m_LocalScale: {x: 50, y: 50, z: 50}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 180}
+  m_LocalEulerAnglesHint: {x: 90.00001, y: 0, z: 529.063}
 --- !u!33 &6277809520517873191
 MeshFilter:
   m_ObjectHideFlags: 0

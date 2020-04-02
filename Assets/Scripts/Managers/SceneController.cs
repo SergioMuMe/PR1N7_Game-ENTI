@@ -70,20 +70,23 @@ public class SceneController : MonoBehaviour
     private int nextSprite;
 
     //CÓDIGO PARA USAR MEDALLAS 2D
-    private Image starMedal;
-    private Image timeMedal;
-    private Image batteryMedal;
+    //private Image starMedal;
+    //private Image timeMedal;
+    //private Image batteryMedal;
+    
+    //public Sprite[] statusStar = new Sprite[3];
+    //public Sprite[] statusTime = new Sprite[3];
+    //public Sprite[] statusBattery = new Sprite[3];
 
     //CÓDIGO PARA USAR MEDALLAS 3D
-    //private MeshRenderer starMedal;
-    //private MeshRenderer timeMedal;
-    //private MeshRenderer batteryMedal;
+    private MeshRenderer starMedal;
+    private MeshRenderer timeMedal;
+    private MeshRenderer batteryMedal;
 
-    //public Material[] statusStar = new Material[3];
-    public Sprite[] statusStar = new Sprite[3];
+    public Material[] statusStar = new Material[3];
     public Material[] statusTime = new Material[3];
-    public Sprite[] statusBattery = new Sprite[3];
-    //public Material[] statusBattery = new Material[3];
+    public Material[] statusBattery = new Material[3];
+
 
 
     // Flash de NEW RECORD !
@@ -342,14 +345,14 @@ public class SceneController : MonoBehaviour
         nextSprite = 0;
 
         //CÓDIGO PARA USAR MEDALLAS 2D
-        starMedal = GameObject.Find("M-starMedal").GetComponent<Image>();
-        timeMedal = GameObject.Find("M-timeMedal").GetComponent<Image>();
-        batteryMedal = GameObject.Find("M-batteryMedal").GetComponent<Image>();
+        //starMedal = GameObject.Find("M-starMedal").GetComponent<Image>();
+        //timeMedal = GameObject.Find("M-timeMedal").GetComponent<Image>();
+        //batteryMedal = GameObject.Find("M-batteryMedal").GetComponent<Image>();
         
         //CÓDIGO PARA USAR MEDALLAS 3D
-        //starMedal = GameObject.Find("M-starMedal").GetComponent<MeshRenderer>();
-        //timeMedal = GameObject.Find("M-timeMedal").GetComponent<MeshRenderer>();
-        //batteryMedal = GameObject.Find("M-batteryMedal").GetComponent<MeshRenderer>();
+        starMedal = GameObject.Find("M-starMedal3D").GetComponent<MeshRenderer>();
+        timeMedal = GameObject.Find("M-timeMedal3D").GetComponent<MeshRenderer>();
+        batteryMedal = GameObject.Find("M-batteryMedal3D").GetComponent<MeshRenderer>();
 
         //Play main menu music
         //TODO: Mejorar la gestion del enum, ¿musica por mundos?
@@ -396,6 +399,8 @@ public class SceneController : MonoBehaviour
 
         //referencia del hud
         canvasHUD = GameObject.Find("CanvasHUD").GetComponent<HUDController>();
+        
+
 
         //Nos aseguramos de que el idLevel se ha seteado correctamente
         //PROFE: Este valor lo usa HUDController.cs, al cambiar de nivel, se ejecuta antes ese script y por lo tanto no llega a actualizar a tiempo el idLevel ¿solucion?
@@ -409,8 +414,11 @@ public class SceneController : MonoBehaviour
         //TODO: Revisar waltrapa, ¿porque entra dos veces en la función?
         waltrapa2 = true;
 
-        //Cogemos referencia del end game splashscreen y lo ocultamos, junto con el menu de pausa
+        //Ocultamos menus, definimos camaras de canvas EndGame. (necesario para displayar medallas 3d)
         canvasEndGame = GameObject.Find("CanvasEndGame");
+        Camera mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
+        canvasEndGame.GetComponent<Canvas>().worldCamera = mainCamera;
+        canvasEndGame.GetComponent<Canvas>().planeDistance = 10;
         canvasEndGame.SetActive(false);
         pauseMenuMI.SetActive(false);
     }
@@ -460,27 +468,34 @@ public class SceneController : MonoBehaviour
             {
                 if(nextSprite == 0)
                 {
-                    //3D: starMedal.material = statusStar[sprNum[0]];
+                    //3D: 
+                    starMedal.material = statusStar[sprNum[0]];
+                    
+                    //2D: 
+                    //starMedal.sprite = statusStar[sprNum[0]];
 
-                    starMedal.sprite = statusStar[sprNum[0]];
                     SoundManager.Instance.PlaySound("EG-medal");
                     timeDisplayMedals = 0;
                 }
 
                 if (nextSprite == 1)
                 {
-                    //3D: timeMedal.material = statusTime[sprNum[1]];
+                    //3D: 
+                    timeMedal.material = statusTime[sprNum[1]];
+                    //2D:
+                    //timeMedal.sprite = statusStar[sprNum[1]];
 
-                    timeMedal.sprite = statusStar[sprNum[1]];
                     SoundManager.Instance.PlaySound("EG-medal");
                     timeDisplayMedals = 0;
                 }
 
                 if(nextSprite == 2)
                 {
-                    //3D: batteryMedal.material = statusBattery[sprNum[2]];
+                    //3D: 
+                    batteryMedal.material = statusBattery[sprNum[2]];
+                    //2D:
+                    //batteryMedal.sprite = statusBattery[sprNum[2]];
 
-                    batteryMedal.sprite = statusBattery[sprNum[2]];
                     SoundManager.Instance.PlaySound("EG-medal");
                     timeDisplayMedals = 0;
                 }
