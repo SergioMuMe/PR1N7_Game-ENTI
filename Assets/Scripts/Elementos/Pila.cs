@@ -23,6 +23,7 @@ public class Pila : MonoBehaviour
         
         if (collision.gameObject.tag == "Player")
         {
+            SoundManager.Instance.PlaySound("PLAYER-BatteryCollected");
             scriptSC.batteryLevelCount--;
             Destroy(gameObject);
         }
