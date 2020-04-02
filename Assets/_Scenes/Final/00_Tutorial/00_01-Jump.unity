@@ -51682,6 +51682,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CanvasEndGame
       objectReference: {fileID: 0}
+    - target: {fileID: 3782138749754917777, guid: 75ec373b7cfdd3c4fbc0e23a0ae28db3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3782138749754917805, guid: 75ec373b7cfdd3c4fbc0e23a0ae28db3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -51993,6 +51998,11 @@ PrefabInstance:
       value: M-timeMedal
       objectReference: {fileID: 0}
     - target: {fileID: 2747536464001728667, guid: 75ec373b7cfdd3c4fbc0e23a0ae28db3,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2412479832680019839, guid: 75ec373b7cfdd3c4fbc0e23a0ae28db3,
         type: 3}
       propertyPath: m_Enabled
       value: 1
