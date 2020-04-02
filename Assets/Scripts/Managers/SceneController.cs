@@ -509,22 +509,19 @@ public class SceneController : MonoBehaviour
                     {
                         SoundManager.Instance.PlaySound("EG-medal");
                     }
-                    timeDisplayMedals = 0;
+                    timeDisplayMedals = doDisplayMedal / 2;
+                }
+                
+                //Fanfarria si todo estrellas
+                if (controlAllMedalsSound && nextSprite >= 3)
+                {
+                    int count = 0;
+                    for (int i = 0; i < sprNum.Length; i++) { if (sprNum[i] == 2) count++; }
+                    if (count == 3) { SoundManager.Instance.PlaySound("EG-Fanfarria"); controlAllMedalsSound = false; }
                 }
 
                 nextSprite++;
-            }
-
-            //Fanfarria si todo estrellas
-            if (controlAllMedalsSound)
-            {
-                int count = 0;
-                for (int i = 0; i < sprNum.Length; i++) { if (sprNum[i] == 2) count++; }
-                if (count == 3) { SoundManager.Instance.PlaySound("EG-Fanfarria"); controlAllMedalsSound = false; }
-            }
-            
-                                 
-
+            }                               
 
             //Parpadeo de NEW RECORD ! en caso de superar tiempo record
             if (playerTime < timeLevelLimit)
