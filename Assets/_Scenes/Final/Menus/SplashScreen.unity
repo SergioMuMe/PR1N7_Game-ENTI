@@ -554,6 +554,10 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 936013f1d0fa72f49a938c8b1535730f, type: 3}
     pitch: 1.2
     randomPitch: 0
+  - name: EG-Fanfarria
+    clip: {fileID: 8300000, guid: 1e49df79d8a3ed64f8118bb24ed7e546, type: 3}
+    pitch: 0.85
+    randomPitch: 0
   musicsMainMenu:
   - {fileID: 8300000, guid: 345fb51144faa7340947abb9a3789076, type: 3}
   - {fileID: 8300000, guid: 56642ba23b3ab844eb3d3e6236cc477f, type: 3}

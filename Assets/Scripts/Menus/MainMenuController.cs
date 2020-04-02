@@ -515,6 +515,9 @@ public class MainMenuController : MonoBehaviour
         //Play main menu music
         SoundManager.Instance.setMusicNull();
         SoundManager.Instance.playingNow = Utils.PlayingNow.MAINTHEME;
+
+        //WELCOME TO PR1N7
+        SoundManager.Instance.PlaySound("EG-Fanfarria");
     }
 
     private void Update()

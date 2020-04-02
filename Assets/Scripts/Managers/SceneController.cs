@@ -156,8 +156,9 @@ public class SceneController : MonoBehaviour
 
     void pauseGame()
     {
-        pauseMenuMI.SetActive(true);
+        SoundManager.Instance.PlaySound("MENU-ProfileSelected");
         Time.timeScale = 0f;
+        pauseMenuMI.SetActive(true);
         GameManager.Instance.isGamePaused = true;
 
         if(canvasHUD.levelEnded && canvasEndGame.activeInHierarchy)
@@ -266,13 +267,20 @@ public class SceneController : MonoBehaviour
             sprNum[0] = 2;
             sprNum[1] = 2;
             sprNum[2] = 2;
+
+            
         }
+
+        // Suena la fanfarria
+        SoundManager.Instance.PlaySound("EG-Fanfarria");
 
         if (playerTime < sceneMedals.timeRecord)
         {
             //Obtiene nuevo record
             sceneMedals.timeRecord = playerTime;
         } //ELSE Mantiene el record anterior
+
+        
     
     }
     
@@ -326,7 +334,7 @@ public class SceneController : MonoBehaviour
 
         //Varaibles de end game splash screen
         doFlashAt = 650f;
-        doDisplayMedal = 520f;
+        doDisplayMedal = 600f;
         sprNum = new int[3];
         sprNum[0] = -1;
         sprNum[1] = -1;
@@ -359,7 +367,7 @@ public class SceneController : MonoBehaviour
 
         //Datos para el end game splash screen
         levelNameEG = GameObject.Find("EG-Title").GetComponent<TextMeshProUGUI>();
-        levelNameEG.text = "Level " + GameManager.Instance.idActualLevel.ToString();
+        levelNameEG.text = "LEVEL " + GameManager.Instance.idActualLevel.ToString();
         recordTimeEG = GameObject.Find("T-RecordTime").GetComponent<TextMeshProUGUI>();
         recordTimeEG.text = Utils.GetTimeFormat(Utils.RoundFloat(timeLevelLimit, 3), 3);
         playerTimeEG = GameObject.Find("T-Time").GetComponent<TextMeshProUGUI>();
