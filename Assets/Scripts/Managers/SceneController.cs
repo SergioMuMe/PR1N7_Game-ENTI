@@ -19,6 +19,13 @@ public class SceneController : MonoBehaviour
 
     HUDController canvasHUD;
 
+    Animator animPanel1;
+    Animator animPanel2;
+    Animator animTitle;
+    Animator animResume;
+    Animator animRestart;
+    Animator animExit;
+
     //PROFE: ¿Porque entra dos veces en el trigger?
     private bool waltrapa;
 
@@ -146,7 +153,22 @@ public class SceneController : MonoBehaviour
 
     public static bool isGamePaused;
 
-    void resumeGame()
+    private bool rgControl;
+    private bool rgAnimationsControl;
+    private float rgTimerControl;
+    private float rgTimerLimit;
+
+    void resumeGameAnimations()
+    {
+        animPanel1.SetTrigger("Close");
+        animPanel2.SetTrigger("Close");
+        animTitle.SetTrigger("Close");
+        animResume.SetTrigger("Close");
+        animRestart.SetTrigger("Close");
+        animExit.SetTrigger("Close");
+    }
+
+    void resumeGameLogic()
     {
         pauseMenuMI.SetActive(false);
         Time.timeScale = 1f;
@@ -156,11 +178,16 @@ public class SceneController : MonoBehaviour
         {
             canvasEndGame.SetActive(true);
         }
+    }
 
+    void resumeGame()
+    {
+        rgControl = true;
     }
 
     void pauseGame()
     {
+        rgControl = false;
         SoundManager.Instance.PlaySound("MENU-ProfileSelected");
         Time.timeScale = 0f;
         pauseMenuMI.SetActive(true);
@@ -335,10 +362,16 @@ public class SceneController : MonoBehaviour
     {
         //Varaibles de MenuIngame
         pauseMenuMI = GameObject.Find("CanvasMenuIngame");
-        
 
-        //Varaibles de end game splash screen
-        doFlashAt = 650f;
+
+        //Variables control resumeGame
+        rgControl = false;
+        rgAnimationsControl = true;
+        rgTimerControl = 0f;
+        rgTimerLimit = 310f;
+
+    //Varaibles de end game splash screen
+    doFlashAt = 650f;
         doDisplayMedal = 600f;
         sprNum = new int[3];
         sprNum[0] = -1;
@@ -402,6 +435,15 @@ public class SceneController : MonoBehaviour
         //referencia del hud
         canvasHUD = GameObject.Find("CanvasHUD").GetComponent<HUDController>();
 
+        //referencia a las animaciones
+        animPanel1 = GameObject.Find("MI-BackgroundCard1").GetComponent<Animator>();
+        animPanel2 = GameObject.Find("MI-BackgroundCard2").GetComponent<Animator>();
+        animTitle = GameObject.Find("MI-BackgroundTitle").GetComponent<Animator>();
+        animResume = GameObject.Find("MI-Resume").GetComponent<Animator>();
+        animRestart = GameObject.Find("MI-Resume").GetComponent<Animator>();
+        animExit = GameObject.Find("MI-Exit").GetComponent<Animator>();
+
+
         controlAllMedalsSound = true;
 
         //Nos aseguramos de que el idLevel se ha seteado correctamente
@@ -428,6 +470,29 @@ public class SceneController : MonoBehaviour
     //TODO: Esto lo estmaos usando para debugar. Terminar de implementar para jugador o quitar.
     private void Update()
     {
+        /*index
+        !!!!!!!!!!!!!!!!
+        RESUME GAME LOGIC
+        !!!!!!!!!!!!!!!!
+        */
+        if(rgControl)
+        {
+            rgTimerControl += Time.deltaTime;
+
+            if(rgAnimationsControl)
+            {
+                resumeGameAnimations();
+                rgAnimationsControl = false;
+            }
+
+            if(rgTimerControl >= rgTimerLimit)
+            {
+                resumeGame();
+                rgControl = false;
+            }
+            
+        }
+
         /*index
         !!!!!!!!!!!!!!!!
         DEV TESTING KEYS

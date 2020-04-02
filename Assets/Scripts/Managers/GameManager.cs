@@ -140,7 +140,7 @@ public class GameManager : MonoBehaviour
     private void setTimeLevelLimit()
     {
         //PROFE:¿porque no puedo hacer el new en la misma linea donde declaro timeLevelLimit?
-        timeLevelLimit = new float[6];
+        timeLevelLimit = new float[11];
 
         timeLevelLimit[0] = 99f;
         timeLevelLimit[1] = 10f;
@@ -148,6 +148,11 @@ public class GameManager : MonoBehaviour
         timeLevelLimit[3] = 20f;
         timeLevelLimit[4] = 25f;
         timeLevelLimit[5] = 30f;
+        timeLevelLimit[6] = 30f;
+        timeLevelLimit[7] = 30f;
+        timeLevelLimit[8] = 30f;
+        timeLevelLimit[9] = 30f;
+        timeLevelLimit[10] = 30f;
     }
 
 
@@ -198,10 +203,11 @@ public class GameManager : MonoBehaviour
             profiles[i].levelsData = new LevelData[numberOfLevels];
             for (int j = 0; j < numberOfLevels; j++)
             {
-                
+                //TODO, PREPARAR PARA BUILD
                 //El primer nivel y la DEV-Room está desbloqueado para jugar
-                if (j == 0 || j == 1) { profiles[i].levelsData[j].levelUnblockedFLAG = true; }
-                else { profiles[i].levelsData[j].levelUnblockedFLAG = false; }
+                //if (j == 0 || j == 1) { profiles[i].levelsData[j].levelUnblockedFLAG = true; }
+                profiles[i].levelsData[j].levelUnblockedFLAG = true;
+                //else { profiles[i].levelsData[j].levelUnblockedFLAG = false; }
 
                 profiles[i].levelsData[j].firstTimeFLAG = true;
                 profiles[i].levelsData[j].levelMedals.finished = false;
