@@ -13,7 +13,7 @@ EditorBuildSettings:
     guid: 54ed8b507fb056b4cbadfe9bbfca143a
   - enabled: 1
     path: Assets/_Scenes/Final/00_Tutorial/00_02-PreassurePlate.unity
-    guid: 6d7f783890d6ba947be7939f2ab4cd88
+    guid: 58fe2db0c14380849831956f556f72d5
   - enabled: 1
     path: Assets/_Scenes/Final/00_Tutorial/00_03-Bouncer.unity
     guid: fea462c74d499a245a39bf5ee34dae1d
