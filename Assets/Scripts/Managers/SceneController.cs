@@ -171,7 +171,6 @@ public class SceneController : MonoBehaviour
     void resumeGameLogic()
     {
         pauseMenuMI.SetActive(false);
-        Time.timeScale = 1f;
         GameManager.Instance.isGamePaused = false;
 
         if (canvasHUD.levelEnded && !canvasEndGame.activeInHierarchy)
@@ -477,20 +476,20 @@ public class SceneController : MonoBehaviour
         */
         if(rgControl)
         {
-            rgTimerControl += Time.deltaTime;
-
             if(rgAnimationsControl)
             {
+                Time.timeScale = 1f;
                 resumeGameAnimations();
                 rgAnimationsControl = false;
             }
 
-            if(rgTimerControl >= rgTimerLimit)
+            rgTimerControl += Time.deltaTime;
+
+            if (rgTimerControl >= rgTimerLimit)
             {
-                resumeGame();
+                resumeGameLogic();
                 rgControl = false;
             }
-            
         }
 
         /*index
