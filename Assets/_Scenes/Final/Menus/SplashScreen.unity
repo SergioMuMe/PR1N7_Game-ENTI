@@ -550,6 +550,10 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 2f70f24f042b56c4e963f633f7c22cf3, type: 3}
     pitch: 1.2
     randomPitch: 0
+  - name: PLAYER-BatteryCollected
+    clip: {fileID: 8300000, guid: 936013f1d0fa72f49a938c8b1535730f, type: 3}
+    pitch: 1.2
+    randomPitch: 0
   musicsMainMenu:
   - {fileID: 8300000, guid: 345fb51144faa7340947abb9a3789076, type: 3}
   - {fileID: 8300000, guid: 56642ba23b3ab844eb3d3e6236cc477f, type: 3}

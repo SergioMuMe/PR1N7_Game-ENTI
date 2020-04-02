@@ -243,22 +243,27 @@ public class MainMenuController : MonoBehaviour
 
 
     //GameObject IMAGEN de la medalla de cada nivel
-    //TODO QUITAR IMAGES, PASAMOS A MESH RENDERER
+    //CÓDIGO PARA USAR MEDALLAS 2D
     private Image starMedal;
-    //private Image timeMedal;
+    private Image timeMedal;
     private Image batteryMedal;
 
+    //CÓDIGO PARA USAR MEDALLAS 3D
     //private MeshRenderer starMedal;
-    private MeshRenderer timeMedal;
+    //private MeshRenderer timeMedal;
     //private MeshRenderer batteryMedal;
 
     //A continuación, todos los arrays corresponden a [0]-Bloqueado [1]-Desbloqueado
     public TMP_ColorGradient[] statusLevelColor = new TMP_ColorGradient[2];
 
-    //public Material[] statusStar = new Material[3];
+    //CÓDIGO PARA USAR MEDALLAS 2D
     public Sprite[] statusStar = new Sprite[2];
-    public Material[] statusTime = new Material[3];
+    public Sprite[] statusTime = new Sprite[2];
     public Sprite[] statusBattery = new Sprite[2];
+
+    //CÓDIGO PARA USAR MEDALLAS 3D
+    //public Material[] statusTime = new Material[3];
+    //public Material[] statusStar = new Material[3];
     //public Material[] statusBattery = new Material[3];
 
     private TextMeshProUGUI levelSelectedTitle;
@@ -296,6 +301,12 @@ public class MainMenuController : MonoBehaviour
     {
         levelSelectedTitle.text = "LEVEL " + idLevel;
 
+        //CÓDIGO PARA USAR MEDALLAS 3D
+        //loadMedalMaterial(scriptGM.profiles[idProfileSelected].levelsData[idLevel].levelMedals.finished, timeMedal, statusTime);
+        //loadMedalMaterial(scriptGM.profiles[idProfileSelected].levelsData[idLevel].levelMedals.timeBeated, timeMedal, statusTime);
+        //loadMedalMaterial(scriptGM.profiles[idProfileSelected].levelsData[idLevel].levelMedals.batteryCollected, timeMedal, statusTime);
+
+        //CÓDIGO PARA USAR MEDALLAS 2D
         if (scriptGM.profiles[idProfileSelected].levelsData[idLevel].levelMedals.finished)
         {
             starMedal.sprite = statusStar[1];
@@ -304,9 +315,14 @@ public class MainMenuController : MonoBehaviour
             starMedal.sprite = statusStar[0];
         }
 
-        //loadMedalMaterial(scriptGM.profiles[idProfileSelected].levelsData[idLevel].levelMedals.finished, timeMedal, statusTime);
-        loadMedalMaterial(scriptGM.profiles[idProfileSelected].levelsData[idLevel].levelMedals.timeBeated, timeMedal, statusTime);
-        //loadMedalMaterial(scriptGM.profiles[idProfileSelected].levelsData[idLevel].levelMedals.batteryCollected, timeMedal, statusTime);
+        if (scriptGM.profiles[idProfileSelected].levelsData[idLevel].levelMedals.timeBeated)
+        {
+            starMedal.sprite = statusTime[1];
+        }
+        else
+        {
+            starMedal.sprite = statusTime[0];
+        }
 
         if (scriptGM.profiles[idProfileSelected].levelsData[idLevel].levelMedals.batteryCollected)
         {
@@ -410,7 +426,8 @@ public class MainMenuController : MonoBehaviour
         levelSelectedTitle = GameObject.Find("LevelSelectedTitle").GetComponent<TextMeshProUGUI>();
 
         starMedal = GameObject.Find("starMedal").GetComponent<Image>();
-        timeMedal = GameObject.Find("timeMedal").GetComponent<MeshRenderer>();
+        timeMedal = GameObject.Find("timeMedal").GetComponent<Image>();
+        //timeMedal = GameObject.Find("timeMedal").GetComponent<MeshRenderer>();
         batteryMedal = GameObject.Find("batteryMedal").GetComponent<Image>();
 
         timeLevelLimit = GameObject.Find("LevelRecord").GetComponent<TextMeshProUGUI>();

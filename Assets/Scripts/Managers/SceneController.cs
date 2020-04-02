@@ -69,12 +69,14 @@ public class SceneController : MonoBehaviour
     private int[] sprNum;
     private int nextSprite;
 
+    //CÓDIGO PARA USAR MEDALLAS 2D
     private Image starMedal;
-    //private Image timeMedal;
+    private Image timeMedal;
     private Image batteryMedal;
 
+    //CÓDIGO PARA USAR MEDALLAS 3D
     //private MeshRenderer starMedal;
-    private MeshRenderer timeMedal;
+    //private MeshRenderer timeMedal;
     //private MeshRenderer batteryMedal;
 
     //public Material[] statusStar = new Material[3];
@@ -102,6 +104,10 @@ public class SceneController : MonoBehaviour
     //Al terminar un nivel, podemos ir al main menu pero conservamos el progreso
     public void goHomeEndGame()
     {
+        if (GameManager.Instance.isGamePaused)
+        {
+            resumeGame();
+        }
         Utils.GoMainMenu();
     }
 
@@ -327,10 +333,14 @@ public class SceneController : MonoBehaviour
         sprNum[2] = -1;
         nextSprite = 0;
 
-        //starMedal = GameObject.Find("M-starMedal").GetComponent<MeshRenderer>();
+        //CÓDIGO PARA USAR MEDALLAS 2D
         starMedal = GameObject.Find("M-starMedal").GetComponent<Image>();
-        timeMedal = GameObject.Find("M-timeMedal").GetComponent<MeshRenderer>();
+        timeMedal = GameObject.Find("M-timeMedal").GetComponent<Image>();
         batteryMedal = GameObject.Find("M-batteryMedal").GetComponent<Image>();
+        
+        //CÓDIGO PARA USAR MEDALLAS 3D
+        //starMedal = GameObject.Find("M-starMedal").GetComponent<MeshRenderer>();
+        //timeMedal = GameObject.Find("M-timeMedal").GetComponent<MeshRenderer>();
         //batteryMedal = GameObject.Find("M-batteryMedal").GetComponent<MeshRenderer>();
 
         //Play main menu music
@@ -442,23 +452,27 @@ public class SceneController : MonoBehaviour
             {
                 if(nextSprite == 0)
                 {
+                    //3D: starMedal.material = statusStar[sprNum[0]];
+
                     starMedal.sprite = statusStar[sprNum[0]];
-                    //starMedal.material = statusStar[sprNum[0]];
                     SoundManager.Instance.PlaySound("EG-medal");
                     timeDisplayMedals = 0;
                 }
 
                 if (nextSprite == 1)
                 {
-                    timeMedal.material = statusTime[sprNum[1]];
+                    //3D: timeMedal.material = statusTime[sprNum[1]];
+
+                    timeMedal.sprite = statusStar[sprNum[1]];
                     SoundManager.Instance.PlaySound("EG-medal");
                     timeDisplayMedals = 0;
                 }
 
                 if(nextSprite == 2)
                 {
+                    //3D: batteryMedal.material = statusBattery[sprNum[2]];
+
                     batteryMedal.sprite = statusBattery[sprNum[2]];
-                    //batteryMedal.material = statusBattery[sprNum[2]];
                     SoundManager.Instance.PlaySound("EG-medal");
                     timeDisplayMedals = 0;
                 }
