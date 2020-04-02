@@ -153,7 +153,12 @@ public class SceneController : MonoBehaviour
 
     public static bool isGamePaused;
 
-    void resumeGame()
+    private bool rgControl;
+    private bool rgAnimationsControl;
+    private float rgTimerControl;
+    private float rgTimerLimit;
+
+    void resumeGameAnimations()
     {
         animPanel1.SetTrigger("Close");
         animPanel2.SetTrigger("Close");
@@ -161,7 +166,10 @@ public class SceneController : MonoBehaviour
         animResume.SetTrigger("Close");
         animRestart.SetTrigger("Close");
         animExit.SetTrigger("Close");
+    }
 
+    void resumeGameLogic()
+    {
         pauseMenuMI.SetActive(false);
         Time.timeScale = 1f;
         GameManager.Instance.isGamePaused = false;
@@ -170,11 +178,16 @@ public class SceneController : MonoBehaviour
         {
             canvasEndGame.SetActive(true);
         }
+    }
 
+    void resumeGame()
+    {
+        rgControl = true;
     }
 
     void pauseGame()
     {
+        rgControl = false;
         SoundManager.Instance.PlaySound("MENU-ProfileSelected");
         Time.timeScale = 0f;
         pauseMenuMI.SetActive(true);
@@ -349,10 +362,16 @@ public class SceneController : MonoBehaviour
     {
         //Varaibles de MenuIngame
         pauseMenuMI = GameObject.Find("CanvasMenuIngame");
-        
 
-        //Varaibles de end game splash screen
-        doFlashAt = 650f;
+
+        //Variables control resumeGame
+        rgControl = false;
+        rgAnimationsControl = true;
+        rgTimerControl = 0f;
+        rgTimerLimit = 310f;
+
+    //Varaibles de end game splash screen
+    doFlashAt = 650f;
         doDisplayMedal = 600f;
         sprNum = new int[3];
         sprNum[0] = -1;
@@ -451,6 +470,29 @@ public class SceneController : MonoBehaviour
     //TODO: Esto lo estmaos usando para debugar. Terminar de implementar para jugador o quitar.
     private void Update()
     {
+        /*index
+        !!!!!!!!!!!!!!!!
+        RESUME GAME LOGIC
+        !!!!!!!!!!!!!!!!
+        */
+        if(rgControl)
+        {
+            rgTimerControl += Time.deltaTime;
+
+            if(rgAnimationsControl)
+            {
+                resumeGameAnimations();
+                rgAnimationsControl = false;
+            }
+
+            if(rgTimerControl >= rgTimerLimit)
+            {
+                resumeGame();
+                rgControl = false;
+            }
+            
+        }
+
         /*index
         !!!!!!!!!!!!!!!!
         DEV TESTING KEYS
