@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
     public Profiles[] profiles = new Profiles[3];
 
     // Paths de los profiles
-    private string[] path = { "bin/profile00.bin", "bin/profile01.bin", "bin/profile02.bin" };
+    private string[] path = { "profile00.bin", "profile01.bin", "profile02.bin" };
 
 
 
@@ -432,10 +432,12 @@ public class GameManager : MonoBehaviour
         if (createEmptyProfilesFLAG)
         {
             createEmptyProfiles();
+            Debug.Log("SERGIO######################## CREATED PROFILES");
         }
 
         //Leemos los perfiles en la carpeta bin y los cargamos en la lista profiles
         loadProfiles(-1);
+        Debug.Log("SERGIO######################## LOADED PROFILES");
 
         //Init a FALSE
         profilePicked = false;
