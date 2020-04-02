@@ -96,6 +96,9 @@ public class HUDController : MonoBehaviour
         recordSelected = Utils.GetActualRecord(levelRecordPlayer, levelRecordDEV);
         LTRecordTime.text += Utils.GetTimeFormat(recordSelected, 3).ToString();
 
+        // Decisión de la ALPHA, desactivamos contador de tiempo.
+        CanvasLT.SetActive(false);
+
         levelEnded = false;
     }
 
