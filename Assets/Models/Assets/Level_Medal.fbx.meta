@@ -15,6 +15,7 @@ ModelImporter:
     3300000: Level_Medal
     3300002: //RootNode
     4300000: Level_Medal
+    4300002: Level_Star
   externalObjects: {}
   materials:
     importMaterials: 1
