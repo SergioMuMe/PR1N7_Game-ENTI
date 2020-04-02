@@ -19,6 +19,13 @@ public class SceneController : MonoBehaviour
 
     HUDController canvasHUD;
 
+    Animator animPanel1;
+    Animator animPanel2;
+    Animator animTitle;
+    Animator animResume;
+    Animator animRestart;
+    Animator animExit;
+
     //PROFE: ¿Porque entra dos veces en el trigger?
     private bool waltrapa;
 
@@ -148,6 +155,13 @@ public class SceneController : MonoBehaviour
 
     void resumeGame()
     {
+        animPanel1.SetTrigger("Close");
+        animPanel2.SetTrigger("Close");
+        animTitle.SetTrigger("Close");
+        animResume.SetTrigger("Close");
+        animRestart.SetTrigger("Close");
+        animExit.SetTrigger("Close");
+
         pauseMenuMI.SetActive(false);
         Time.timeScale = 1f;
         GameManager.Instance.isGamePaused = false;
@@ -401,6 +415,15 @@ public class SceneController : MonoBehaviour
 
         //referencia del hud
         canvasHUD = GameObject.Find("CanvasHUD").GetComponent<HUDController>();
+
+        //referencia a las animaciones
+        animPanel1 = GameObject.Find("MI-BackgroundCard1").GetComponent<Animator>();
+        animPanel2 = GameObject.Find("MI-BackgroundCard2").GetComponent<Animator>();
+        animTitle = GameObject.Find("MI-BackgroundTitle").GetComponent<Animator>();
+        animResume = GameObject.Find("MI-Resume").GetComponent<Animator>();
+        animRestart = GameObject.Find("MI-Resume").GetComponent<Animator>();
+        animExit = GameObject.Find("MI-Exit").GetComponent<Animator>();
+
 
         controlAllMedalsSound = true;
 
