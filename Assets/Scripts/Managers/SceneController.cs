@@ -439,7 +439,7 @@ public class SceneController : MonoBehaviour
         animPanel2 = GameObject.Find("MI-BackgroundCard2").GetComponent<Animator>();
         animTitle = GameObject.Find("MI-BackgroundTitle").GetComponent<Animator>();
         animResume = GameObject.Find("MI-Resume").GetComponent<Animator>();
-        animRestart = GameObject.Find("MI-Resume").GetComponent<Animator>();
+        animRestart = GameObject.Find("MI-Restart").GetComponent<Animator>();
         animExit = GameObject.Find("MI-Exit").GetComponent<Animator>();
 
 
