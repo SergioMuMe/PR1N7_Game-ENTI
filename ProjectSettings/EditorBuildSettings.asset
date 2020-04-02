@@ -18,8 +18,8 @@ EditorBuildSettings:
     path: Assets/_Scenes/Final/00_Tutorial/00_03-Bouncer.unity
     guid: fea462c74d499a245a39bf5ee34dae1d
   - enabled: 1
-    path: Assets/_Scenes/00_Tutorial/00_04-ClonationOLD.unity
-    guid: 9fc2f3c4e35e6c548a4270ca13e270de
+    path: Assets/_Scenes/Final/00_Tutorial/00_04-Clonation.unity
+    guid: 7767bdf774db8df469a43691269627fe
   - enabled: 1
     path: Assets/_Scenes/Final/00_Tutorial/00_05-FreqDoor.unity
     guid: 2e69a9c80bb38e640928c8a17169a3de
