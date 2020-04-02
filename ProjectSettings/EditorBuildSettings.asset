@@ -23,12 +23,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/Final/00_Tutorial/00_05-FreqDoor.unity
     guid: a41324b0d5ba5074a87187e01b8b2b12
-<<<<<<< HEAD
-=======
-  - enabled: 1
-    path: Assets/_Scenes/01_GameLevel/Level_TheBox.unity
-    guid: 0974a0df20c5adb42a34e2cb851b4c9e
->>>>>>> 70acc215a02f246ff7696eecdc1f253c5137f202
   - enabled: 1
     path: Assets/_Scenes/Final/01_Mundo01/01_06-ElPozo.unity
     guid: 5b7698ca817c38943ba1a0736bd27db9

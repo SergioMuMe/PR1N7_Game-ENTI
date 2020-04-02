@@ -133,13 +133,18 @@ public class MainMenuController : MonoBehaviour
         GameManager.Instance.profilePicked = false;
     }
 
+    int counter = 0;
+
     //Seteamos profile seleccionado, en caso de no existir creamos profile nuevo
     public void setProfileSelected(int idSelected)
     {
+        counter++;
+        Debug.Log("SERGIO######################## time setting profile selected: " + counter);
         GameManager.Instance.profileSelected = idSelected;
         GameManager.Instance.profilePicked = true;
+        Debug.Log("SERGIO######################## SETTING PROFILE SELECTED: " + idSelected);
         getProfileSelected();
-
+        Debug.Log("SERGIO######################## getted PROFILE SELECTED: " + idProfileSelected);
         if (GameManager.Instance.profiles[idSelected].profileUsed)
         {
             profileSelection.SetActive(false);
@@ -150,13 +155,20 @@ public class MainMenuController : MonoBehaviour
             profileSelection.SetActive(false);
             createProfile.SetActive(true);
             nameAlert.SetActive(false);
+            Debug.Log("SERGIO######################## state: false, true, false");
         }
+
+        profileSelection.SetActive(false);
+        createProfile.SetActive(true);
+        nameAlert.SetActive(false);
+
     }
 
     //Parche para código antiguo. Usamos alguna variable local que obtenemos del gameManager.
     public void getProfileSelected()
     {
         idProfileSelected = GameManager.Instance.profileSelected;
+
     }
 
     //Creación de nuevo profile binario local
@@ -423,7 +435,7 @@ public class MainMenuController : MonoBehaviour
         scriptGM = GameObject.Find("GameManager").GetComponent<GameManager>();
 
         //Obtenemos referencias...
-        profileSelection = GameObject.Find("ProfileSelection");
+        profileSelection = GameObject.Find("ProfileSelection2");
         createProfile = GameObject.Find("CreateProfile");
 
         nameAlert = GameObject.Find("NameTextAlert");
@@ -497,8 +509,9 @@ public class MainMenuController : MonoBehaviour
         {
             // El jugador ya habia seleccionado un perfil, venimos de pulsar ESC ingame
             mainMenu.SetActive(true);
-
+            Debug.Log("SERGIO ################################### STATE PROFILE SELECTION: " + profileSelection.activeSelf);
             profileSelection.SetActive(false);
+            Debug.Log("SERGIO ################################### STATE PROFILE SELECTION: " + profileSelection.activeSelf);
             createProfile.SetActive(false);
             levelSelected.SetActive(false);
             levelSelected.SetActive(false);
