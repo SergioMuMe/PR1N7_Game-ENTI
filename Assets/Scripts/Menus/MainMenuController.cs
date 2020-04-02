@@ -103,7 +103,7 @@ public class MainMenuController : MonoBehaviour
         for (int i = 0; i < 3; i++)
         {
             totalMaps[i].text = scriptGM.getTotalMaps(i).ToString();
-            totalMaps[i].text = totalMaps[i].text + " / " + scriptGM.numberOfLevels.ToString();
+            totalMaps[i].text = totalMaps[i].text + " / " + (scriptGM.numberOfLevels-1).ToString();
         }
     }
     //Obtenemos total medallas conseguidas
@@ -113,7 +113,7 @@ public class MainMenuController : MonoBehaviour
         for (int i = 0; i < 3; i++)
         {
             totalMedals[i].text = scriptGM.getTotalMedals(i).ToString();
-            totalMedals[i].text = totalMedals[i].text + " / " + (scriptGM.numberOfLevels * 3).ToString();
+            totalMedals[i].text = totalMedals[i].text + " / " + ((scriptGM.numberOfLevels-1) * 3).ToString();
         }
     }
 
