@@ -148,6 +148,7 @@ public class MainMenuController : MonoBehaviour
         if (GameManager.Instance.profiles[idSelected].profileUsed)
         {
             profileSelection.SetActive(false);
+            createProfile.SetActive(false);
             getLevelsStatus();
             mainMenu.SetActive(true);
         } else
@@ -158,8 +159,9 @@ public class MainMenuController : MonoBehaviour
             Debug.Log("SERGIO######################## state: false, true, false");
         }
 
+        //DEV: Si peta en la build, revisar
         profileSelection.SetActive(false);
-        createProfile.SetActive(true);
+        //createProfile.SetActive(true);
         nameAlert.SetActive(false);
 
     }
@@ -435,7 +437,7 @@ public class MainMenuController : MonoBehaviour
         scriptGM = GameObject.Find("GameManager").GetComponent<GameManager>();
 
         //Obtenemos referencias...
-        profileSelection = GameObject.Find("ProfileSelection2");
+        profileSelection = GameObject.Find("ProfileSelection");
         createProfile = GameObject.Find("CreateProfile");
 
         nameAlert = GameObject.Find("NameTextAlert");
