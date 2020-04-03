@@ -12,6 +12,7 @@ public class SplashScreenController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.developerConsoleVisible = true;
         videoPlayer = GetComponent<VideoPlayer>();
         videoPlayer.Play();
     }
