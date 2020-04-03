@@ -27,7 +27,7 @@ EditorBuildSettings:
     path: Assets/_Scenes/Final/01_Mundo01/01_06-ElPozo.unity
     guid: 5b7698ca817c38943ba1a0736bd27db9
   - enabled: 1
-    path: Assets/_Scenes/Final/01_Mundo01/00_07-Spath.unity
+    path: Assets/_Scenes/Final/01_Mundo01/01_07-Spath.unity
     guid: 1863bddc2a3cdc84a9842789a2e89921
   - enabled: 1
     path: Assets/_Scenes/Final/Menus/MainMenu.unity

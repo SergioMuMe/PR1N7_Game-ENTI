@@ -435,7 +435,7 @@ public class MainMenuController : MonoBehaviour
         scriptGM = GameObject.Find("GameManager").GetComponent<GameManager>();
 
         //Obtenemos referencias...
-        profileSelection = GameObject.Find("ProfileSelection2");
+        profileSelection = GameObject.Find("ProfileSelection");
         createProfile = GameObject.Find("CreateProfile");
 
         nameAlert = GameObject.Find("NameTextAlert");
