@@ -4844,7 +4844,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b564a179cf94c14d81a909c0cee8bd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fSprite: {fileID: 5146047952380011731}
+  fBalloon: {fileID: 5146047952380011731}
   facingRight: 1
   type: 1
   initInputTime: 0
