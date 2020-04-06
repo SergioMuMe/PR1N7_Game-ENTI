@@ -127,7 +127,8 @@ public class CharacterBehav : MonoBehaviour
     //Almacena el multiplicador que acelera el tiempo
     public float timeAcceleration = 0.0f;
 
-    private Animator anim;
+    private Animator cloneAnim;
+    public Animator playerAnimator;
     void Start()
     {
         /* ### START TEST ZONE ### */
@@ -136,7 +137,7 @@ public class CharacterBehav : MonoBehaviour
 
         rb = GetComponent<Rigidbody2D>();
 
-        anim = GetComponent<Animator>();
+        cloneAnim = GetComponent<Animator>();
 
         groundDistance = GetComponent<Collider2D>().bounds.extents.y;
         frontDistance = GetComponent<Collider2D>().bounds.extents.x;
@@ -203,6 +204,7 @@ public class CharacterBehav : MonoBehaviour
                     direction = DirectionInputs.NONE;
 
                     isJumping = true;
+                    playerAnimator.SetBool("Jump", true);
                     SoundManager.Instance.PlaySound("PLAYER-jump");
                 }
 
@@ -310,7 +312,7 @@ public class CharacterBehav : MonoBehaviour
                             break;
                         case CommandsInputsEnum.END:
                             direction = DirectionInputs.NONE;
-                            anim.SetTrigger("End");
+                            cloneAnim.SetTrigger("End");
                             iteration = -10;
                             break;
                         default:
@@ -474,6 +476,7 @@ public class CharacterBehav : MonoBehaviour
 
             isJumping = false;
             isGrounded = true;
+            playerAnimator.SetBool("Jump", false);
             SoundManager.Instance.PlaySound("PLAYER-land");
 
             if (maxHeight > maxHeightDefault)
