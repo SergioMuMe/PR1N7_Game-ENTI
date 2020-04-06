@@ -22,7 +22,7 @@ public class SplashScreenController : MonoBehaviour
     {
         if (videoPlayer.time > 0 && !videoPlayer.isPlaying || Input.anyKey)
         {
-            SceneManager.LoadScene("MainMenu");
+            SceneManager.LoadScene("Login");
         }
     }
 }

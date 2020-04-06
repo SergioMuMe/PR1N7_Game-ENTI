@@ -18,13 +18,13 @@ public class MainMenuController : MonoBehaviour
         #############
     */
 
-    private GameObject profileSelection;
-    private GameObject createProfile;
     private GameObject mainMenu;
     private GameObject levelSelection;
     private GameObject levelSelected;
     private GameObject options;
     private GameObject credits;
+
+    private int idProfileSelected;
 
     private GameManager scriptGM;
 
@@ -64,144 +64,6 @@ public class MainMenuController : MonoBehaviour
         SoundManager.Instance.TestEffect(masterVolumen.value, effectsVolumen.value);
     }
 
-
-    #endregion
-
-    /*index 
-         ##############
-         #            #
-         #  PROFILES  #
-         #            #
-         ##############
-     */
-    #region PROFILES
-
-
-    
-    private int idProfileSelected;
-    private GameObject nameAlert;
-    private TMP_InputField nameTextBox;
-
-    private EventTrigger backButtonCP;
-    private EventTrigger createuttonCP;
-
-    //Obtenemos nombres de perfiles
-    private TextMeshProUGUI[] profileName;
-    private void setProfileNames()
-    {
-        for (int i = 0; i < 3; i++)
-        {
-            profileName[i].text = scriptGM.profiles[i].profileName;
-        }
-
-    }
-
-    //Obtenemos total mapas superados
-    private TextMeshProUGUI[] totalMaps;
-    private void setTotalMaps()
-    {
-        for (int i = 0; i < 3; i++)
-        {
-            totalMaps[i].text = scriptGM.getTotalMaps(i).ToString();
-            totalMaps[i].text = totalMaps[i].text + " / " + (scriptGM.numberOfLevels-1).ToString();
-        }
-    }
-    //Obtenemos total medallas conseguidas
-    private TextMeshProUGUI[] totalMedals;
-    private void setTotalMedals()
-    {
-        for (int i = 0; i < 3; i++)
-        {
-            totalMedals[i].text = scriptGM.getTotalMedals(i).ToString();
-            totalMedals[i].text = totalMedals[i].text + " / " + ((scriptGM.numberOfLevels-1) * 3).ToString();
-        }
-    }
-
-    //Cargamos en pantalla la informacion de los profiles locales
-    public void loadProfileSelectionData()
-    {
-        setProfileNames();
-        setTotalMedals();
-        setTotalMaps();
-    }
-
-
-    //Seteamos profile seleccionado, en caso de no existir creamos profile nuevo
-    public void resetGMProfileVariables()
-    {
-        GameManager.Instance.profileSelected = 999;
-        GameManager.Instance.profilePicked = false;
-    }
-
-    int counter = 0;
-
-    //Seteamos profile seleccionado, en caso de no existir creamos profile nuevo
-    public void setProfileSelected(int idSelected)
-    {
-        counter++;
-        Debug.Log("SERGIO######################## time setting profile selected: " + counter);
-        GameManager.Instance.profileSelected = idSelected;
-        GameManager.Instance.profilePicked = true;
-        Debug.Log("SERGIO######################## SETTING PROFILE SELECTED: " + idSelected);
-        getProfileSelected();
-        Debug.Log("SERGIO######################## getted PROFILE SELECTED: " + idProfileSelected);
-        if (GameManager.Instance.profiles[idSelected].profileUsed)
-        {
-            profileSelection.SetActive(false);
-            createProfile.SetActive(false);
-            getLevelsStatus();
-            mainMenu.SetActive(true);
-        } else
-        {
-            profileSelection.SetActive(false);
-            createProfile.SetActive(true);
-            nameAlert.SetActive(false);
-            Debug.Log("SERGIO######################## state: false, true, false");
-        }
-
-        //DEV: Si peta en la build, revisar
-        profileSelection.SetActive(false);
-        //createProfile.SetActive(true);
-        nameAlert.SetActive(false);
-
-    }
-
-    //Parche para código antiguo. Usamos alguna variable local que obtenemos del gameManager.
-    public void getProfileSelected()
-    {
-        idProfileSelected = GameManager.Instance.profileSelected;
-
-    }
-
-    //Creación de nuevo profile binario local
-    public void createNewProfileBIN()
-    {
-        int idProfile = GameManager.Instance.profileSelected;
-
-        string name = nameTextBox.text;
-
-        if (name.Length <= 1 || name.Length >= 16)
-        {
-            nameAlert.SetActive(true);
-            nameTextBox.text = "";
-            return;
-        }
-
-        //Definimos datos del nuevo perfil
-        GameManager.Instance.profiles[idProfile].profileUsed = true;
-        GameManager.Instance.profiles[idProfile].profileName = name;
-
-        //Actualizamos perfil
-        GameManager.Instance.saveDataInProfileBIN();
-
-        //Cargamos datos del jugador
-        GameManager.Instance.loadProfiles(idProfile);
-        getLevelsStatus();
-
-        //Avanzamos al mainmenu
-        createProfile.SetActive(false);
-        mainMenu.SetActive(true);
-    }
 
     #endregion
 
@@ -366,7 +228,7 @@ public class MainMenuController : MonoBehaviour
             batteryMedal.sprite = statusBattery[0];
         }
 
-        
+
 
     }
     #endregion
@@ -404,6 +266,10 @@ public class MainMenuController : MonoBehaviour
         ####################
     */
 
+    public void changeProfile()
+    {
+        SceneManager.LoadScene("Login");
+    }
 
     public void playLevel()
     {
@@ -422,6 +288,7 @@ public class MainMenuController : MonoBehaviour
         Application.Quit();
     }
 
+
     /*index
         ########################
         #                      #
@@ -430,19 +297,11 @@ public class MainMenuController : MonoBehaviour
         ########################
     */
 
-    
-
     private void Start()
-    {      
+    {
         scriptGM = GameObject.Find("GameManager").GetComponent<GameManager>();
 
         //Obtenemos referencias...
-        profileSelection = GameObject.Find("ProfileSelection");
-        createProfile = GameObject.Find("CreateProfile");
-
-        nameAlert = GameObject.Find("NameTextAlert");
-        nameTextBox = GameObject.Find("NameValue").GetComponent<TMP_InputField>();
-
         mainMenu = GameObject.Find("MainMenu");
         levelSelection = GameObject.Find("SelectLevel");
         levelSelected = GameObject.Find("LevelSelected");
@@ -453,12 +312,10 @@ public class MainMenuController : MonoBehaviour
 
         starMedal = GameObject.Find("starMedal").GetComponent<Image>();
         timeMedal = GameObject.Find("timeMedal").GetComponent<Image>();
-        //timeMedal = GameObject.Find("timeMedal").GetComponent<MeshRenderer>();
         batteryMedal = GameObject.Find("batteryMedal").GetComponent<Image>();
 
         timeLevelLimit = GameObject.Find("LevelRecord").GetComponent<TextMeshProUGUI>();
         playerRecord = GameObject.Find("PlayerRecord").GetComponent<TextMeshProUGUI>();
-
 
         //Referencias y seteos de opciones
         masterVolumen = GameObject.Find("MasterVolumeSlider").GetComponent<Slider>();
@@ -474,30 +331,10 @@ public class MainMenuController : MonoBehaviour
         effectsVolumen.value = OptionsManager.Instance.effectsVolumenValueSaved;
 
         //Referencias de los profiles
-
         idProfileSelected = scriptGM.profileSelected;
-
-        profileName = new TextMeshProUGUI[3];
-        profileName[0] = GameObject.Find("NombreProfile0").GetComponent<TextMeshProUGUI>();
-        profileName[1] = GameObject.Find("NombreProfile1").GetComponent<TextMeshProUGUI>();
-        profileName[2] = GameObject.Find("NombreProfile2").GetComponent<TextMeshProUGUI>();
-
-        totalMedals = new TextMeshProUGUI[3];
-        totalMedals[0] = GameObject.Find("MedalsProfile0").GetComponent<TextMeshProUGUI>();
-        totalMedals[1] = GameObject.Find("MedalsProfile1").GetComponent<TextMeshProUGUI>();
-        totalMedals[2] = GameObject.Find("MedalsProfile2").GetComponent<TextMeshProUGUI>();
-
-        totalMaps = new TextMeshProUGUI[3];
-        totalMaps[0] = GameObject.Find("LevelsProfile0").GetComponent<TextMeshProUGUI>();
-        totalMaps[1] = GameObject.Find("LevelsProfile1").GetComponent<TextMeshProUGUI>();
-        totalMaps[2] = GameObject.Find("LevelsProfile2").GetComponent<TextMeshProUGUI>();
-
-        //Cargamos datos a displayar de los profiles
-        loadProfileSelectionData();
 
         //Habilitamos los niveles desbloqueados
         getLevelsStatus();
-
 
         //Otras referencias
         for (int i = 0; i < levelButtons.Length; i++)
@@ -505,46 +342,28 @@ public class MainMenuController : MonoBehaviour
             textUI[i] = levelButtons[i].GetComponentInChildren<TextMeshProUGUI>();
         }
 
-
-        //...Y desactivamos menus.
+        //Seteamos los menus mostrados, mostramos mainMenu.SetActive(true);
         if (GameManager.Instance.profilePicked)
         {
-            // El jugador ya habia seleccionado un perfil, venimos de pulsar ESC ingame
-            mainMenu.SetActive(true);
-            Debug.Log("SERGIO ################################### STATE PROFILE SELECTION: " + profileSelection.activeSelf);
-            profileSelection.SetActive(false);
-            Debug.Log("SERGIO ################################### STATE PROFILE SELECTION: " + profileSelection.activeSelf);
-            createProfile.SetActive(false);
-            levelSelected.SetActive(false);
             levelSelected.SetActive(false);
             levelSelection.SetActive(false);
             credits.SetActive(false);
             options.SetActive(false);
 
-            nameAlert.SetActive(false);
         } else
         {
-            // Entramos por primera vez al juego, venimos de la SplashScreen
-            profileSelection.SetActive(true);
-
-            mainMenu.SetActive(false);
-            createProfile.SetActive(false);
-            levelSelected.SetActive(false);
-            levelSelected.SetActive(false);
-            levelSelection.SetActive(false);
-            credits.SetActive(false);
-            options.SetActive(false);
+            Debug.LogError("ERROR: No profilePicked.");
         }
-
+        
         //Actualizamos valores iniciales de OptionsManager
         saveActualValues();
 
         //Play main menu music
-        SoundManager.Instance.setMusicNull();
+        if(SoundManager.Instance.playingNow != Utils.PlayingNow.MAINTHEME)
+        {
+            SoundManager.Instance.setMusicNull();
+        }
         SoundManager.Instance.playingNow = Utils.PlayingNow.MAINTHEME;
-
-        //WELCOME TO PR1N7
-        SoundManager.Instance.PlaySound("EG-Fanfarria");
     }
 
     private void Update()

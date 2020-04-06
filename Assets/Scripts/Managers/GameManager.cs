@@ -434,12 +434,11 @@ public class GameManager : MonoBehaviour
         if (createEmptyProfilesFLAG)
         {
             createEmptyProfiles();
-            Debug.Log("SERGIO######################## CREATED PROFILES");
         }
 
         //Leemos los perfiles en la carpeta bin y los cargamos en la lista profiles
         loadProfiles(-1);
-        Debug.Log("SERGIO######################## LOADED PROFILES");
+        
 
         //Init a FALSE
         profilePicked = false;
