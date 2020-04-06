@@ -6,9 +6,19 @@ ModelImporter:
     100000: Impresora
     100002: Orugas
     100004: //RootNode
+    100006: Foot_1
+    100008: Foot_2
+    100010: Head_1
+    100012: Head_2
+    100014: Orugas1
     400000: Impresora
     400002: Orugas
     400004: //RootNode
+    400006: Foot_1
+    400008: Foot_2
+    400010: Head_1
+    400012: Head_2
+    400014: Orugas1
     2100000: lambert1
     2100002: Oruga_Lat
     2100004: Oruga_Mov
@@ -16,12 +26,16 @@ ModelImporter:
     2300000: Impresora
     2300002: Orugas
     2300004: //RootNode
+    2300006: Orugas1
     3300000: Impresora
     3300002: Orugas
     3300004: //RootNode
+    3300006: Orugas1
     4300000: Impresora
     4300002: Orugas
     4300004: Orugas1
+    9500000: //RootNode
+    13700000: Orugas1
     2186277476908879412: ImportLogs
   externalObjects: {}
   materials:
@@ -43,7 +57,7 @@ ModelImporter:
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -76,7 +90,7 @@ ModelImporter:
     secondaryUVPackMargin: 4
     useFileScale: 1
     previousCalculatedGlobalScale: 1
-    hasPreviousCalculatedGlobalScale: 0
+    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -98,12 +112,12 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    rootMotionBoneName: 
+    rootMotionBoneName: Head_1
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
