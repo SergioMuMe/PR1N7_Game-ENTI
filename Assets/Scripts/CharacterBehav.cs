@@ -13,7 +13,7 @@ public class CharacterBehav : MonoBehaviour
         #########
     */
     #region TEST
-    public GameObject fSprite;
+    public GameObject fBalloon;
     #endregion
 
     /*index
@@ -131,7 +131,7 @@ public class CharacterBehav : MonoBehaviour
     void Start()
     {
         /* ### START TEST ZONE ### */
-        fSprite.SetActive(false);
+        fBalloon.SetActive(false);
         /* ### END TEST ZONE ### */
 
         rb = GetComponent<Rigidbody2D>();
@@ -446,25 +446,25 @@ public class CharacterBehav : MonoBehaviour
         if (collision.tag == "Lever")
         {
             /* ### START TEST ZONE ### */
-            fSprite.SetActive(false);
+            fBalloon.SetActive(false);
             /* ### END TEST ZONE ### */
         }
     }
 
-    //private void OnTriggerStay2D(Collider2D collision)
-    //{
-    //    if (collision.tag == "Lever")
-    //    {
-    //        /* ### START TEST ZONE ### */
-    //        fSprite.SetActive(true);
-    //        /* ### END TEST ZONE ### */
-    //        if (isInteracting)
-    //        {
-    //            collision.GetComponent<Lever>().Switch();
-    //            isInteracting = false;
-    //        }
-    //    }
-    //}
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.tag == "Lever")
+        {
+            /* ### START TEST ZONE ### */
+            fBalloon.SetActive(true);
+            /* ### END TEST ZONE ### */
+            if (isInteracting)
+            {
+                collision.GetComponent<Lever>().Switch();
+                isInteracting = false;
+            }
+        }
+    }
 
     private void OnCollisionStay2D(Collision2D collision)
     {
