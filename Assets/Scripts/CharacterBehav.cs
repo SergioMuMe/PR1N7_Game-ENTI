@@ -4,6 +4,26 @@ using UnityEngine;
 
 public class CharacterBehav : MonoBehaviour
 {
+
+    /*index
+        #########
+        #       #
+        # TEST  #
+        #       #
+        #########
+    */
+    #region TEST
+    public GameObject fSprite;
+    #endregion
+
+    /*index
+        ########################
+        #                      #
+        # CHARACTER BEHAVIOUR  #
+        #                      #
+        ########################
+    */
+
     //Enum de tipos de personaje
     public enum CharacterType
     {
@@ -110,6 +130,10 @@ public class CharacterBehav : MonoBehaviour
     private Animator anim;
     void Start()
     {
+        /* ### START TEST ZONE ### */
+        fSprite.SetActive(false);
+        /* ### END TEST ZONE ### */
+
         rb = GetComponent<Rigidbody2D>();
 
         anim = GetComponent<Animator>();
@@ -418,14 +442,27 @@ public class CharacterBehav : MonoBehaviour
             GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
             GetComponent<BoxCollider2D>().isTrigger = false;
         }
+
+        if (collision.tag == "Lever")
+        {
+            /* ### START TEST ZONE ### */
+            fSprite.SetActive(false);
+            /* ### END TEST ZONE ### */
+        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.tag == "Lever" && isInteracting)
+        if (collision.tag == "Lever")
         {
-            collision.GetComponent<Lever>().Switch();
-            isInteracting = false;
+            /* ### START TEST ZONE ### */
+            fSprite.SetActive(true);
+            /* ### END TEST ZONE ### */
+            if (isInteracting)
+            {
+                collision.GetComponent<Lever>().Switch();
+                isInteracting = false;
+            }
         }
     }
 
