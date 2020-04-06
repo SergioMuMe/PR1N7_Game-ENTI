@@ -451,20 +451,20 @@ public class CharacterBehav : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.tag == "Lever")
-        {
-            /* ### START TEST ZONE ### */
-            fSprite.SetActive(true);
-            /* ### END TEST ZONE ### */
-            if (isInteracting)
-            {
-                collision.GetComponent<Lever>().Switch();
-                isInteracting = false;
-            }
-        }
-    }
+    //private void OnTriggerStay2D(Collider2D collision)
+    //{
+    //    if (collision.tag == "Lever")
+    //    {
+    //        /* ### START TEST ZONE ### */
+    //        fSprite.SetActive(true);
+    //        /* ### END TEST ZONE ### */
+    //        if (isInteracting)
+    //        {
+    //            collision.GetComponent<Lever>().Switch();
+    //            isInteracting = false;
+    //        }
+    //    }
+    //}
 
     private void OnCollisionStay2D(Collision2D collision)
     {
