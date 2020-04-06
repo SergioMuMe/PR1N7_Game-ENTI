@@ -69,7 +69,6 @@ public class SceneController : MonoBehaviour
 
     GameObject canvasEndGame;
 
-
     bool controlAllMedalsSound;
 
     // Display de medallas
@@ -95,8 +94,6 @@ public class SceneController : MonoBehaviour
     public Material[] statusStar = new Material[3];
     public Material[] statusTime = new Material[3];
     public Material[] statusBattery = new Material[3];
-
-
 
     // Flash de NEW RECORD !
     private float timeFlashing;
@@ -196,7 +193,6 @@ public class SceneController : MonoBehaviour
         {            
             canvasEndGame.SetActive(false);
         }
-         
     }
 
     #endregion
@@ -225,7 +221,6 @@ public class SceneController : MonoBehaviour
     Medals sceneMedals;
     Medals sceneMedalsBeforeAlter;
 
-
     //Obtenemos datos del jugador relacionados con este mapa
     private void getPlayerLevelInfo()
     {
@@ -240,10 +235,7 @@ public class SceneController : MonoBehaviour
     private Medals getPlayerLevelMedalsInfo()
     {
         return scriptGM.getLevelMedals(idLevel);
-    }
-
-    
-    
+    }    
 
     /*
      * Esta función es llamada justo antes de cambiar de nivel.
@@ -309,9 +301,7 @@ public class SceneController : MonoBehaviour
         {
             //Obtiene nuevo record
             sceneMedals.timeRecord = playerTime;
-        } //ELSE Mantiene el record anterior
-
-        
+        } //ELSE Mantiene el record anterior  
     
     }
     
@@ -400,7 +390,16 @@ public class SceneController : MonoBehaviour
         scriptGM = GameObject.Find("GameManager").GetComponent<GameManager>();
         actualScene = SceneManager.GetActiveScene().name;
         getPlayerLevelInfo();
-        timeLevelLimit = Utils.GetActualRecord(sceneMedals.timeRecord,scriptGM.timeLevelLimit[idLevel]);
+
+        if (sceneMedals.allAtOnce)
+        {
+            //Si ya tienes la medalla de ORO, compites contra tu tiempo.
+            timeLevelLimit = sceneMedals.timeRecord;
+        } else
+        {
+            //Si aun no tinees la medalla de ORO, compites contra el record del mapa
+            timeLevelLimit = scriptGM.timeLevelLimit[idLevel];
+        }
 
         //Datos para el end game splash screen
         levelNameEG = GameObject.Find("EG-Title").GetComponent<TextMeshProUGUI>();
@@ -587,9 +586,10 @@ public class SceneController : MonoBehaviour
                 }
 
                 nextSprite++;
-            }                               
+            }
 
             //Parpadeo de NEW RECORD ! en caso de superar tiempo record
+            /*
             if (playerTime < timeLevelLimit)
             {
                 timeFlashing += Time.deltaTime * 1000;
@@ -611,8 +611,9 @@ public class SceneController : MonoBehaviour
             {
                 newRecordText.enabled = false;
             }
+            */
 
-        } 
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

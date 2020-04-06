@@ -88,12 +88,23 @@ public class HUDController : MonoBehaviour
         int idLevel = GameManager.Instance.idActualLevel;
         float levelRecordDEV = GameManager.Instance.timeLevelLimit[idLevel];
         float levelRecordPlayer = GameManager.Instance.profiles[idPlayer].levelsData[idLevel].levelMedals.timeRecord;
-        
+        bool allAtOnce= GameManager.Instance.profiles[idPlayer].levelsData[idLevel].levelMedals.allAtOnce;
+
         //El record es estático al cargar escena, obtenemos la info en el START...
         LTRecordTime.text = "Record: ";
 
         //...verificamos si el record más bajo es el del player o el del DEV.
-        recordSelected = Utils.GetActualRecord(levelRecordPlayer, levelRecordDEV);
+        if (allAtOnce)
+        {
+            //Si ya tienes la medalla de ORO, compites contra tu tiempo.
+            recordSelected = levelRecordPlayer;
+        }
+        else
+        {
+            //Si aun no tinees la medalla de ORO, compites contra el record del mapa
+            recordSelected = levelRecordDEV;
+        }
+
         LTRecordTime.text += Utils.GetTimeFormat(recordSelected, 3).ToString();
 
         // Decisión de la ALPHA, desactivamos contador de tiempo.
