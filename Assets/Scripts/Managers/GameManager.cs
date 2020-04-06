@@ -358,14 +358,7 @@ public class GameManager : MonoBehaviour
         newLevelData.levelMedals.timeBeated = recivedMedals.timeBeated;
         newLevelData.levelMedals.batteryCollected = recivedMedals.batteryCollected;
         newLevelData.levelMedals.timeRecord = recivedMedals.timeRecord;
-
-        if(recivedMedals.finished && recivedMedals.timeBeated && recivedMedals.batteryCollected)
-        {
-            newLevelData.levelMedals.allAtOnce = true;
-        } else
-        {
-            newLevelData.levelMedals.allAtOnce = false;
-        }
+        newLevelData.levelMedals.allAtOnce = recivedMedals.allAtOnce;
 
         profiles[profileSelected].levelsData[idLevel] = newLevelData;
 
