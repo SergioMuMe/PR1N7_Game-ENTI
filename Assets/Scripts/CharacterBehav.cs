@@ -304,9 +304,11 @@ public class CharacterBehav : MonoBehaviour
                             break;
                         case CommandsInputsEnum.JUMP:
                             rb.AddForce(Vector2.up * jumpForce);
-                            isJumping = true;
+                            //isJumping = true;
+                            playerAnimator.SetBool("Jump", true);
                             break;
                         case CommandsInputsEnum.INTERACT:
+                            button.Switch();
                             isInteracting = true;
                             break;
                         case CommandsInputsEnum.START:
@@ -464,22 +466,6 @@ public class CharacterBehav : MonoBehaviour
 
             button = null;
         }
-    }
-
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        //if (collision.tag == "Lever")
-        //{
-        //    /* ### START TEST ZONE ### */
-        //    fBalloon.SetActive(true);
-        //    Debug.Log(collision.GetComponent<GameObject>());
-        //    /* ### END TEST ZONE ### */
-        //    if (isInteracting)
-        //    {
-        //        collision.GetComponent<Lever>().Switch();
-        //        isInteracting = false;
-        //    }
-        //}
     }
 
     private void OnCollisionStay2D(Collision2D collision)
