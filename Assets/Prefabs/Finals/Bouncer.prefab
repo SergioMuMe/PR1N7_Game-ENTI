@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5566424158098892432}
   - component: {fileID: 5566424158098892434}
   - component: {fileID: 5566424158098892435}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4720,7 +4720,7 @@ GameObject:
   - component: {fileID: 5566424158136836324}
   - component: {fileID: 5566424158744274755}
   - component: {fileID: 5566424158744274754}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Bouncer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
