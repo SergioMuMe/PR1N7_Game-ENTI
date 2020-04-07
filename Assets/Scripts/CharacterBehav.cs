@@ -308,6 +308,7 @@ public class CharacterBehav : MonoBehaviour
                             playerAnimator.SetBool("Jump", true);
                             break;
                         case CommandsInputsEnum.INTERACT:
+                            button.Switch();
                             isInteracting = true;
                             break;
                         case CommandsInputsEnum.START:
