@@ -102,7 +102,7 @@ MonoBehaviour:
   initInputTime: 0
   limitRecordingTime: 10
   clones: []
-  maxClones: 0
+  maxClones: 1
   baseSpeed: 700
   jumpSpeed: 700
   jumpForce: 0
@@ -122,7 +122,7 @@ MonoBehaviour:
   isRecording: 0
   isInteracting: 0
   player: {fileID: 0}
-  clone: {fileID: 4239504860342979494, guid: d5ddbf4716cb1aa418180a08e38beb25, type: 3}
+  clone: {fileID: 6229466955894678233, guid: 00519f55b15b7264e8218c9a1f648507, type: 3}
   iteration: 0
   initPos: {x: 0, y: 0}
   timeAcceleration: 0
@@ -4934,6 +4934,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Print
       objectReference: {fileID: 0}
+    - target: {fileID: 9500000, guid: 4cdec31f48e329347a591287cd2b9de3, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 544c893b8cad1fe489b3a0b66463828a, type: 2}
     - target: {fileID: 400004, guid: 4cdec31f48e329347a591287cd2b9de3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -4978,10 +4982,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9500000, guid: 4cdec31f48e329347a591287cd2b9de3, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 544c893b8cad1fe489b3a0b66463828a, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4cdec31f48e329347a591287cd2b9de3, type: 3}
 --- !u!4 &2662997491355382638 stripped
