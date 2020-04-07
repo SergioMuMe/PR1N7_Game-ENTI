@@ -129,6 +129,8 @@ public class CharacterBehav : MonoBehaviour
 
     private Animator cloneAnim;
     public Animator playerAnimator;
+
+    private Lever button;
     void Start()
     {
         /* ### START TEST ZONE ### */
@@ -248,9 +250,10 @@ public class CharacterBehav : MonoBehaviour
                 }
 
 
-                if (Input.GetKeyDown(KeyCode.F) && !isInteracting)
+                if (Input.GetKeyDown(KeyCode.F) && !isInteracting && button != null) 
                 {
                     isInteracting = true;
+                    button.Switch();
                 }
                 else if (isInteracting)
                 {
@@ -437,6 +440,14 @@ public class CharacterBehav : MonoBehaviour
         nanoStart.Play();
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Lever")
+        {
+            button = collision.GetComponent<Lever>();
+        }
+    }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player" && type == CharacterType.CLONE)
@@ -450,22 +461,25 @@ public class CharacterBehav : MonoBehaviour
             /* ### START TEST ZONE ### */
             fBalloon.SetActive(false);
             /* ### END TEST ZONE ### */
+
+            button = null;
         }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.tag == "Lever")
-        {
-            /* ### START TEST ZONE ### */
-            fBalloon.SetActive(true);
-            /* ### END TEST ZONE ### */
-            if (isInteracting)
-            {
-                collision.GetComponent<Lever>().Switch();
-                isInteracting = false;
-            }
-        }
+        //if (collision.tag == "Lever")
+        //{
+        //    /* ### START TEST ZONE ### */
+        //    fBalloon.SetActive(true);
+        //    Debug.Log(collision.GetComponent<GameObject>());
+        //    /* ### END TEST ZONE ### */
+        //    if (isInteracting)
+        //    {
+        //        collision.GetComponent<Lever>().Switch();
+        //        isInteracting = false;
+        //    }
+        //}
     }
 
     private void OnCollisionStay2D(Collision2D collision)
