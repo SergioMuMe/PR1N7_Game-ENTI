@@ -10,8 +10,10 @@ public class PressurePlate : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
+        
         if (!on)
         {
+            SoundManager.Instance.PlaySound("SCENARIO-pressure_plate");
             for (int i = 0; i < elements.Length; i++)
             {
                 elements[i].Activate();

@@ -16,6 +16,7 @@ public class FinalLight : MonoBehaviour
     {
         if (door.activated && lightF.color != Color.green)
         {
+            SoundManager.Instance.PlaySound("SCENARIO-exit_door");
             lightF.color = Color.green;
             finalLamp.material = greenLight;
         }
