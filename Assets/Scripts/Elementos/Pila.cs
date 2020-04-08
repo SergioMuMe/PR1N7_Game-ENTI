@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Pila : MonoBehaviour
 {
+    //Almacena el script del clon que gestiona las proyecciones
+    public BubbleProjectedController bubblePlayer;
 
     private SceneController scriptSC;
 
@@ -11,6 +13,7 @@ public class Pila : MonoBehaviour
     void Start()
     {
         scriptSC = GameObject.Find("NextLevel").GetComponent<SceneController>();
+        bubblePlayer = GameObject.Find("Player").GetComponent<BubbleProjectedController>();
     }
 
     void Update()
@@ -20,9 +23,9 @@ public class Pila : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        
         if (collision.gameObject.tag == "Player")
         {
+            bubblePlayer.SetProjection("HeartPila");
             SoundManager.Instance.PlaySound("PLAYER-BatteryCollected");
             scriptSC.batteryLevelCount--;
             Destroy(gameObject);

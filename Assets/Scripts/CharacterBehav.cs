@@ -4,18 +4,6 @@ using UnityEngine;
 
 public class CharacterBehav : MonoBehaviour
 {
-
-    /*index
-        #########
-        #       #
-        # TEST  #
-        #       #
-        #########
-    */
-    #region TEST
-    public GameObject fBalloon;
-    #endregion
-
     /*index
         ########################
         #                      #
@@ -115,6 +103,9 @@ public class CharacterBehav : MonoBehaviour
     //Almacena el estado si ha interactuado
     public bool isInteracting = false;
 
+
+    //Almacena el script del clon que gestiona las proyecciones
+    public BubbleProjectedController bubblePlayer;
     //Almacena el script del clon que acaba de crear
     public CharacterBehav player;
     //Almacena el Prefab del clon
@@ -133,9 +124,7 @@ public class CharacterBehav : MonoBehaviour
     private Lever button;
     void Start()
     {
-        /* ### START TEST ZONE ### */
-        fBalloon.SetActive(false);
-        /* ### END TEST ZONE ### */
+        bubblePlayer.ShowBubble(false);       
 
         rb = GetComponent<Rigidbody2D>();
 
@@ -246,7 +235,7 @@ public class CharacterBehav : MonoBehaviour
                     player.enabled = true;
                     player.inputs = inputs;
 
-                    SoundManager.Instance.StopSound("recording");
+                    SoundManager.Instance.StopSound("PLAYER-recording");
                 }
 
 
@@ -405,6 +394,7 @@ public class CharacterBehav : MonoBehaviour
                 }
                 if (!facingRight)
                 {
+                    bubblePlayer.SpriteFlipX(false);
                     facingRight = true;
                     transform.Rotate(0, 180, 0);
                 }
@@ -420,6 +410,7 @@ public class CharacterBehav : MonoBehaviour
                 }
                 if (facingRight)
                 {
+                    bubblePlayer.SpriteFlipX(true);
                     facingRight = false;
                     transform.Rotate(0, 180, 0);
                 }
@@ -447,7 +438,7 @@ public class CharacterBehav : MonoBehaviour
         if (collision.tag == "Lever")
         {
             button = collision.GetComponent<Lever>();
-            fBalloon.SetActive(true);
+            bubblePlayer.SetProjection("KeyF");
         }
     }
 
@@ -461,10 +452,8 @@ public class CharacterBehav : MonoBehaviour
 
         if (collision.tag == "Lever")
         {
-            /* ### START TEST ZONE ### */
-            fBalloon.SetActive(false);
-            /* ### END TEST ZONE ### */
-
+            bubblePlayer.ShowBubble(false);
+            
             button = null;
         }
     }
