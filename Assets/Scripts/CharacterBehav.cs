@@ -447,6 +447,7 @@ public class CharacterBehav : MonoBehaviour
         if (collision.tag == "Lever")
         {
             button = collision.GetComponent<Lever>();
+            fBalloon.SetActive(true);
         }
     }
 
@@ -470,7 +471,6 @@ public class CharacterBehav : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        
         if (hitForward && !isGrounded || hitBack && !isGrounded)
         {
 
