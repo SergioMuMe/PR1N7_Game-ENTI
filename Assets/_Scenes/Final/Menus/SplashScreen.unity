@@ -669,6 +669,10 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: d82db534b5babb24587716c1d3305e62, type: 3}
     pitch: 1.1
     randomPitch: 0
+  - name: SCENARIO-pressure_plate
+    clip: {fileID: 8300000, guid: cd35e63bfa5c4184ea13e3f912844dc9, type: 3}
+    pitch: 0.9
+    randomPitch: 0.25
   musicsMainMenu:
   - {fileID: 8300000, guid: 345fb51144faa7340947abb9a3789076, type: 3}
   - {fileID: 8300000, guid: 56642ba23b3ab844eb3d3e6236cc477f, type: 3}
