@@ -661,6 +661,14 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: a8d2721f4c3e8ce4e83f74f57d977c42, type: 3}
     pitch: 0.85
     randomPitch: 0
+  - name: SCENARIO-lever
+    clip: {fileID: 8300000, guid: ae4a5237d9ada7f4286072b6031673e2, type: 3}
+    pitch: 0.85
+    randomPitch: 0
+  - name: SCENARIO-exit_door
+    clip: {fileID: 8300000, guid: d82db534b5babb24587716c1d3305e62, type: 3}
+    pitch: 1.1
+    randomPitch: 0
   musicsMainMenu:
   - {fileID: 8300000, guid: 345fb51144faa7340947abb9a3789076, type: 3}
   - {fileID: 8300000, guid: 56642ba23b3ab844eb3d3e6236cc477f, type: 3}
