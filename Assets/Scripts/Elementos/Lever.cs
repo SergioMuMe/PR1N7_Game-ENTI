@@ -14,23 +14,26 @@ public class Lever : MonoBehaviour
     {
         SoundManager.Instance.PlaySound("SCENARIO-lever");
 
-        if (on)
+        for (int i = 0; i < elements.Length; i++)
         {
-            for (int i = 0; i < elements.Length; i++)
-            {
-                elements[i].Deactivate();
-            }
-
-            on = false;
+            elements[i].ChangeActivate();
         }
-        else
-        {    
-            for (int i = 0; i < elements.Length; i++)
-            {
-                elements[i].Activate();
-            }
 
-            on = true;
-        }        
+        //if (on)
+        //{
+        //    for (int i = 0; i < elements.Length; i++)
+        //    {
+        //        elements[i].Deactivate();
+        //    }
+        //    on = false;
+        //}
+        //else
+        //{    
+        //    for (int i = 0; i < elements.Length; i++)
+        //    {
+        //        elements[i].Activate();
+        //    }
+        //    on = true;
+        //}        
     }
 }

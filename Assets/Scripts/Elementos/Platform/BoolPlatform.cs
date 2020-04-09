@@ -112,6 +112,11 @@ public class BoolPlatform : InterfaceGame
         rb.velocity = direction * t;
     }
 
+    public override void ChangeActivate()
+    {
+        activated = !activated;
+    }
+
     public override void Activate()
     {
         if (!activated)

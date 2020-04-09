@@ -36,6 +36,9 @@ EditorBuildSettings:
     path: Assets/_Scenes/Final/01_Mundo01/01_09_Trap.unity
     guid: 773e61deee1b5264092ece75a0df43c9
   - enabled: 1
+    path: Assets/_Scenes/Final/01_Mundo01/01_10_NotAPuzzle.unity
+    guid: 4abdda7a33f2de44da082129456b8c93
+  - enabled: 1
     path: Assets/_Scenes/Final/Menus/Login.unity
     guid: 6813f1fac14a05e4d80ab390d5a7c5cf
   - enabled: 1

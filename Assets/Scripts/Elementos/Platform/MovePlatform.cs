@@ -136,6 +136,11 @@ public class MovePlatform : InterfaceGame
         }
     }
 
+    public override void ChangeActivate()
+    {
+        activated = !activated;
+    }
+
     public override void Deactivate()
     {
         if (activated)

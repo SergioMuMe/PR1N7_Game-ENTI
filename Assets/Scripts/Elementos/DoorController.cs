@@ -213,6 +213,12 @@ public class DoorController : InterfaceGame
         
     }
 
+
+    public override void ChangeActivate()
+    {
+        activated = !activated;
+    }
+
     public override void Activate()
     {
         if (!activated)

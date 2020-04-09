@@ -7,4 +7,6 @@ public abstract class InterfaceGame : MonoBehaviour
     public abstract void Activate();
 
     public abstract void Deactivate();
+
+    public abstract void ChangeActivate();
 }

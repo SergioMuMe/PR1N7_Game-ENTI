@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 909858840352210642}
   - component: {fileID: 3637325143994638030}
   - component: {fileID: 4891870422603823673}
+  - component: {fileID: 2843569435627724159}
   m_Layer: 0
   m_Name: Collider
   m_TagString: Untagged
@@ -128,3 +129,15 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2843569435627724159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1807224308681722870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6123969c579b7614da4906dac07fce2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
