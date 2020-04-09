@@ -297,7 +297,7 @@ public class CharacterBehav : MonoBehaviour
                         case CommandsInputsEnum.JUMP:
                             rb.AddForce(Vector2.up * jumpForce);
                             //isJumping = true;
-                            playerAnimator.SetBool("Jump", true);
+                            //playerAnimator.SetBool("Jump", true);
                             break;
                         case CommandsInputsEnum.INTERACT:
                             button.Switch();
