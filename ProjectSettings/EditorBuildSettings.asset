@@ -33,7 +33,7 @@ EditorBuildSettings:
     path: Assets/_Scenes/Final/01_Mundo01/01_08-LosPozos.unity
     guid: 0df907d3f2d49ec4682583b5a05d7e3e
   - enabled: 1
-    path: Assets/_Scenes/Final/01_Mundo01/bouncerTest.unity
+    path: Assets/_Scenes/Final/01_Mundo01/01_09_Trap.unity
     guid: 773e61deee1b5264092ece75a0df43c9
   - enabled: 1
     path: Assets/_Scenes/Final/Menus/Login.unity
