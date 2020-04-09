@@ -349,6 +349,9 @@ public class SceneController : MonoBehaviour
     
     private void Start()
     {
+        //Desactivamos render
+        gameObject.GetComponent<SpriteRenderer>().enabled = false;
+
         //Varaibles de MenuIngame
         pauseMenuMI = GameObject.Find("CanvasMenuIngame");
 

@@ -140,6 +140,11 @@ public class Plataform : InterfaceGame
         rb.velocity = direction * t;
     }
 
+    public override void ChangeActivate()
+    {
+        activated = !activated;
+    }
+
     public override void Activate()
     {
         activated = true;
