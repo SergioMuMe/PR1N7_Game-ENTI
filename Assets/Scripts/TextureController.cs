@@ -27,6 +27,7 @@ public class TextureController : MonoBehaviour
         tileX = GetComponent<Transform>().localScale.x;
         tileY = GetComponent<Transform>().localScale.y;
         tileZ = GetComponent<Transform>().localScale.z;
+        mat.mainTextureScale = new Vector2(tileX, tileZ);
     }
 
     void Update()
@@ -42,7 +43,6 @@ public class TextureController : MonoBehaviour
         //else if (renderPlane == RenderPlane.FLOOR_CEIL)
         //{
         //    mat.mainTextureScale = new Vector2(tileX, tileZ);
-        //}
-        mat.mainTextureScale = new Vector2(tileX, tileZ);
+        //}    
     }
 }
