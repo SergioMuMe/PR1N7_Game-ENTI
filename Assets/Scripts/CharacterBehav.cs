@@ -232,8 +232,11 @@ public class CharacterBehav : MonoBehaviour
                     inputs.Add(new CommandsInputs(CommandsInputsEnum.END, (Time.time * 1000) - initInputTime));
                     InputManager.Instance.actualInputs.recording = false; //Lo necesito para los fx
                     isRecording = false;
-                    player.enabled = true;
-                    player.inputs = inputs;
+                    if (inputs.Count > 3)
+                    {
+                        player.enabled = true;
+                        player.inputs = inputs; 
+                    }
 
                     SoundManager.Instance.StopSound("PLAYER-recording");
                 }
@@ -353,6 +356,11 @@ public class CharacterBehav : MonoBehaviour
             else
             {
                 colLeft = false; 
+            }
+
+            if (isGrounded)
+            {
+                isJumping = false;
             }
         }
         else
