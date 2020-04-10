@@ -103,6 +103,9 @@ public class CharacterBehav : MonoBehaviour
     //Almacena el estado si ha interactuado
     public bool isInteracting = false;
 
+    private float maxJumpTime = 500;
+    private float jumpTime;
+
 
     //Almacena el script del clon que gestiona las proyecciones
     public BubbleProjectedController bubblePlayer;
@@ -193,6 +196,8 @@ public class CharacterBehav : MonoBehaviour
                 {
                     rb.AddForce(Vector2.up * jumpForce);
                     direction = DirectionInputs.NONE;
+
+                    jumpTime = 0;
 
                     isJumping = true;
                     playerAnimator.SetBool("Jump", true);
@@ -332,6 +337,8 @@ public class CharacterBehav : MonoBehaviour
 
         if (isJumping)
         {
+            jumpTime += delta;
+
             hitForward = Physics2D.Raycast(transform.position + (Vector3.down * groundDistance) + (Vector3.right * (frontDistance - groundedPrecision)), -Vector2.up, groundedPrecision);
             hitBack = Physics2D.Raycast(transform.position + (Vector3.down * groundDistance) + (Vector3.left * (frontDistance - groundedPrecision)), -Vector2.up, groundedPrecision);
 
@@ -358,7 +365,7 @@ public class CharacterBehav : MonoBehaviour
                 colLeft = false; 
             }
 
-            if (isGrounded)
+            if (isGrounded && jumpTime > maxJumpTime)
             {
                 isJumping = false;
                 playerAnimator.SetBool("Jump", false);
