@@ -149,8 +149,8 @@ public class GameManager : MonoBehaviour
         timeLevelLimit[4] = 25f;
         timeLevelLimit[5] = 30f;
         timeLevelLimit[6] = 45f;
-        timeLevelLimit[7] = 45f;
-        timeLevelLimit[8] = 60f;
+        timeLevelLimit[7] = 50f;
+        timeLevelLimit[8] = 45f;
         timeLevelLimit[9] = 60f;
         timeLevelLimit[10] = 60f;
     }

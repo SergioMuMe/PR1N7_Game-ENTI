@@ -86,6 +86,10 @@ public class BubbleProjectedController : MonoBehaviour
         freqTime = 0;
         idSprite = 0;
         doAnimation = false;
+        if(gameObject.tag == "Clone")
+        {
+            bubbleProjected.SetActive(false);
+        }
     }
 
     private void Update()

@@ -454,7 +454,10 @@ public class CharacterBehav : MonoBehaviour
         if (collision.tag == "Lever")
         {
             button = collision.GetComponent<Lever>();
-            bubblePlayer.SetProjection("KeyF");
+            if (gameObject.tag == "Player")
+            {
+                bubblePlayer.SetProjection("KeyF");
+            }
         }
     }
 
