@@ -1051,7 +1051,7 @@ PrefabInstance:
     - target: {fileID: 3782138749754917777, guid: 75ec373b7cfdd3c4fbc0e23a0ae28db3,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3782138749754917805, guid: 75ec373b7cfdd3c4fbc0e23a0ae28db3,
         type: 3}
@@ -1296,7 +1296,7 @@ PrefabInstance:
     - target: {fileID: 2412479832680019839, guid: 75ec373b7cfdd3c4fbc0e23a0ae28db3,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75ec373b7cfdd3c4fbc0e23a0ae28db3, type: 3}
@@ -4378,6 +4378,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlataformP-2
       objectReference: {fileID: 0}
+    - target: {fileID: 2361729079584241254, guid: 904b83dd60c3dd14cb76b031b13af911,
+        type: 3}
+      propertyPath: positions.Array.data[0]
+      value: 
+      objectReference: {fileID: 906499127}
+    - target: {fileID: 2361729079584241254, guid: 904b83dd60c3dd14cb76b031b13af911,
+        type: 3}
+      propertyPath: positions.Array.data[1]
+      value: 
+      objectReference: {fileID: 571801242}
+    - target: {fileID: 2361729079584241254, guid: 904b83dd60c3dd14cb76b031b13af911,
+        type: 3}
+      propertyPath: delayRate
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2361729079584241254, guid: 904b83dd60c3dd14cb76b031b13af911,
+        type: 3}
+      propertyPath: speed
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 140724439852176966, guid: 904b83dd60c3dd14cb76b031b13af911,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4432,26 +4452,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2361729079584241254, guid: 904b83dd60c3dd14cb76b031b13af911,
-        type: 3}
-      propertyPath: positions.Array.data[0]
-      value: 
-      objectReference: {fileID: 906499127}
-    - target: {fileID: 2361729079584241254, guid: 904b83dd60c3dd14cb76b031b13af911,
-        type: 3}
-      propertyPath: positions.Array.data[1]
-      value: 
-      objectReference: {fileID: 571801242}
-    - target: {fileID: 2361729079584241254, guid: 904b83dd60c3dd14cb76b031b13af911,
-        type: 3}
-      propertyPath: delayRate
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2361729079584241254, guid: 904b83dd60c3dd14cb76b031b13af911,
-        type: 3}
-      propertyPath: speed
-      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 904b83dd60c3dd14cb76b031b13af911, type: 3}
@@ -6174,7 +6174,7 @@ PrefabInstance:
     - target: {fileID: 1060329764536100889, guid: ff7e60ef648e09147859de0d1785d0ea,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1060329764536100885, guid: ff7e60ef648e09147859de0d1785d0ea,
         type: 3}
@@ -7679,6 +7679,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlataformP-1
       objectReference: {fileID: 0}
+    - target: {fileID: 2361729079584241254, guid: 904b83dd60c3dd14cb76b031b13af911,
+        type: 3}
+      propertyPath: positions.Array.data[0]
+      value: 
+      objectReference: {fileID: 2040053306}
+    - target: {fileID: 2361729079584241254, guid: 904b83dd60c3dd14cb76b031b13af911,
+        type: 3}
+      propertyPath: positions.Array.data[1]
+      value: 
+      objectReference: {fileID: 1887974657}
     - target: {fileID: 140724439852176966, guid: 904b83dd60c3dd14cb76b031b13af911,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7734,16 +7744,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2361729079584241254, guid: 904b83dd60c3dd14cb76b031b13af911,
-        type: 3}
-      propertyPath: positions.Array.data[0]
-      value: 
-      objectReference: {fileID: 2040053306}
-    - target: {fileID: 2361729079584241254, guid: 904b83dd60c3dd14cb76b031b13af911,
-        type: 3}
-      propertyPath: positions.Array.data[1]
-      value: 
-      objectReference: {fileID: 1887974657}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 904b83dd60c3dd14cb76b031b13af911, type: 3}
 --- !u!114 &1957579931 stripped
