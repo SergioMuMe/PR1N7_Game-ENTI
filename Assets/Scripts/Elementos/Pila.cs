@@ -16,7 +16,7 @@ public class Pila : MonoBehaviour
         bubblePlayer = GameObject.Find("Player").GetComponent<BubbleProjectedController>();
     }
 
-    void Update()
+    private void FixedUpdate()
     {
         transform.Rotate(0.2f, 0.5f, 0f);
     }
