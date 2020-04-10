@@ -8,6 +8,13 @@ public class PressurePlate : MonoBehaviour
     public InterfaceGame[] elements;
     public bool on = false;
 
+
+
+    private void Update()
+    {
+               
+    }
+
     private void OnTriggerStay2D(Collider2D other)
     {
         
@@ -18,7 +25,7 @@ public class PressurePlate : MonoBehaviour
             {
                 elements[i].Activate();
             }
-
+            Debug.Log(other.name);
             on = true;
         }
     }
