@@ -361,6 +361,7 @@ public class CharacterBehav : MonoBehaviour
             if (isGrounded)
             {
                 isJumping = false;
+                playerAnimator.SetBool("Jump", false);
             }
         }
         else
