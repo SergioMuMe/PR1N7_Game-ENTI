@@ -151,8 +151,8 @@ public class GameManager : MonoBehaviour
         timeLevelLimit[6] = 45f;
         timeLevelLimit[7] = 50f;
         timeLevelLimit[8] = 45f;
-        timeLevelLimit[9] = 60f;
-        timeLevelLimit[10] = 60f;
+        timeLevelLimit[9] = 45f;
+        timeLevelLimit[10] = 35f;
     }
 
 
@@ -367,7 +367,11 @@ public class GameManager : MonoBehaviour
         LevelData unblockNextLevel;
 
         unblockNextLevel.levelUnblockedFLAG = false;
-
+        if(idLevel+1 >= timeLevelLimit.Length)
+        {
+            saveDataInProfileBIN();
+            return;
+        }
         profiles[profileSelected].levelsData[idLevel + 1].levelUnblockedFLAG = true;
         saveDataInProfileBIN();
     }
