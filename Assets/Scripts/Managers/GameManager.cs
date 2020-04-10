@@ -205,9 +205,9 @@ public class GameManager : MonoBehaviour
             {
                 //DEV, PREPARAR PARA BUILD
                 //El primer nivel y la DEV-Room está desbloqueado para jugar
-                profiles[i].levelsData[j].levelUnblockedFLAG = true;
-                //if (j == 0 || j == 1) { profiles[i].levelsData[j].levelUnblockedFLAG = true; }
-                //else { profiles[i].levelsData[j].levelUnblockedFLAG = false; }
+                //profiles[i].levelsData[j].levelUnblockedFLAG = true;
+                if (j == 0 || j == 1) { profiles[i].levelsData[j].levelUnblockedFLAG = true; }
+                else { profiles[i].levelsData[j].levelUnblockedFLAG = false; }
                 
                 
 
