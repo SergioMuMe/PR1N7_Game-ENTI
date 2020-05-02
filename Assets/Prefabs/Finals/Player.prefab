@@ -5050,7 +5050,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1453651251
-  m_SortingLayer: -1
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -5122,6 +5122,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 13700000, guid: 4cdec31f48e329347a591287cd2b9de3, type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3d22d9274f81f834eb910b2ddaa5ac8f, type: 2}
+    - target: {fileID: 13700000, guid: 4cdec31f48e329347a591287cd2b9de3, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 14c5499845519e04e967265528e6cabc, type: 2}
+    - target: {fileID: 13700000, guid: 4cdec31f48e329347a591287cd2b9de3, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 14c5499845519e04e967265528e6cabc, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4cdec31f48e329347a591287cd2b9de3, type: 3}
 --- !u!4 &2662997491355382638 stripped
