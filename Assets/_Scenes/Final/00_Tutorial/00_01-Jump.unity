@@ -41698,7 +41698,7 @@ PrefabInstance:
     - target: {fileID: 6341025201839549959, guid: d5cb532535491f046b75d63b5971070a,
         type: 3}
       propertyPath: m_Intensity
-      value: 2
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 6341025201839549959, guid: d5cb532535491f046b75d63b5971070a,
         type: 3}
@@ -41708,7 +41708,12 @@ PrefabInstance:
     - target: {fileID: 6341025201839549959, guid: d5cb532535491f046b75d63b5971070a,
         type: 3}
       propertyPath: m_Type
-      value: 2
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6341025201839549959, guid: d5cb532535491f046b75d63b5971070a,
+        type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7460372945666799881, guid: d5cb532535491f046b75d63b5971070a,
         type: 3}
@@ -41718,6 +41723,11 @@ PrefabInstance:
     - target: {fileID: 7460372945666799881, guid: d5cb532535491f046b75d63b5971070a,
         type: 3}
       propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7460372945664375785, guid: d5cb532535491f046b75d63b5971070a,
+        type: 3}
+      propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

@@ -9,8 +9,16 @@ public class FinalLight : MonoBehaviour
     public Material redLight;
     public Material greenLight;
     public MeshRenderer finalLamp;
+    [Range(0,1)]
+    public float blinkChance;
+    public float blinkFreq;
+    private Animator anim;
+    private float actTime;
 
-    // Update is called once per frame
+    private void Start()
+    {
+        anim = GetComponent<Animator>();
+    }
 
     void Update()
     {
@@ -24,6 +32,16 @@ public class FinalLight : MonoBehaviour
         {
             lightF.color = Color.red;
             finalLamp.material = redLight;
+        }
+
+        if(lightF.color != Color.green && Time.time > actTime)
+        {
+            actTime = Time.time + blinkFreq;
+
+            if (Random.Range(0f,1f) <= blinkChance)
+            {
+                anim.SetTrigger("Blink");
+            }
         }
     }
 }
