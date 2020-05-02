@@ -114,7 +114,7 @@ QualitySettings:
   - serializedVersion: 2
     name: High
     pixelLightCount: 2
-    shadows: 0
+    shadows: 1
     shadowResolution: 1
     shadowProjection: 1
     shadowCascades: 2
@@ -218,3 +218,7 @@ QualitySettings:
     excludedTargetPlatforms: []
   m_PerPlatformDefaultQuality:
     Standalone: 0
+<<<<<<< HEAD
+=======
+    WebGL: 0
+>>>>>>> 77b349d482d87d68f86293cd13c6d8126aa08bed
