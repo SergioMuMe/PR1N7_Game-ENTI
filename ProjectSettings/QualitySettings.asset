@@ -218,4 +218,7 @@ QualitySettings:
     excludedTargetPlatforms: []
   m_PerPlatformDefaultQuality:
     Standalone: 0
+<<<<<<< HEAD
+=======
     WebGL: 0
+>>>>>>> 77b349d482d87d68f86293cd13c6d8126aa08bed
