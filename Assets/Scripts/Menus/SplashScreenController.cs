@@ -17,24 +17,9 @@ public class SplashScreenController : MonoBehaviour
         videoPlayer.Play();
     }
 
-    public float fadeInTime = 0;
-    public float timeToFadeIn;
-    public float volumeFade;
-    float volume = 0;
-
     // Update is called once per frame
     void Update()
     {
-        
-        if (volume <0.5f)
-        {
-            fadeInTime += Time.deltaTime * 1000;
-            if (fadeInTime > timeToFadeIn)
-            {
-                volume += volumeFade;
-                videoPlayer.SetDirectAudioVolume(0, volume);
-            }
-        }
         
         
         if (videoPlayer.time > 0 && !videoPlayer.isPlaying || Input.anyKey)
