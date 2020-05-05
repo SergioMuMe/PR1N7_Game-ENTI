@@ -497,9 +497,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d735bfe66eb898744a245eef013edbba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeInTime: 0
-  timeToFadeIn: 1350
-  volumeFade: 0.001
 --- !u!328 &1015124457
 VideoPlayer:
   m_ObjectHideFlags: 0
@@ -524,7 +521,7 @@ VideoPlayer:
   m_TargetAudioSources:
   - {fileID: 0}
   m_DirectAudioVolumes:
-  - 0
+  - 0.2
   m_Url: 
   m_EnabledAudioTracks: 01
   m_DirectAudioMutes: 00

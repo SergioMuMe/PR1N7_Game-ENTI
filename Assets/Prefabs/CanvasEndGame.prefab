@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6277388477303347298}
   - component: {fileID: 2765969966704299619}
   - component: {fileID: 4765486448237394040}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MI-BackgroundCard1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 8855593979144362852}
   - component: {fileID: 8937910653184703579}
   - component: {fileID: 5949427536557775118}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MI-BackgroundCard2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -199,7 +199,7 @@ GameObject:
   - component: {fileID: 3782138747665175730}
   - component: {fileID: 3782138747665175756}
   - component: {fileID: 3782138747665175731}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: T-Time
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -356,7 +356,7 @@ GameObject:
   - component: {fileID: 3782138747907748212}
   - component: {fileID: 3782138747907748214}
   - component: {fileID: 3782138747907748213}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: B-restartArrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -430,7 +430,7 @@ GameObject:
   - component: {fileID: 3782138748011184927}
   - component: {fileID: 3782138748011184921}
   - component: {fileID: 3782138748011184920}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: T-RecordTime
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -586,7 +586,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3782138748117261198}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Medallas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -625,7 +625,7 @@ GameObject:
   - component: {fileID: 3782138748263241797}
   - component: {fileID: 3782138748263241799}
   - component: {fileID: 3782138748263241798}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: T-RecordHead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -784,7 +784,7 @@ GameObject:
   - component: {fileID: 3782138748314151599}
   - component: {fileID: 3782138748314151598}
   - component: {fileID: 5152329641816034581}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: EG-BackgroundTittle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -879,7 +879,7 @@ GameObject:
   - component: {fileID: 3782138748417389095}
   - component: {fileID: 3782138748417389094}
   - component: {fileID: 3782138748417389093}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: B-goMenuButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -996,7 +996,7 @@ GameObject:
   - component: {fileID: 3782138748547146322}
   - component: {fileID: 3782138748547146321}
   - component: {fileID: 3782138748547146320}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: B-nextLevelButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1113,7 +1113,7 @@ GameObject:
   - component: {fileID: 3782138748553974563}
   - component: {fileID: 3782138748553974562}
   - component: {fileID: 5822195863991584367}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: B-nextLevelBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1207,7 +1207,7 @@ GameObject:
   - component: {fileID: 3782138748562611850}
   - component: {fileID: 3782138748562611844}
   - component: {fileID: 3782138748562611851}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: M-starMedal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1282,7 +1282,7 @@ GameObject:
   - component: {fileID: 3782138748685601808}
   - component: {fileID: 3782138748685601815}
   - component: {fileID: 3565767179325060005}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: B-goMenuBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1375,7 +1375,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3782138748733654702}
   - component: {fileID: 3789298322363278264}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Botones
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1434,7 +1434,7 @@ GameObject:
   - component: {fileID: 3782138748812727478}
   - component: {fileID: 3782138748812727472}
   - component: {fileID: 3782138748812727479}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: M-timeMedal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1508,7 +1508,7 @@ GameObject:
   - component: {fileID: 3782138749107557814}
   - component: {fileID: 3782138749107557808}
   - component: {fileID: 3782138749107557815}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: M-batteryMedal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1581,7 +1581,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3782138749240597323}
   - component: {fileID: 6245856279814099796}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Tiempos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1642,7 +1642,7 @@ GameObject:
   - component: {fileID: 3782138749279799885}
   - component: {fileID: 3782138749279799887}
   - component: {fileID: 3782138749279799886}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: EG-Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1801,7 +1801,7 @@ GameObject:
   - component: {fileID: 3782138749549561765}
   - component: {fileID: 3782138749549561767}
   - component: {fileID: 3782138749549561766}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: T-TimeHead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1959,7 +1959,7 @@ GameObject:
   - component: {fileID: 3782138749580863731}
   - component: {fileID: 3782138749580863730}
   - component: {fileID: 3782138749580863729}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: B-restartButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2076,7 +2076,7 @@ GameObject:
   - component: {fileID: 3782138749687271104}
   - component: {fileID: 3782138749687271111}
   - component: {fileID: 2177713814199776610}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: B-restartButtonGB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2172,7 +2172,7 @@ GameObject:
   - component: {fileID: 3782138749754917804}
   - component: {fileID: 3782138749754917779}
   - component: {fileID: 3782138749754917778}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: CanvasEndGame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2275,7 +2275,7 @@ GameObject:
   - component: {fileID: 1532772575678570576}
   - component: {fileID: 4560677975766483953}
   - component: {fileID: 2412479832680019839}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: TMP SubMeshUI [Oxanium-Regular SDF Material + LiberationSans SDF Atlas]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2350,7 +2350,7 @@ GameObject:
   - component: {fileID: 3091901195522283085}
   - component: {fileID: 2363535033978579682}
   - component: {fileID: 5627710807030934689}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: T-NewRecord
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2526,7 +2526,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9026413027429972406}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: 3D Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2559,7 +2559,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7504264562774101214}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: 2D Placeholder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2594,6 +2594,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: M-starMedal3D
+      objectReference: {fileID: 0}
+    - target: {fileID: 5687372830810964850, guid: 63a0d171339a0844ab63f6de2d976cbc,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5494157293151251242, guid: 63a0d171339a0844ab63f6de2d976cbc,
         type: 3}
@@ -2685,6 +2690,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: M-batteryMedal3D
       objectReference: {fileID: 0}
+    - target: {fileID: 202843885210724262, guid: eb1c4dd27ba9bc447a46c88a51f2a2e6,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4043989134215715780, guid: eb1c4dd27ba9bc447a46c88a51f2a2e6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2774,6 +2784,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: M-timeMedal3D
+      objectReference: {fileID: 0}
+    - target: {fileID: 8198477648825981549, guid: fff8858ec48f962469f01486358d20f0,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2427309837904771530, guid: fff8858ec48f962469f01486358d20f0,
         type: 3}

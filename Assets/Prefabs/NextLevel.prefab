@@ -94,6 +94,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextScene: 
+  postFX_Game: {fileID: 11400000, guid: 505dfedcd5aafd14a867b26fa51074c8, type: 2}
+  postFX_UI: {fileID: 11400000, guid: 88bc32d3d8c6f894c8e7466701993566, type: 2}
   statusStar:
   - {fileID: 2100000, guid: 203df990aad658848988fe73ce80fda9, type: 2}
   - {fileID: 2100000, guid: 38c041e3156132f4f8dd46ab27db19f5, type: 2}
