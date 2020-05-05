@@ -108,9 +108,6 @@ public class SceneController : MonoBehaviour
     //Al terminar un nivel, podemos reiniciar escena pero conservamos el progreso
     public void restartSceneEndGame()
     {
-        
-
-
         if(GameManager.Instance.isGamePaused)
         {
             resumeGame();

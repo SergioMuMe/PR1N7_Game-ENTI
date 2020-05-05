@@ -441,6 +441,9 @@ public class GameManager : MonoBehaviour
         profilePicked = false;
         isGamePaused = false;
 
+        //SI SALTA BUG EN MENU DE PAUSA, LA PRÓXIMA VEZ EL JUEGO DEBERÁ RESETEAR EL VALOR DE TIMESCALE
+        Time.timeScale = 1f;
+
         //TESTING ZONE
         //END TESTING ZONE
     }
