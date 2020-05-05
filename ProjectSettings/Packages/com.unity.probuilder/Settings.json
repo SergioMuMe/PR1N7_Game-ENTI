@@ -116,7 +116,11 @@
             {
                 "type": "UnityEngine.ProBuilder.SelectMode, Unity.ProBuilder, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
                 "key": "editor.selectMode",
+<<<<<<< HEAD
+                "value": "{\"m_Value\":4}"
+=======
                 "value": "{\"m_Value\":1}"
+>>>>>>> 58ca7ac4e6592c4720037c992c48c16753af33ac
             },
             {
                 "type": "UnityEngine.ProBuilder.PivotLocation, Unity.ProBuilder, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
