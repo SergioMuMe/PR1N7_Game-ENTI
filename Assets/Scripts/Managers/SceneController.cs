@@ -19,6 +19,7 @@ public class SceneController : MonoBehaviour
     private string actualScene;
 
     private PostProcessVolume postFX;
+    public PostProcessProfile postFX_GameTutorial;
     public PostProcessProfile postFX_Game;
     public PostProcessProfile postFX_UI;
 
@@ -175,7 +176,14 @@ public class SceneController : MonoBehaviour
         pauseMenuMI.SetActive(false);
         GameManager.Instance.isGamePaused = false;
 
-        postFX.profile = postFX_Game;
+        if (idLevel <= 5)
+        {
+            postFX.profile = postFX_GameTutorial;
+        }
+        else
+        {
+            postFX.profile = postFX_Game;
+        }
 
         if (canvasHUD.levelEnded && !canvasEndGame.activeInHierarchy)
         {
@@ -469,7 +477,15 @@ public class SceneController : MonoBehaviour
         waltrapa2 = true;
 
         postFX = GameObject.Find("PostFX").GetComponent<PostProcessVolume>();
-        postFX.profile = postFX_Game;
+        if (idLevel <= 5)
+        {
+            postFX.profile = postFX_GameTutorial;
+        }
+        else
+        {
+            postFX.profile = postFX_Game;
+        }
+        
 
         //Ocultamos menus, definimos camaras de canvas EndGame. (necesario para displayar medallas 3d)
         canvasEndGame = GameObject.Find("CanvasEndGame");
