@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6940076112192611322}
   - component: {fileID: 689455792156106833}
   - component: {fileID: 1465280254}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: MI-Exit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33,7 +33,7 @@ RectTransform:
   m_Children:
   - {fileID: 6714359509757497338}
   m_Father: {fileID: 7192039017748632576}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: -1, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -149,7 +149,7 @@ GameObject:
   - component: {fileID: 1060329764488466288}
   - component: {fileID: 1060329764488466286}
   - component: {fileID: 1060329764488466287}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: LT-Time
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -308,7 +308,7 @@ GameObject:
   - component: {fileID: 1060329764536100887}
   - component: {fileID: 1060329764536100888}
   - component: {fileID: 2771094774730681391}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: CanvasHUD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -452,7 +452,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6724994595316731269}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: CanvasContadorClones
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -492,7 +492,7 @@ GameObject:
   - component: {fileID: 5136744815456993}
   - component: {fileID: 1618980271217024867}
   - component: {fileID: 953892014124993799}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: REC-BackGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -566,7 +566,7 @@ GameObject:
   - component: {fileID: 5225829860345684755}
   - component: {fileID: 1417274118868231997}
   - component: {fileID: 3717752624268685579}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MI-Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -725,7 +725,7 @@ GameObject:
   - component: {fileID: 2876879601550811765}
   - component: {fileID: 7133316692628635617}
   - component: {fileID: 3208509471643580146}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: REC-Esquina_NE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -800,7 +800,7 @@ GameObject:
   - component: {fileID: 1643988742664375104}
   - component: {fileID: 5166831240633255243}
   - component: {fileID: 585184409}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MI-BackgroundCard1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -819,7 +819,7 @@ RectTransform:
   m_LocalScale: {x: 4, y: 0.1, z: 4}
   m_Children: []
   m_Father: {fileID: 7192039017748632576}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -893,7 +893,7 @@ GameObject:
   - component: {fileID: 2599112703102570374}
   - component: {fileID: 474410481571601861}
   - component: {fileID: 7840505509774143064}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: REC-Word
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1048,7 +1048,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4115316771569271484}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: CanvasLT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1084,7 +1084,7 @@ GameObject:
   - component: {fileID: 3822487687432215787}
   - component: {fileID: 1728790224221876408}
   - component: {fileID: 8147959633555017744}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1242,7 +1242,7 @@ GameObject:
   - component: {fileID: 6714359509757497338}
   - component: {fileID: 2639612706871508056}
   - component: {fileID: 2719982901249255963}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1400,7 +1400,7 @@ GameObject:
   - component: {fileID: 7911203516790006124}
   - component: {fileID: 5188413146309099028}
   - component: {fileID: 6423004159039872905}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1419,7 +1419,7 @@ RectTransform:
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 7192039017748632576}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1474,7 +1474,7 @@ GameObject:
   - component: {fileID: 5831870911010611432}
   - component: {fileID: 3167014896946882330}
   - component: {fileID: 5555074177897578530}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: CC-Texto
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1620,6 +1620,80 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &4668108553053101690
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3694211544826901607}
+  - component: {fileID: 4997078874591130781}
+  - component: {fileID: 5946589878602002183}
+  m_Layer: 8
+  m_Name: REC-BackGround (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &3694211544826901607
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4668108553053101690}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -7.2256002}
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_Children: []
+  m_Father: {fileID: 7192039017748632576}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 61.597046, y: -34.951904}
+  m_SizeDelta: {x: 967.3, y: 551}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &4997078874591130781
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4668108553053101690}
+  m_CullTransparentMesh: 0
+--- !u!114 &5946589878602002183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4668108553053101690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.8773585, g: 0.8773585, b: 0.8773585, a: 0.1254902}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: bfd154076cc004700b97c9985e9eec75, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
 --- !u!1 &5167855422759516989
 GameObject:
   m_ObjectHideFlags: 0
@@ -1629,7 +1703,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4247195956445158782}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: CanvasREC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1674,7 +1748,7 @@ GameObject:
   - component: {fileID: 4025303587685766065}
   - component: {fileID: 2179027749506534142}
   - component: {fileID: 2594375332057619892}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: REC-Esquina_NO
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1749,7 +1823,7 @@ GameObject:
   - component: {fileID: 5997957472271073316}
   - component: {fileID: 8391186546837358966}
   - component: {fileID: 1646285399}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MI-BackgroundTitle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1769,7 +1843,7 @@ RectTransform:
   m_Children:
   - {fileID: 5225829860345684755}
   m_Father: {fileID: 7192039017748632576}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1843,7 +1917,7 @@ GameObject:
   - component: {fileID: 5782447773368407958}
   - component: {fileID: 8324522138267014750}
   - component: {fileID: 4278268238576608593}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: REC-Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1917,7 +1991,7 @@ GameObject:
   - component: {fileID: 4107807553377626510}
   - component: {fileID: 8968564844940612982}
   - component: {fileID: 5215819039058734675}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: REC-Esquina_SE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1993,7 +2067,7 @@ GameObject:
   - component: {fileID: 1749736065945668121}
   - component: {fileID: 4636386903233942461}
   - component: {fileID: 599623679}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: MI-Resume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2013,7 +2087,7 @@ RectTransform:
   m_Children:
   - {fileID: 3822487687432215787}
   m_Father: {fileID: 7192039017748632576}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: -1, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2129,7 +2203,7 @@ GameObject:
   - component: {fileID: 8819724030581996309}
   - component: {fileID: 6066857005218348832}
   - component: {fileID: 3329061478448725318}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: REC-CountDown
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2284,7 +2358,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7192039017748632576}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CanvasMenuIngame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2302,6 +2376,7 @@ Transform:
   m_LocalPosition: {x: -31.198486, y: 17.175964, z: 3.6128001}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
+  - {fileID: 3694211544826901607}
   - {fileID: 7911203516790006124}
   - {fileID: 2187198575130517078}
   - {fileID: 6174967150296522139}
@@ -2323,7 +2398,7 @@ GameObject:
   - component: {fileID: 2349783080069386177}
   - component: {fileID: 6448464415724573756}
   - component: {fileID: 4468932806731377395}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: CC-TextoClones
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2480,7 +2555,7 @@ GameObject:
   - component: {fileID: 8577173177357619659}
   - component: {fileID: 4543562517241118612}
   - component: {fileID: 7547212203791771606}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: CC-CloneSimbol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2554,7 +2629,7 @@ GameObject:
   - component: {fileID: 3131199074327740440}
   - component: {fileID: 1234656186560546429}
   - component: {fileID: 1356883143915887301}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: REC-Esquina_SO
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2628,7 +2703,7 @@ GameObject:
   - component: {fileID: 4272884675139720392}
   - component: {fileID: 3131728247063559880}
   - component: {fileID: 6520597376797180119}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: LT-TimeHead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2785,7 +2860,7 @@ GameObject:
   - component: {fileID: 8567582049089777888}
   - component: {fileID: 995477740852461870}
   - component: {fileID: 7071638836504783833}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: LT-RecordTime
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2944,7 +3019,7 @@ GameObject:
   - component: {fileID: 5062522476003986660}
   - component: {fileID: 6115312190542661482}
   - component: {fileID: 59580898}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MI-BackgroundCard2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2963,7 +3038,7 @@ RectTransform:
   m_LocalScale: {x: 4, y: 0.1, z: 4}
   m_Children: []
   m_Father: {fileID: 7192039017748632576}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3039,7 +3114,7 @@ GameObject:
   - component: {fileID: 5490203539475435492}
   - component: {fileID: 4612906913322048925}
   - component: {fileID: 117141217}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: MI-Restart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3059,7 +3134,7 @@ RectTransform:
   m_Children:
   - {fileID: 5726293704523411534}
   m_Father: {fileID: 7192039017748632576}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: -1, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3175,7 +3250,7 @@ GameObject:
   - component: {fileID: 1277135799984539242}
   - component: {fileID: 2848996250837026645}
   - component: {fileID: 183795352631959243}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: LT-ImageBackGround0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3249,7 +3324,7 @@ GameObject:
   - component: {fileID: 5726293704523411534}
   - component: {fileID: 7214287878886202603}
   - component: {fileID: 2946145320185558237}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}

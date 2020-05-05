@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Rendering.PostProcessing;
 
 public class SceneController : MonoBehaviour
 {
@@ -16,6 +17,10 @@ public class SceneController : MonoBehaviour
     */
     public string nextScene;
     private string actualScene;
+
+    private PostProcessVolume postFX;
+    public PostProcessProfile postFX_Game;
+    public PostProcessProfile postFX_UI;
 
     HUDController canvasHUD;
 
@@ -103,6 +108,9 @@ public class SceneController : MonoBehaviour
     //Al terminar un nivel, podemos reiniciar escena pero conservamos el progreso
     public void restartSceneEndGame()
     {
+        
+
+
         if(GameManager.Instance.isGamePaused)
         {
             resumeGame();
@@ -170,6 +178,8 @@ public class SceneController : MonoBehaviour
         pauseMenuMI.SetActive(false);
         GameManager.Instance.isGamePaused = false;
 
+        postFX.profile = postFX_Game;
+
         if (canvasHUD.levelEnded && !canvasEndGame.activeInHierarchy)
         {
             canvasEndGame.SetActive(true);
@@ -189,7 +199,9 @@ public class SceneController : MonoBehaviour
         pauseMenuMI.SetActive(true);
         GameManager.Instance.isGamePaused = true;
 
-        if(canvasHUD.levelEnded && canvasEndGame.activeInHierarchy)
+        postFX.profile = postFX_UI;
+
+        if (canvasHUD.levelEnded && canvasEndGame.activeInHierarchy)
         {            
             canvasEndGame.SetActive(false);
         }
@@ -459,6 +471,9 @@ public class SceneController : MonoBehaviour
         //TODO: Revisar waltrapa, ¿porque entra dos veces en la función?
         waltrapa2 = true;
 
+        postFX = GameObject.Find("PostFX").GetComponent<PostProcessVolume>();
+        postFX.profile = postFX_Game;
+
         //Ocultamos menus, definimos camaras de canvas EndGame. (necesario para displayar medallas 3d)
         canvasEndGame = GameObject.Find("CanvasEndGame");
         Camera mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
@@ -624,6 +639,8 @@ public class SceneController : MonoBehaviour
         if (waltrapa && collision.tag == "Player")
         {
             waltrapa = false;
+
+            postFX.profile = postFX_UI;
 
             Debug.LogWarning("TODO: arreglar waltrapa");
             collision.enabled = false;
