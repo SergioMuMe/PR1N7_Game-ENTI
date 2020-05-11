@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: ddd294a7b03d31744b2770bc266368ec
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: HomepageBaukasten
+  fontNames:
+  - HomepageBaukasten
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 6a624df75c585f345a44b9de7f7dbcdf, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
