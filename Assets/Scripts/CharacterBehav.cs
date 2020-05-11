@@ -412,7 +412,8 @@ public class CharacterBehav : MonoBehaviour
                 {
                     bubblePlayer.SpriteFlipX(false);
                     facingRight = true;
-                    transform.Rotate(0, 180, 0);
+                    cloneAnim.SetBool("FacingRight", true);
+                    //transform.Rotate(0, 180, 0);
                 }
                 break;
             case DirectionInputs.LEFT:
@@ -428,7 +429,8 @@ public class CharacterBehav : MonoBehaviour
                 {
                     bubblePlayer.SpriteFlipX(true);
                     facingRight = false;
-                    transform.Rotate(0, 180, 0);
+                    cloneAnim.SetBool("FacingRight", false);
+                    //transform.Rotate(0, 180, 0);
                 }
                 break;
             default:
