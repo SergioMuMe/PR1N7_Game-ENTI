@@ -145,6 +145,15 @@ public class CharacterBehav : MonoBehaviour
 
             initInputTime = Time.time * 1000;
         }
+
+        if (facingRight)
+        {
+            cloneAnim.SetBool("FacingRight", true);
+        }
+        else
+        {
+            cloneAnim.SetBool("FacingRight", false);
+        }
     }
 
 
@@ -412,7 +421,9 @@ public class CharacterBehav : MonoBehaviour
                 {
                     bubblePlayer.SpriteFlipX(false);
                     facingRight = true;
-                    transform.Rotate(0, 180, 0);
+                    cloneAnim.SetBool("FacingRight", true);
+                    cloneAnim.SetTrigger("Flip");
+                    //transform.Rotate(0, 180, 0);
                 }
                 break;
             case DirectionInputs.LEFT:
@@ -428,7 +439,9 @@ public class CharacterBehav : MonoBehaviour
                 {
                     bubblePlayer.SpriteFlipX(true);
                     facingRight = false;
-                    transform.Rotate(0, 180, 0);
+                    cloneAnim.SetBool("FacingRight", false);
+                    cloneAnim.SetTrigger("Flip");
+                    //transform.Rotate(0, 180, 0);
                 }
                 break;
             default:
@@ -503,5 +516,14 @@ public class CharacterBehav : MonoBehaviour
     private void OnDestroy()
     {
         Destroy(part.gameObject);
+    }
+
+    public void DestroyAllClones()
+    {
+        while (clones.Count > 0)
+        {
+            Destroy(clones[clones.Count - 1]);
+            clones.RemoveAt(clones.Count - 1);
+        }
     }
 }

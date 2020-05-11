@@ -651,6 +651,8 @@ public class SceneController : MonoBehaviour
     {
         if (waltrapa && collision.tag == "Player")
         {
+            collision.GetComponent<CharacterBehav>().DestroyAllClones();
+
             waltrapa = false;
 
             postFX.profile = postFX_UI;
