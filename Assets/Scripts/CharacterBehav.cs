@@ -145,6 +145,15 @@ public class CharacterBehav : MonoBehaviour
 
             initInputTime = Time.time * 1000;
         }
+
+        if (facingRight)
+        {
+            cloneAnim.SetBool("FacingRight", true);
+        }
+        else
+        {
+            cloneAnim.SetBool("FacingRight", false);
+        }
     }
 
 
@@ -413,6 +422,7 @@ public class CharacterBehav : MonoBehaviour
                     bubblePlayer.SpriteFlipX(false);
                     facingRight = true;
                     cloneAnim.SetBool("FacingRight", true);
+                    cloneAnim.SetTrigger("Flip");
                     //transform.Rotate(0, 180, 0);
                 }
                 break;
@@ -430,6 +440,7 @@ public class CharacterBehav : MonoBehaviour
                     bubblePlayer.SpriteFlipX(true);
                     facingRight = false;
                     cloneAnim.SetBool("FacingRight", false);
+                    cloneAnim.SetTrigger("Flip");
                     //transform.Rotate(0, 180, 0);
                 }
                 break;
