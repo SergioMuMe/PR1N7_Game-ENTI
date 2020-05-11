@@ -517,4 +517,13 @@ public class CharacterBehav : MonoBehaviour
     {
         Destroy(part.gameObject);
     }
+
+    public void DestroyAllClones()
+    {
+        while (clones.Count > 0)
+        {
+            Destroy(clones[clones.Count - 1]);
+            clones.RemoveAt(clones.Count - 1);
+        }
+    }
 }
