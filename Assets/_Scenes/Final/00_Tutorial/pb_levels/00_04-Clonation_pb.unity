@@ -2317,7 +2317,7 @@ PrefabInstance:
     - target: {fileID: 3782138749754917777, guid: 75ec373b7cfdd3c4fbc0e23a0ae28db3,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3782138749754917805, guid: 75ec373b7cfdd3c4fbc0e23a0ae28db3,
         type: 3}
@@ -2562,7 +2562,17 @@ PrefabInstance:
     - target: {fileID: 2412479832680019839, guid: 75ec373b7cfdd3c4fbc0e23a0ae28db3,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3782138749754917804, guid: 75ec373b7cfdd3c4fbc0e23a0ae28db3,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1736161218}
+    - target: {fileID: 3782138749754917804, guid: 75ec373b7cfdd3c4fbc0e23a0ae28db3,
+        type: 3}
+      propertyPath: m_PlaneDistance
+      value: 14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75ec373b7cfdd3c4fbc0e23a0ae28db3, type: 3}
@@ -7794,7 +7804,7 @@ PrefabInstance:
     - target: {fileID: 4754546773981360092, guid: 2bb841354d06dfe4ca1bd44c08319ffa,
         type: 3}
       propertyPath: nextScene
-      value: 00_05-FreqDoor
+      value: 00_05-FreqDoor_pb
       objectReference: {fileID: 0}
     - target: {fileID: 4754546773981360092, guid: 2bb841354d06dfe4ca1bd44c08319ffa,
         type: 3}
@@ -7972,6 +7982,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 35e38f5194f419647a35e2cb6523bac1, type: 3}
+--- !u!20 &1736161218 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 6221329049563242924, guid: 35e38f5194f419647a35e2cb6523bac1,
+    type: 3}
+  m_PrefabInstance: {fileID: 1736161217}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1750940989
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7987,7 +8003,7 @@ PrefabInstance:
     - target: {fileID: 1060329764536100889, guid: ff7e60ef648e09147859de0d1785d0ea,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1060329764536100885, guid: ff7e60ef648e09147859de0d1785d0ea,
         type: 3}
@@ -8328,6 +8344,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_textInfo.pageCount
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1060329764536100886, guid: ff7e60ef648e09147859de0d1785d0ea,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1736161218}
+    - target: {fileID: 1060329764536100886, guid: ff7e60ef648e09147859de0d1785d0ea,
+        type: 3}
+      propertyPath: m_PlaneDistance
+      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff7e60ef648e09147859de0d1785d0ea, type: 3}
