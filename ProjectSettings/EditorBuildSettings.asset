@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/_Scenes/Final/Menus/SplashScreen.unity
     guid: 2923624729d626640aee3b9ca0b551fb
   - enabled: 1
+    path: Assets/_Scenes/Final/01_Mundo01/pb_levels/01_11_Drop.unity
+    guid: 9ffc8ebccfe3bda4d9bb3700020fbd1b
+  - enabled: 1
     path: Assets/_Scenes/Final/00_Tutorial/pb_levels/00_01-Jump_pb.unity
     guid: 5a46732f943381d4a8a19c295fd09349
   - enabled: 1
