@@ -493,6 +493,7 @@ public class GameManager : MonoBehaviour
 
         //En caso de Bug o CTD, nos aseguramos de restaurar la escala de tiempo.
         Time.timeScale = 1f;
+        
 
         //TESTING ZONE
         //END TESTING ZONE

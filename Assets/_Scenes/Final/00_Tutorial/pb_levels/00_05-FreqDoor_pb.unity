@@ -6739,7 +6739,7 @@ MonoBehaviour:
       m_Rotation: 0
       m_Anchor: 9
     m_Material: {fileID: 0}
-    m_SubmeshIndex: 4
+    m_SubmeshIndex: 3
     m_ManualUV: 0
     elementGroup: -1
     m_TextureGroup: -1
@@ -7953,7 +7953,6 @@ MeshRenderer:
   - {fileID: 2100000, guid: 07dc66ae04b7f6a43b9674bf0fefb33a, type: 2}
   - {fileID: 2100000, guid: 07dc66ae04b7f6a43b9674bf0fefb33a, type: 2}
   - {fileID: 2100000, guid: 07dc66ae04b7f6a43b9674bf0fefb33a, type: 2}
-  - {fileID: 2100000, guid: 79f64ed6f5d6d374d91c3a0af4070258, type: 2}
   - {fileID: 2100000, guid: 36bce9ab6cae8ce43962938466458044, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -14007,7 +14006,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh122916
+  m_Name: pb_Mesh52598
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -14042,24 +14041,14 @@ Mesh:
       m_Extent: {x: 2, y: 0, z: 1.5}
   - serializedVersion: 2
     firstByte: 1008
-    indexCount: 6
+    indexCount: 12
     topology: 0
     baseVertex: 0
     firstVertex: 210
-    vertexCount: 4
+    vertexCount: 8
     localAABB:
-      m_Center: {x: 33.25, y: 3.5, z: 2}
-      m_Extent: {x: 4.25, y: 1.5, z: 0}
-  - serializedVersion: 2
-    firstByte: 1020
-    indexCount: 6
-    topology: 0
-    baseVertex: 0
-    firstVertex: 214
-    vertexCount: 4
-    localAABB:
-      m_Center: {x: -2.25, y: -1.5, z: 2}
-      m_Extent: {x: 3.25, y: 1.5, z: 0}
+      m_Center: {x: 16, y: 1, z: 2}
+      m_Extent: {x: 21.5, y: 4, z: 0}
   m_Shapes:
     vertices: []
     shapes: []
