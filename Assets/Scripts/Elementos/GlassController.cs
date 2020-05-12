@@ -16,8 +16,8 @@ public class GlassController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(GameManager.Instance.isGamePaused)
-        {
+        if (GameManager.Instance.isGamePaused)
+        {   
             myMesh.enabled = false;
         } else
         {
