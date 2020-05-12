@@ -22,7 +22,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 15
+        value: 0.5
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -30,16 +30,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.06666667
-        value: 15
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 0.083333336
+        time: 0.05
         value: 0
         inSlope: 0
         outSlope: 0
@@ -58,7 +49,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.18333334
-        value: 15
+        value: 0.5
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -69,19 +60,19 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Intensity
-    path: 
+    path: EndPointLight
     classID: 108
     script: {fileID: 0}
   m_PPtrCurves:
   - curve:
     - time: 0
       value: {fileID: 2100000, guid: 7d138db07ea07134b82d6f9c0d909129, type: 2}
-    - time: 0.18333334
+    - time: 0.05
+      value: {fileID: 2100000, guid: 206ffefc6c211a5439e00759cd0a934a, type: 2}
+    - time: 0.16666667
       value: {fileID: 2100000, guid: 7d138db07ea07134b82d6f9c0d909129, type: 2}
-    - time: 0.083333336
-      value: {fileID: 2100000, guid: bfcaea647fb2a8c488dca5955c153d25, type: 2}
     attribute: m_Materials.Array.data[0]
-    path: FinalLamp
+    path: 
     classID: 23
     script: {fileID: 0}
   m_SampleRate: 60
@@ -92,14 +83,14 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 0
+      path: 1544663482
       attribute: 898800009
       script: {fileID: 0}
       typeID: 108
       customType: 25
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 3628566268
+      path: 0
       attribute: 0
       script: {fileID: 0}
       typeID: 23
@@ -107,8 +98,8 @@ AnimationClip:
       isPPtrCurve: 1
     pptrCurveMapping:
     - {fileID: 2100000, guid: 7d138db07ea07134b82d6f9c0d909129, type: 2}
+    - {fileID: 2100000, guid: 206ffefc6c211a5439e00759cd0a934a, type: 2}
     - {fileID: 2100000, guid: 7d138db07ea07134b82d6f9c0d909129, type: 2}
-    - {fileID: 2100000, guid: bfcaea647fb2a8c488dca5955c153d25, type: 2}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
@@ -135,7 +126,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 15
+        value: 0.5
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -143,16 +134,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.06666667
-        value: 15
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 0.083333336
+        time: 0.05
         value: 0
         inSlope: 0
         outSlope: 0
@@ -171,7 +153,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.18333334
-        value: 15
+        value: 0.5
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -182,7 +164,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Intensity
-    path: 
+    path: EndPointLight
     classID: 108
     script: {fileID: 0}
   m_EulerEditorCurves: []
