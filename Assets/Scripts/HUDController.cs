@@ -22,7 +22,7 @@ public class HUDController : MonoBehaviour
     // !!! CANVAS REC !!!
     private GameObject CanvasREC;
     private GameObject RECCircle;
-    private Image RECBackGround;
+    //private Image RECBackGround;
     private TextMeshProUGUI recordingTime;
 
     private float time;
@@ -72,7 +72,7 @@ public class HUDController : MonoBehaviour
         CanvasREC = GameObject.Find("CanvasREC");
         recordingTime = GameObject.Find("REC-CountDown").GetComponent<TextMeshProUGUI>();
         RECCircle = GameObject.Find("REC-Circle");
-        RECBackGround = GameObject.Find("REC-BackGround").GetComponent<Image>();
+        //RECBackGround = GameObject.Find("REC-BackGround").GetComponent<Image>();
 
         CanvasContadorClones = GameObject.Find("CanvasContadorClones");
         CCTexto = GameObject.Find("CC-Texto").GetComponent<TextMeshProUGUI>();

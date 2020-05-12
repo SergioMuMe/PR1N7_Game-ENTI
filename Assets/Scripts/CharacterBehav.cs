@@ -239,6 +239,7 @@ public class CharacterBehav : MonoBehaviour
                     inputs.Add(new CommandsInputs(CommandsInputsEnum.START, (Time.time * 1000) - initInputTime));
 
                     SoundManager.Instance.PlaySound("PLAYER-recording");
+                    GameManager.Instance.setProfileFX("profileFX_CloneRecording");
 
                 }
                 else if (isRecording && Input.GetKeyDown(KeyCode.R) || isRecording && Time.time >= initCloningTime + limitRecordingTime)
@@ -253,6 +254,7 @@ public class CharacterBehav : MonoBehaviour
                     }
 
                     SoundManager.Instance.StopSound("PLAYER-recording");
+                    GameManager.Instance.restoreProfileFX();
                 }
 
 

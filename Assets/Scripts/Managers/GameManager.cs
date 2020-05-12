@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 
 public class GameManager : MonoBehaviour
 {
@@ -399,6 +400,55 @@ public class GameManager : MonoBehaviour
         writer.Close();
     }
 
+
+    /*index
+        ######################
+        #                    #
+        #  PostProcesado FX  #
+        #                    #
+        ######################
+    */
+    private PostProcessVolume postFX;
+    public PostProcessProfile postFX_GameTutorial;
+    public PostProcessProfile postFX_Game;
+    public PostProcessProfile postFX_UI;
+    public PostProcessProfile postFX_CloneRecording;
+    private PostProcessProfile postFX_tmp;
+
+    public void targetPostFX()
+    {
+        postFX = GameObject.Find("PostFX").GetComponent<PostProcessVolume>();
+    }
+
+    public void restoreProfileFX()
+    {
+        if (!postFX_tmp) { return; }
+        postFX.profile = postFX_tmp;
+    }
+
+    public void setProfileFX(string _name)
+    {
+        Debug.Log(postFX.profile.name);
+        postFX_tmp = postFX.profile;
+
+        if ( _name == postFX_CloneRecording.name )
+        {
+            postFX.profile = postFX_CloneRecording;
+        }
+        else if (_name == postFX_Game.name)
+        {
+            postFX.profile = postFX_Game;
+        }
+        else if (_name == postFX_UI.name)
+        {
+            postFX.profile = postFX_UI;
+        }
+        else if (_name == postFX_GameTutorial.name)
+        {
+            postFX.profile = postFX_GameTutorial;
+        }
+    }
+
     /*index
         ########################
         #                      #
@@ -441,7 +491,7 @@ public class GameManager : MonoBehaviour
         profilePicked = false;
         isGamePaused = false;
 
-        //SI SALTA BUG EN MENU DE PAUSA, LA PRÓXIMA VEZ EL JUEGO DEBERÁ RESETEAR EL VALOR DE TIMESCALE
+        //En caso de Bug o CTD, nos aseguramos de restaurar la escala de tiempo.
         Time.timeScale = 1f;
 
         //TESTING ZONE
