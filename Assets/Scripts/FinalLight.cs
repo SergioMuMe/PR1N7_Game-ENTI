@@ -5,10 +5,8 @@ using UnityEngine;
 public class FinalLight : MonoBehaviour
 {
     public Light lightF;
-    public DoorController door;
-    public Material redLight;
-    public Material greenLight;
-    public MeshRenderer finalLamp;
+    public DoorController door;    
+    private MeshRenderer finalLamp;
     [Range(0,1)]
     public float blinkChance;
     public float blinkFreq;
@@ -18,6 +16,7 @@ public class FinalLight : MonoBehaviour
     private void Start()
     {
         anim = GetComponent<Animator>();
+        finalLamp = GetComponent<MeshRenderer>();
     }
 
     void Update()
@@ -26,12 +25,12 @@ public class FinalLight : MonoBehaviour
         {
             SoundManager.Instance.PlaySound("SCENARIO-exit_door");
             lightF.color = Color.green;
-            finalLamp.material = greenLight;
+            finalLamp.enabled = false;        
         }
         else if (!door.activated && lightF.color != Color.red)
         {
             lightF.color = Color.red;
-            finalLamp.material = redLight;
+            finalLamp.enabled = true;
         }
 
         if(lightF.color != Color.green && Time.time > actTime)
