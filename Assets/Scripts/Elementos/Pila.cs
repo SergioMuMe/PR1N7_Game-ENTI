@@ -10,6 +10,7 @@ public class Pila : MonoBehaviour
     private SceneController scriptSC;
     private Animator anim;
     private ParticleSystem part;
+    private CapsuleCollider2D col;
 
     void Start()
     {
@@ -17,6 +18,7 @@ public class Pila : MonoBehaviour
         bubblePlayer = GameObject.Find("Player").GetComponent<BubbleProjectedController>();
         anim = GetComponent<Animator>();
         part = GetComponentInChildren<ParticleSystem>();
+        col = GetComponent<CapsuleCollider2D>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -25,6 +27,7 @@ public class Pila : MonoBehaviour
         {
             bubblePlayer.SetProjection("HeartPila");
             SoundManager.Instance.PlaySound("PLAYER-BatteryCollected");
+            col.enabled = false;
             scriptSC.batteryLevelCount--;
             anim.SetTrigger("PickUp");
         }
