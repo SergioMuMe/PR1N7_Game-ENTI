@@ -52,7 +52,7 @@ MeshRenderer:
   m_GameObject: {fileID: 7133395019914883519}
   m_Enabled: 1
   m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
@@ -129,7 +129,7 @@ GameObject:
   - component: {fileID: 6102380823234683325}
   - component: {fileID: 8937970710827006144}
   m_Layer: 0
-  m_Name: EndSpotLight
+  m_Name: EndPointLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -143,7 +143,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8376031415662722019}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -1.6666665, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1855882777095927934}
@@ -158,11 +158,11 @@ Light:
   m_GameObject: {fileID: 8376031415662722019}
   m_Enabled: 1
   serializedVersion: 8
-  m_Type: 0
+  m_Type: 2
   m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_Intensity: 15
-  m_Range: 6
-  m_SpotAngle: 70.3
+  m_Intensity: 0.5
+  m_Range: 20
+  m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
     m_Type: 1
