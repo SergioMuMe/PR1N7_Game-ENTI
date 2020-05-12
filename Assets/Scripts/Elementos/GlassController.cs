@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GlassController : MonoBehaviour
 {
-
+    //workaround para parchear: https://issuetracker.unity3d.com/issues/ugui-canvas-with-world-space-render-mode-is-always-rendered-before-a-transparent-mesh-renderer
     MeshRenderer myMesh;
 
     // Start is called before the first frame update
