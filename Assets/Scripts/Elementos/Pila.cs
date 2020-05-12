@@ -28,7 +28,7 @@ public class Pila : MonoBehaviour
             bubblePlayer.SetProjection("HeartPila");
             SoundManager.Instance.PlaySound("PLAYER-BatteryCollected");
             scriptSC.batteryLevelCount--;
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
     }
 }
