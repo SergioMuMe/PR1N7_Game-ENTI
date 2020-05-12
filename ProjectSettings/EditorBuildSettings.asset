@@ -33,11 +33,11 @@ EditorBuildSettings:
     path: Assets/_Scenes/Final/01_Mundo01/pb_levels/01_08-LosPozos_pb.unity
     guid: 6665ed2bc87af0b4192589ed80807da2
   - enabled: 1
-    path: Assets/_Scenes/Final/01_Mundo01/01_09_Trap.unity
-    guid: 773e61deee1b5264092ece75a0df43c9
+    path: Assets/_Scenes/Final/01_Mundo01/pb_levels/01_09_Trap_pb.unity
+    guid: 2aef9dcdecc4c38409a7a46af377c8b9
   - enabled: 1
-    path: Assets/_Scenes/Final/01_Mundo01/01_10_NotAPuzzle.unity
-    guid: 4abdda7a33f2de44da082129456b8c93
+    path: Assets/_Scenes/Final/01_Mundo01/pb_levels/01_10_NotAPuzzle_pb.unity
+    guid: 5f3ed8a8dbc84a94d89859a8ffcbc6f8
   - enabled: 1
     path: Assets/_Scenes/Final/Menus/Login.unity
     guid: 6813f1fac14a05e4d80ab390d5a7c5cf
