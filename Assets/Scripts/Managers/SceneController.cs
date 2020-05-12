@@ -9,19 +9,21 @@ using UnityEngine.Rendering.PostProcessing;
 public class SceneController : MonoBehaviour
 {
     /*index
-        ############################
-        #                          #
-        #  CONTROL CAMBIO ESCENAS  #
-        #                          #
-        ############################
+        #################################
+        #                               #
+        #  CONTROL CAMBIO ESCENAS Y FX  #
+        #                               #
+        #################################
     */
     public string nextScene;
     private string actualScene;
 
-    private PostProcessVolume postFX;
-    public PostProcessProfile postFX_GameTutorial;
-    public PostProcessProfile postFX_Game;
-    public PostProcessProfile postFX_UI;
+    //private PostProcessVolume postFX;
+    //public PostProcessProfile postFX_GameTutorial;
+    //public PostProcessProfile postFX_Game;
+    //public PostProcessProfile postFX_UI;
+    //public PostProcessProfile postFX_CloneRecording;
+    //private PostProcessProfile postFX_tmp;
 
     HUDController canvasHUD;
 
@@ -171,19 +173,24 @@ public class SceneController : MonoBehaviour
         animExit.SetTrigger("Close");
     }
 
+    void setDefaultProfileFX()
+    {
+        if (idLevel <= 5)
+        {
+            GameManager.Instance.setProfileFX("profileFX_Tutorial");
+        }
+        else
+        {
+            GameManager.Instance.setProfileFX("profileFX_Game");
+        }
+    }
+
     void resumeGameLogic()
     {
         pauseMenuMI.SetActive(false);
         GameManager.Instance.isGamePaused = false;
 
-        if (idLevel <= 5)
-        {
-            postFX.profile = postFX_GameTutorial;
-        }
-        else
-        {
-            postFX.profile = postFX_Game;
-        }
+        setDefaultProfileFX();
 
         if (canvasHUD.levelEnded && !canvasEndGame.activeInHierarchy)
         {
@@ -204,7 +211,7 @@ public class SceneController : MonoBehaviour
         pauseMenuMI.SetActive(true);
         GameManager.Instance.isGamePaused = true;
 
-        postFX.profile = postFX_UI;
+        GameManager.Instance.setProfileFX("profileFX_UI");
 
         if (canvasHUD.levelEnded && canvasEndGame.activeInHierarchy)
         {            
@@ -476,16 +483,9 @@ public class SceneController : MonoBehaviour
         //TODO: Revisar waltrapa, ¿porque entra dos veces en la función?
         waltrapa2 = true;
 
-        postFX = GameObject.Find("PostFX").GetComponent<PostProcessVolume>();
-        if (idLevel <= 5)
-        {
-            postFX.profile = postFX_GameTutorial;
-        }
-        else
-        {
-            postFX.profile = postFX_Game;
-        }
-        
+        GameManager.Instance.targetPostFX();
+        setDefaultProfileFX();
+
 
         //Ocultamos menus, definimos camaras de canvas EndGame. (necesario para displayar medallas 3d)
         canvasEndGame = GameObject.Find("CanvasEndGame");
@@ -655,7 +655,7 @@ public class SceneController : MonoBehaviour
 
             waltrapa = false;
 
-            postFX.profile = postFX_UI;
+            GameManager.Instance.setProfileFX("profileFX_UI");
 
             Debug.LogWarning("TODO: arreglar waltrapa");
             collision.enabled = false;
