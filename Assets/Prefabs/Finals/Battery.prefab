@@ -2022,7 +2022,7 @@ ParticleSystem:
     radial:
       serializedVersion: 2
       minMaxState: 1
-      scalar: 2
+      scalar: 1.5
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -2037,13 +2037,13 @@ ParticleSystem:
           inWeight: 0
           outWeight: 0.25403225
         - serializedVersion: 3
-          time: 0.7977871
-          value: -0.00036727358
-          inSlope: -1.7594935
-          outSlope: -1.7594935
+          time: 0.99203146
+          value: 0.012289892
+          inSlope: -0.45989454
+          outSlope: -0.45989454
           tangentMode: 0
           weightedMode: 0
-          inWeight: 0.23387098
+          inWeight: 0.19502436
           outWeight: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
