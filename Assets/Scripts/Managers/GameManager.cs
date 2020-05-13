@@ -428,7 +428,6 @@ public class GameManager : MonoBehaviour
 
     public void setProfileFX(string _name)
     {
-        Debug.Log(postFX.profile.name);
         postFX_tmp = postFX.profile;
 
         if ( _name == postFX_CloneRecording.name )
