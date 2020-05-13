@@ -483,6 +483,10 @@ public class SceneController : MonoBehaviour
         //TODO: Revisar waltrapa, ¿porque entra dos veces en la función?
         waltrapa2 = true;
 
+        //Control de errores, al iniciar un nivel reseteamos el pausa a FALSE ya que inicia en ejecución
+        GameManager.Instance.isGamePaused = false;
+        
+
         GameManager.Instance.targetPostFX();
         setDefaultProfileFX();
 
