@@ -11,8 +11,6 @@ GameObject:
   - component: {fileID: 6556469750400575644}
   - component: {fileID: 7303640895482150621}
   - component: {fileID: 460215816672638720}
-  - component: {fileID: 7520850323077917189}
-  - component: {fileID: 1554662575168147749}
   m_Layer: 0
   m_Name: EndLight
   m_TagString: Untagged
@@ -79,43 +77,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &7520850323077917189
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1814167584829177578}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7b9e80393cda4949a10aa028a322cf0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lightF: {fileID: 0}
-  door: {fileID: 0}
-  redLight: {fileID: 2100000, guid: 7d138db07ea07134b82d6f9c0d909129, type: 2}
-  greenLight: {fileID: 2100000, guid: 7fcd0ed9c9ec37d4f8c78c9f1936dc6b, type: 2}
-  blinkChance: 0.2
-  blinkFreq: 1
---- !u!95 &1554662575168147749
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1814167584829177578}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 4acde68a2eca2c54b9877870f3b25ce1, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7133395019914883519
 GameObject:
   m_ObjectHideFlags: 0
@@ -211,8 +172,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lightF: {fileID: 8937970710827006144}
   door: {fileID: 0}
-  redLight: {fileID: 2100000, guid: 7d138db07ea07134b82d6f9c0d909129, type: 2}
-  greenLight: {fileID: 2100000, guid: 7fcd0ed9c9ec37d4f8c78c9f1936dc6b, type: 2}
   blinkChance: 0.2
   blinkFreq: 1
 --- !u!95 &644402322604969588
