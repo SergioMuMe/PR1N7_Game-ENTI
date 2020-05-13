@@ -5074,10 +5074,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Print
       objectReference: {fileID: 0}
+    - target: {fileID: 100010, guid: 4cdec31f48e329347a591287cd2b9de3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9500000, guid: 4cdec31f48e329347a591287cd2b9de3, type: 3}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 544c893b8cad1fe489b3a0b66463828a, type: 2}
+    - target: {fileID: 9500000, guid: 4cdec31f48e329347a591287cd2b9de3, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 4cdec31f48e329347a591287cd2b9de3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
