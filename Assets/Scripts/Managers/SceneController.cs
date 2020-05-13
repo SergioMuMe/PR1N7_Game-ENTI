@@ -15,15 +15,8 @@ public class SceneController : MonoBehaviour
         #                               #
         #################################
     */
-    public string nextScene;
+    public int nextScene;
     private string actualScene;
-
-    //private PostProcessVolume postFX;
-    //public PostProcessProfile postFX_GameTutorial;
-    //public PostProcessProfile postFX_Game;
-    //public PostProcessProfile postFX_UI;
-    //public PostProcessProfile postFX_CloneRecording;
-    //private PostProcessProfile postFX_tmp;
 
     HUDController canvasHUD;
 
@@ -45,7 +38,7 @@ public class SceneController : MonoBehaviour
         SceneManager.LoadScene(scene);
     }
 
-    private void loadNextScene(string scene)
+    private void loadNextScene(int _scene)
     {
         if(waltrapa2)
         {
@@ -54,7 +47,7 @@ public class SceneController : MonoBehaviour
         }
         
         SoundManager.Instance.StopAllSounds();
-        SceneManager.LoadScene(scene);
+        SceneManager.LoadScene(_scene);
     }
 
     /*index
@@ -179,9 +172,13 @@ public class SceneController : MonoBehaviour
         {
             GameManager.Instance.setProfileFX("profileFX_Tutorial");
         }
-        else
+        else if (idLevel == 6 || idLevel == 9)
         {
-            GameManager.Instance.setProfileFX("profileFX_Game");
+            GameManager.Instance.setProfileFX("profileFX_Game21");
+        }
+        else
+        {            
+            GameManager.Instance.setProfileFX("profileFX_Game16");
         }
     }
 
@@ -655,14 +652,14 @@ public class SceneController : MonoBehaviour
     {
         if (waltrapa && collision.tag == "Player")
         {
-            collision.GetComponent<CharacterBehav>().DestroyAllClones();
 
+            collision.GetComponent<CharacterBehav>().DestroyAllClones();
+            collision.GetComponent<CharacterBehav>().enabled = false;
+
+            Debug.LogWarning("TODO: arreglar waltrapa");
             waltrapa = false;
 
             GameManager.Instance.setProfileFX("profileFX_UI");
-
-            Debug.LogWarning("TODO: arreglar waltrapa");
-            collision.enabled = false;
 
             //TODO: bloquear Inputs de jugador
             Debug.LogWarning("TODO: bloquear Inputs de jugador.");

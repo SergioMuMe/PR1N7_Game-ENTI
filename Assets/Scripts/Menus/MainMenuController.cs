@@ -85,6 +85,8 @@ public class MainMenuController : MonoBehaviour
     {
         for (int j = 0; j < scriptGM.numberOfLevels; j++)
         {
+            Debug.Log(j);
+            Debug.Log(scriptGM.numberOfLevels);
             levelButtons[j].GetComponent<Button>().interactable = scriptGM.profiles[idProfileSelected].levelsData[j].levelUnblockedFLAG;
 
             if (levelButtons[j].GetComponent<Button>().IsInteractable())

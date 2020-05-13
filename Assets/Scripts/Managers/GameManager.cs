@@ -141,19 +141,25 @@ public class GameManager : MonoBehaviour
     private void setTimeLevelLimit()
     {
         //PROFE:¿porque no puedo hacer el new en la misma linea donde declaro timeLevelLimit?
-        timeLevelLimit = new float[11];
+        timeLevelLimit = new float[12];
 
+        //DevRoom
         timeLevelLimit[0] = 99f;
+
+        //Tutorial
         timeLevelLimit[1] = 10f;
         timeLevelLimit[2] = 15f;
         timeLevelLimit[3] = 20f;
         timeLevelLimit[4] = 25f;
         timeLevelLimit[5] = 30f;
-        timeLevelLimit[6] = 45f;
-        timeLevelLimit[7] = 50f;
-        timeLevelLimit[8] = 45f;
-        timeLevelLimit[9] = 45f;
-        timeLevelLimit[10] = 55f;
+
+        //Mundo01
+        timeLevelLimit[6] = 55f;
+        timeLevelLimit[7] = 45f;
+        timeLevelLimit[8] = 50f;
+        timeLevelLimit[9] = 55f;
+        timeLevelLimit[10] = 45f;
+        timeLevelLimit[11] = 45f;
     }
 
 
@@ -208,9 +214,7 @@ public class GameManager : MonoBehaviour
                 //El primer nivel y la DEV-Room está desbloqueado para jugar
                 //profiles[i].levelsData[j].levelUnblockedFLAG = true;
                 if (j == 0 || j == 1) { profiles[i].levelsData[j].levelUnblockedFLAG = true; }
-                else { profiles[i].levelsData[j].levelUnblockedFLAG = false; }
-                
-                
+                else { profiles[i].levelsData[j].levelUnblockedFLAG = false; }         
 
                 profiles[i].levelsData[j].firstTimeFLAG = true;
                 profiles[i].levelsData[j].levelMedals.finished = false;
@@ -410,7 +414,8 @@ public class GameManager : MonoBehaviour
     */
     private PostProcessVolume postFX;
     public PostProcessProfile postFX_GameTutorial;
-    public PostProcessProfile postFX_Game;
+    public PostProcessProfile postFX_Game16;
+    public PostProcessProfile postFX_Game21;
     public PostProcessProfile postFX_UI;
     public PostProcessProfile postFX_CloneRecording;
     private PostProcessProfile postFX_tmp;
@@ -424,6 +429,7 @@ public class GameManager : MonoBehaviour
     {
         if (!postFX_tmp) { return; }
         postFX.profile = postFX_tmp;
+        Debug.Log("restoreProfileFX: " + postFX.profile.name);
     }
 
     public void setProfileFX(string _name)
@@ -434,9 +440,13 @@ public class GameManager : MonoBehaviour
         {
             postFX.profile = postFX_CloneRecording;
         }
-        else if (_name == postFX_Game.name)
+        else if (_name == postFX_Game16.name)
         {
-            postFX.profile = postFX_Game;
+            postFX.profile = postFX_Game16;
+        }
+        else if (_name == postFX_Game21.name)
+        {
+            postFX.profile = postFX_Game21;
         }
         else if (_name == postFX_UI.name)
         {
@@ -446,6 +456,8 @@ public class GameManager : MonoBehaviour
         {
             postFX.profile = postFX_GameTutorial;
         }
+
+        Debug.Log("setProfileFX LOADED: " + postFX.profile.name);
     }
 
     /*index

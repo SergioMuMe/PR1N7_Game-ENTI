@@ -452,10 +452,11 @@ MonoBehaviour:
   idActualLevel: 0
   timeLevelLimit: []
   numberOfLevels: 0
-  createEmptyProfilesFLAG: 0
+  createEmptyProfilesFLAG: 1
   postFX_GameTutorial: {fileID: 11400000, guid: 3000200b66b586048b457515d7837e3c,
     type: 2}
-  postFX_Game: {fileID: 11400000, guid: 505dfedcd5aafd14a867b26fa51074c8, type: 2}
+  postFX_Game16: {fileID: 11400000, guid: 505dfedcd5aafd14a867b26fa51074c8, type: 2}
+  postFX_Game21: {fileID: 11400000, guid: 684cf15486bb64246b83b9d8193a4a00, type: 2}
   postFX_UI: {fileID: 11400000, guid: 88bc32d3d8c6f894c8e7466701993566, type: 2}
   postFX_CloneRecording: {fileID: 11400000, guid: 199a345a14fe87d43930c3f9d08d981c,
     type: 2}

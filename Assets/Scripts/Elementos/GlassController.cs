@@ -6,11 +6,13 @@ public class GlassController : MonoBehaviour
 {
     //workaround para parchear: https://issuetracker.unity3d.com/issues/ugui-canvas-with-world-space-render-mode-is-always-rendered-before-a-transparent-mesh-renderer
     MeshRenderer myMesh;
+    HUDController canvasHUD;
 
     // Start is called before the first frame update
     void Start()
     {
         myMesh = gameObject.GetComponent<MeshRenderer>();
+        canvasHUD = GameObject.Find("CanvasHUD").GetComponent<HUDController>();
     }
 
     // Update is called once per frame
@@ -21,7 +23,7 @@ public class GlassController : MonoBehaviour
             myMesh.enabled = true;
         }
 
-        if (GameManager.Instance.isGamePaused)
+        if (GameManager.Instance.isGamePaused || canvasHUD.levelEnded)
         {   
             myMesh.enabled = false;
         } else
