@@ -236,6 +236,11 @@ public class SceneController : MonoBehaviour
     private float timeLevelLimit; // En Segundos. Tiempo objetivo del nivel para ganar la estrella del tiempo
     private float timePlayerRecord; // En Segundos. Tiempo record del jugador. 
 
+
+    int idPlayer = GameManager.Instance.profileSelected;
+    int idLevelData = GameManager.Instance.idActualLevel;
+    float levelRecordPlayer;
+
     private GameManager scriptGM; //Obtenemos el GameManager para ir almacenando los datos de la sesion de juego
 
     //Info enviada al GameManager para guardar resultados del nivel. Previamente obtenemos la info actual.
@@ -288,6 +293,12 @@ public class SceneController : MonoBehaviour
             sceneMedals.timeBeated = false;
         }
 
+        //¿Nuevo record?
+        //if (playerTime >= levelRecordPlayer)
+        //{
+        //    newRecordText.enabled = false;
+        //}
+
 
         //sceneMedals.batteryCollected
         if (batteryLevelCount == 0)
@@ -322,8 +333,11 @@ public class SceneController : MonoBehaviour
         {
             //Obtiene nuevo record
             sceneMedals.timeRecord = playerTime;
-        } //ELSE Mantiene el record anterior  
-    
+        }
+        else  //ELSE Mantiene el record anterior  
+        {
+            newRecordText.enabled = false;
+        }
     }
     
     //Esta función es llamada justo antes de cambiar de nivel.
@@ -414,16 +428,7 @@ public class SceneController : MonoBehaviour
         scriptGM = GameObject.Find("GameManager").GetComponent<GameManager>();
         actualScene = SceneManager.GetActiveScene().name;
         getPlayerLevelInfo();
-
-        if (sceneMedals.allAtOnce)
-        {
-            //Si ya tienes la medalla de ORO, compites contra tu tiempo.
-            timeLevelLimit = sceneMedals.timeRecord;
-        } else
-        {
-            //Si aun no tinees la medalla de ORO, compites contra el record del mapa
-            timeLevelLimit = scriptGM.timeLevelLimit[idLevel];
-        }
+        timeLevelLimit = scriptGM.timeLevelLimit[idLevel];
 
         //Datos para el end game splash screen
         levelNameEG = GameObject.Find("EG-Title").GetComponent<TextMeshProUGUI>();
@@ -482,7 +487,10 @@ public class SceneController : MonoBehaviour
 
         //Control de errores, al iniciar un nivel reseteamos el pausa a FALSE ya que inicia en ejecución
         GameManager.Instance.isGamePaused = false;
-        
+
+        //TODO: Esto está en el HUD Controller y en el SceneController. Lo suyo seria centralizarlo en una función del GameManager que retorne el valor float de levelRecordPlayer.
+        //Obtenemos el record del player.
+        levelRecordPlayer = GameManager.Instance.profiles[idPlayer].levelsData[idLevelData].levelMedals.timeRecord;
 
         GameManager.Instance.targetPostFX();
         setDefaultProfileFX();
@@ -620,6 +628,7 @@ public class SceneController : MonoBehaviour
                 nextSprite++;
             }
 
+            //DEPRECATED: Trasladamos animaciones de codigo a creadas por Unity.
             //Parpadeo de NEW RECORD ! en caso de superar tiempo record
             /*
             if (playerTime < timeLevelLimit)
