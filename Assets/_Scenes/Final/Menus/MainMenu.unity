@@ -1790,7 +1790,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: MUNDO 1
+  m_text: WORLD 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b473d6585d6d73f42967a0516390849b, type: 2}
   m_sharedMaterial: {fileID: 21021817585998264, guid: b473d6585d6d73f42967a0516390849b,
@@ -13641,7 +13641,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1680462444}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
