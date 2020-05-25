@@ -95,9 +95,14 @@ public class CharacterBehav : MonoBehaviour
     private bool colRight;
     private bool colLeft;
 
+    private float lastFrameY;
+
     public bool isGrounded = false;
     //Almacena el estado si esta saltando
     public bool isJumping = true;
+
+    private bool isFalling = true;
+    private bool isRising = true;
     //Almacena el estado si esta grabando
     public bool isRecording = false;
     //Almacena el estado si ha interactuado
@@ -384,9 +389,24 @@ public class CharacterBehav : MonoBehaviour
         }
         else
         {
-            colRight = false;
-            colLeft = false;
-        }
+            if (colRight != false || colLeft != false)
+            {
+                colRight = false;
+                colLeft = false;
+            }
+
+            if (isFalling)
+            {
+                hitForward = Physics2D.Raycast(transform.position + (Vector3.down * groundDistance) + (Vector3.right * (frontDistance - groundedPrecision)), -Vector2.up, groundedPrecision);
+                hitBack = Physics2D.Raycast(transform.position + (Vector3.down * groundDistance) + (Vector3.left * (frontDistance - groundedPrecision)), -Vector2.up, groundedPrecision);
+
+                if (!hitForward && !hitBack)
+                {
+                    isJumping = true;
+                }                
+            }
+
+        }       
 
         if (rb.velocity.x > maxVelocity)
         {
@@ -449,6 +469,24 @@ public class CharacterBehav : MonoBehaviour
             default:
                 break;
         }
+
+        if (!isFalling && lastFrameY > transform.position.y)
+        {
+            isFalling = true;
+            isRising = false;
+        }
+        else if (!isRising && lastFrameY < transform.position.y)
+        {
+            isRising = true;
+            isFalling = false;
+        }
+        else if (isFalling || isRising)
+        {
+            isFalling = false;
+            isRising = false;
+        }
+
+        lastFrameY = transform.position.y;
     }
 
     public void EndIterationParticles()
@@ -494,7 +532,7 @@ public class CharacterBehav : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (hitForward && !isGrounded || hitBack && !isGrounded)
+        if (hitForward && !isGrounded && !isRising || hitBack && !isGrounded &&!isRising)
         {
 
             isJumping = false;
