@@ -317,8 +317,8 @@ public class CharacterBehav : MonoBehaviour
                             break;
                         case CommandsInputsEnum.JUMP:
                             rb.AddForce(Vector2.up * jumpForce);
-                            //isJumping = true;
-                            //playerAnimator.SetBool("Jump", true);
+                            isJumping = true;
+                            playerAnimator.SetBool("Jump", true);
                             break;
                         case CommandsInputsEnum.INTERACT:
                             if (button != null) { button.Switch(); };
@@ -355,8 +355,17 @@ public class CharacterBehav : MonoBehaviour
         {
             jumpTime += delta;
 
-            hitForward = Physics2D.Raycast(transform.position + (Vector3.down * groundDistance) + (Vector3.right * (frontDistance - groundedPrecision)), -Vector2.up, groundedPrecision);
-            hitBack = Physics2D.Raycast(transform.position + (Vector3.down * groundDistance) + (Vector3.left * (frontDistance - groundedPrecision)), -Vector2.up, groundedPrecision);
+            if (type == CharacterType.PLAYER)
+            {
+                hitForward = Physics2D.Raycast(transform.position + (Vector3.down * groundDistance) + (Vector3.right * (frontDistance - groundedPrecision)), -Vector2.up, groundedPrecision);
+                hitBack = Physics2D.Raycast(transform.position + (Vector3.down * groundDistance) + (Vector3.left * (frontDistance - groundedPrecision)), -Vector2.up, groundedPrecision);
+            }
+            else
+            {
+                hitForward = Physics2D.Raycast(transform.position + (Vector3.down * groundDistance) + (Vector3.right * (frontDistance - groundedPrecision)), -Vector2.up, groundedPrecision, 9);
+                hitBack = Physics2D.Raycast(transform.position + (Vector3.down * groundDistance) + (Vector3.left * (frontDistance - groundedPrecision)), -Vector2.up, groundedPrecision, 9);
+            }
+
 
             if (!hitForward && !hitBack)
             {
@@ -397,8 +406,16 @@ public class CharacterBehav : MonoBehaviour
 
             if (isFalling)
             {
-                hitForward = Physics2D.Raycast(transform.position + (Vector3.down * groundDistance) + (Vector3.right * (frontDistance - groundedPrecision)), -Vector2.up, groundedPrecision);
-                hitBack = Physics2D.Raycast(transform.position + (Vector3.down * groundDistance) + (Vector3.left * (frontDistance - groundedPrecision)), -Vector2.up, groundedPrecision);
+                if (type == CharacterType.PLAYER)
+                {
+                    hitForward = Physics2D.Raycast(transform.position + (Vector3.down * groundDistance) + (Vector3.right * (frontDistance - groundedPrecision)), -Vector2.up, groundedPrecision);
+                    hitBack = Physics2D.Raycast(transform.position + (Vector3.down * groundDistance) + (Vector3.left * (frontDistance - groundedPrecision)), -Vector2.up, groundedPrecision);
+                }
+                else
+                {
+                    hitForward = Physics2D.Raycast(transform.position + (Vector3.down * groundDistance) + (Vector3.right * (frontDistance - groundedPrecision)), -Vector2.up, groundedPrecision, 0);
+                    hitBack = Physics2D.Raycast(transform.position + (Vector3.down * groundDistance) + (Vector3.left * (frontDistance - groundedPrecision)), -Vector2.up, groundedPrecision, 0);
+                }
 
                 if (!hitForward && !hitBack)
                 {
