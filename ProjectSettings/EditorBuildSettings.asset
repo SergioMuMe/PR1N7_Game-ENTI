@@ -47,4 +47,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/Final/Menus/MainMenu.unity
     guid: 26bbf3b220fa4164c9ffebf0885e19ea
+  - enabled: 1
+    path: Assets/_Scenes/Final/01_Mundo01/pb_levels/ReleaseLevel/01_07-TutoDropMoveClone_pb_rel.unity
+    guid: 426d833b49be8354584ca38c6c881352
   m_configObjects: {}
