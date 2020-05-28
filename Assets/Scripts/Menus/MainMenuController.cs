@@ -76,6 +76,14 @@ public class MainMenuController : MonoBehaviour
     */
     #region GESTION_DE_NIVELES
 
+
+    public GameObject nextWorld;
+    public GameObject previousWorld;
+
+    public int actualWorld;
+    public int minLevel;
+    public int maxLevel;
+
     //Para modificar color (bloqueado/desbloqueado): Obtenemos los botones de los niveles + textos
     public GameObject[] levelButtons;
     public TextMeshProUGUI[] textUI;
@@ -364,10 +372,54 @@ public class MainMenuController : MonoBehaviour
             SoundManager.Instance.setMusicNull();
         }
         SoundManager.Instance.playingNow = Utils.PlayingNow.MAINTHEME;
+
+        actualWorld = 1;
+
+        //Desactivamos el botón de volver atrás en el selector de mundos
+        previousWorld.SetActive(false);
+    }
+
+
+    public void actualWorldModify(int _num)
+    {
+        actualWorld += _num;
     }
 
     private void Update()
     {
+
+        //Controlamos las flechas para navegar entre mundos, primeras condiciones limitan inicio y fin
+        if (actualWorld == 1)
+        {
+            previousWorld.SetActive(false);
+        }
+        else if (actualWorld == 3)
+        {
+            nextWorld.SetActive(false);
+        }
+        else
+        {
+            previousWorld.SetActive(true);
+            nextWorld.SetActive(true);
+        }
+
+        maxLevel = 5;
+
+        maxLevel *= actualWorld;
+        minLevel = maxLevel - 5;
+
+        for (int i = 1; i < levelButtons.Length; i++)
+        {
+            if(i > minLevel && i <= maxLevel)
+            {
+                levelButtons[i].SetActive(true);
+            } else
+            {
+                levelButtons[i].SetActive(false);
+            }
+        }
+
+        //Sonido
         masterValueDisplay.text = Utils.GetPercentage(masterVolumen.value, 0).ToString() + "%";
         musicValueDisplay.text = Utils.GetPercentage(musicVolumen.value, 0).ToString() + "%";
         effectsValueDisplay.text = Utils.GetPercentage(effectsVolumen.value, 0).ToString() + "%";
