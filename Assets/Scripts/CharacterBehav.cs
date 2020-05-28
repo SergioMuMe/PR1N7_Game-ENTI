@@ -281,14 +281,14 @@ public class CharacterBehav : MonoBehaviour
                         clones.RemoveAt(0);
                     }
                 }
-                if (Input.GetKeyDown(KeyCode.C) && !isRecording)
-                {
-                    if (clones.Count > 0)
-                    {
-                        Destroy(clones[clones.Count-1]);
-                        clones.RemoveAt(clones.Count-1);
-                    }
-                }
+                //if (Input.GetKeyDown(KeyCode.C) && !isRecording)
+                //{
+                //    if (clones.Count > 0)
+                //    {
+                //        Destroy(clones[clones.Count-1]);
+                //        clones.RemoveAt(clones.Count-1);
+                //    }
+                //}
                 break;
 
             case CharacterType.CLONE:
