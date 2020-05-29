@@ -42,15 +42,15 @@ EditorBuildSettings:
     path: Assets/_Scenes/Final/01_Mundo01/pb_levels/01_11-LosPozos_pb.unity
     guid: 6665ed2bc87af0b4192589ed80807da2
   - enabled: 1
-    path: Assets/_Scenes/Final/01_Mundo01/02_01-Compuertas.unity
-    guid: 32cf249275c9fc14baa7627231489872
+    path: Assets/_Scenes/Final/01_Mundo01/pb_levels/ReleaseLevel/01_06-TutoDropClone_pb_rel.unity
+    guid: 98100a0fcb36831408db2dc232f69bf1
+  - enabled: 1
+    path: Assets/_Scenes/Final/01_Mundo01/pb_levels/ReleaseLevel/01_07-TutoDropMoveClone_pb_rel.unity
+    guid: 426d833b49be8354584ca38c6c881352
   - enabled: 1
     path: Assets/_Scenes/Final/Menus/Login.unity
     guid: 6813f1fac14a05e4d80ab390d5a7c5cf
   - enabled: 1
     path: Assets/_Scenes/Final/Menus/MainMenu.unity
     guid: 26bbf3b220fa4164c9ffebf0885e19ea
-  - enabled: 1
-    path: Assets/_Scenes/Final/01_Mundo01/pb_levels/ReleaseLevel/01_07-TutoDropMoveClone_pb_rel.unity
-    guid: 426d833b49be8354584ca38c6c881352
   m_configObjects: {}
