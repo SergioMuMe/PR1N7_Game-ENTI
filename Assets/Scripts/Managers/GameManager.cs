@@ -141,7 +141,7 @@ public class GameManager : MonoBehaviour
     private void setTimeLevelLimit()
     {
         //PROFE:¿porque no puedo hacer el new en la misma linea donde declaro timeLevelLimit?
-        timeLevelLimit = new float[16];
+        timeLevelLimit = new float[26];
 
         //DevRoom
         timeLevelLimit[0] = 99f;
@@ -169,11 +169,18 @@ public class GameManager : MonoBehaviour
 
 
         ////Mundo03
-        //timeLevelLimit[16] = 45f;
-        //timeLevelLimit[17] = 45f;
-        //timeLevelLimit[18] = 45f;
-        //timeLevelLimit[19] = 45f;
-        //timeLevelLimit[20] = 45f;
+        timeLevelLimit[16] = 45f;
+        timeLevelLimit[17] = 45f;
+        timeLevelLimit[18] = 45f;
+        timeLevelLimit[19] = 45f;
+        timeLevelLimit[20] = 45f;
+
+        ////Mundo04
+        timeLevelLimit[21] = 45f;
+        timeLevelLimit[22] = 45f;
+        timeLevelLimit[23] = 45f;
+        timeLevelLimit[24] = 45f;
+        timeLevelLimit[25] = 45f;
     }
 
 
