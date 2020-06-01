@@ -393,7 +393,7 @@ public class MainMenuController : MonoBehaviour
         {
             previousWorld.SetActive(false);
         }
-        else if (actualWorld == 3)
+        else if (actualWorld == 5)
         {
             nextWorld.SetActive(false);
         }
