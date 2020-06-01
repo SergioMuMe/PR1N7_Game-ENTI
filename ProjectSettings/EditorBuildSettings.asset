@@ -54,6 +54,9 @@ EditorBuildSettings:
     path: Assets/_Scenes/Final/01_Mundo01/pb_levels/01_11-LosPozos_pb.unity
     guid: 6665ed2bc87af0b4192589ed80807da2
   - enabled: 1
+    path: Assets/_Scenes/Final/01_Mundo01/pb_levels/ReleaseLevel/Clones_sync.unity
+    guid: 33b7c6c17ac13d64a9bfa4207e9c6fdf
+  - enabled: 1
     path: Assets/_Scenes/Final/Menus/Login.unity
     guid: 6813f1fac14a05e4d80ab390d5a7c5cf
   - enabled: 1
