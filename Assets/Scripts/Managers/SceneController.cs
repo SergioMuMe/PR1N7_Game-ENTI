@@ -230,7 +230,7 @@ public class SceneController : MonoBehaviour
 
     int profileSelected; //Para acceder a datos del perfil.
 
-    public int idLevel; //Para informar al GameManager de que nivel és.
+    private int idLevel; //Para informar al GameManager de que nivel és.
     public int batteryLevelCount; // Cantidad de pilas en el nivel
     private float playerTime; // En Segundos. Tiempo que tarda el jugador en superar el nivel
     private float timeLevelLimit; // En Segundos. Tiempo objetivo del nivel para ganar la estrella del tiempo
@@ -397,8 +397,8 @@ public class SceneController : MonoBehaviour
         rgTimerControl = 0f;
         rgTimerLimit = 0.310f;
 
-    //Varaibles de end game splash screen
-    doFlashAt = 650f;
+        //Varaibles de end game splash screen
+        doFlashAt = 650f;
         doDisplayMedal = 600f;
         sprNum = new int[3];
         sprNum[0] = -1;
@@ -425,6 +425,10 @@ public class SceneController : MonoBehaviour
         }
 
         //Obtenemos referencias e información
+        Scene scene;
+        scene = SceneManager.GetActiveScene();
+        idLevel = scene.buildIndex;
+
         scriptGM = GameObject.Find("GameManager").GetComponent<GameManager>();
         actualScene = SceneManager.GetActiveScene().name;
         getPlayerLevelInfo();
@@ -438,6 +442,8 @@ public class SceneController : MonoBehaviour
         playerTimeEG = GameObject.Find("T-Time").GetComponent<TextMeshProUGUI>();
 
         newRecordText = GameObject.Find("T-NewRecord").GetComponent<TextMeshProUGUI>();
+
+       
 
         //Configuramos los botones de la splashscreen        
         goMenuButtonEG = GameObject.Find("B-goMenuButton").GetComponent<Button>();
