@@ -408,6 +408,7 @@ public class MainMenuController : MonoBehaviour
         maxLevel *= actualWorld;
         minLevel = maxLevel - 5;
 
+        //TODO: Controlar el titulo del mundo que se displaya.
         for (int i = 1; i < levelButtons.Length; i++)
         {
             if(i > minLevel && i <= maxLevel)

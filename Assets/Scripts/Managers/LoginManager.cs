@@ -55,7 +55,7 @@ public class LoginManager : MonoBehaviour
         for (int i = 0; i < 3; i++)
         {
             totalMaps[i].text = GameManager.Instance.getTotalMaps(i).ToString();
-            totalMaps[i].text = totalMaps[i].text + " / " + (GameManager.Instance.numberOfLevels - 1).ToString();
+            totalMaps[i].text = totalMaps[i].text + "/" + (GameManager.Instance.numberOfLevels - 1).ToString();
         }
     }
     //Obtenemos total medallas conseguidas
@@ -65,7 +65,7 @@ public class LoginManager : MonoBehaviour
         for (int i = 0; i < 3; i++)
         {
             totalMedals[i].text = GameManager.Instance.getTotalMedals(i).ToString();
-            totalMedals[i].text = totalMedals[i].text + " / " + ((GameManager.Instance.numberOfLevels - 1) * 3).ToString();
+            totalMedals[i].text = totalMedals[i].text + "/" + ((GameManager.Instance.numberOfLevels - 1) * 3).ToString();
         }
     }
 

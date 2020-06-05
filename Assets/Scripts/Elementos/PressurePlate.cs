@@ -20,13 +20,16 @@ public class PressurePlate : MonoBehaviour
         
         if (!on)
         {
-            SoundManager.Instance.PlaySound("SCENARIO-pressure_plate");
-            for (int i = 0; i < elements.Length; i++)
+            if (other.tag == "Player" || other.tag == "Clone" )
             {
-                elements[i].Activate();
+                SoundManager.Instance.PlaySound("SCENARIO-pressure_plate");
+                for (int i = 0; i < elements.Length; i++)
+                {
+                    elements[i].Activate();
+                }
+                Debug.Log(other.name);
+                on = true;
             }
-            Debug.Log(other.name);
-            on = true;
         }
     }
 
@@ -34,12 +37,15 @@ public class PressurePlate : MonoBehaviour
     {
         if (on)
         {
-            for (int i = 0; i < elements.Length; i++)
+            if (other.tag == "Player" || other.tag == "Clone")
             {
-                elements[i].Deactivate();
-            }
+                for (int i = 0; i < elements.Length; i++)
+                {
+                    elements[i].Deactivate();
+                }
 
-            on = false;
+                on = false;
+            }
         }
     }
 }
