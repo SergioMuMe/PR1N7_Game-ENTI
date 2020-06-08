@@ -5,7 +5,7 @@ using UnityEngine;
 public class Line : MonoBehaviour
 {
     private LineRenderer lineR;
-    private Vector3[] pos;
+    private List<Vector3> pos;
 
     public Transform[] points;
 
@@ -13,13 +13,23 @@ public class Line : MonoBehaviour
     {
         lineR = GetComponent<LineRenderer>();
 
-        pos = new Vector3[points.Length];
+        LinkTheLine();
+    }
+
+    public void LinkTheLine()
+    {
+        pos = new List<Vector3>();
 
         for (int i = 0; i < points.Length; i++)
         {
-            pos[i] = points[i].position;
+            if (points[i].gameObject.activeSelf)
+            {
+                pos.Add(points[i].localPosition);
+            }
         }
 
-        lineR.SetPositions(pos);
+        lineR.positionCount = pos.Count;
+
+        lineR.SetPositions(pos.ToArray());
     }
 }
