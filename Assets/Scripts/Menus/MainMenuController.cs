@@ -382,7 +382,11 @@ public class MainMenuController : MonoBehaviour
 
     public void actualWorldModify(int _num)
     {
+        //Seteamos el mundo actual
         actualWorld += _num;
+
+        //Actualizamos por pantalla los botones mostrados
+
     }
 
     private void Update()
