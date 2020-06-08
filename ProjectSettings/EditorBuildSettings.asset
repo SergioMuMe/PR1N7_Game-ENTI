@@ -6,60 +6,60 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/_Scenes/Final/Menus/SplashScreen.unity
+    path: Assets/_Scenes/_Release/Menu/SplashScreen.unity
     guid: 2923624729d626640aee3b9ca0b551fb
   - enabled: 1
-    path: Assets/_Scenes/Final/00_Tutorial/pb_levels/00_01-Jump_pb.unity
+    path: Assets/_Scenes/_Release/Mundo0-Tutorial/00_01-Jump_pb.unity
     guid: 5a46732f943381d4a8a19c295fd09349
   - enabled: 1
-    path: Assets/_Scenes/Final/00_Tutorial/pb_levels/00_02-PreassurePlate_pb.unity
+    path: Assets/_Scenes/_Release/Mundo0-Tutorial/00_02-PreassurePlate_pb.unity
     guid: e1ddc21d8ecb80944b7440ed1f6531ef
   - enabled: 1
-    path: Assets/_Scenes/Final/00_Tutorial/pb_levels/00_03-Bouncer_pb.unity
+    path: Assets/_Scenes/_Release/Mundo0-Tutorial/00_03-Bouncer_pb.unity
     guid: cde7ad36918949145a829b9df38b2ae3
   - enabled: 1
-    path: Assets/_Scenes/Final/00_Tutorial/pb_levels/00_04-Clonation_pb.unity
+    path: Assets/_Scenes/_Release/Mundo0-Tutorial/00_04-Clonation_pb.unity
     guid: 59407d69e1616264f9dc1b50bd71317b
   - enabled: 1
-    path: Assets/_Scenes/Final/00_Tutorial/pb_levels/00_05-FreqDoor_pb.unity
+    path: Assets/_Scenes/_Release/Mundo0-Tutorial/00_05-FreqDoor_pb.unity
     guid: e28e1a4f6cfa6f742bdbcf090f3347e9
   - enabled: 1
-    path: Assets/_Scenes/Final/01_Mundo01/pb_levels/ReleaseLevel/01_06-TutoDropClone_pb_rel.unity
+    path: Assets/_Scenes/_Release/Mundo1-EmpujarClon/01_06-TutoDropClone_pb_rel.unity
     guid: 98100a0fcb36831408db2dc232f69bf1
   - enabled: 1
-    path: Assets/_Scenes/Final/01_Mundo01/pb_levels/ReleaseLevel/01_07-TutoDropMoveClone_pb_rel.unity
+    path: Assets/_Scenes/_Release/Mundo1-EmpujarClon/01_07-TutoDropMoveClone_pb_rel.unity
     guid: 426d833b49be8354584ca38c6c881352
   - enabled: 1
-    path: Assets/_Scenes/Final/01_Mundo01/pb_levels/ReleaseLevel/01_08_Drop_pb_rel.unity
+    path: Assets/_Scenes/_Release/Mundo1-EmpujarClon/01_08_Drop_pb_rel.unity
     guid: a0011896ff9205041aa86bd1115bc769
   - enabled: 1
-    path: Assets/_Scenes/Final/01_Mundo01/pb_levels/ReleaseLevel/01_09-ElPozo_pb_rel.unity
+    path: Assets/_Scenes/_Release/Mundo1-EmpujarClon/01_09-ElPozo_pb_rel.unity
     guid: ea79c01685a17b04fa3b979fa15711f8
   - enabled: 1
-    path: Assets/_Scenes/Final/01_Mundo01/pb_levels/ReleaseLevel/01_10.unity
+    path: Assets/_Scenes/_Release/Mundo1-EmpujarClon/01_10.unity
     guid: 1c078f21cfff03147b7db0cda59dc8fb
   - enabled: 1
-    path: Assets/_Scenes/Final/01_Mundo01/pb_levels/01_06_NotAPuzzle_pb.unity
+    path: Assets/_Scenes/_Release/Mundo2-SincronizarClones/NotAPuzzle.unity
     guid: 5f3ed8a8dbc84a94d89859a8ffcbc6f8
   - enabled: 1
-    path: Assets/_Scenes/Final/01_Mundo01/pb_levels/01_07_Trap_pb.unity
+    path: Assets/_Scenes/_Release/Otros/Trap_pb.unity
     guid: 2aef9dcdecc4c38409a7a46af377c8b9
   - enabled: 1
-    path: Assets/_Scenes/Final/01_Mundo01/pb_levels/01_08-Spath_pb.unity
+    path: Assets/_Scenes/_Release/Otros/Spath_pb.unity
     guid: 0720fe73213c8f44db78b1f666bef451
   - enabled: 1
     path: Assets/_Scenes/Final/01_Mundo01/pb_levels/01_09_Drop_pb.unity
     guid: 9ffc8ebccfe3bda4d9bb3700020fbd1b
   - enabled: 1
-    path: Assets/_Scenes/Final/01_Mundo01/pb_levels/01_11-LosPozos_pb.unity
+    path: Assets/_Scenes/_Release/Otros/LosPozos_pb.unity
     guid: 6665ed2bc87af0b4192589ed80807da2
   - enabled: 1
-    path: Assets/_Scenes/Final/01_Mundo01/pb_levels/ReleaseLevel/Clones_sync.unity
+    path: Assets/_Scenes/_Release/Mundo2-SincronizarClones/Clones_sync.unity
     guid: 33b7c6c17ac13d64a9bfa4207e9c6fdf
   - enabled: 1
-    path: Assets/_Scenes/Final/Menus/Login.unity
+    path: Assets/_Scenes/_Release/Menu/Login.unity
     guid: 6813f1fac14a05e4d80ab390d5a7c5cf
   - enabled: 1
-    path: Assets/_Scenes/Final/Menus/MainMenu.unity
+    path: Assets/_Scenes/_Release/Menu/MainMenu.unity
     guid: 26bbf3b220fa4164c9ffebf0885e19ea
   m_configObjects: {}

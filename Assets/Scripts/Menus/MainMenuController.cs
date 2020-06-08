@@ -30,6 +30,7 @@ public class MainMenuController : MonoBehaviour
 
     private EventTrigger[] vectorButtons;
 
+    public Line line;
     /*index 
         ##############
         #            #
@@ -84,6 +85,12 @@ public class MainMenuController : MonoBehaviour
     public int minLevel;
     public int maxLevel;
 
+    public float maxY;
+    public float minY;
+
+    public Image[] engines;
+    public float fadeRate;
+
     //Para modificar color (bloqueado/desbloqueado): Obtenemos los botones de los niveles + textos
     public GameObject[] levelButtons;
     public TextMeshProUGUI[] textUI;
@@ -115,6 +122,15 @@ public class MainMenuController : MonoBehaviour
             }
         }
     }
+
+    void repositionButton()
+    {
+        for (int i = 0; i < levelButtons.Length; i++)
+        {
+            levelButtons[i].transform.localPosition = new Vector3(levelButtons[i].transform.localPosition.x, Random.Range(minY, maxY), levelButtons[i].transform.localPosition.z);
+        }
+    }
+
     #endregion
     /*index 
         ####################################
@@ -377,6 +393,8 @@ public class MainMenuController : MonoBehaviour
 
         //Desactivamos el botón de volver atrás en el selector de mundos
         previousWorld.SetActive(false);
+
+        repositionButton();
     }
 
 
@@ -384,6 +402,7 @@ public class MainMenuController : MonoBehaviour
     {
         //Seteamos el mundo actual
         actualWorld += _num;
+        repositionButton();
 
         //Controlamos las flechas para navegar entre mundos, primeras condiciones limitan inicio y fin
         if (actualWorld == 1)
@@ -415,6 +434,30 @@ public class MainMenuController : MonoBehaviour
             else
             {
                 levelButtons[i].SetActive(false);
+            }
+        }
+
+        line.LinkTheLine();
+    }
+
+    public void FadeOutEngines()
+    {
+        while(engines[0].color.a > 0)
+        {
+            for (int i = 0; i < engines.Length; i++)
+            {
+                engines[i].color = new Color(255,255,255, engines[0].color.a - fadeRate);
+            }
+        }
+    }
+
+    public void FadeInEngines()
+    {
+        while (engines[0].color.a < 0.4)
+        {
+            for (int i = 0; i < engines.Length; i++)
+            {
+                engines[i].color = new Color(255, 255, 255, engines[0].color.a + fadeRate);
             }
         }
     }
