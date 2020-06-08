@@ -385,13 +385,6 @@ public class MainMenuController : MonoBehaviour
         //Seteamos el mundo actual
         actualWorld += _num;
 
-        //Actualizamos por pantalla los botones mostrados
-
-    }
-
-    private void Update()
-    {
-
         //Controlamos las flechas para navegar entre mundos, primeras condiciones limitan inicio y fin
         if (actualWorld == 1)
         {
@@ -415,15 +408,19 @@ public class MainMenuController : MonoBehaviour
         //TODO: Controlar el titulo del mundo que se displaya.
         for (int i = 1; i < levelButtons.Length; i++)
         {
-            if(i > minLevel && i <= maxLevel)
+            if (i > minLevel && i <= maxLevel)
             {
                 levelButtons[i].SetActive(true);
-            } else
+            }
+            else
             {
                 levelButtons[i].SetActive(false);
             }
         }
+    }
 
+    private void Update()
+    {
         //Sonido
         masterValueDisplay.text = Utils.GetPercentage(masterVolumen.value, 0).ToString() + "%";
         musicValueDisplay.text = Utils.GetPercentage(musicVolumen.value, 0).ToString() + "%";
