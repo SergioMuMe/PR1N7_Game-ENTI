@@ -80,6 +80,7 @@ public class MainMenuController : MonoBehaviour
 
     public GameObject nextWorld;
     public GameObject previousWorld;
+    private TextMeshProUGUI worldSelectedTitle;
 
     public int actualWorld;
     public int minLevel;
@@ -129,6 +130,57 @@ public class MainMenuController : MonoBehaviour
         {
             levelButtons[i].transform.localPosition = new Vector3(levelButtons[i].transform.localPosition.x, Random.Range(minY, maxY), levelButtons[i].transform.localPosition.z);
         }
+    }
+
+
+    public void actualWorldModify(int _num)
+    {
+        //Seteamos el mundo actual
+        actualWorld += _num;
+        repositionButton();
+
+        //Controlamos las flechas para navegar entre mundos, primeras condiciones limitan inicio y fin
+        if (actualWorld == 1)
+        {
+            previousWorld.SetActive(false);
+        }
+        else if (actualWorld == 5)
+        {
+            nextWorld.SetActive(false);
+        }
+        else
+        {
+            previousWorld.SetActive(true);
+            nextWorld.SetActive(true);
+        }
+
+        maxLevel = 5;
+
+        maxLevel *= actualWorld;
+        minLevel = maxLevel - 5;
+
+        for (int i = 1; i < levelButtons.Length; i++)
+        {
+            if (i > minLevel && i <= maxLevel)
+            {
+                levelButtons[i].SetActive(true);
+            }
+            else
+            {
+                levelButtons[i].SetActive(false);
+            }
+        }
+
+        if(actualWorld == 1)
+        {
+            worldSelectedTitle.text = "TUTORIAL";
+        } 
+        else
+        {
+            worldSelectedTitle.text = "WORLD "+(actualWorld-1);
+        }
+
+        line.LinkTheLine();
     }
 
     #endregion
@@ -333,6 +385,7 @@ public class MainMenuController : MonoBehaviour
         options = GameObject.Find("Options");
 
         levelSelectedTitle = GameObject.Find("LevelSelectedTitle").GetComponent<TextMeshProUGUI>();
+        worldSelectedTitle = GameObject.Find("WorldSelectedTitle").GetComponent<TextMeshProUGUI>();
 
         starMedal = GameObject.Find("starMedal").GetComponent<Image>();
         timeMedal = GameObject.Find("timeMedal").GetComponent<Image>();
@@ -398,47 +451,7 @@ public class MainMenuController : MonoBehaviour
     }
 
 
-    public void actualWorldModify(int _num)
-    {
-        //Seteamos el mundo actual
-        actualWorld += _num;
-        repositionButton();
-
-        //Controlamos las flechas para navegar entre mundos, primeras condiciones limitan inicio y fin
-        if (actualWorld == 1)
-        {
-            previousWorld.SetActive(false);
-        }
-        else if (actualWorld == 5)
-        {
-            nextWorld.SetActive(false);
-        }
-        else
-        {
-            previousWorld.SetActive(true);
-            nextWorld.SetActive(true);
-        }
-
-        maxLevel = 5;
-
-        maxLevel *= actualWorld;
-        minLevel = maxLevel - 5;
-
-        //TODO: Controlar el titulo del mundo que se displaya.
-        for (int i = 1; i < levelButtons.Length; i++)
-        {
-            if (i > minLevel && i <= maxLevel)
-            {
-                levelButtons[i].SetActive(true);
-            }
-            else
-            {
-                levelButtons[i].SetActive(false);
-            }
-        }
-
-        line.LinkTheLine();
-    }
+    
 
     public void FadeOutEngines()
     {
