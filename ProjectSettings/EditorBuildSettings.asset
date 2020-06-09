@@ -57,6 +57,9 @@ EditorBuildSettings:
     path: Assets/_Scenes/_Release/Mundo4-Niveles finales/00_Vertical.unity
     guid: 4f2222510aa6845478ae460655225738
   - enabled: 1
+    path: Assets/_Scenes/_Release/Otros/Transition1-2.unity
+    guid: b4f5d7dfaa5d391469d640a607182031
+  - enabled: 1
     path: Assets/_Scenes/_Release/Menu/Login.unity
     guid: 6813f1fac14a05e4d80ab390d5a7c5cf
   - enabled: 1
