@@ -6,7 +6,8 @@ using UnityEngine.UI;
 
 public class TransitionTrigger : MonoBehaviour
 {
-    public string newText;
+    private string newText;
+    private string oldText;
 
     public DoorController door;
     public TextMeshProUGUI text;
@@ -16,6 +17,10 @@ public class TransitionTrigger : MonoBehaviour
     private void Start()
     {
         anim = GetComponent<Animator>();
+        oldText = GameManager.Instance.oldWorldName;
+        newText = GameManager.Instance.newWorldName;
+
+        text.text = oldText;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

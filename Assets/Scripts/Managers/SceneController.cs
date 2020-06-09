@@ -101,6 +101,13 @@ public class SceneController : MonoBehaviour
     private float doFlashAt;
     private TextMeshProUGUI newRecordText;
 
+    // Flash de NEW RECORD !
+    [Header("Transition between worlds")]
+    public bool goTransition;
+    public string oldWorldName;
+    public string newWorldName;
+    public int nextLevelId;
+
     //Al terminar un nivel, podemos reiniciar escena pero conservamos el progreso
     public void restartSceneEndGame()
     {
@@ -131,6 +138,15 @@ public class SceneController : MonoBehaviour
     {
         playerTime = canvasHUD.playerTime;
         playerTimeEG.text = Utils.GetTimeFormat(Utils.RoundFloat(playerTime, 3), 3);
+
+        if(goTransition)
+        {
+            GameManager.Instance.oldWorldName = oldWorldName;
+            GameManager.Instance.newWorldName = newWorldName;
+            GameManager.Instance.nextLevelId = nextLevelId;
+            Debug.Log(GameManager.Instance.oldWorldName);
+            Debug.Log(oldWorldName); 
+        }
     }
     #endregion
 
@@ -229,7 +245,7 @@ public class SceneController : MonoBehaviour
     #region CONFIGURACION_ESCENA
 
     int profileSelected; //Para acceder a datos del perfil.
-
+    [Header("Scene configuration")]
     private int idLevel; //Para informar al GameManager de que nivel és.
     public int batteryLevelCount; // Cantidad de pilas en el nivel
     private float playerTime; // En Segundos. Tiempo que tarda el jugador en superar el nivel

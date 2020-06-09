@@ -71,6 +71,10 @@ public class GameManager : MonoBehaviour
     public bool profilePicked;
 
 
+    public int nextLevelId;
+    public string oldWorldName;
+    public string newWorldName;
+
     /*index
         ####################
         #                  #
@@ -213,8 +217,7 @@ public class GameManager : MonoBehaviour
         ATENCION: ESTAS FUNCIONES SON PARA DEBUG. 
         EN LA BUILD FINAL NO INCLUIR EJECUCION PARA EVITAR SOBREESCRIBIR PROFILES DE JUGADOR.
     */
-    // PROFE: Como crear carpetas o ficheros por defecto para las builds.
-
+    
     //Flag de control, desde el inspector habilitamos si debemos o no crear perfiles.
     public bool createEmptyProfilesFLAG;
 
@@ -532,8 +535,5 @@ public class GameManager : MonoBehaviour
         //En caso de Bug o CTD, nos aseguramos de restaurar la escala de tiempo.
         Time.timeScale = 1f;
         
-
-        //TESTING ZONE
-        //END TESTING ZONE
     }
 }
