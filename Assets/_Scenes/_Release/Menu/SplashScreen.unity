@@ -449,6 +449,9 @@ MonoBehaviour:
   isGamePaused: 0
   profileSelected: 0
   profilePicked: 0
+  nextLevelId: 0
+  oldWorldName: 
+  newWorldName: 
   idActualLevel: 0
   timeLevelLimit: []
   numberOfLevels: 0
@@ -512,7 +515,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1015124455}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: a1cfa603eb1fc1844a32b6132b0ed9e2, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: 340d583e382b3a34fadef57af8a2f7cd, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 321709269}
