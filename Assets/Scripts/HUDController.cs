@@ -147,7 +147,7 @@ public class HUDController : MonoBehaviour
             }
             else
             {
-                CCTexto.text = characterBehav.clones.Count + " / " + characterBehav.maxClones.ToString();
+                CCTexto.text = characterBehav.clones.Count + "/" + characterBehav.maxClones.ToString();
             }
 
             /*index
