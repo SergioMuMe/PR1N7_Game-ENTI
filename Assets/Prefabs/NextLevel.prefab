@@ -71,7 +71,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bfd154076cc004700b97c9985e9eec75, type: 3}
-  m_Color: {r: 0.6134912, g: 1, b: 0.5518868, a: 0.6784314}
+  m_Color: {r: 0.6134912, g: 1, b: 0.5518868, a: 0.14117648}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -93,11 +93,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6efc1fc8739e4fc4783f07034baf61ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextScene: 
-  postFX_GameTutorial: {fileID: 11400000, guid: 3000200b66b586048b457515d7837e3c,
-    type: 2}
-  postFX_Game: {fileID: 11400000, guid: 505dfedcd5aafd14a867b26fa51074c8, type: 2}
-  postFX_UI: {fileID: 11400000, guid: 88bc32d3d8c6f894c8e7466701993566, type: 2}
+  nextScene: 0
   statusStar:
   - {fileID: 2100000, guid: 203df990aad658848988fe73ce80fda9, type: 2}
   - {fileID: 2100000, guid: 38c041e3156132f4f8dd46ab27db19f5, type: 2}
@@ -110,7 +106,10 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 206ffefc6c211a5439e00759cd0a934a, type: 2}
   - {fileID: 2100000, guid: 547ffa1ff39613e49925549bf401a144, type: 2}
   - {fileID: 2100000, guid: ffcae22779e5c0444a7ceca0e41d0204, type: 2}
-  idLevel: 0
+  goTransition: 0
+  oldWorldName: 
+  newWorldName: 
+  nextLevelId: 0
   batteryLevelCount: 0
 --- !u!61 &7951134793956540221
 BoxCollider2D:
