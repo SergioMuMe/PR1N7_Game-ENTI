@@ -511,7 +511,7 @@ AnimationClip:
   m_HasGenericRootTransform: 1
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 0.81666666
+  - time: 0.26666668
     functionName: SetParticles
     data: 
     objectReferenceParameter: {fileID: 0}
