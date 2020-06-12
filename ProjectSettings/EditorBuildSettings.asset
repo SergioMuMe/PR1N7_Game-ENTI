@@ -60,6 +60,9 @@ EditorBuildSettings:
     path: Assets/_Scenes/_Release/Mundo3-Varios/Plataformas_pb.unity
     guid: e99535e3fb0bd994898cfa9fd88b854c
   - enabled: 1
+    path: Assets/_Scenes/_Release/Mundo4-Niveles finales/00_Syncronization.unity
+    guid: cb69aadc004f9734dbde423cf032968e
+  - enabled: 1
     path: Assets/_Scenes/_Release/Otros/Transition1-2.unity
     guid: b4f5d7dfaa5d391469d640a607182031
   - enabled: 1
