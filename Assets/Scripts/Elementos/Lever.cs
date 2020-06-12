@@ -17,16 +17,16 @@ public class Lever : MonoBehaviour
 
         for (int i = 0; i < elements.Length; i++)
         {
-            elements[i].ChangeActivate();
+            elements[i].ChangeActivate(); 
+        }
 
-            if (spotLight.color == Color.red)
-            {
+        if (spotLight.color == Color.red)
+        {
             spotLight.color = Color.green;
-            }
-            else if (spotLight.color == Color.green)
-            {
-                spotLight.color = Color.red;
-            }
+        }
+        else if (spotLight.color == Color.green)
+        {
+            spotLight.color = Color.red;
         }
 
         //if (on)
