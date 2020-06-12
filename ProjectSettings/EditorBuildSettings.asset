@@ -54,7 +54,7 @@ EditorBuildSettings:
     path: Assets/_Scenes/_Release/Mundo3-Varios/FaltaBackground_Trap_pb.unity
     guid: a6a93047a0767144482fd9b4a9cc0705
   - enabled: 1
-    path: Assets/_Scenes/_Release/Mundo2-SincronizarClones/Transito_sync.unity
+    path: Assets/_Scenes/_Release/Mundo2-SincronizarClones/FaltaBackground_Transito_sync.unity
     guid: f026a8c1d035ed740a5048567d944e6e
   - enabled: 1
     path: Assets/_Scenes/_Release/Mundo4-Niveles finales/FaltaBackground_00_Vertical.unity
@@ -65,6 +65,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/_Release/Mundo4-Niveles finales/FaltaBackground_00_Syncronization.unity
     guid: cb69aadc004f9734dbde423cf032968e
+  - enabled: 1
+    path: Assets/_Scenes/_Release/Mundo3-Varios/FaltaBackground_3Clones.unity
+    guid: d2221b2b492720140a12e4947eb31937
   - enabled: 1
     path: Assets/_Scenes/_Release/Otros/Transition1-2.unity
     guid: b4f5d7dfaa5d391469d640a607182031
