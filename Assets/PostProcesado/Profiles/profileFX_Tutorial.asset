@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: profileFX_Tutorial
   m_EditorClassIdentifier: 
   settings:
-  - {fileID: 114575472195154720}
-  - {fileID: 114893346391324370}
---- !u!114 &114575472195154720
+  - {fileID: 114612579608096348}
+  - {fileID: 114007918761916622}
+--- !u!114 &114007918761916622
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -74,13 +74,13 @@ MonoBehaviour:
     value: 0
   colorFilter:
     overrideState: 1
-    value: {r: 2, g: 2, b: 2, a: 1}
+    value: {r: 2.0000005, g: 2.0000005, b: 2.0000005, a: 1}
   hueShift:
     overrideState: 0
     value: 0
   saturation:
     overrideState: 0
-    value: 30
+    value: 0
   brightness:
     overrideState: 0
     value: 0
@@ -89,7 +89,7 @@ MonoBehaviour:
     value: 0
   contrast:
     overrideState: 0
-    value: -5
+    value: 0
   mixerRedOutRedIn:
     overrideState: 0
     value: 100
@@ -1326,7 +1326,7 @@ MonoBehaviour:
       - 0.5
       - 0.5
       - 0.5
---- !u!114 &114893346391324370
+--- !u!114 &114612579608096348
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
