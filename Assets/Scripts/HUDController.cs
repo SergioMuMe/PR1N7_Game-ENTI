@@ -16,6 +16,8 @@ public class HUDController : MonoBehaviour
         ################
     */
 
+    private TextMeshProUGUI PauseTitle;
+
     // !!! REFERENCIA PLAYER para obtener el tiempo limite de clonación !!!
     private CharacterBehav characterBehav;
 
@@ -80,6 +82,8 @@ public class HUDController : MonoBehaviour
         CanvasLT = GameObject.Find("CanvasLT");
         LTTime = GameObject.Find("LT-Time").GetComponent<TextMeshProUGUI>();
         LTRecordTime = GameObject.Find("LT-RecordTime").GetComponent<TextMeshProUGUI>();
+
+        PauseTitle = GameObject.Find("MI-Title").GetComponent<TextMeshProUGUI>();
 
         //goMenuButton = GameObject.Find("EG-goMenuButton").GetComponent<Button>();
 
@@ -148,6 +152,15 @@ public class HUDController : MonoBehaviour
             else
             {
                 CCTexto.text = characterBehav.clones.Count + "/" + characterBehav.maxClones.ToString();
+            }
+
+            if (characterBehav.clones.Count == characterBehav.maxClones)
+            {
+                CCTexto.color = Color.red;
+            }
+            else
+            {
+                CCTexto.color = Color.white;
             }
 
             /*index
