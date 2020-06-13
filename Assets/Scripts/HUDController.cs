@@ -82,7 +82,7 @@ public class HUDController : MonoBehaviour
         CanvasLT = GameObject.Find("CanvasLT");
         LTTime = GameObject.Find("LT-Time").GetComponent<TextMeshProUGUI>();
         LTRecordTime = GameObject.Find("LT-RecordTime").GetComponent<TextMeshProUGUI>();
-
+        
         PauseTitle = GameObject.Find("MI-Title").GetComponent<TextMeshProUGUI>();
 
         //goMenuButton = GameObject.Find("EG-goMenuButton").GetComponent<Button>();
@@ -93,6 +93,9 @@ public class HUDController : MonoBehaviour
         float levelRecordDEV = GameManager.Instance.timeLevelLimit[idLevel];
         float levelRecordPlayer = GameManager.Instance.profiles[idPlayer].levelsData[idLevel].levelMedals.timeRecord;
         bool allAtOnce= GameManager.Instance.profiles[idPlayer].levelsData[idLevel].levelMedals.allAtOnce;
+
+        //Pause displaya el nivel actual
+        PauseTitle.text = "LEVEL " + idLevel;
 
         //El record es estático al cargar escena, obtenemos la info en el START...
         LTRecordTime.text = "Record: ";
