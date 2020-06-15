@@ -39,31 +39,31 @@ EditorBuildSettings:
     path: Assets/_Scenes/_Release/Mundo1-EmpujarClon/01_10-SubeYEmpuja.unity
     guid: f28348b810b9f404a91d6cf968a0bcbd
   - enabled: 1
-    path: Assets/_Scenes/_Release/Mundo2-SincronizarClones/Clones_sync.unity
+    path: Assets/_Scenes/_Release/Mundo3-SincronizarClones/Clones_sync.unity
     guid: 33b7c6c17ac13d64a9bfa4207e9c6fdf
   - enabled: 1
-    path: Assets/_Scenes/_Release/Mundo2-SincronizarClones/FaltaBackground_NotAPuzzle.unity
+    path: Assets/_Scenes/_Release/Mundo4-Varios/FaltaBackground_NotAPuzzle.unity
     guid: 5f3ed8a8dbc84a94d89859a8ffcbc6f8
   - enabled: 1
-    path: Assets/_Scenes/_Release/Mundo3-Varios/FaltaBackground_LosPozos_pb.unity
+    path: Assets/_Scenes/_Release/Mundo4-Varios/FaltaBackground_LosPozos_pb.unity
     guid: 1f0224c4668366e49a2321ae1e83336b
   - enabled: 1
-    path: Assets/_Scenes/_Release/Mundo3-Varios/FaltaBackground_Spath_pb.unity
+    path: Assets/_Scenes/_Release/Mundo3-SincronizarClones/FaltaBackground_Spath_pb.unity
     guid: 61495c3a39b97ec4eb991acb0ccb374e
   - enabled: 1
-    path: Assets/_Scenes/_Release/Mundo3-Varios/FaltaBackground_Trap_pb.unity
+    path: Assets/_Scenes/_Release/Mundo4-Varios/FaltaBackground_Trap_pb.unity
     guid: a6a93047a0767144482fd9b4a9cc0705
   - enabled: 1
-    path: Assets/_Scenes/_Release/Mundo2-SincronizarClones/Transito_sync.unity
+    path: Assets/_Scenes/_Release/Mundo3-SincronizarClones/FaltaBackground_Transito_sync.unity
     guid: f026a8c1d035ed740a5048567d944e6e
   - enabled: 1
-    path: Assets/_Scenes/_Release/Mundo4-Niveles finales/FaltaBackground_00_Vertical.unity
+    path: Assets/_Scenes/_Release/Mundo4-Varios/FaltaBackground_00_Vertical.unity
     guid: 4f2222510aa6845478ae460655225738
   - enabled: 1
-    path: Assets/_Scenes/_Release/Mundo3-Varios/FaltaBackground_Plataformas_pb.unity
+    path: Assets/_Scenes/_Release/Mundo4-Varios/FaltaBackground_Plataformas_pb.unity
     guid: e99535e3fb0bd994898cfa9fd88b854c
   - enabled: 1
-    path: Assets/_Scenes/_Release/Mundo4-Niveles finales/FaltaBackground_00_Syncronization.unity
+    path: Assets/_Scenes/_Release/Mundo3-SincronizarClones/FaltaBackground_00_Syncronization.unity
     guid: cb69aadc004f9734dbde423cf032968e
   - enabled: 1
     path: Assets/_Scenes/_Release/Mundo3-SincronizarClones/FaltaBackground_00_Rise_of_the_Clone.unity
@@ -71,6 +71,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/_Release/Mundo2-EliminarClon/FaltaBackground_Arise_and_Destroy.unity
     guid: 3030bf88cee80ee4fb2e327ffb3cf039
+  - enabled: 1
+    path: Assets/_Scenes/_Release/Otros/FaltaBackground_EliminarClon(sencillo).unity
+    guid: 9dfe077b8d102974a8ee38210e2c288b
   - enabled: 1
     path: Assets/_Scenes/_Release/Otros/Transition1-2.unity
     guid: b4f5d7dfaa5d391469d640a607182031
