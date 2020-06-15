@@ -403,6 +403,9 @@ public class SceneController : MonoBehaviour
         //Desactivamos render
         gameObject.GetComponent<SpriteRenderer>().enabled = false;
 
+        //Desactivamos sonidos que se esten reproduciendo desde la escena anterior
+        SoundManager.Instance.StopAllSounds();
+
         //Varaibles de MenuIngame
         pauseMenuMI = GameObject.Find("CanvasMenuIngame");
 
