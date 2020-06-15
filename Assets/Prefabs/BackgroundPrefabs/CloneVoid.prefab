@@ -9,9 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 216023930401175088}
-  - component: {fileID: 5436831687218316707}
-  - component: {fileID: 8185261849078499687}
-  - component: {fileID: 216023930401175095}
   m_Layer: 2
   m_Name: CloneVoid
   m_TagString: Player
@@ -35,90 +32,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5436831687218316707
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 216023930401175094}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15132b1fc807b0340b0744a4088022cf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bubbleProjected: {fileID: 1382793139557308960}
-  spriteProjected: {fileID: 3807031013682329494}
-  projections:
-  - name: KeyF
-    spriteList:
-    - {fileID: 21300000, guid: 8d77060ac31786c41b5d925e2393aa90, type: 3}
-    animation: 0
-    freqAnimation: 0
-    limitAnimationTime: 0
-  - name: HeartPila
-    spriteList:
-    - {fileID: 21300000, guid: 06b004f7d4eaac143b183dd8813a3789, type: 3}
-    - {fileID: 21300000, guid: d26078f7cfde3d245ad072127892672d, type: 3}
-    animation: 1
-    freqAnimation: 100
-    limitAnimationTime: 1200
---- !u!114 &8185261849078499687
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 216023930401175094}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b564a179cf94c14d81a909c0cee8bd4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  facingRight: 1
-  type: 0
-  initInputTime: 0
-  limitRecordingTime: 10
-  clones: []
-  maxClones: 1
-  baseSpeed: 700
-  jumpSpeed: 700
-  jumpForce: 0
-  jumpForceDefault: 8000
-  jumpForceBouncer: 12000
-  maxVelocity: 7
-  maxHeight: 0
-  maxHeightDefault: 20
-  maxHeightBouncer: 30
-  rb: {fileID: 0}
-  part: {fileID: 0}
-  nanoStart: {fileID: 0}
-  nanoEnd: {fileID: 0}
-  groundedPrecision: 0.2
-  isGrounded: 0
-  isJumping: 1
-  isRecording: 0
-  isInteracting: 0
-  bubblePlayer: {fileID: 5436831687218316707}
-  player: {fileID: 0}
-  clone: {fileID: 6229466955894678233, guid: 00519f55b15b7264e8218c9a1f648507, type: 3}
-  iteration: 0
-  initPos: {x: 0, y: 0}
-  timeAcceleration: 0
-  playerAnimator: {fileID: 1632052033708263641}
---- !u!114 &216023930401175095
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 216023930401175094}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84e57ea1d14fa2d4a9448650c23deeb0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  vel: 7
 --- !u!1 &1382793139557308960
 GameObject:
   m_ObjectHideFlags: 0
@@ -337,7 +250,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1632052033717823293}
-  - component: {fileID: 1632052033708263641}
   m_Layer: 0
   m_Name: Print
   m_TagString: Untagged
@@ -361,25 +273,6 @@ Transform:
   m_Father: {fileID: 216023930401175088}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &1632052033708263641
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1632052033717795613}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 4cdec31f48e329347a591287cd2b9de3, type: 3}
-  m_Controller: {fileID: 9100000, guid: 544c893b8cad1fe489b3a0b66463828a, type: 2}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1632052033717795615
 GameObject:
   m_ObjectHideFlags: 0
