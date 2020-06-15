@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
   m_Name: UAV-OSD-Sans-Mono SDF
   m_EditorClassIdentifier: 
-  hashCode: 0
+  hashCode: 2022984170
   material: {fileID: 21213901442361236}
-  materialHashCode: 0
+  materialHashCode: 1328640289
   m_Version: 1.1.0
   m_SourceFontFileGUID: d75f8f723cd45b746906ade66f05fcb1
   m_SourceFontFile_EditorRef: {fileID: 0}
