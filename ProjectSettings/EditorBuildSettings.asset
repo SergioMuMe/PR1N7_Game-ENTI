@@ -66,6 +66,12 @@ EditorBuildSettings:
     path: Assets/_Scenes/_Release/Mundo4-Niveles finales/FaltaBackground_00_Syncronization.unity
     guid: cb69aadc004f9734dbde423cf032968e
   - enabled: 1
+    path: Assets/_Scenes/_Release/Otros/FaltaBackground_00_Rise_of_the_Clone.unity
+    guid: d6a3e31329a32494e8a6c950a29a296f
+  - enabled: 1
+    path: Assets/_Scenes/_Release/Otros/FaltaBackground_Arise_and_Destroy.unity
+    guid: 3030bf88cee80ee4fb2e327ffb3cf039
+  - enabled: 1
     path: Assets/_Scenes/_Release/Otros/Transition1-2.unity
     guid: b4f5d7dfaa5d391469d640a607182031
   - enabled: 1
