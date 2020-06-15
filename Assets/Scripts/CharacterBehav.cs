@@ -277,16 +277,16 @@ public class CharacterBehav : MonoBehaviour
                 {
                     if (clones.Count > 0)
                     {
-                        Destroy(clones[0]);
-                        clones.RemoveAt(0);
+                        Destroy(clones[clones.Count-1]);
+                        clones.RemoveAt(clones.Count-1);
                     }
                 }
                 //if (Input.GetKeyDown(KeyCode.C) && !isRecording)
                 //{
                 //    if (clones.Count > 0)
                 //    {
-                //        Destroy(clones[clones.Count-1]);
-                //        clones.RemoveAt(clones.Count-1);
+                //        Destroy(clones[0]);
+                //        clones.RemoveAt(0);
                 //    }
                 //}
                 break;

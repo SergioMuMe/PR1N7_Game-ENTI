@@ -188,10 +188,10 @@ public class SceneController : MonoBehaviour
         {
             GameManager.Instance.setProfileFX("profileFX_Tutorial");
         }
-        else if (idLevel == 6 || idLevel == 9)
-        {
+        /*else if (idLevel == 6 || idLevel == 9)
+        /{
             GameManager.Instance.setProfileFX("profileFX_Game21");
-        }
+        }*/
         else
         {            
             GameManager.Instance.setProfileFX("profileFX_Game16");
