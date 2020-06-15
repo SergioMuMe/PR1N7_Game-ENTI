@@ -158,11 +158,11 @@ public class GameManager : MonoBehaviour
         timeLevelLimit[5] = 30f;
 
         //Mundo01
-        timeLevelLimit[6] = 55f;
-        timeLevelLimit[7] = 45f;
+        timeLevelLimit[6] = 20f;
+        timeLevelLimit[7] = 25f;
         timeLevelLimit[8] = 50f;
-        timeLevelLimit[9] = 55f;
-        timeLevelLimit[10] = 45f;
+        timeLevelLimit[9] = 35f;
+        timeLevelLimit[10] = 30f;
 
         ////Mundo02
         timeLevelLimit[11] = 45f;
