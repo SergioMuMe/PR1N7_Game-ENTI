@@ -1382,6 +1382,21 @@ PrefabInstance:
       propertyPath: m_Colors.m_NormalColor.b
       value: 0.34901962
       objectReference: {fileID: 0}
+    - target: {fileID: 1816525369685537485, guid: 696a197f94adca042b3ebbf4bb45a98a,
+        type: 3}
+      propertyPath: m_Colors.m_DisabledColor.r
+      value: 0.46226418
+      objectReference: {fileID: 0}
+    - target: {fileID: 1816525369685537485, guid: 696a197f94adca042b3ebbf4bb45a98a,
+        type: 3}
+      propertyPath: m_Colors.m_DisabledColor.g
+      value: 0.20806108
+      objectReference: {fileID: 0}
+    - target: {fileID: 1816525369685537485, guid: 696a197f94adca042b3ebbf4bb45a98a,
+        type: 3}
+      propertyPath: m_Colors.m_DisabledColor.b
+      value: 0.15917587
+      objectReference: {fileID: 0}
     - target: {fileID: 1816525370724764696, guid: 696a197f94adca042b3ebbf4bb45a98a,
         type: 3}
       propertyPath: m_Name
