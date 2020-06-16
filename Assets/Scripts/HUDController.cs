@@ -16,7 +16,7 @@ public class HUDController : MonoBehaviour
         ################
     */
 
-    private TextMeshProUGUI PauseTitle;
+    public TextMeshProUGUI PauseTitle;
 
     // !!! REFERENCIA PLAYER para obtener el tiempo limite de clonación !!!
     private CharacterBehav characterBehav;
@@ -55,10 +55,6 @@ public class HUDController : MonoBehaviour
         ###########
     */
 
-    GameObject pauseMenuMI;
-    
-
-
 
     /*index
         #####################
@@ -69,11 +65,7 @@ public class HUDController : MonoBehaviour
     */
 
     private void Start()
-    {
-        //Varaibles de MenuIngame
-        pauseMenuMI = GameObject.Find("CanvasMenuIngame");
-        PauseTitle = GameObject.Find("MI-Title").GetComponent<TextMeshProUGUI>();
-
+    {                       
         //Obtenemos referencias de los GameObjects
         characterBehav = GameObject.Find("Player").GetComponent<CharacterBehav>();
          
@@ -124,7 +116,7 @@ public class HUDController : MonoBehaviour
         //CanvasLT.SetActive(false);
 
         levelEnded = false;
-        pauseMenuMI.SetActive(false);
+        
     }
 
     private void Update()

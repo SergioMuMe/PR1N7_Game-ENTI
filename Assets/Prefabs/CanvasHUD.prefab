@@ -412,6 +412,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelEnded: 0
+  PauseTitle: {fileID: 3717752624268685579}
   playerTime: 0
   LTTime: {fileID: 0}
   recordSelected: 0

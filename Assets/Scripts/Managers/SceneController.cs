@@ -474,6 +474,7 @@ public class SceneController : MonoBehaviour
         nextLevelButtonEG = GameObject.Find("B-nextLevelButton").GetComponent<Button>();
         nextLevelButtonEG.onClick.AddListener(loadNextSceneEndGame);
 
+        
         //Configuramos los botones del Menu Ingame
         resumeButtonMI = GameObject.Find("MI-Resume").GetComponent<Button>();
         resumeButtonMI.onClick.AddListener(resumeGame);
@@ -494,7 +495,7 @@ public class SceneController : MonoBehaviour
         animResume = GameObject.Find("MI-Resume").GetComponent<Animator>();
         animRestart = GameObject.Find("MI-Restart").GetComponent<Animator>();
         animExit = GameObject.Find("MI-Exit").GetComponent<Animator>();
-
+        
 
         controlAllMedalsSound = true;
 
@@ -527,7 +528,7 @@ public class SceneController : MonoBehaviour
         canvasEndGame.GetComponent<Canvas>().worldCamera = mainCamera;
         canvasEndGame.GetComponent<Canvas>().planeDistance = 10;
         canvasEndGame.SetActive(false);
-        //pauseMenuMI.SetActive(false);
+        pauseMenuMI.SetActive(false);
     }
 
     //TODO: Esto lo estmaos usando para debugar. Terminar de implementar para jugador o quitar.
