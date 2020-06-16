@@ -57,6 +57,7 @@ public static class Utils
 
     public static void GoMainMenu()
     {
+        SoundManager.Instance.StopAllSounds();
         SceneManager.LoadScene("MainMenu");
     }
 

@@ -169,7 +169,7 @@ public class GameManager : MonoBehaviour
         timeLevelLimit[12] = 40f;
         timeLevelLimit[13] = 60f;
         timeLevelLimit[14] = 75f;
-        timeLevelLimit[15] = 40f;
+        timeLevelLimit[15] = 45f;
 
 
         ////Mundo03
@@ -238,12 +238,12 @@ public class GameManager : MonoBehaviour
                 //El primer nivel y la DEV-Room está desbloqueado para jugar
                 
                 //TEST CODE
-                profiles[i].levelsData[j].levelUnblockedFLAG = true;
+                //profiles[i].levelsData[j].levelUnblockedFLAG = true;
                 //TEST CODE
 
                 //RELEASE CODE
-                //if (j == 0 || j == 1) { profiles[i].levelsData[j].levelUnblockedFLAG = true; }
-                //else { profiles[i].levelsData[j].levelUnblockedFLAG = false; }
+                if (j == 0 || j == 1) { profiles[i].levelsData[j].levelUnblockedFLAG = true; }
+                else { profiles[i].levelsData[j].levelUnblockedFLAG = false; }
                 //RELEASE CODE
 
                 profiles[i].levelsData[j].firstTimeFLAG = true;
