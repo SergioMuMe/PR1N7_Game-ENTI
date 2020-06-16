@@ -582,9 +582,10 @@ public class SceneController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.O))
         {
-            setLevelResults();
-            sendLevelResults();
-            loadNextScene(nextScene);
+            GameObject.Find("Player").GetComponent<Transform>().position = GameObject.Find("NextLevel").GetComponent<Transform>().position;
+            //setLevelResults();
+            //sendLevelResults();
+            //loadNextScene(nextScene);
         }
 
         /*index
