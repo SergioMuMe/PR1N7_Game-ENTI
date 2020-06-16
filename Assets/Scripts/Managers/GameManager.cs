@@ -182,7 +182,7 @@ public class GameManager : MonoBehaviour
         ////Mundo04
         timeLevelLimit[21] = 35f;
         timeLevelLimit[22] = 25f;
-        timeLevelLimit[23] = 50f;
+        timeLevelLimit[23] = 45f;
         timeLevelLimit[24] = 40f;
         timeLevelLimit[25] = 25f;
     }
