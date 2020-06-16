@@ -55,6 +55,8 @@ public class HUDController : MonoBehaviour
         ###########
     */
 
+    GameObject pauseMenuMI;
+    
 
 
 
@@ -68,6 +70,10 @@ public class HUDController : MonoBehaviour
 
     private void Start()
     {
+        //Varaibles de MenuIngame
+        pauseMenuMI = GameObject.Find("CanvasMenuIngame");
+        PauseTitle = GameObject.Find("MI-Title").GetComponent<TextMeshProUGUI>();
+
         //Obtenemos referencias de los GameObjects
         characterBehav = GameObject.Find("Player").GetComponent<CharacterBehav>();
          
@@ -82,8 +88,8 @@ public class HUDController : MonoBehaviour
         CanvasLT = GameObject.Find("CanvasLT");
         LTTime = GameObject.Find("LT-Time").GetComponent<TextMeshProUGUI>();
         LTRecordTime = GameObject.Find("LT-RecordTime").GetComponent<TextMeshProUGUI>();
+
         
-        PauseTitle = GameObject.Find("MI-Title").GetComponent<TextMeshProUGUI>();
 
         //goMenuButton = GameObject.Find("EG-goMenuButton").GetComponent<Button>();
 
@@ -115,9 +121,10 @@ public class HUDController : MonoBehaviour
         LTRecordTime.text += Utils.GetTimeFormat(recordSelected, 3).ToString();
 
         // Decisión de la ALPHA, desactivamos contador de tiempo.
-        CanvasLT.SetActive(false);
+        //CanvasLT.SetActive(false);
 
         levelEnded = false;
+        pauseMenuMI.SetActive(false);
     }
 
     private void Update()
