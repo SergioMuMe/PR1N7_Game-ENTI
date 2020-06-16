@@ -12663,7 +12663,7 @@ PrefabInstance:
     - target: {fileID: 4754546773981360092, guid: 2bb841354d06dfe4ca1bd44c08319ffa,
         type: 3}
       propertyPath: nextScene
-      value: 26
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 4754546773981360092, guid: 2bb841354d06dfe4ca1bd44c08319ffa,
         type: 3}
@@ -12678,22 +12678,22 @@ PrefabInstance:
     - target: {fileID: 4754546773981360092, guid: 2bb841354d06dfe4ca1bd44c08319ffa,
         type: 3}
       propertyPath: nextLevelId
-      value: 16
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4754546773981360092, guid: 2bb841354d06dfe4ca1bd44c08319ffa,
         type: 3}
       propertyPath: oldWorldName
-      value: World 2
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4754546773981360092, guid: 2bb841354d06dfe4ca1bd44c08319ffa,
         type: 3}
       propertyPath: newWorldName
-      value: World 3
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4754546773981360092, guid: 2bb841354d06dfe4ca1bd44c08319ffa,
         type: 3}
       propertyPath: goTransition
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4754546773981360093, guid: 2bb841354d06dfe4ca1bd44c08319ffa,
         type: 3}

@@ -45,14 +45,14 @@ EditorBuildSettings:
     path: Assets/_Scenes/_Release/Mundo2-EliminarClon/02_12-EliminarClon(sencillo).unity
     guid: 9dfe077b8d102974a8ee38210e2c288b
   - enabled: 1
-    path: Assets/_Scenes/_Release/Mundo2-EliminarClon/02_13-mediano.unity
-    guid: d2221b2b492720140a12e4947eb31937
+    path: Assets/_Scenes/_Release/Mundo2-EliminarClon/02_13-Arise_and_Destroy.unity
+    guid: 3030bf88cee80ee4fb2e327ffb3cf039
   - enabled: 1
     path: Assets/_Scenes/_Release/Mundo2-EliminarClon/02_14-AlgoDificil.unity
     guid: 52d24e720b7acce42885d4fa0cc37fc7
   - enabled: 1
-    path: Assets/_Scenes/_Release/Mundo2-EliminarClon/02_15-Arise_and_Destroy.unity
-    guid: 3030bf88cee80ee4fb2e327ffb3cf039
+    path: Assets/_Scenes/_Release/Mundo2-EliminarClon/02_15-mediano.unity
+    guid: d2221b2b492720140a12e4947eb31937
   - enabled: 1
     path: Assets/_Scenes/_Release/Mundo3-SincronizarClones/03_16-Clones_sync.unity
     guid: 33b7c6c17ac13d64a9bfa4207e9c6fdf
