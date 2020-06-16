@@ -5,9 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class NextWorldController : MonoBehaviour
 {
-
-    public int nextScene;
-
     void Start()
     {
         //Desactivamos render

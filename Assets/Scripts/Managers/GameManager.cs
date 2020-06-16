@@ -238,12 +238,12 @@ public class GameManager : MonoBehaviour
                 //El primer nivel y la DEV-Room está desbloqueado para jugar
                 
                 //TEST CODE
-                profiles[i].levelsData[j].levelUnblockedFLAG = true;
+                //profiles[i].levelsData[j].levelUnblockedFLAG = true;
                 //TEST CODE
 
                 //RELEASE CODE
-                //if (j == 0 || j == 1) { profiles[i].levelsData[j].levelUnblockedFLAG = true; }
-                //else { profiles[i].levelsData[j].levelUnblockedFLAG = false; }
+                if (j == 0 || j == 1) { profiles[i].levelsData[j].levelUnblockedFLAG = true; }
+                else { profiles[i].levelsData[j].levelUnblockedFLAG = false; }
                 //RELEASE CODE
 
                 profiles[i].levelsData[j].firstTimeFLAG = true;

@@ -11142,7 +11142,7 @@ PrefabInstance:
     - target: {fileID: 4754546773981360093, guid: 2bb841354d06dfe4ca1bd44c08319ffa,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2bb841354d06dfe4ca1bd44c08319ffa, type: 3}
@@ -11214,11 +11214,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2736885869524066080, guid: b77ba7b60617d434eb7494ce18b11475,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 561626151}
-    - target: {fileID: 2736885869524066109, guid: b77ba7b60617d434eb7494ce18b11475,
         type: 3}
       propertyPath: m_Mesh
       value: 
@@ -30443,6 +30438,11 @@ PrefabInstance:
       propertyPath: m_Tangents.Array.data[383].w
       value: -1
       objectReference: {fileID: 0}
+    - target: {fileID: 2736885869524066109, guid: b77ba7b60617d434eb7494ce18b11475,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 561626151}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b77ba7b60617d434eb7494ce18b11475, type: 3}
 --- !u!43 &1745777674
@@ -30952,6 +30952,11 @@ PrefabInstance:
       propertyPath: m_PlaneDistance
       value: 13
       objectReference: {fileID: 0}
+    - target: {fileID: 2753187023926684707, guid: ff7e60ef648e09147859de0d1785d0ea,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1060329764488466289, guid: ff7e60ef648e09147859de0d1785d0ea,
         type: 3}
       propertyPath: m_IsActive
@@ -31000,11 +31005,6 @@ PrefabInstance:
     - target: {fileID: 4468932806731377395, guid: ff7e60ef648e09147859de0d1785d0ea,
         type: 3}
       propertyPath: m_textInfo.pageCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2753187023926684707, guid: ff7e60ef648e09147859de0d1785d0ea,
-        type: 3}
-      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

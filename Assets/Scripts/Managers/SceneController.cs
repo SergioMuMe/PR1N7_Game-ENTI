@@ -527,7 +527,7 @@ public class SceneController : MonoBehaviour
         canvasEndGame.GetComponent<Canvas>().worldCamera = mainCamera;
         canvasEndGame.GetComponent<Canvas>().planeDistance = 10;
         canvasEndGame.SetActive(false);
-        pauseMenuMI.SetActive(false);
+        //pauseMenuMI.SetActive(false);
     }
 
     //TODO: Esto lo estmaos usando para debugar. Terminar de implementar para jugador o quitar.
